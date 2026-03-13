@@ -1,0 +1,2068 @@
+openapi: 3.1.0
+info:
+  title: Salesforce Marketing Cloud REST API
+  description: >-
+    The Salesforce Marketing Cloud REST API provides programmatic access to
+    Marketing Cloud features including contacts, journeys, and assets. The API
+    uses JSON request and response bodies and OAuth 2.0 authentication via the
+    Marketing Cloud authentication endpoint. All API requests require a valid
+    access token obtained through the Server-to-Server OAuth flow.
+  version: 1.0.0
+  termsOfService: https://www.salesforce.com/company/legal/
+  contact:
+    name: Salesforce Marketing Cloud Support
+    url: https://help.salesforce.com/s/
+    email: support@salesforce.com
+  license:
+    name: Salesforce Master Subscription Agreement
+    url: https://www.salesforce.com/company/legal/agreements/
+servers:
+  - url: https://{subdomain}.rest.marketingcloudapis.com
+    description: Marketing Cloud REST API endpoint
+    variables:
+      subdomain:
+        default: YOUR_SUBDOMAIN
+        description: >-
+          Your Marketing Cloud tenant-specific subdomain (e.g.,
+          mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps >
+          Installed Packages in Marketing Cloud.
+security:
+  - OAuth2: []
+tags:
+  - name: Contacts
+    description: >-
+      Create, retrieve, update, and delete contacts in Marketing Cloud. Contacts
+      represent individuals who interact with your marketing campaigns across
+      channels.
+    externalDocs:
+      description: Contacts API Documentation
+      url: https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_contacts/createContacts.html
+  - name: Journeys
+    description: >-
+      Create, manage, and automate customer journeys across multiple channels
+      and touchpoints. Journeys define the automated workflows that guide
+      customers through marketing interactions.
+    externalDocs:
+      description: Journey Builder API Documentation
+      url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/journey-builder-api-overview.html
+  - name: Assets
+    description: >-
+      Manage marketing assets including images, documents, content blocks, and
+      templates. The Asset API provides CRUD operations for all content types
+      stored in Content Builder.
+    externalDocs:
+      description: Asset API Documentation
+      url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/asset-api.html
+paths:
+  /contacts/v1/contacts:
+    post:
+      operationId: createContacts
+      summary: Create contacts
+      description: >-
+        Creates one or more contacts in Marketing Cloud. Each contact requires a
+        contactKey as a unique identifier. You can include attribute values for
+        any defined attribute sets such as Email Addresses, MobileConnect
+        Demographics, or custom attribute sets.
+      tags:
+        - Contacts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateContactsRequest'
+            example:
+              contactKey: example-contact-001
+              attributeSets:
+                - name: Email Addresses
+                  items:
+                    - values:
+                        - name: Email Address
+                          value: user@example.com
+                        - name: HTML Enabled
+                          value: true
+      responses:
+        '200':
+          description: Contacts created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactResponse'
+        '400':
+          description: Bad request - invalid contact data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized - invalid or expired access token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden - insufficient permissions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too many requests - rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /contacts/v1/contacts/actions/search:
+    post:
+      operationId: searchContacts
+      summary: Search contacts
+      description: >-
+        Searches for contacts using filter criteria. Supports filtering by
+        contactKey, email address, or other contact attributes. Returns matching
+        contacts with their associated attribute values.
+      tags:
+        - Contacts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContactSearchRequest'
+            example:
+              conditionSet:
+                operator: AND
+                conditionSets: []
+                conditions:
+                  - attribute:
+                      groupName: Email Addresses
+                      name: Email Address
+                    operator: Equals
+                    value:
+                      items:
+                        - user@example.com
+              returnAttributes:
+                - groupName: Email Addresses
+                  name: Email Address
+                - groupName: Email Addresses
+                  name: HTML Enabled
+      responses:
+        '200':
+          description: Search results returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactSearchResponse'
+        '400':
+          description: Bad request - invalid search criteria
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /contacts/v1/contacts/{contactKey}:
+    get:
+      operationId: getContact
+      summary: Retrieve a contact by contact key
+      description: >-
+        Retrieves a single contact using the unique contactKey identifier.
+        Returns the contact record with all associated attribute sets and values.
+      tags:
+        - Contacts
+      parameters:
+        - name: contactKey
+          in: path
+          required: true
+          description: Unique identifier for the contact
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Contact retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contact'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Contact not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    patch:
+      operationId: updateContact
+      summary: Update a contact
+      description: >-
+        Updates an existing contact's attributes. Provide only the attribute
+        sets and values that need to be changed. Unspecified attributes remain
+        unchanged.
+      tags:
+        - Contacts
+      parameters:
+        - name: contactKey
+          in: path
+          required: true
+          description: Unique identifier for the contact
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateContactRequest'
+      responses:
+        '200':
+          description: Contact updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Contact not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      operationId: deleteContact
+      summary: Delete a contact
+      description: >-
+        Initiates an asynchronous delete operation for a contact identified by
+        contactKey. This operation removes the contact and associated data from
+        Marketing Cloud. The delete process runs asynchronously and may take
+        time to complete.
+      tags:
+        - Contacts
+      parameters:
+        - name: contactKey
+          in: path
+          required: true
+          description: Unique identifier for the contact to delete
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Contact delete operation initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteContactResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Contact not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /contacts/v1/attributeSets:
+    get:
+      operationId: listAttributeSets
+      summary: List attribute sets
+      description: >-
+        Retrieves all attribute sets defined in Marketing Cloud. Attribute sets
+        define the structure of contact data, including system attribute sets
+        like Email Addresses and MobileConnect Demographics, as well as custom
+        attribute sets.
+      tags:
+        - Contacts
+      responses:
+        '200':
+          description: Attribute sets retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttributeSetsResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /interaction/v1/interactions:
+    get:
+      operationId: listJourneys
+      summary: List journeys
+      description: >-
+        Retrieves a collection of journeys. Supports pagination through page
+        and pageSize parameters. Returns journey definitions including their
+        current status, version, and configuration.
+      tags:
+        - Journeys
+      parameters:
+        - name: $page
+          in: query
+          description: Page number for pagination (1-based)
+          schema:
+            type: integer
+            default: 1
+            minimum: 1
+        - name: $pageSize
+          in: query
+          description: Number of journeys per page
+          schema:
+            type: integer
+            default: 50
+            minimum: 1
+            maximum: 200
+        - name: $orderBy
+          in: query
+          description: >-
+            Field to sort results by (e.g., ModifiedDate DESC, Name ASC)
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: >-
+            Filter journeys by status (Draft, Published, ScheduledToPublish,
+            Stopped, Unpublished)
+          schema:
+            type: string
+            enum:
+              - Draft
+              - Published
+              - ScheduledToPublish
+              - Stopped
+              - Unpublished
+        - name: nameOrDescription
+          in: query
+          description: Filter journeys by name or description (partial match)
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Journeys retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JourneyCollection'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      operationId: createJourney
+      summary: Create a journey
+      description: >-
+        Creates a new journey in Marketing Cloud. The journey specification
+        defines the entry event, activities, triggers, and overall workflow.
+        Journeys are created in Draft status by default and must be published
+        to become active.
+      tags:
+        - Journeys
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JourneyDefinition'
+            example:
+              name: Welcome Journey
+              description: Onboarding journey for new subscribers
+              key: welcome-journey-001
+              workflowApiVersion: 1.0
+              triggers:
+                - key: event-trigger
+                  name: api-event
+                  type: APIEvent
+                  eventDefinitionKey: APIEvent-welcome
+              activities:
+                - key: send-welcome-email
+                  name: Send Welcome Email
+                  type: EMAILV2
+                  configurationArguments:
+                    triggeredSend:
+                      emailId: 12345
+      responses:
+        '201':
+          description: Journey created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Journey'
+        '400':
+          description: Bad request - invalid journey specification
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /interaction/v1/interactions/{id}:
+    get:
+      operationId: getJourney
+      summary: Retrieve a journey
+      description: >-
+        Retrieves a single journey by its unique identifier. Returns the
+        complete journey specification including activities, triggers, goals,
+        and exit criteria.
+      tags:
+        - Journeys
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique identifier (UUID) of the journey
+          schema:
+            type: string
+            format: uuid
+        - name: versionNumber
+          in: query
+          description: >-
+            Specific version number to retrieve. If omitted, returns the latest
+            version.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Journey retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Journey'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Journey not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      operationId: updateJourney
+      summary: Update a journey
+      description: >-
+        Updates an existing journey. Only journeys in Draft status can be fully
+        updated. Published journeys support limited modifications. Provide the
+        complete journey specification including all activities and triggers.
+      tags:
+        - Journeys
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique identifier (UUID) of the journey
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JourneyDefinition'
+      responses:
+        '200':
+          description: Journey updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Journey'
+        '400':
+          description: Bad request - invalid journey specification
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Journey not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Conflict - journey is in a non-editable state
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      operationId: deleteJourney
+      summary: Delete a journey
+      description: >-
+        Deletes a journey. Only journeys in Draft or Stopped status can be
+        deleted. Published journeys must first be stopped before deletion.
+      tags:
+        - Journeys
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique identifier (UUID) of the journey
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Journey deleted successfully
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Journey not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Conflict - journey cannot be deleted in current state
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /interaction/v1/interactions/publishAsync/{id}:
+    post:
+      operationId: publishJourney
+      summary: Publish a journey
+      description: >-
+        Publishes a journey asynchronously, activating it for customer entry.
+        Once published, contacts matching the entry criteria begin entering the
+        journey. The publish operation returns a statusId for tracking progress.
+      tags:
+        - Journeys
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique identifier (UUID) of the journey to publish
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                versionNumber:
+                  type: integer
+                  description: Version number to publish
+      responses:
+        '202':
+          description: Publish operation initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublishResponse'
+        '400':
+          description: Bad request - journey not in publishable state
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Journey not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /interaction/v1/interactions/stop/{id}:
+    post:
+      operationId: stopJourney
+      summary: Stop a journey
+      description: >-
+        Stops a published journey. Contacts currently in the journey can either
+        complete their current activity or be ejected immediately based on the
+        stop configuration.
+      tags:
+        - Journeys
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique identifier (UUID) of the journey to stop
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Journey stopped successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Journey'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Journey not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Conflict - journey is not in a stoppable state
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /interaction/v1/events:
+    post:
+      operationId: fireEntryEvent
+      summary: Fire a journey entry event
+      description: >-
+        Fires an entry event to inject a contact into a journey. The contact
+        is identified by ContactKey and enters the journey associated with the
+        specified EventDefinitionKey. Additional data can be passed as part of
+        the event payload.
+      tags:
+        - Journeys
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EntryEvent'
+            example:
+              ContactKey: example-contact-001
+              EventDefinitionKey: APIEvent-welcome
+              Data:
+                FirstName: Jane
+                LastName: Smith
+                EmailAddress: jane.smith@example.com
+      responses:
+        '201':
+          description: Event fired successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntryEventResponse'
+        '400':
+          description: Bad request - invalid event data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /asset/v1/content/assets:
+    get:
+      operationId: listAssets
+      summary: List assets
+      description: >-
+        Retrieves a collection of assets from Content Builder. Supports
+        filtering, sorting, and pagination. Assets include emails, templates,
+        images, content blocks, and other content types.
+      tags:
+        - Assets
+      parameters:
+        - name: $page
+          in: query
+          description: Page number for pagination (1-based)
+          schema:
+            type: integer
+            default: 1
+            minimum: 1
+        - name: $pageSize
+          in: query
+          description: Number of assets per page
+          schema:
+            type: integer
+            default: 50
+            minimum: 1
+            maximum: 200
+        - name: $orderBy
+          in: query
+          description: >-
+            Field to sort results by (e.g., modifiedDate DESC, name ASC)
+          schema:
+            type: string
+        - name: $filter
+          in: query
+          description: >-
+            OData-style filter expression (e.g.,
+            assetType.name eq 'htmlemail')
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Assets retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetCollection'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      operationId: createAsset
+      summary: Create an asset
+      description: >-
+        Creates a new asset in Content Builder. The asset type determines the
+        required and optional fields. Common asset types include htmlemail,
+        templatebasedemail, htmlblock, codesnippetblock, and image.
+      tags:
+        - Assets
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssetDefinition'
+            example:
+              name: Welcome Email
+              description: Welcome email sent to new subscribers
+              assetType:
+                name: htmlemail
+                id: 208
+              views:
+                html:
+                  content: '<html><body><h1>Welcome!</h1></body></html>'
+                subjectLine:
+                  content: Welcome to our newsletter
+              data:
+                email:
+                  options:
+                    characterEncoding: utf-8
+      responses:
+        '201':
+          description: Asset created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Asset'
+        '400':
+          description: Bad request - invalid asset definition
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /asset/v1/content/assets/{id}:
+    get:
+      operationId: getAsset
+      summary: Retrieve an asset
+      description: >-
+        Retrieves a single asset by its unique identifier. Returns the complete
+        asset definition including content, metadata, and associated category.
+      tags:
+        - Assets
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique identifier of the asset
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Asset retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Asset'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Asset not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      operationId: updateAsset
+      summary: Update an asset
+      description: >-
+        Updates an existing asset. Provide the complete asset definition with
+        all desired values. Fields not included in the request body are not
+        modified.
+      tags:
+        - Assets
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique identifier of the asset
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssetDefinition'
+      responses:
+        '200':
+          description: Asset updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Asset'
+        '400':
+          description: Bad request - invalid asset definition
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Asset not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      operationId: deleteAsset
+      summary: Delete an asset
+      description: >-
+        Deletes an asset from Content Builder. This action is permanent and
+        cannot be undone.
+      tags:
+        - Assets
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique identifier of the asset to delete
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Asset deleted successfully
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Asset not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /asset/v1/content/assets/query:
+    post:
+      operationId: queryAssets
+      summary: Query assets with advanced filtering
+      description: >-
+        Performs an advanced query against assets using a structured query
+        object. Supports complex filtering with AND/OR logic, nested
+        conditions, and multiple sort criteria. More powerful than the
+        OData-style filter on the list endpoint.
+      tags:
+        - Assets
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssetQuery'
+            example:
+              page:
+                page: 1
+                pageSize: 50
+              query:
+                property: assetType.name
+                simpleOperator: equal
+                value: htmlemail
+              sort:
+                - property: modifiedDate
+                  direction: DESC
+              fields:
+                - id
+                - name
+                - assetType
+                - modifiedDate
+      responses:
+        '200':
+          description: Query results returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetCollection'
+        '400':
+          description: Bad request - invalid query
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /asset/v1/content/categories:
+    get:
+      operationId: listCategories
+      summary: List asset categories
+      description: >-
+        Retrieves categories (folders) used to organize assets in Content
+        Builder. Categories provide a hierarchical folder structure for content
+        organization.
+      tags:
+        - Assets
+      parameters:
+        - name: $page
+          in: query
+          description: Page number for pagination (1-based)
+          schema:
+            type: integer
+            default: 1
+        - name: $pageSize
+          in: query
+          description: Number of categories per page
+          schema:
+            type: integer
+            default: 50
+        - name: $filter
+          in: query
+          description: >-
+            OData-style filter expression (e.g., parentId eq 12345)
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Categories retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryCollection'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: >-
+        Marketing Cloud uses OAuth 2.0 client credentials flow for
+        authentication. Obtain a client ID and secret from an installed package
+        in Marketing Cloud Setup, then exchange them for an access token at the
+        authentication endpoint.
+      flows:
+        clientCredentials:
+          tokenUrl: https://YOUR_SUBDOMAIN.auth.marketingcloudapis.com/v2/token
+          scopes: {}
+  schemas:
+    Contact:
+      type: object
+      description: >-
+        Represents a contact in Marketing Cloud. A contact is an individual
+        who interacts with marketing campaigns across channels.
+      properties:
+        contactKey:
+          type: string
+          description: >-
+            Unique identifier for the contact. This value is used across all
+            Marketing Cloud channels and applications.
+        contactID:
+          type: integer
+          description: System-generated unique numeric identifier
+        contactStatus:
+          type: string
+          description: Current status of the contact
+          enum:
+            - Active
+            - Inactive
+            - Bounced
+            - Held
+            - Unsubscribed
+        createdDate:
+          type: string
+          format: date-time
+          description: Date and time the contact was created
+        modifiedDate:
+          type: string
+          format: date-time
+          description: Date and time the contact was last modified
+        attributeSets:
+          type: array
+          description: Collection of attribute sets associated with the contact
+          items:
+            $ref: '#/components/schemas/AttributeSet'
+      required:
+        - contactKey
+    AttributeSet:
+      type: object
+      description: >-
+        A named collection of attributes that define a category of contact
+        data, such as Email Addresses or MobileConnect Demographics.
+      properties:
+        name:
+          type: string
+          description: Name of the attribute set
+        items:
+          type: array
+          description: Collection of attribute value groups
+          items:
+            type: object
+            properties:
+              values:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AttributeValue'
+    AttributeValue:
+      type: object
+      description: A single attribute name-value pair within an attribute set
+      properties:
+        name:
+          type: string
+          description: Name of the attribute
+        value:
+          description: Value of the attribute
+      required:
+        - name
+        - value
+    CreateContactsRequest:
+      type: object
+      description: Request body for creating one or more contacts
+      properties:
+        contactKey:
+          type: string
+          description: Unique identifier for the contact
+        attributeSets:
+          type: array
+          description: Attribute sets and values to assign to the contact
+          items:
+            $ref: '#/components/schemas/AttributeSet'
+      required:
+        - contactKey
+    UpdateContactRequest:
+      type: object
+      description: Request body for updating contact attributes
+      properties:
+        attributeSets:
+          type: array
+          description: Attribute sets and values to update
+          items:
+            $ref: '#/components/schemas/AttributeSet'
+      required:
+        - attributeSets
+    ContactResponse:
+      type: object
+      description: Response returned after contact creation or update operations
+      properties:
+        operationStatus:
+          type: string
+          description: Overall status of the operation
+        requestServiceMessageID:
+          type: string
+          description: Unique identifier for the request
+        responseDateTime:
+          type: string
+          format: date-time
+        resultMessages:
+          type: array
+          items:
+            type: object
+            properties:
+              resultType:
+                type: string
+              resultCode:
+                type: string
+              resultMessage:
+                type: string
+    ContactSearchRequest:
+      type: object
+      description: Request body for searching contacts with filter criteria
+      properties:
+        conditionSet:
+          type: object
+          description: Root condition set for the search
+          properties:
+            operator:
+              type: string
+              enum:
+                - AND
+                - OR
+            conditions:
+              type: array
+              items:
+                type: object
+                properties:
+                  attribute:
+                    type: object
+                    properties:
+                      groupName:
+                        type: string
+                      name:
+                        type: string
+                  operator:
+                    type: string
+                    enum:
+                      - Equals
+                      - NotEquals
+                      - GreaterThan
+                      - LessThan
+                      - Contains
+                      - StartsWith
+                      - EndsWith
+                      - IsNull
+                      - IsNotNull
+                  value:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          type: string
+            conditionSets:
+              type: array
+              items: {}
+        returnAttributes:
+          type: array
+          description: Attributes to include in the search results
+          items:
+            type: object
+            properties:
+              groupName:
+                type: string
+              name:
+                type: string
+    ContactSearchResponse:
+      type: object
+      description: Response returned from a contact search operation
+      properties:
+        count:
+          type: integer
+          description: Total number of matching contacts
+        page:
+          type: integer
+        pageSize:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contact'
+    DeleteContactResponse:
+      type: object
+      description: Response from a contact delete operation
+      properties:
+        operationStatus:
+          type: string
+        requestServiceMessageID:
+          type: string
+        responseDateTime:
+          type: string
+          format: date-time
+        operationInitiated:
+          type: boolean
+          description: Whether the asynchronous delete was successfully initiated
+    AttributeSetsResponse:
+      type: object
+      description: Response containing a collection of attribute sets
+      properties:
+        count:
+          type: integer
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              attributes:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    dataType:
+                      type: string
+                    isRequired:
+                      type: boolean
+                    isReadOnly:
+                      type: boolean
+    Journey:
+      type: object
+      description: >-
+        Represents a customer journey in Marketing Cloud. A journey defines
+        an automated workflow that guides contacts through a series of
+        marketing interactions across channels.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: System-generated unique identifier for the journey
+        key:
+          type: string
+          description: Customer-defined unique key for the journey
+        name:
+          type: string
+          description: Display name of the journey
+        description:
+          type: string
+          description: Description of the journey purpose
+        version:
+          type: integer
+          description: Current version number of the journey
+        status:
+          type: string
+          description: Current status of the journey
+          enum:
+            - Draft
+            - Published
+            - ScheduledToPublish
+            - Stopped
+            - Unpublished
+        createdDate:
+          type: string
+          format: date-time
+        modifiedDate:
+          type: string
+          format: date-time
+        workflowApiVersion:
+          type: number
+          description: Version of the Journey Builder API used
+        triggers:
+          type: array
+          description: Entry triggers that inject contacts into the journey
+          items:
+            $ref: '#/components/schemas/JourneyTrigger'
+        activities:
+          type: array
+          description: Activities that contacts pass through in the journey
+          items:
+            $ref: '#/components/schemas/JourneyActivity'
+        goals:
+          type: array
+          description: Goal criteria that measure journey success
+          items:
+            $ref: '#/components/schemas/JourneyGoal'
+        exits:
+          type: array
+          description: Exit criteria that remove contacts from the journey
+          items:
+            $ref: '#/components/schemas/JourneyExit'
+        stats:
+          type: object
+          description: Runtime statistics for the journey
+          properties:
+            currentPopulation:
+              type: integer
+              description: Number of contacts currently in the journey
+            cumulativePopulation:
+              type: integer
+              description: Total contacts that have entered the journey
+            metGoal:
+              type: integer
+              description: Number of contacts that met the journey goal
+    JourneyDefinition:
+      type: object
+      description: Specification for creating or updating a journey
+      properties:
+        key:
+          type: string
+          description: Customer-defined unique key for the journey
+        name:
+          type: string
+          description: Display name of the journey
+        description:
+          type: string
+          description: Description of the journey purpose
+        workflowApiVersion:
+          type: number
+          description: Version of the Journey Builder API (e.g., 1.0)
+        triggers:
+          type: array
+          items:
+            $ref: '#/components/schemas/JourneyTrigger'
+        activities:
+          type: array
+          items:
+            $ref: '#/components/schemas/JourneyActivity'
+        goals:
+          type: array
+          items:
+            $ref: '#/components/schemas/JourneyGoal'
+        exits:
+          type: array
+          items:
+            $ref: '#/components/schemas/JourneyExit'
+      required:
+        - name
+        - workflowApiVersion
+    JourneyTrigger:
+      type: object
+      description: >-
+        Entry trigger configuration for a journey. Defines how contacts enter
+        the journey, such as via API event, scheduled automation, or audience.
+      properties:
+        key:
+          type: string
+          description: Unique key for the trigger within the journey
+        name:
+          type: string
+          description: Display name of the trigger
+        type:
+          type: string
+          description: Type of trigger
+          enum:
+            - APIEvent
+            - ScheduledAutomation
+            - Event
+            - ContactAudience
+        eventDefinitionKey:
+          type: string
+          description: >-
+            Key of the event definition associated with this trigger, used for
+            API events
+        configurationArguments:
+          type: object
+          description: Trigger-specific configuration
+    JourneyActivity:
+      type: object
+      description: >-
+        An activity within a journey. Activities represent the actions
+        performed on contacts, such as sending emails, waiting, or making
+        decisions.
+      properties:
+        key:
+          type: string
+          description: Unique key for the activity within the journey
+        name:
+          type: string
+          description: Display name of the activity
+        type:
+          type: string
+          description: Type of activity
+          enum:
+            - EMAILV2
+            - SMSSYNC
+            - PUSHNOTIFICATION
+            - WAIT
+            - RANDOM_SPLIT
+            - ENGAGEMENT_SPLIT
+            - DECISION_SPLIT
+            - JOIN
+            - DATAEXTENSIONUPDATE
+            - REST
+            - CUSTOM
+        configurationArguments:
+          type: object
+          description: Activity-specific configuration
+        outcomes:
+          type: array
+          description: Possible outcomes of the activity leading to next steps
+          items:
+            type: object
+            properties:
+              key:
+                type: string
+              next:
+                type: string
+                description: Key of the next activity in the journey
+      required:
+        - key
+        - type
+    JourneyGoal:
+      type: object
+      description: Goal criteria for measuring journey success
+      properties:
+        key:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        metCriteria:
+          type: string
+          description: Criteria expression that defines when the goal is met
+    JourneyExit:
+      type: object
+      description: Exit criteria that remove contacts from the journey
+      properties:
+        key:
+          type: string
+        name:
+          type: string
+        criteria:
+          type: string
+          description: Criteria expression that triggers journey exit
+    JourneyCollection:
+      type: object
+      description: Paginated collection of journeys
+      properties:
+        count:
+          type: integer
+          description: Total number of journeys matching the query
+        page:
+          type: integer
+          description: Current page number
+        pageSize:
+          type: integer
+          description: Number of items per page
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Journey'
+    EntryEvent:
+      type: object
+      description: >-
+        Event payload used to inject a contact into a journey via the API
+        event trigger.
+      properties:
+        ContactKey:
+          type: string
+          description: Unique identifier for the contact entering the journey
+        EventDefinitionKey:
+          type: string
+          description: >-
+            Key of the event definition matching the journey entry trigger
+        Data:
+          type: object
+          description: >-
+            Additional data to pass to the journey as key-value pairs. These
+            values are available to activities within the journey.
+          additionalProperties: true
+      required:
+        - ContactKey
+        - EventDefinitionKey
+    EntryEventResponse:
+      type: object
+      description: Response returned after firing a journey entry event
+      properties:
+        requestId:
+          type: string
+          description: Unique identifier for the event request
+        eventInstanceId:
+          type: string
+          format: uuid
+          description: Unique instance identifier for this event firing
+    PublishResponse:
+      type: object
+      description: Response returned when a journey publish operation is initiated
+      properties:
+        statusId:
+          type: string
+          description: Identifier for tracking the publish operation status
+        message:
+          type: string
+    Asset:
+      type: object
+      description: >-
+        Represents a marketing asset in Content Builder. Assets include emails,
+        templates, images, content blocks, and other content types used in
+        marketing campaigns.
+      properties:
+        id:
+          type: integer
+          description: System-generated unique identifier for the asset
+        customerKey:
+          type: string
+          description: Customer-defined unique key for the asset
+        name:
+          type: string
+          description: Display name of the asset
+        description:
+          type: string
+          description: Description of the asset
+        assetType:
+          $ref: '#/components/schemas/AssetType'
+        category:
+          type: object
+          description: Category (folder) containing the asset
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+            parentId:
+              type: integer
+        content:
+          type: string
+          description: >-
+            Primary content of the asset, typically HTML or text depending on
+            asset type
+        views:
+          type: object
+          description: >-
+            Channel-specific content views (e.g., html, text, subjectLine,
+            preheader)
+          properties:
+            html:
+              type: object
+              properties:
+                content:
+                  type: string
+            text:
+              type: object
+              properties:
+                content:
+                  type: string
+            subjectLine:
+              type: object
+              properties:
+                content:
+                  type: string
+            preheader:
+              type: object
+              properties:
+                content:
+                  type: string
+        data:
+          type: object
+          description: Asset-type-specific data and configuration
+          additionalProperties: true
+        tags:
+          type: array
+          description: Tags assigned to the asset for organization
+          items:
+            type: string
+        status:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+              enum:
+                - Draft
+                - Approved
+        createdDate:
+          type: string
+          format: date-time
+        modifiedDate:
+          type: string
+          format: date-time
+        createdBy:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+            email:
+              type: string
+        modifiedBy:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+            email:
+              type: string
+    AssetType:
+      type: object
+      description: >-
+        Defines the type of an asset. Each type has a unique ID and name.
+        Common types include htmlemail (208), templatebasedemail (207),
+        htmlblock (197), codesnippetblock (220), and image (28).
+      properties:
+        id:
+          type: integer
+          description: Numeric identifier for the asset type
+        name:
+          type: string
+          description: Name of the asset type
+    AssetDefinition:
+      type: object
+      description: Specification for creating or updating an asset
+      properties:
+        name:
+          type: string
+          description: Display name of the asset
+        description:
+          type: string
+          description: Description of the asset
+        customerKey:
+          type: string
+          description: Customer-defined unique key
+        assetType:
+          $ref: '#/components/schemas/AssetType'
+        category:
+          type: object
+          properties:
+            id:
+              type: integer
+              description: ID of the category (folder) to place the asset in
+        content:
+          type: string
+          description: Primary content of the asset
+        views:
+          type: object
+          description: Channel-specific content views
+          properties:
+            html:
+              type: object
+              properties:
+                content:
+                  type: string
+            text:
+              type: object
+              properties:
+                content:
+                  type: string
+            subjectLine:
+              type: object
+              properties:
+                content:
+                  type: string
+            preheader:
+              type: object
+              properties:
+                content:
+                  type: string
+        data:
+          type: object
+          description: Asset-type-specific data
+          additionalProperties: true
+        tags:
+          type: array
+          items:
+            type: string
+      required:
+        - name
+        - assetType
+    AssetCollection:
+      type: object
+      description: Paginated collection of assets
+      properties:
+        count:
+          type: integer
+          description: Total number of assets matching the query
+        page:
+          type: integer
+          description: Current page number
+        pageSize:
+          type: integer
+          description: Number of items per page
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Asset'
+    AssetQuery:
+      type: object
+      description: Advanced query object for searching assets
+      properties:
+        page:
+          type: object
+          properties:
+            page:
+              type: integer
+            pageSize:
+              type: integer
+        query:
+          type: object
+          description: Query filter criteria
+          properties:
+            property:
+              type: string
+              description: Property name to filter on
+            simpleOperator:
+              type: string
+              description: Comparison operator
+              enum:
+                - equal
+                - notEqual
+                - greaterThan
+                - greaterThanOrEqual
+                - lessThan
+                - lessThanOrEqual
+                - like
+                - isNull
+                - isNotNull
+                - between
+                - IN
+            value:
+              description: Value to compare against
+            dateValue:
+              type: string
+              format: date-time
+              description: Date value for date-based comparisons
+            leftOperand:
+              type: object
+              description: Left operand for compound queries
+            rightOperand:
+              type: object
+              description: Right operand for compound queries
+            logicalOperator:
+              type: string
+              enum:
+                - AND
+                - OR
+        sort:
+          type: array
+          items:
+            type: object
+            properties:
+              property:
+                type: string
+              direction:
+                type: string
+                enum:
+                  - ASC
+                  - DESC
+        fields:
+          type: array
+          description: Specific fields to include in the response
+          items:
+            type: string
+    CategoryCollection:
+      type: object
+      description: Paginated collection of asset categories
+      properties:
+        count:
+          type: integer
+        page:
+          type: integer
+        pageSize:
+          type: integer
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
+              parentId:
+                type: integer
+              description:
+                type: string
+    ErrorResponse:
+      type: object
+      description: Standard error response returned by the Marketing Cloud API
+      properties:
+        message:
+          type: string
+          description: Human-readable error message
+        errorcode:
+          type: integer
+          description: Numeric error code
+        documentation:
+          type: string
+          description: URL to relevant documentation for this error

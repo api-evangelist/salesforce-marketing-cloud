@@ -1,0 +1,345 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "sfmc": "https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/",
+    "mc": "https://YOUR_SUBDOMAIN.rest.marketingcloudapis.com/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "schema": "https://schema.org/",
+
+    "Contact": {
+      "@id": "sfmc:contacts",
+      "@context": {
+        "contactKey": {
+          "@id": "schema:identifier",
+          "@type": "xsd:string"
+        },
+        "contactID": {
+          "@id": "sfmc:contactID",
+          "@type": "xsd:integer"
+        },
+        "contactStatus": {
+          "@id": "sfmc:contactStatus",
+          "@type": "xsd:string"
+        },
+        "createdDate": {
+          "@id": "schema:dateCreated",
+          "@type": "xsd:dateTime"
+        },
+        "modifiedDate": {
+          "@id": "schema:dateModified",
+          "@type": "xsd:dateTime"
+        },
+        "emailAddresses": {
+          "@id": "schema:email",
+          "@container": "@set"
+        },
+        "mobileNumbers": {
+          "@id": "schema:telephone",
+          "@container": "@set"
+        },
+        "demographics": {
+          "@id": "sfmc:demographics",
+          "@type": "@id"
+        },
+        "preferences": {
+          "@id": "sfmc:preferences",
+          "@type": "@id"
+        },
+        "attributeSets": {
+          "@id": "sfmc:attributeSets",
+          "@container": "@set"
+        }
+      }
+    },
+
+    "EmailAddress": {
+      "@id": "schema:ContactPoint",
+      "@context": {
+        "emailAddress": {
+          "@id": "schema:email",
+          "@type": "xsd:string"
+        },
+        "htmlEnabled": {
+          "@id": "sfmc:htmlEnabled",
+          "@type": "xsd:boolean"
+        },
+        "isPrimary": {
+          "@id": "sfmc:isPrimary",
+          "@type": "xsd:boolean"
+        },
+        "status": {
+          "@id": "sfmc:emailStatus",
+          "@type": "xsd:string"
+        }
+      }
+    },
+
+    "MobileNumber": {
+      "@id": "schema:ContactPoint",
+      "@context": {
+        "mobileNumber": {
+          "@id": "schema:telephone",
+          "@type": "xsd:string"
+        },
+        "locale": {
+          "@id": "schema:inLanguage",
+          "@type": "xsd:string"
+        },
+        "countryCode": {
+          "@id": "schema:addressCountry",
+          "@type": "xsd:string"
+        },
+        "isOptedIn": {
+          "@id": "sfmc:isOptedIn",
+          "@type": "xsd:boolean"
+        },
+        "isPrimary": {
+          "@id": "sfmc:isPrimary",
+          "@type": "xsd:boolean"
+        }
+      }
+    },
+
+    "Demographics": {
+      "@id": "schema:Person",
+      "@context": {
+        "firstName": {
+          "@id": "schema:givenName",
+          "@type": "xsd:string"
+        },
+        "lastName": {
+          "@id": "schema:familyName",
+          "@type": "xsd:string"
+        },
+        "gender": {
+          "@id": "schema:gender",
+          "@type": "xsd:string"
+        },
+        "dateOfBirth": {
+          "@id": "schema:birthDate",
+          "@type": "xsd:date"
+        },
+        "company": {
+          "@id": "schema:worksFor",
+          "@type": "xsd:string"
+        },
+        "title": {
+          "@id": "schema:jobTitle",
+          "@type": "xsd:string"
+        },
+        "address": {
+          "@id": "schema:address",
+          "@type": "@id"
+        },
+        "locale": {
+          "@id": "schema:inLanguage",
+          "@type": "xsd:string"
+        },
+        "timezone": {
+          "@id": "sfmc:timezone",
+          "@type": "xsd:string"
+        }
+      }
+    },
+
+    "PostalAddress": {
+      "@id": "schema:PostalAddress",
+      "@context": {
+        "street": {
+          "@id": "schema:streetAddress",
+          "@type": "xsd:string"
+        },
+        "city": {
+          "@id": "schema:addressLocality",
+          "@type": "xsd:string"
+        },
+        "state": {
+          "@id": "schema:addressRegion",
+          "@type": "xsd:string"
+        },
+        "postalCode": {
+          "@id": "schema:postalCode",
+          "@type": "xsd:string"
+        },
+        "country": {
+          "@id": "schema:addressCountry",
+          "@type": "xsd:string"
+        }
+      }
+    },
+
+    "Journey": {
+      "@id": "sfmc:journey-builder-api-overview",
+      "@context": {
+        "id": {
+          "@id": "schema:identifier",
+          "@type": "xsd:string"
+        },
+        "key": {
+          "@id": "sfmc:journeyKey",
+          "@type": "xsd:string"
+        },
+        "name": {
+          "@id": "schema:name",
+          "@type": "xsd:string"
+        },
+        "description": {
+          "@id": "schema:description",
+          "@type": "xsd:string"
+        },
+        "version": {
+          "@id": "schema:version",
+          "@type": "xsd:integer"
+        },
+        "status": {
+          "@id": "sfmc:journeyStatus",
+          "@type": "xsd:string"
+        },
+        "createdDate": {
+          "@id": "schema:dateCreated",
+          "@type": "xsd:dateTime"
+        },
+        "modifiedDate": {
+          "@id": "schema:dateModified",
+          "@type": "xsd:dateTime"
+        },
+        "triggers": {
+          "@id": "sfmc:journeyTriggers",
+          "@container": "@set"
+        },
+        "activities": {
+          "@id": "sfmc:journeyActivities",
+          "@container": "@set"
+        },
+        "goals": {
+          "@id": "sfmc:journeyGoals",
+          "@container": "@set"
+        },
+        "exits": {
+          "@id": "sfmc:journeyExits",
+          "@container": "@set"
+        }
+      }
+    },
+
+    "JourneyActivity": {
+      "@id": "sfmc:jb-api-specification",
+      "@context": {
+        "key": {
+          "@id": "schema:identifier",
+          "@type": "xsd:string"
+        },
+        "name": {
+          "@id": "schema:name",
+          "@type": "xsd:string"
+        },
+        "type": {
+          "@id": "sfmc:activityType",
+          "@type": "xsd:string"
+        },
+        "configurationArguments": {
+          "@id": "sfmc:configurationArguments",
+          "@type": "@id"
+        },
+        "outcomes": {
+          "@id": "sfmc:activityOutcomes",
+          "@container": "@set"
+        }
+      }
+    },
+
+    "Asset": {
+      "@id": "sfmc:asset-api",
+      "@context": {
+        "id": {
+          "@id": "schema:identifier",
+          "@type": "xsd:integer"
+        },
+        "customerKey": {
+          "@id": "sfmc:customerKey",
+          "@type": "xsd:string"
+        },
+        "name": {
+          "@id": "schema:name",
+          "@type": "xsd:string"
+        },
+        "description": {
+          "@id": "schema:description",
+          "@type": "xsd:string"
+        },
+        "assetType": {
+          "@id": "sfmc:assetType",
+          "@type": "@id"
+        },
+        "category": {
+          "@id": "sfmc:assetCategory",
+          "@type": "@id"
+        },
+        "content": {
+          "@id": "schema:text",
+          "@type": "xsd:string"
+        },
+        "views": {
+          "@id": "sfmc:assetViews",
+          "@type": "@id"
+        },
+        "tags": {
+          "@id": "schema:keywords",
+          "@container": "@set"
+        },
+        "status": {
+          "@id": "sfmc:assetStatus",
+          "@type": "@id"
+        },
+        "createdDate": {
+          "@id": "schema:dateCreated",
+          "@type": "xsd:dateTime"
+        },
+        "modifiedDate": {
+          "@id": "schema:dateModified",
+          "@type": "xsd:dateTime"
+        },
+        "createdBy": {
+          "@id": "schema:creator",
+          "@type": "@id"
+        },
+        "modifiedBy": {
+          "@id": "schema:editor",
+          "@type": "@id"
+        }
+      }
+    },
+
+    "EntryEvent": {
+      "@id": "sfmc:how-to-fire-an-event",
+      "@context": {
+        "ContactKey": {
+          "@id": "schema:identifier",
+          "@type": "xsd:string"
+        },
+        "EventDefinitionKey": {
+          "@id": "sfmc:eventDefinitionKey",
+          "@type": "xsd:string"
+        },
+        "Data": {
+          "@id": "sfmc:eventData",
+          "@type": "@id"
+        }
+      }
+    },
+
+    "AttributeSet": {
+      "@id": "sfmc:attributeSets",
+      "@context": {
+        "name": {
+          "@id": "schema:name",
+          "@type": "xsd:string"
+        },
+        "items": {
+          "@id": "sfmc:attributeItems",
+          "@container": "@set"
+        }
+      }
+    }
+  }
+}

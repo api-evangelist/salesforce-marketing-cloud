@@ -1,0 +1,429 @@
+{
+  "$id": "https://github.com/api-search/salesforce-marketing-cloud/json-schema/salesforce-marketing-cloud-contact-schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Salesforce Marketing Cloud Contact",
+  "description": "Schema representing a contact in Salesforce Marketing Cloud. A contact is an individual who interacts with marketing campaigns across email, SMS, push, and other channels. Contacts are the central entity in Marketing Cloud's data model, identified by a unique contactKey that persists across all channels and applications.",
+  "type": "object",
+  "required": [
+    "contactKey"
+  ],
+  "properties": {
+    "contactKey": {
+      "type": "string",
+      "description": "Unique identifier for the contact across all Marketing Cloud channels and applications. This value is the primary key used for contact lookup, journey entry, and cross-channel identification.",
+      "minLength": 1,
+      "maxLength": 254,
+      "examples": [
+        "contact-001",
+        "user@example.com",
+        "CRM-12345"
+      ]
+    },
+    "contactID": {
+      "type": "integer",
+      "description": "System-generated unique numeric identifier assigned by Marketing Cloud upon contact creation. This value is read-only and cannot be modified.",
+      "readOnly": true
+    },
+    "contactStatus": {
+      "type": "string",
+      "description": "Current lifecycle status of the contact within Marketing Cloud.",
+      "enum": [
+        "Active",
+        "Inactive",
+        "Bounced",
+        "Held",
+        "Unsubscribed"
+      ],
+      "default": "Active"
+    },
+    "createdDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 date and time when the contact was created in Marketing Cloud.",
+      "readOnly": true,
+      "examples": [
+        "2025-01-15T10:30:00Z"
+      ]
+    },
+    "modifiedDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 date and time when the contact was last modified.",
+      "readOnly": true,
+      "examples": [
+        "2025-06-20T14:45:00Z"
+      ]
+    },
+    "emailAddresses": {
+      "type": "array",
+      "description": "Email addresses associated with the contact. Corresponds to the Email Addresses attribute set in Marketing Cloud.",
+      "items": {
+        "$ref": "#/$defs/emailAddress"
+      },
+      "minItems": 0
+    },
+    "mobileNumbers": {
+      "type": "array",
+      "description": "Mobile phone numbers associated with the contact for SMS/MMS messaging. Corresponds to the MobileConnect Demographics attribute set.",
+      "items": {
+        "$ref": "#/$defs/mobileNumber"
+      },
+      "minItems": 0
+    },
+    "pushRegistrations": {
+      "type": "array",
+      "description": "Push notification device registrations for the contact. Corresponds to the MobilePush Demographics attribute set.",
+      "items": {
+        "$ref": "#/$defs/pushRegistration"
+      },
+      "minItems": 0
+    },
+    "demographics": {
+      "$ref": "#/$defs/demographics",
+      "description": "Demographic and profile information for the contact."
+    },
+    "preferences": {
+      "$ref": "#/$defs/preferences",
+      "description": "Communication preferences and subscription settings."
+    },
+    "attributeSets": {
+      "type": "array",
+      "description": "Custom and system attribute sets associated with the contact. Each attribute set contains a named group of attribute values.",
+      "items": {
+        "$ref": "#/$defs/attributeSet"
+      }
+    }
+  },
+  "$defs": {
+    "emailAddress": {
+      "type": "object",
+      "title": "Email Address",
+      "description": "An email address associated with the contact, including delivery and engagement metadata.",
+      "required": [
+        "emailAddress"
+      ],
+      "properties": {
+        "emailAddress": {
+          "type": "string",
+          "format": "email",
+          "description": "The email address value.",
+          "maxLength": 254,
+          "examples": [
+            "user@example.com"
+          ]
+        },
+        "htmlEnabled": {
+          "type": "boolean",
+          "description": "Whether the contact prefers HTML-formatted emails. When false, plain text is preferred.",
+          "default": true
+        },
+        "isPrimary": {
+          "type": "boolean",
+          "description": "Whether this is the primary email address for the contact.",
+          "default": false
+        },
+        "status": {
+          "type": "string",
+          "description": "Current status of the email address.",
+          "enum": [
+            "Active",
+            "Bounced",
+            "Held",
+            "Unsubscribed",
+            "Undeliverable"
+          ]
+        }
+      }
+    },
+    "mobileNumber": {
+      "type": "object",
+      "title": "Mobile Number",
+      "description": "A mobile phone number associated with the contact for MobileConnect (SMS/MMS) messaging.",
+      "required": [
+        "mobileNumber"
+      ],
+      "properties": {
+        "mobileNumber": {
+          "type": "string",
+          "description": "The mobile phone number in E.164 format.",
+          "pattern": "^\\+?[1-9]\\d{1,14}$",
+          "examples": [
+            "+14155551234"
+          ]
+        },
+        "locale": {
+          "type": "string",
+          "description": "Locale code for the mobile number, used for message localization.",
+          "examples": [
+            "en-US",
+            "fr-FR"
+          ]
+        },
+        "countryCode": {
+          "type": "string",
+          "description": "ISO 3166-1 alpha-2 country code for the mobile number.",
+          "pattern": "^[A-Z]{2}$",
+          "examples": [
+            "US",
+            "GB",
+            "DE"
+          ]
+        },
+        "isOptedIn": {
+          "type": "boolean",
+          "description": "Whether the contact has opted in to receive SMS/MMS messages at this number.",
+          "default": false
+        },
+        "isPrimary": {
+          "type": "boolean",
+          "description": "Whether this is the primary mobile number for the contact.",
+          "default": false
+        }
+      }
+    },
+    "pushRegistration": {
+      "type": "object",
+      "title": "Push Registration",
+      "description": "A mobile push notification registration for the contact's device.",
+      "properties": {
+        "deviceId": {
+          "type": "string",
+          "description": "Unique identifier for the registered device."
+        },
+        "platform": {
+          "type": "string",
+          "description": "Mobile platform of the registered device.",
+          "enum": [
+            "iOS",
+            "Android",
+            "Amazon"
+          ]
+        },
+        "deviceToken": {
+          "type": "string",
+          "description": "Platform-specific push notification token for the device."
+        },
+        "isActive": {
+          "type": "boolean",
+          "description": "Whether push notifications are active for this device.",
+          "default": true
+        },
+        "applicationName": {
+          "type": "string",
+          "description": "Name of the mobile application associated with this registration."
+        }
+      }
+    },
+    "demographics": {
+      "type": "object",
+      "title": "Demographics",
+      "description": "Demographic and profile information for the contact.",
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "description": "Contact's first name.",
+          "maxLength": 100,
+          "examples": [
+            "Jane"
+          ]
+        },
+        "lastName": {
+          "type": "string",
+          "description": "Contact's last name.",
+          "maxLength": 100,
+          "examples": [
+            "Smith"
+          ]
+        },
+        "gender": {
+          "type": "string",
+          "description": "Contact's gender.",
+          "examples": [
+            "Female",
+            "Male",
+            "Non-Binary",
+            "Prefer not to say"
+          ]
+        },
+        "dateOfBirth": {
+          "type": "string",
+          "format": "date",
+          "description": "Contact's date of birth in ISO 8601 format.",
+          "examples": [
+            "1990-05-15"
+          ]
+        },
+        "company": {
+          "type": "string",
+          "description": "Company or organization name.",
+          "maxLength": 200,
+          "examples": [
+            "Acme Corporation"
+          ]
+        },
+        "title": {
+          "type": "string",
+          "description": "Job title or professional title.",
+          "maxLength": 100,
+          "examples": [
+            "Marketing Director"
+          ]
+        },
+        "address": {
+          "$ref": "#/$defs/postalAddress"
+        },
+        "locale": {
+          "type": "string",
+          "description": "Preferred locale for the contact, used for content localization.",
+          "examples": [
+            "en-US",
+            "es-MX",
+            "ja-JP"
+          ]
+        },
+        "timezone": {
+          "type": "string",
+          "description": "Contact's timezone, used for send time optimization.",
+          "examples": [
+            "America/New_York",
+            "Europe/London",
+            "Asia/Tokyo"
+          ]
+        }
+      }
+    },
+    "postalAddress": {
+      "type": "object",
+      "title": "Postal Address",
+      "description": "Physical mailing address for the contact.",
+      "properties": {
+        "street": {
+          "type": "string",
+          "description": "Street address including number.",
+          "maxLength": 200
+        },
+        "city": {
+          "type": "string",
+          "description": "City or locality.",
+          "maxLength": 100
+        },
+        "state": {
+          "type": "string",
+          "description": "State, province, or region.",
+          "maxLength": 100
+        },
+        "postalCode": {
+          "type": "string",
+          "description": "Postal or ZIP code.",
+          "maxLength": 20
+        },
+        "country": {
+          "type": "string",
+          "description": "Country name or ISO 3166-1 alpha-2 country code.",
+          "maxLength": 100
+        }
+      }
+    },
+    "preferences": {
+      "type": "object",
+      "title": "Contact Preferences",
+      "description": "Communication preferences and subscription settings for the contact.",
+      "properties": {
+        "emailOptIn": {
+          "type": "boolean",
+          "description": "Whether the contact has opted in to receive marketing emails.",
+          "default": false
+        },
+        "smsOptIn": {
+          "type": "boolean",
+          "description": "Whether the contact has opted in to receive SMS messages.",
+          "default": false
+        },
+        "pushOptIn": {
+          "type": "boolean",
+          "description": "Whether the contact has opted in to receive push notifications.",
+          "default": false
+        },
+        "preferredChannel": {
+          "type": "string",
+          "description": "Contact's preferred communication channel.",
+          "enum": [
+            "Email",
+            "SMS",
+            "Push",
+            "InApp"
+          ]
+        },
+        "preferredFrequency": {
+          "type": "string",
+          "description": "Contact's preferred communication frequency.",
+          "enum": [
+            "Daily",
+            "Weekly",
+            "Biweekly",
+            "Monthly"
+          ]
+        },
+        "unsubscribeDate": {
+          "type": ["string", "null"],
+          "format": "date-time",
+          "description": "Date and time the contact unsubscribed, if applicable."
+        }
+      }
+    },
+    "attributeSet": {
+      "type": "object",
+      "title": "Attribute Set",
+      "description": "A named collection of attributes representing a category of contact data. Maps to Marketing Cloud attribute sets which define the structure for both system and custom data.",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the attribute set (e.g., 'Email Addresses', 'MobileConnect Demographics').",
+          "examples": [
+            "Email Addresses",
+            "MobileConnect Demographics",
+            "MobilePush Demographics",
+            "Custom Preferences"
+          ]
+        },
+        "items": {
+          "type": "array",
+          "description": "Collection of attribute value groups within this set.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "values": {
+                "type": "array",
+                "description": "Array of name-value pairs for this attribute group.",
+                "items": {
+                  "$ref": "#/$defs/attributeValue"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "attributeValue": {
+      "type": "object",
+      "title": "Attribute Value",
+      "description": "A single attribute name-value pair within an attribute set.",
+      "required": [
+        "name",
+        "value"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the attribute."
+        },
+        "value": {
+          "description": "Value of the attribute. Type varies based on the attribute definition."
+        }
+      }
+    }
+  }
+}
