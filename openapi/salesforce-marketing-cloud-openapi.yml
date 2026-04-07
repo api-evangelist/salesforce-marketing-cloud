@@ -29,6 +29,14 @@ servers:
 security:
   - OAuth2: []
 tags:
+  - name: Assets
+    description: >-
+      Manage marketing assets including images, documents, content blocks, and
+      templates. The Asset API provides CRUD operations for all content types
+      stored in Content Builder.
+    externalDocs:
+      description: Asset API Documentation
+      url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/asset-api.html
   - name: Contacts
     description: >-
       Create, retrieve, update, and delete contacts in Marketing Cloud. Contacts
@@ -45,14 +53,6 @@ tags:
     externalDocs:
       description: Journey Builder API Documentation
       url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/journey-builder-api-overview.html
-  - name: Assets
-    description: >-
-      Manage marketing assets including images, documents, content blocks, and
-      templates. The Asset API provides CRUD operations for all content types
-      stored in Content Builder.
-    externalDocs:
-      description: Asset API Documentation
-      url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/asset-api.html
 paths:
   /contacts/v1/contacts:
     post:
