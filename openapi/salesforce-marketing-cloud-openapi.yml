@@ -57,7 +57,7 @@ paths:
   /contacts/v1/contacts:
     post:
       operationId: createContacts
-      summary: Create contacts
+      summary: Salesforce Marketing Cloud Create contacts
       description: >-
         Creates one or more contacts in Marketing Cloud. Each contact requires a
         contactKey as a unique identifier. You can include attribute values for
@@ -121,7 +121,7 @@ paths:
   /contacts/v1/contacts/actions/search:
     post:
       operationId: searchContacts
-      summary: Search contacts
+      summary: Salesforce Marketing Cloud Search contacts
       description: >-
         Searches for contacts using filter criteria. Supports filtering by
         contactKey, email address, or other contact attributes. Returns matching
@@ -185,7 +185,7 @@ paths:
   /contacts/v1/contacts/{contactKey}:
     get:
       operationId: getContact
-      summary: Retrieve a contact by contact key
+      summary: Salesforce Marketing Cloud Retrieve a contact by contact key
       description: >-
         Retrieves a single contact using the unique contactKey identifier.
         Returns the contact record with all associated attribute sets and values.
@@ -237,7 +237,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     patch:
       operationId: updateContact
-      summary: Update a contact
+      summary: Salesforce Marketing Cloud Update a contact
       description: >-
         Updates an existing contact's attributes. Provide only the attribute
         sets and values that need to be changed. Unspecified attributes remain
@@ -296,7 +296,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     delete:
       operationId: deleteContact
-      summary: Delete a contact
+      summary: Salesforce Marketing Cloud Delete a contact
       description: >-
         Initiates an asynchronous delete operation for a contact identified by
         contactKey. This operation removes the contact and associated data from
@@ -351,7 +351,7 @@ paths:
   /contacts/v1/attributeSets:
     get:
       operationId: listAttributeSets
-      summary: List attribute sets
+      summary: Salesforce Marketing Cloud List attribute sets
       description: >-
         Retrieves all attribute sets defined in Marketing Cloud. Attribute sets
         define the structure of contact data, including system attribute sets
@@ -387,7 +387,7 @@ paths:
   /interaction/v1/interactions:
     get:
       operationId: listJourneys
-      summary: List journeys
+      summary: Salesforce Marketing Cloud List journeys
       description: >-
         Retrieves a collection of journeys. Supports pagination through page
         and pageSize parameters. Returns journey definitions including their
@@ -461,7 +461,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     post:
       operationId: createJourney
-      summary: Create a journey
+      summary: Salesforce Marketing Cloud Create a journey
       description: >-
         Creates a new journey in Marketing Cloud. The journey specification
         defines the entry event, activities, triggers, and overall workflow.
@@ -526,7 +526,7 @@ paths:
   /interaction/v1/interactions/{id}:
     get:
       operationId: getJourney
-      summary: Retrieve a journey
+      summary: Salesforce Marketing Cloud Retrieve a journey
       description: >-
         Retrieves a single journey by its unique identifier. Returns the
         complete journey specification including activities, triggers, goals,
@@ -581,7 +581,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     put:
       operationId: updateJourney
-      summary: Update a journey
+      summary: Salesforce Marketing Cloud Update a journey
       description: >-
         Updates an existing journey. Only journeys in Draft status can be fully
         updated. Published journeys support limited modifications. Provide the
@@ -647,7 +647,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     delete:
       operationId: deleteJourney
-      summary: Delete a journey
+      summary: Salesforce Marketing Cloud Delete a journey
       description: >-
         Deletes a journey. Only journeys in Draft or Stopped status can be
         deleted. Published journeys must first be stopped before deletion.
@@ -697,7 +697,7 @@ paths:
   /interaction/v1/interactions/publishAsync/{id}:
     post:
       operationId: publishJourney
-      summary: Publish a journey
+      summary: Salesforce Marketing Cloud Publish a journey
       description: >-
         Publishes a journey asynchronously, activating it for customer entry.
         Once published, contacts matching the entry criteria begin entering the
@@ -762,7 +762,7 @@ paths:
   /interaction/v1/interactions/stop/{id}:
     post:
       operationId: stopJourney
-      summary: Stop a journey
+      summary: Salesforce Marketing Cloud Stop a journey
       description: >-
         Stops a published journey. Contacts currently in the journey can either
         complete their current activity or be ejected immediately based on the
@@ -817,7 +817,7 @@ paths:
   /interaction/v1/events:
     post:
       operationId: fireEntryEvent
-      summary: Fire a journey entry event
+      summary: Salesforce Marketing Cloud Fire a journey entry event
       description: >-
         Fires an entry event to inject a contact into a journey. The contact
         is identified by ContactKey and enters the journey associated with the
@@ -872,7 +872,7 @@ paths:
   /asset/v1/content/assets:
     get:
       operationId: listAssets
-      summary: List assets
+      summary: Salesforce Marketing Cloud List assets
       description: >-
         Retrieves a collection of assets from Content Builder. Supports
         filtering, sorting, and pagination. Assets include emails, templates,
@@ -935,7 +935,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     post:
       operationId: createAsset
-      summary: Create an asset
+      summary: Salesforce Marketing Cloud Create an asset
       description: >-
         Creates a new asset in Content Builder. The asset type determines the
         required and optional fields. Common asset types include htmlemail,
@@ -997,7 +997,7 @@ paths:
   /asset/v1/content/assets/{id}:
     get:
       operationId: getAsset
-      summary: Retrieve an asset
+      summary: Salesforce Marketing Cloud Retrieve an asset
       description: >-
         Retrieves a single asset by its unique identifier. Returns the complete
         asset definition including content, metadata, and associated category.
@@ -1043,7 +1043,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     put:
       operationId: updateAsset
-      summary: Update an asset
+      summary: Salesforce Marketing Cloud Update an asset
       description: >-
         Updates an existing asset. Provide the complete asset definition with
         all desired values. Fields not included in the request body are not
@@ -1102,7 +1102,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     delete:
       operationId: deleteAsset
-      summary: Delete an asset
+      summary: Salesforce Marketing Cloud Delete an asset
       description: >-
         Deletes an asset from Content Builder. This action is permanent and
         cannot be undone.
@@ -1145,7 +1145,7 @@ paths:
   /asset/v1/content/assets/query:
     post:
       operationId: queryAssets
-      summary: Query assets with advanced filtering
+      summary: Salesforce Marketing Cloud Query assets with advanced filtering
       description: >-
         Performs an advanced query against assets using a structured query
         object. Supports complex filtering with AND/OR logic, nested
@@ -1209,7 +1209,7 @@ paths:
   /asset/v1/content/categories:
     get:
       operationId: listCategories
-      summary: List asset categories
+      summary: Salesforce Marketing Cloud List asset categories
       description: >-
         Retrieves categories (folders) used to organize assets in Content
         Builder. Categories provide a hierarchical folder structure for content
