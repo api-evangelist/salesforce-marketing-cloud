@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "EntryEvent",
+  "type": "object",
+  "properties": {
+    "ContactKey": {
+      "type": "string"
+    },
+    "EventDefinitionKey": {
+      "type": "string"
+    },
+    "Data": {
+      "type": "object"
+    }
+  }
+}

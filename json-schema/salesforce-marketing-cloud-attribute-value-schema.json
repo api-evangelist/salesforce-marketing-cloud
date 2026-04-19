@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AttributeValue",
+  "type": "object",
+  "description": "A single attribute name-value pair within an attribute set",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the attribute"
+    },
+    "value": {
+      "type": "string",
+      "description": "Value of the attribute"
+    }
+  }
+}

@@ -3,7 +3,7 @@ description: Salesforce Marketing Cloud is a comprehensive digital marketing pla
 image: https://www.salesforce.com/content/dam/web/en_us/www/images/nav/logo-salesforce.svg
 url: https://www.salesforce.com/products/marketing-cloud/overview/
 created: '2024-01-15'
-modified: '2026-03-03'
+modified: '2026-04-19'
 specificationVersion: '0.18'
 type:
   - Index
@@ -25,48 +25,40 @@ apis:
         url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/rest-api-overview.html
       - type: OpenAPI
         url: openapi/salesforce-marketing-cloud-openapi.yml
-      - type: JSON Schema
-        url: json-schema/salesforce-marketing-cloud-contact-schema.json
-      - type: JSON-LD
-        url: json-ld/salesforce-marketing-cloud-context.jsonld
       - type: Authentication
         url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/authentication.html
-      - type: API Reference
+      - type: APIReference
         url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/routes.html
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/get-started-index.html
-      - type: Rate Limits
+      - type: RateLimits
         url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/rate-limiting.html
-      - type: Best Practices
+      - type: BestPractices
         url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/rate-limiting-best-practices.html
-      - type: Error Codes
+      - type: Errors
         url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/rate-limiting-errors.html
     tags:
       - Email
       - Push
-      - Rest
-      - Sms
+      - REST
+      - SMS
   - name: SOAP API
-    description: Legacy SOAP-based API for Marketing Cloud operations, including email sends, subscriber management, and data extension operations. SOAP API uses SOAP envelopes to pass information between systems and provides comprehensive access to most email functionality.
+    description: Legacy SOAP-based API for Marketing Cloud operations, including email sends, subscriber management, and data extension operations.
     image: https://www.salesforce.com/content/dam/web/en_us/www/images/nav/logo-salesforce.svg
     baseURL: https://YOUR_SUBDOMAIN.soap.marketingcloudapis.com
     humanURL: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/web_service_guide.html
     properties:
       - type: Documentation
         url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/web_service_guide.html
-      - type: WSDL
-        url: https://webservice.exacttarget.com/etframework.wsdl
-      - type: API Reference
+      - type: APIReference
         url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/soap_web_service_objects.html
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/getting_started_developers_and_the_exacttarget_api.html
-      - type: WSDL and Endpoint Links
-        url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/wsdl-endpoint-links.html
-      - type: Best Practices
+      - type: BestPractices
         url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/working_with_soap_web_service_api.html
     tags:
       - Legacy
-      - Soap
+      - SOAP
       - Subscriber
   - name: Transactional Messaging API
     description: Specialized API for sending triggered, transactional messages including order confirmations, password resets, and real-time notifications.
@@ -76,32 +68,24 @@ apis:
     properties:
       - type: Documentation
         url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/transactional-messaging-api.html
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/getting-started-spec.html
-      - type: Postman Collection
-        url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
-      - type: Best Practices
+      - type: BestPractices
         url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/transactional-messaging-best-practices.html
     tags:
       - Messaging
       - Transactional
       - Triggered
   - name: Journey Builder API
-    description: API for creating, managing, and automating customer journeys across multiple channels and touchpoints. The Journey Specification is a structured JSON representation of a single journey used via REST API requests.
+    description: API for creating, managing, and automating customer journeys across multiple channels and touchpoints.
     image: https://www.salesforce.com/content/dam/web/en_us/www/images/nav/logo-salesforce.svg
     baseURL: https://YOUR_SUBDOMAIN.rest.marketingcloudapis.com/interaction/v1
     humanURL: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/journey-builder-api-overview.html
     properties:
       - type: Documentation
         url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/journey-builder-api-overview.html
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/get-started-jb.html
-      - type: API Specification
-        url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/jb-api-specification.html
-      - type: Build Journey
-        url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/getting-started-spec.html
-      - type: Fire Entry Event
-        url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/how-to-fire-an-event.html
     tags:
       - Automation
       - Journey
@@ -114,7 +98,7 @@ apis:
     properties:
       - type: Documentation
         url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/working-with-data-extensions.html
-      - type: API Reference
+      - type: APIReference
         url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/data-extension-api.html
     tags:
       - Data
@@ -128,7 +112,7 @@ apis:
     properties:
       - type: Documentation
         url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/email-send-definition.html
-      - type: Code Examples
+      - type: CodeExamples
         url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/code-examples.html
     tags:
       - Campaigns
@@ -142,7 +126,7 @@ apis:
     properties:
       - type: Documentation
         url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/push-notifications.html
-      - type: SDK Documentation
+      - type: SDK
         url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/mobile-sdk.html
     tags:
       - Mobile
@@ -156,12 +140,12 @@ apis:
     properties:
       - type: Documentation
         url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/sms-api.html
-      - type: Best Practices
+      - type: BestPractices
         url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/sms-best-practices.html
     tags:
-      - Mms
+      - MMS
       - Mobile Messaging
-      - Sms
+      - SMS
   - name: Asset API
     description: API for managing marketing assets including images, documents, content blocks, and templates across Marketing Cloud.
     image: https://www.salesforce.com/content/dam/web/en_us/www/images/nav/logo-salesforce.svg
@@ -170,8 +154,6 @@ apis:
     properties:
       - type: Documentation
         url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/asset-api.html
-      - type: Asset Types
-        url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/asset-types.html
     tags:
       - Assets
       - Content
@@ -184,10 +166,8 @@ apis:
     properties:
       - type: Documentation
         url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/einstein-recommendations.html
-      - type: Use Cases
-        url: https://help.salesforce.com/s/articleView?id=sf.mc_pers_einstein_recommendations.htm
     tags:
-      - Ai
+      - AI
       - Personalization
       - Recommendations
   - name: Content Builder API
@@ -198,25 +178,19 @@ apis:
     properties:
       - type: Documentation
         url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/content-api.html
-      - type: Content Reference
-        url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/content.html
     tags:
       - Assets
       - Content
       - Email
       - Templates
   - name: Contacts API
-    description: REST API for creating, reading, updating, and deleting contacts in Marketing Cloud. Supports contact search, attribute set management, and address lookups.
+    description: REST API for creating, reading, updating, and deleting contacts in Marketing Cloud.
     image: https://www.salesforce.com/content/dam/web/en_us/www/images/nav/logo-salesforce.svg
     baseURL: https://YOUR_SUBDOMAIN.rest.marketingcloudapis.com/contacts/v1
     humanURL: https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_contacts/createContacts.html
     properties:
       - type: Documentation
         url: https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_contacts/createContacts.html
-      - type: Update Contacts
-        url: https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_contacts/updateContacts.html
-      - type: Search Contacts
-        url: https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_contacts/retrieveContactKey.html
     tags:
       - Contacts
       - Data
@@ -229,80 +203,108 @@ apis:
     properties:
       - type: Documentation
         url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/automation-studio-api.html
-      - type: SOAP Integration
-        url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/interacting_with_automation_studio_via_the_web_service_soap_api.html
     tags:
       - Automation
       - Scheduling
       - Workflows
   - name: Campaign API
-    description: API for managing and performing marketing campaigns within Marketing Cloud, enabling programmatic campaign creation and execution.
+    description: API for managing and performing marketing campaigns within Marketing Cloud.
     image: https://www.salesforce.com/content/dam/web/en_us/www/images/nav/logo-salesforce.svg
     baseURL: https://YOUR_SUBDOMAIN.rest.marketingcloudapis.com/hub/v1
     humanURL: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/campaign.html
     properties:
       - type: Documentation
         url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/campaign.html
-      - type: Perform Campaign
-        url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/performing_a_campaign_via_the_web_service_api.html
     tags:
       - Campaigns
       - Execution
       - Marketing
   - name: Event Notification Service API
-    description: API for registering callbacks and subscriptions to receive real-time event notifications from Marketing Cloud, including email tracking events, data extension changes, and audit events.
+    description: API for registering callbacks and subscriptions to receive real-time event notifications from Marketing Cloud.
     image: https://www.salesforce.com/content/dam/web/en_us/www/images/nav/logo-salesforce.svg
     baseURL: https://YOUR_SUBDOMAIN.rest.marketingcloudapis.com/platform/v1
     humanURL: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/ens.html
     properties:
       - type: Documentation
         url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/ens.html
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/ens-get-started.html
-      - type: Supported Events
-        url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/ens-supported-events.html
-      - type: Activities
-        url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/ens-activities.html
     tags:
       - Events
       - Notifications
       - Real-Time
       - Webhooks
 common:
-  - type: Developer Portal
+  - type: DeveloperPortal
     url: https://developer.salesforce.com/docs/marketing/marketing-cloud/overview
-  - type: APIs Overview
+  - type: Documentation
     url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/apis-overview.html
-  - type: Authentication Guide
+  - type: Authentication
     url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/authentication.html
-  - type: API Integration
-    url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/api-integration.html
-  - type: REST API Reference
+  - type: APIReference
     url: https://developer.salesforce.com/docs/marketing/marketing-cloud/references
   - type: Support
     url: https://help.salesforce.com/s/
-  - type: Status Page
+  - type: StatusPage
     url: https://status.salesforce.com/
-  - type: SDKs
+  - type: SDK
     url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/sdks.html
-  - type: Community
-    url: https://trailblazers.salesforce.com/
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://www.salesforce.com/company/legal/
   - type: Pricing
     url: https://www.salesforce.com/products/marketing-cloud/pricing/
-  - type: Change Log
+  - type: ChangeLog
     url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/release-notes.html
-  - type: Postman Workspace
-    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
-  - type: Learning Resources
-    url: https://trailhead.salesforce.com/en/content/learn/trails/get-started-with-marketing-cloud
-  - type: Rate Limiting
+  - type: RateLimits
     url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/rate-limiting.html
-  - type: API Limits
-    url: https://help.salesforce.com/s/articleView?language=en_US&id=mktg.mc_overview_limits_api.htm&type=5
-  - type: GitHub
+  - type: GitHubRepository
     url: https://github.com/salesforce-marketingcloud/SFDC-MC-REST-Style-Guide
+  - type: Training
+    url: https://trailhead.salesforce.com/en/content/learn/trails/get-started-with-marketing-cloud
+  - type: Features
+    data:
+      - name: Email Marketing
+        description: Design, send, and track targeted email campaigns with dynamic content, personalization, and A/B testing capabilities.
+      - name: Journey Builder
+        description: Create automated, multi-step customer journeys across email, SMS, push, and advertising channels with branching logic.
+      - name: Contact Management
+        description: Centralized contact database with attribute sets, segmentation, and cross-channel identity resolution.
+      - name: Transactional Messaging
+        description: Send real-time transactional messages like order confirmations and password resets with guaranteed delivery.
+      - name: Einstein AI Personalization
+        description: Leverage AI-powered recommendations and predictive analytics to personalize content and optimize send times.
+      - name: Automation Studio
+        description: Schedule and automate data imports, file transfers, SQL queries, and multi-step marketing workflows.
+      - name: Content Builder
+        description: Centralized content management system for creating, organizing, and reusing marketing assets across channels.
+      - name: Event Notifications
+        description: Subscribe to real-time webhook notifications for email tracking events, data changes, and audit activities.
+  - type: UseCases
+    data:
+      - name: Customer Onboarding Journeys
+        description: Automate multi-step welcome sequences across email and SMS to guide new customers through product adoption.
+      - name: Abandoned Cart Recovery
+        description: Trigger personalized follow-up emails and push notifications when customers abandon shopping carts.
+      - name: Cross-Channel Campaign Orchestration
+        description: Coordinate marketing messages across email, SMS, push, and advertising for unified campaign execution.
+      - name: Subscriber Lifecycle Management
+        description: Manage subscriber preferences, segment audiences, and automate re-engagement campaigns for inactive contacts.
+      - name: Real-Time Event-Driven Marketing
+        description: React to customer behaviors in real time with triggered messages based on website visits, purchases, or app activity.
+  - type: Integrations
+    data:
+      - name: Salesforce CRM
+        description: Bi-directional sync with Sales Cloud and Service Cloud for unified customer profiles and campaign attribution.
+      - name: Salesforce Data Cloud
+        description: Connect to unified customer data profiles for advanced segmentation and real-time personalization.
+      - name: Google Analytics
+        description: Track email campaign performance and website conversions with Google Analytics integration.
+      - name: Shopify
+        description: Sync e-commerce customer data, purchase history, and cart events for targeted marketing automation.
+      - name: Salesforce Commerce Cloud
+        description: Integrate commerce data for personalized product recommendations and transactional messaging.
+  - type: NaftikoCapability
+    url: capabilities/marketing-automation.yaml
 maintainers:
   - name: Kin Lane
     email: kin@apievangelist.com

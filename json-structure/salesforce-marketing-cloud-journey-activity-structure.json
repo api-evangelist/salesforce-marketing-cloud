@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "JourneyActivity",
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "configurationArguments": {
+      "type": "object"
+    },
+    "outcomes": {
+      "type": "array"
+    }
+  }
+}

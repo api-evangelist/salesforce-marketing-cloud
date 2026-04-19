@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ContactResponse",
+  "type": "object",
+  "description": "Response returned after contact creation or update operations",
+  "properties": {
+    "operationStatus": {
+      "type": "string",
+      "description": "Overall status of the operation"
+    },
+    "requestServiceMessageID": {
+      "type": "string",
+      "description": "Unique identifier for the request"
+    },
+    "responseDateTime": {
+      "type": "string"
+    },
+    "resultMessages": {
+      "type": "array"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CategoryCollection",
+  "type": "object",
+  "description": "Paginated collection of asset categories",
+  "properties": {
+    "count": {
+      "type": "integer"
+    },
+    "page": {
+      "type": "integer"
+    },
+    "pageSize": {
+      "type": "integer"
+    },
+    "items": {
+      "type": "array"
+    }
+  }
+}

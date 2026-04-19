@@ -1,0 +1,10 @@
+{
+  "key": "example_value",
+  "name": "Example Title",
+  "description": "A sample description.",
+  "workflowApiVersion": 42.5,
+  "triggers": [],
+  "activities": [],
+  "goals": [],
+  "exits": []
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "AssetQuery",
+  "type": "object",
+  "properties": {
+    "page": {
+      "type": "object"
+    },
+    "query": {
+      "type": "object"
+    },
+    "sort": {
+      "type": "array"
+    },
+    "fields": {
+      "type": "array"
+    }
+  }
+}

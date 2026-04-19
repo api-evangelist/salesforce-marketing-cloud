@@ -1,0 +1,10 @@
+name: salesforce-marketing-cloud API Vocabulary
+provider: salesforce-marketing-cloud
+created: '2026-04-19'
+modified: '2026-04-19'
+operations: 21
+schemas: 27
+tags:
+- Assets
+- Contacts
+- Journeys

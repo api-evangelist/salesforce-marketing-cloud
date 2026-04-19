@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ContactSearchRequest",
+  "type": "object",
+  "description": "Request body for searching contacts with filter criteria",
+  "properties": {
+    "conditionSet": {
+      "type": "object",
+      "description": "Root condition set for the search"
+    },
+    "returnAttributes": {
+      "type": "array",
+      "description": "Attributes to include in the search results"
+    }
+  }
+}

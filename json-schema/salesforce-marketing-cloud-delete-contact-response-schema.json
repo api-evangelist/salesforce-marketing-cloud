@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DeleteContactResponse",
+  "type": "object",
+  "description": "Response from a contact delete operation",
+  "properties": {
+    "operationStatus": {
+      "type": "string"
+    },
+    "requestServiceMessageID": {
+      "type": "string"
+    },
+    "responseDateTime": {
+      "type": "string"
+    },
+    "operationInitiated": {
+      "type": "boolean",
+      "description": "Whether the asynchronous delete was successfully initiated"
+    }
+  }
+}

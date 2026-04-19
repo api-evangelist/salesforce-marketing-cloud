@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Asset",
+  "type": "object",
+  "description": "Represents a marketing asset in Content Builder. Assets include emails, templates, images, content blocks, and other content types used in marketing campaigns.",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "System-generated unique identifier for the asset"
+    },
+    "customerKey": {
+      "type": "string",
+      "description": "Customer-defined unique key for the asset"
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the asset"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the asset"
+    },
+    "category": {
+      "type": "object",
+      "description": "Category (folder) containing the asset"
+    },
+    "content": {
+      "type": "string",
+      "description": "Primary content of the asset, typically HTML or text depending on asset type"
+    },
+    "views": {
+      "type": "object",
+      "description": "Channel-specific content views (e.g., html, text, subjectLine, preheader)"
+    },
+    "data": {
+      "type": "object",
+      "description": "Asset-type-specific data and configuration"
+    },
+    "tags": {
+      "type": "array",
+      "description": "Tags assigned to the asset for organization"
+    },
+    "status": {
+      "type": "object"
+    },
+    "createdDate": {
+      "type": "string"
+    },
+    "modifiedDate": {
+      "type": "string"
+    },
+    "createdBy": {
+      "type": "object"
+    },
+    "modifiedBy": {
+      "type": "object"
+    }
+  }
+}

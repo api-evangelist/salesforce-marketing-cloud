@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "Contact",
+  "type": "object",
+  "properties": {
+    "contactKey": {
+      "type": "string"
+    },
+    "contactID": {
+      "type": "integer"
+    },
+    "contactStatus": {
+      "type": "string"
+    },
+    "createdDate": {
+      "type": "string"
+    },
+    "modifiedDate": {
+      "type": "string"
+    },
+    "attributeSets": {
+      "type": "array"
+    }
+  }
+}

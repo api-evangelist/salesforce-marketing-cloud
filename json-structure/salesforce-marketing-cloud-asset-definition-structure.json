@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "AssetDefinition",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "customerKey": {
+      "type": "string"
+    },
+    "category": {
+      "type": "object"
+    },
+    "content": {
+      "type": "string"
+    },
+    "views": {
+      "type": "object"
+    },
+    "data": {
+      "type": "object"
+    },
+    "tags": {
+      "type": "array"
+    }
+  }
+}

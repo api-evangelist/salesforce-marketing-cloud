@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AssetType",
+  "type": "object",
+  "description": "Defines the type of an asset. Each type has a unique ID and name. Common types include htmlemail (208), templatebasedemail (207), htmlblock (197), codesnippetblock (220), and image (28).",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Numeric identifier for the asset type"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the asset type"
+    }
+  }
+}

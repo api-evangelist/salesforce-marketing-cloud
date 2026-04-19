@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "JourneyActivity",
+  "type": "object",
+  "description": "An activity within a journey. Activities represent the actions performed on contacts, such as sending emails, waiting, or making decisions.",
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "Unique key for the activity within the journey"
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the activity"
+    },
+    "type": {
+      "type": "string",
+      "description": "Type of activity"
+    },
+    "configurationArguments": {
+      "type": "object",
+      "description": "Activity-specific configuration"
+    },
+    "outcomes": {
+      "type": "array",
+      "description": "Possible outcomes of the activity leading to next steps"
+    }
+  }
+}

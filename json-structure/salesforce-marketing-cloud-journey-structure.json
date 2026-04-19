@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "Journey",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "key": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "version": {
+      "type": "integer"
+    },
+    "status": {
+      "type": "string"
+    },
+    "createdDate": {
+      "type": "string"
+    },
+    "modifiedDate": {
+      "type": "string"
+    },
+    "workflowApiVersion": {
+      "type": "number"
+    },
+    "triggers": {
+      "type": "array"
+    },
+    "activities": {
+      "type": "array"
+    },
+    "goals": {
+      "type": "array"
+    },
+    "exits": {
+      "type": "array"
+    },
+    "stats": {
+      "type": "object"
+    }
+  }
+}

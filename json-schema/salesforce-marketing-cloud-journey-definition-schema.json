@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "JourneyDefinition",
+  "type": "object",
+  "description": "Specification for creating or updating a journey",
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "Customer-defined unique key for the journey"
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the journey"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the journey purpose"
+    },
+    "workflowApiVersion": {
+      "type": "number",
+      "description": "Version of the Journey Builder API (e.g., 1.0)"
+    },
+    "triggers": {
+      "type": "array"
+    },
+    "activities": {
+      "type": "array"
+    },
+    "goals": {
+      "type": "array"
+    },
+    "exits": {
+      "type": "array"
+    }
+  }
+}

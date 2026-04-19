@@ -1,0 +1,285 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Salesforce Marketing Cloud Automation"
+  description: "Unified workflow for digital marketers to manage contacts, orchestrate customer journeys, and automate multi-channel campaigns across email, SMS, and push channels."
+  tags:
+    - Salesforce
+    - Marketing Automation
+    - Customer Journey
+    - Email Marketing
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      SFMC_ACCESS_TOKEN: SFMC_ACCESS_TOKEN
+
+capability:
+  consumes:
+    - import: marketing-cloud-rest
+      location: ./shared/marketing-cloud-rest.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: marketing-automation-api
+      description: "Unified REST API for marketing automation workflows."
+      resources:
+        - path: /v1/contacts
+          name: contacts
+          description: "Contact management"
+          operations:
+            - method: POST
+              name: create-contacts
+              description: "Create one or more contacts"
+              call: "marketing-cloud-rest.create-contacts"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/contacts/search
+          name: contact-search
+          description: "Contact search"
+          operations:
+            - method: POST
+              name: search-contacts
+              description: "Search contacts by criteria"
+              call: "marketing-cloud-rest.search-contacts"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/contacts/{contactKey}
+          name: contact-detail
+          description: "Single contact operations"
+          operations:
+            - method: GET
+              name: get-contact
+              description: "Get a contact"
+              call: "marketing-cloud-rest.get-contact"
+              with:
+                contactKey: "rest.contactKey"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: PATCH
+              name: update-contact
+              description: "Update a contact"
+              call: "marketing-cloud-rest.update-contact"
+              with:
+                contactKey: "rest.contactKey"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: DELETE
+              name: delete-contact
+              description: "Delete a contact"
+              call: "marketing-cloud-rest.delete-contact"
+              with:
+                contactKey: "rest.contactKey"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/journeys
+          name: journeys
+          description: "Journey management"
+          operations:
+            - method: GET
+              name: list-journeys
+              description: "List all journeys"
+              call: "marketing-cloud-rest.list-journeys"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-journey
+              description: "Create a journey"
+              call: "marketing-cloud-rest.create-journey"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/journeys/{id}
+          name: journey-detail
+          description: "Single journey operations"
+          operations:
+            - method: GET
+              name: get-journey
+              description: "Get a journey"
+              call: "marketing-cloud-rest.get-journey"
+              with:
+                id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: PUT
+              name: update-journey
+              description: "Update a journey"
+              call: "marketing-cloud-rest.update-journey"
+              with:
+                id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: DELETE
+              name: delete-journey
+              description: "Delete a journey"
+              call: "marketing-cloud-rest.delete-journey"
+              with:
+                id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/journeys/{id}/publish
+          name: journey-publish
+          description: "Journey publishing"
+          operations:
+            - method: POST
+              name: publish-journey
+              description: "Publish a journey"
+              call: "marketing-cloud-rest.publish-journey"
+              with:
+                id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/attribute-sets
+          name: attribute-sets
+          description: "Attribute set definitions"
+          operations:
+            - method: GET
+              name: list-attribute-sets
+              description: "List attribute sets"
+              call: "marketing-cloud-rest.list-attribute-sets"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: marketing-automation-mcp
+      transport: http
+      description: "MCP server for AI-assisted marketing automation."
+      tools:
+        - name: create-contacts
+          description: "Create one or more contacts in Marketing Cloud"
+          hints:
+            readOnly: false
+          call: "marketing-cloud-rest.create-contacts"
+          with:
+            contactKey: "tools.contactKey"
+            attributeSets: "tools.attributeSets"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: search-contacts
+          description: "Search for contacts using filter criteria"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "marketing-cloud-rest.search-contacts"
+          with:
+            conditionSet: "tools.conditionSet"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-contact
+          description: "Retrieve a contact by contact key"
+          hints:
+            readOnly: true
+          call: "marketing-cloud-rest.get-contact"
+          with:
+            contactKey: "tools.contactKey"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: update-contact
+          description: "Update an existing contact's attributes"
+          hints:
+            readOnly: false
+            idempotent: true
+          call: "marketing-cloud-rest.update-contact"
+          with:
+            contactKey: "tools.contactKey"
+            attributeSets: "tools.attributeSets"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: delete-contact
+          description: "Delete a contact from Marketing Cloud"
+          hints:
+            destructive: true
+          call: "marketing-cloud-rest.delete-contact"
+          with:
+            contactKey: "tools.contactKey"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-attribute-sets
+          description: "List all contact attribute set definitions"
+          hints:
+            readOnly: true
+          call: "marketing-cloud-rest.list-attribute-sets"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-journeys
+          description: "List customer journeys with filtering and pagination"
+          hints:
+            readOnly: true
+          call: "marketing-cloud-rest.list-journeys"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-journey
+          description: "Create a new customer journey"
+          hints:
+            readOnly: false
+          call: "marketing-cloud-rest.create-journey"
+          with:
+            name: "tools.name"
+            description: "tools.description"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-journey
+          description: "Retrieve a journey by ID"
+          hints:
+            readOnly: true
+          call: "marketing-cloud-rest.get-journey"
+          with:
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: update-journey
+          description: "Update an existing journey specification"
+          hints:
+            readOnly: false
+            idempotent: true
+          call: "marketing-cloud-rest.update-journey"
+          with:
+            id: "tools.id"
+            name: "tools.name"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: delete-journey
+          description: "Delete a journey"
+          hints:
+            destructive: true
+          call: "marketing-cloud-rest.delete-journey"
+          with:
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: publish-journey
+          description: "Publish a journey to activate customer entry"
+          hints:
+            readOnly: false
+          call: "marketing-cloud-rest.publish-journey"
+          with:
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."

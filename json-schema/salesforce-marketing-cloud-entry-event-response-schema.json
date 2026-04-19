@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EntryEventResponse",
+  "type": "object",
+  "description": "Response returned after firing a journey entry event",
+  "properties": {
+    "requestId": {
+      "type": "string",
+      "description": "Unique identifier for the event request"
+    },
+    "eventInstanceId": {
+      "type": "string",
+      "description": "Unique instance identifier for this event firing"
+    }
+  }
+}

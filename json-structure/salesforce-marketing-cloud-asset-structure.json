@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "Asset",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "customerKey": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "category": {
+      "type": "object"
+    },
+    "content": {
+      "type": "string"
+    },
+    "views": {
+      "type": "object"
+    },
+    "data": {
+      "type": "object"
+    },
+    "tags": {
+      "type": "array"
+    },
+    "status": {
+      "type": "object"
+    },
+    "createdDate": {
+      "type": "string"
+    },
+    "modifiedDate": {
+      "type": "string"
+    },
+    "createdBy": {
+      "type": "object"
+    },
+    "modifiedBy": {
+      "type": "object"
+    }
+  }
+}

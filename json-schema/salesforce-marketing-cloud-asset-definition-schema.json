@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AssetDefinition",
+  "type": "object",
+  "description": "Specification for creating or updating an asset",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Display name of the asset"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the asset"
+    },
+    "customerKey": {
+      "type": "string",
+      "description": "Customer-defined unique key"
+    },
+    "category": {
+      "type": "object"
+    },
+    "content": {
+      "type": "string",
+      "description": "Primary content of the asset"
+    },
+    "views": {
+      "type": "object",
+      "description": "Channel-specific content views"
+    },
+    "data": {
+      "type": "object",
+      "description": "Asset-type-specific data"
+    },
+    "tags": {
+      "type": "array"
+    }
+  }
+}

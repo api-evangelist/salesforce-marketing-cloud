@@ -1,0 +1,10 @@
+{
+  "name": "Example Title",
+  "description": "A sample description.",
+  "customerKey": "example_value",
+  "category": "example_value",
+  "content": "example_value",
+  "views": "example_value",
+  "data": "example_value",
+  "tags": []
+}

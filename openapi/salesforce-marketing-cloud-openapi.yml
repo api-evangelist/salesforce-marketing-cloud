@@ -17,54 +17,54 @@ info:
     name: Salesforce Master Subscription Agreement
     url: https://www.salesforce.com/company/legal/agreements/
 servers:
-  - url: https://{subdomain}.rest.marketingcloudapis.com
-    description: Marketing Cloud REST API endpoint
-    variables:
-      subdomain:
-        default: YOUR_SUBDOMAIN
-        description: >-
-          Your Marketing Cloud tenant-specific subdomain (e.g.,
-          mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps >
-          Installed Packages in Marketing Cloud.
+- url: https://{subdomain}.rest.marketingcloudapis.com
+  description: Marketing Cloud REST API endpoint
+  variables:
+    subdomain:
+      default: YOUR_SUBDOMAIN
+      description: >-
+        Your Marketing Cloud tenant-specific subdomain (e.g.,
+        mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps >
+        Installed Packages in Marketing Cloud.
 security:
-  - OAuth2: []
+- OAuth2: []
 tags:
-  - name: Assets
-    description: >-
-      Manage marketing assets including images, documents, content blocks, and
-      templates. The Asset API provides CRUD operations for all content types
-      stored in Content Builder.
-    externalDocs:
-      description: Asset API Documentation
-      url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/asset-api.html
-  - name: Contacts
-    description: >-
-      Create, retrieve, update, and delete contacts in Marketing Cloud. Contacts
-      represent individuals who interact with your marketing campaigns across
-      channels.
-    externalDocs:
-      description: Contacts API Documentation
-      url: https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_contacts/createContacts.html
-  - name: Journeys
-    description: >-
-      Create, manage, and automate customer journeys across multiple channels
-      and touchpoints. Journeys define the automated workflows that guide
-      customers through marketing interactions.
-    externalDocs:
-      description: Journey Builder API Documentation
-      url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/journey-builder-api-overview.html
+- name: Assets
+  description: >-
+    Manage marketing assets including images, documents, content blocks, and
+    templates. The Asset API provides CRUD operations for all content types
+    stored in Content Builder.
+  externalDocs:
+    description: Asset API Documentation
+    url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/asset-api.html
+- name: Contacts
+  description: >-
+    Create, retrieve, update, and delete contacts in Marketing Cloud. Contacts
+    represent individuals who interact with your marketing campaigns across
+    channels.
+  externalDocs:
+    description: Contacts API Documentation
+    url: https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_contacts/createContacts.html
+- name: Journeys
+  description: >-
+    Create, manage, and automate customer journeys across multiple channels
+    and touchpoints. Journeys define the automated workflows that guide
+    customers through marketing interactions.
+  externalDocs:
+    description: Journey Builder API Documentation
+    url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/journey-builder-api-overview.html
 paths:
   /contacts/v1/contacts:
     post:
       operationId: createContacts
-      summary: Salesforce Marketing Cloud Create contacts
+      summary: Salesforce Marketing Cloud Create Contacts
       description: >-
         Creates one or more contacts in Marketing Cloud. Each contact requires a
         contactKey as a unique identifier. You can include attribute values for
         any defined attribute sets such as Email Addresses, MobileConnect
         Demographics, or custom attribute sets.
       tags:
-        - Contacts
+      - Contacts
       requestBody:
         required: true
         content:
@@ -74,13 +74,13 @@ paths:
             example:
               contactKey: example-contact-001
               attributeSets:
-                - name: Email Addresses
-                  items:
-                    - values:
-                        - name: Email Address
-                          value: user@example.com
-                        - name: HTML Enabled
-                          value: true
+              - name: Email Addresses
+                items:
+                - values:
+                  - name: Email Address
+                    value: user@example.com
+                  - name: HTML Enabled
+                    value: true
       responses:
         '200':
           description: Contacts created successfully
@@ -118,16 +118,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /contacts/v1/contacts/actions/search:
     post:
       operationId: searchContacts
-      summary: Salesforce Marketing Cloud Search contacts
+      summary: Salesforce Marketing Cloud Search Contacts
       description: >-
         Searches for contacts using filter criteria. Supports filtering by
         contactKey, email address, or other contact attributes. Returns matching
         contacts with their associated attribute values.
       tags:
-        - Contacts
+      - Contacts
       requestBody:
         required: true
         content:
@@ -139,18 +142,18 @@ paths:
                 operator: AND
                 conditionSets: []
                 conditions:
-                  - attribute:
-                      groupName: Email Addresses
-                      name: Email Address
-                    operator: Equals
-                    value:
-                      items:
-                        - user@example.com
+                - attribute:
+                    groupName: Email Addresses
+                    name: Email Address
+                  operator: Equals
+                  value:
+                    items:
+                    - user@example.com
               returnAttributes:
-                - groupName: Email Addresses
-                  name: Email Address
-                - groupName: Email Addresses
-                  name: HTML Enabled
+              - groupName: Email Addresses
+                name: Email Address
+              - groupName: Email Addresses
+                name: HTML Enabled
       responses:
         '200':
           description: Search results returned
@@ -182,22 +185,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /contacts/v1/contacts/{contactKey}:
     get:
       operationId: getContact
-      summary: Salesforce Marketing Cloud Retrieve a contact by contact key
+      summary: Salesforce Marketing Cloud Retrieve a Contact by Contact Key
       description: >-
         Retrieves a single contact using the unique contactKey identifier.
         Returns the contact record with all associated attribute sets and values.
       tags:
-        - Contacts
+      - Contacts
       parameters:
-        - name: contactKey
-          in: path
-          required: true
-          description: Unique identifier for the contact
-          schema:
-            type: string
+      - name: contactKey
+        in: path
+        required: true
+        description: Unique identifier for the contact
+        schema:
+          type: string
       responses:
         '200':
           description: Contact retrieved successfully
@@ -235,22 +241,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     patch:
       operationId: updateContact
-      summary: Salesforce Marketing Cloud Update a contact
+      summary: Salesforce Marketing Cloud Update a Contact
       description: >-
         Updates an existing contact's attributes. Provide only the attribute
         sets and values that need to be changed. Unspecified attributes remain
         unchanged.
       tags:
-        - Contacts
+      - Contacts
       parameters:
-        - name: contactKey
-          in: path
-          required: true
-          description: Unique identifier for the contact
-          schema:
-            type: string
+      - name: contactKey
+        in: path
+        required: true
+        description: Unique identifier for the contact
+        schema:
+          type: string
       requestBody:
         required: true
         content:
@@ -294,23 +303,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: deleteContact
-      summary: Salesforce Marketing Cloud Delete a contact
+      summary: Salesforce Marketing Cloud Delete a Contact
       description: >-
         Initiates an asynchronous delete operation for a contact identified by
         contactKey. This operation removes the contact and associated data from
         Marketing Cloud. The delete process runs asynchronously and may take
         time to complete.
       tags:
-        - Contacts
+      - Contacts
       parameters:
-        - name: contactKey
-          in: path
-          required: true
-          description: Unique identifier for the contact to delete
-          schema:
-            type: string
+      - name: contactKey
+        in: path
+        required: true
+        description: Unique identifier for the contact to delete
+        schema:
+          type: string
       responses:
         '200':
           description: Contact delete operation initiated
@@ -348,17 +360,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /contacts/v1/attributeSets:
     get:
       operationId: listAttributeSets
-      summary: Salesforce Marketing Cloud List attribute sets
+      summary: Salesforce Marketing Cloud List Attribute Sets
       description: >-
         Retrieves all attribute sets defined in Marketing Cloud. Attribute sets
         define the structure of contact data, including system attribute sets
         like Email Addresses and MobileConnect Demographics, as well as custom
         attribute sets.
       tags:
-        - Contacts
+      - Contacts
       responses:
         '200':
           description: Attribute sets retrieved
@@ -384,56 +399,59 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /interaction/v1/interactions:
     get:
       operationId: listJourneys
-      summary: Salesforce Marketing Cloud List journeys
+      summary: Salesforce Marketing Cloud List Journeys
       description: >-
         Retrieves a collection of journeys. Supports pagination through page
         and pageSize parameters. Returns journey definitions including their
         current status, version, and configuration.
       tags:
-        - Journeys
+      - Journeys
       parameters:
-        - name: $page
-          in: query
-          description: Page number for pagination (1-based)
-          schema:
-            type: integer
-            default: 1
-            minimum: 1
-        - name: $pageSize
-          in: query
-          description: Number of journeys per page
-          schema:
-            type: integer
-            default: 50
-            minimum: 1
-            maximum: 200
-        - name: $orderBy
-          in: query
-          description: >-
-            Field to sort results by (e.g., ModifiedDate DESC, Name ASC)
-          schema:
-            type: string
-        - name: status
-          in: query
-          description: >-
-            Filter journeys by status (Draft, Published, ScheduledToPublish,
-            Stopped, Unpublished)
-          schema:
-            type: string
-            enum:
-              - Draft
-              - Published
-              - ScheduledToPublish
-              - Stopped
-              - Unpublished
-        - name: nameOrDescription
-          in: query
-          description: Filter journeys by name or description (partial match)
-          schema:
-            type: string
+      - name: $page
+        in: query
+        description: Page number for pagination (1-based)
+        schema:
+          type: integer
+          default: 1
+          minimum: 1
+      - name: $pageSize
+        in: query
+        description: Number of journeys per page
+        schema:
+          type: integer
+          default: 50
+          minimum: 1
+          maximum: 200
+      - name: $orderBy
+        in: query
+        description: >-
+          Field to sort results by (e.g., ModifiedDate DESC, Name ASC)
+        schema:
+          type: string
+      - name: status
+        in: query
+        description: >-
+          Filter journeys by status (Draft, Published, ScheduledToPublish,
+          Stopped, Unpublished)
+        schema:
+          type: string
+          enum:
+          - Draft
+          - Published
+          - ScheduledToPublish
+          - Stopped
+          - Unpublished
+      - name: nameOrDescription
+        in: query
+        description: Filter journeys by name or description (partial match)
+        schema:
+          type: string
       responses:
         '200':
           description: Journeys retrieved successfully
@@ -459,16 +477,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
       operationId: createJourney
-      summary: Salesforce Marketing Cloud Create a journey
+      summary: Salesforce Marketing Cloud Create a Journey
       description: >-
         Creates a new journey in Marketing Cloud. The journey specification
         defines the entry event, activities, triggers, and overall workflow.
         Journeys are created in Draft status by default and must be published
         to become active.
       tags:
-        - Journeys
+      - Journeys
       requestBody:
         required: true
         content:
@@ -481,17 +502,17 @@ paths:
               key: welcome-journey-001
               workflowApiVersion: 1.0
               triggers:
-                - key: event-trigger
-                  name: api-event
-                  type: APIEvent
-                  eventDefinitionKey: APIEvent-welcome
+              - key: event-trigger
+                name: api-event
+                type: APIEvent
+                eventDefinitionKey: APIEvent-welcome
               activities:
-                - key: send-welcome-email
-                  name: Send Welcome Email
-                  type: EMAILV2
-                  configurationArguments:
-                    triggeredSend:
-                      emailId: 12345
+              - key: send-welcome-email
+                name: Send Welcome Email
+                type: EMAILV2
+                configurationArguments:
+                  triggeredSend:
+                    emailId: 12345
       responses:
         '201':
           description: Journey created successfully
@@ -523,31 +544,34 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /interaction/v1/interactions/{id}:
     get:
       operationId: getJourney
-      summary: Salesforce Marketing Cloud Retrieve a journey
+      summary: Salesforce Marketing Cloud Retrieve a Journey
       description: >-
         Retrieves a single journey by its unique identifier. Returns the
         complete journey specification including activities, triggers, goals,
         and exit criteria.
       tags:
-        - Journeys
+      - Journeys
       parameters:
-        - name: id
-          in: path
-          required: true
-          description: Unique identifier (UUID) of the journey
-          schema:
-            type: string
-            format: uuid
-        - name: versionNumber
-          in: query
-          description: >-
-            Specific version number to retrieve. If omitted, returns the latest
-            version.
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier (UUID) of the journey
+        schema:
+          type: string
+          format: uuid
+      - name: versionNumber
+        in: query
+        description: >-
+          Specific version number to retrieve. If omitted, returns the latest
+          version.
+        schema:
+          type: integer
       responses:
         '200':
           description: Journey retrieved successfully
@@ -579,23 +603,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     put:
       operationId: updateJourney
-      summary: Salesforce Marketing Cloud Update a journey
+      summary: Salesforce Marketing Cloud Update a Journey
       description: >-
         Updates an existing journey. Only journeys in Draft status can be fully
         updated. Published journeys support limited modifications. Provide the
         complete journey specification including all activities and triggers.
       tags:
-        - Journeys
+      - Journeys
       parameters:
-        - name: id
-          in: path
-          required: true
-          description: Unique identifier (UUID) of the journey
-          schema:
-            type: string
-            format: uuid
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier (UUID) of the journey
+        schema:
+          type: string
+          format: uuid
       requestBody:
         required: true
         content:
@@ -645,22 +672,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: deleteJourney
-      summary: Salesforce Marketing Cloud Delete a journey
+      summary: Salesforce Marketing Cloud Delete a Journey
       description: >-
         Deletes a journey. Only journeys in Draft or Stopped status can be
         deleted. Published journeys must first be stopped before deletion.
       tags:
-        - Journeys
+      - Journeys
       parameters:
-        - name: id
-          in: path
-          required: true
-          description: Unique identifier (UUID) of the journey
-          schema:
-            type: string
-            format: uuid
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier (UUID) of the journey
+        schema:
+          type: string
+          format: uuid
       responses:
         '200':
           description: Journey deleted successfully
@@ -694,24 +724,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /interaction/v1/interactions/publishAsync/{id}:
     post:
       operationId: publishJourney
-      summary: Salesforce Marketing Cloud Publish a journey
+      summary: Salesforce Marketing Cloud Publish a Journey
       description: >-
         Publishes a journey asynchronously, activating it for customer entry.
         Once published, contacts matching the entry criteria begin entering the
         journey. The publish operation returns a statusId for tracking progress.
       tags:
-        - Journeys
+      - Journeys
       parameters:
-        - name: id
-          in: path
-          required: true
-          description: Unique identifier (UUID) of the journey to publish
-          schema:
-            type: string
-            format: uuid
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier (UUID) of the journey to publish
+        schema:
+          type: string
+          format: uuid
       requestBody:
         required: false
         content:
@@ -759,24 +792,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /interaction/v1/interactions/stop/{id}:
     post:
       operationId: stopJourney
-      summary: Salesforce Marketing Cloud Stop a journey
+      summary: Salesforce Marketing Cloud Stop a Journey
       description: >-
         Stops a published journey. Contacts currently in the journey can either
         complete their current activity or be ejected immediately based on the
         stop configuration.
       tags:
-        - Journeys
+      - Journeys
       parameters:
-        - name: id
-          in: path
-          required: true
-          description: Unique identifier (UUID) of the journey to stop
-          schema:
-            type: string
-            format: uuid
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier (UUID) of the journey to stop
+        schema:
+          type: string
+          format: uuid
       responses:
         '200':
           description: Journey stopped successfully
@@ -814,17 +850,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /interaction/v1/events:
     post:
       operationId: fireEntryEvent
-      summary: Salesforce Marketing Cloud Fire a journey entry event
+      summary: Salesforce Marketing Cloud Fire a Journey Entry Event
       description: >-
         Fires an entry event to inject a contact into a journey. The contact
         is identified by ContactKey and enters the journey associated with the
         specified EventDefinitionKey. Additional data can be passed as part of
         the event payload.
       tags:
-        - Journeys
+      - Journeys
       requestBody:
         required: true
         content:
@@ -869,45 +908,48 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /asset/v1/content/assets:
     get:
       operationId: listAssets
-      summary: Salesforce Marketing Cloud List assets
+      summary: Salesforce Marketing Cloud List Assets
       description: >-
         Retrieves a collection of assets from Content Builder. Supports
         filtering, sorting, and pagination. Assets include emails, templates,
         images, content blocks, and other content types.
       tags:
-        - Assets
+      - Assets
       parameters:
-        - name: $page
-          in: query
-          description: Page number for pagination (1-based)
-          schema:
-            type: integer
-            default: 1
-            minimum: 1
-        - name: $pageSize
-          in: query
-          description: Number of assets per page
-          schema:
-            type: integer
-            default: 50
-            minimum: 1
-            maximum: 200
-        - name: $orderBy
-          in: query
-          description: >-
-            Field to sort results by (e.g., modifiedDate DESC, name ASC)
-          schema:
-            type: string
-        - name: $filter
-          in: query
-          description: >-
-            OData-style filter expression (e.g.,
-            assetType.name eq 'htmlemail')
-          schema:
-            type: string
+      - name: $page
+        in: query
+        description: Page number for pagination (1-based)
+        schema:
+          type: integer
+          default: 1
+          minimum: 1
+      - name: $pageSize
+        in: query
+        description: Number of assets per page
+        schema:
+          type: integer
+          default: 50
+          minimum: 1
+          maximum: 200
+      - name: $orderBy
+        in: query
+        description: >-
+          Field to sort results by (e.g., modifiedDate DESC, name ASC)
+        schema:
+          type: string
+      - name: $filter
+        in: query
+        description: >-
+          OData-style filter expression (e.g.,
+          assetType.name eq 'htmlemail')
+        schema:
+          type: string
       responses:
         '200':
           description: Assets retrieved successfully
@@ -933,15 +975,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
       operationId: createAsset
-      summary: Salesforce Marketing Cloud Create an asset
+      summary: Salesforce Marketing Cloud Create an Asset
       description: >-
         Creates a new asset in Content Builder. The asset type determines the
         required and optional fields. Common asset types include htmlemail,
         templatebasedemail, htmlblock, codesnippetblock, and image.
       tags:
-        - Assets
+      - Assets
       requestBody:
         required: true
         content:
@@ -994,22 +1039,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /asset/v1/content/assets/{id}:
     get:
       operationId: getAsset
-      summary: Salesforce Marketing Cloud Retrieve an asset
+      summary: Salesforce Marketing Cloud Retrieve an Asset
       description: >-
         Retrieves a single asset by its unique identifier. Returns the complete
         asset definition including content, metadata, and associated category.
       tags:
-        - Assets
+      - Assets
       parameters:
-        - name: id
-          in: path
-          required: true
-          description: Unique identifier of the asset
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier of the asset
+        schema:
+          type: integer
       responses:
         '200':
           description: Asset retrieved successfully
@@ -1041,22 +1089,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     put:
       operationId: updateAsset
-      summary: Salesforce Marketing Cloud Update an asset
+      summary: Salesforce Marketing Cloud Update an Asset
       description: >-
         Updates an existing asset. Provide the complete asset definition with
         all desired values. Fields not included in the request body are not
         modified.
       tags:
-        - Assets
+      - Assets
       parameters:
-        - name: id
-          in: path
-          required: true
-          description: Unique identifier of the asset
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier of the asset
+        schema:
+          type: integer
       requestBody:
         required: true
         content:
@@ -1100,21 +1151,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: deleteAsset
-      summary: Salesforce Marketing Cloud Delete an asset
+      summary: Salesforce Marketing Cloud Delete an Asset
       description: >-
         Deletes an asset from Content Builder. This action is permanent and
         cannot be undone.
       tags:
-        - Assets
+      - Assets
       parameters:
-        - name: id
-          in: path
-          required: true
-          description: Unique identifier of the asset to delete
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier of the asset to delete
+        schema:
+          type: integer
       responses:
         '200':
           description: Asset deleted successfully
@@ -1142,17 +1196,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /asset/v1/content/assets/query:
     post:
       operationId: queryAssets
-      summary: Salesforce Marketing Cloud Query assets with advanced filtering
+      summary: Salesforce Marketing Cloud Query Assets With Advanced Filtering
       description: >-
         Performs an advanced query against assets using a structured query
         object. Supports complex filtering with AND/OR logic, nested
         conditions, and multiple sort criteria. More powerful than the
         OData-style filter on the list endpoint.
       tags:
-        - Assets
+      - Assets
       requestBody:
         required: true
         content:
@@ -1168,13 +1225,13 @@ paths:
                 simpleOperator: equal
                 value: htmlemail
               sort:
-                - property: modifiedDate
-                  direction: DESC
+              - property: modifiedDate
+                direction: DESC
               fields:
-                - id
-                - name
-                - assetType
-                - modifiedDate
+              - id
+              - name
+              - assetType
+              - modifiedDate
       responses:
         '200':
           description: Query results returned
@@ -1206,35 +1263,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /asset/v1/content/categories:
     get:
       operationId: listCategories
-      summary: Salesforce Marketing Cloud List asset categories
+      summary: Salesforce Marketing Cloud List Asset Categories
       description: >-
         Retrieves categories (folders) used to organize assets in Content
         Builder. Categories provide a hierarchical folder structure for content
         organization.
       tags:
-        - Assets
+      - Assets
       parameters:
-        - name: $page
-          in: query
-          description: Page number for pagination (1-based)
-          schema:
-            type: integer
-            default: 1
-        - name: $pageSize
-          in: query
-          description: Number of categories per page
-          schema:
-            type: integer
-            default: 50
-        - name: $filter
-          in: query
-          description: >-
-            OData-style filter expression (e.g., parentId eq 12345)
-          schema:
-            type: string
+      - name: $page
+        in: query
+        description: Page number for pagination (1-based)
+        schema:
+          type: integer
+          default: 1
+      - name: $pageSize
+        in: query
+        description: Number of categories per page
+        schema:
+          type: integer
+          default: 50
+      - name: $filter
+        in: query
+        description: >-
+          OData-style filter expression (e.g., parentId eq 12345)
+        schema:
+          type: string
       responses:
         '200':
           description: Categories retrieved successfully
@@ -1260,6 +1320,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   securitySchemes:
     OAuth2:
@@ -1285,33 +1348,39 @@ components:
           description: >-
             Unique identifier for the contact. This value is used across all
             Marketing Cloud channels and applications.
+          example: example_value
         contactID:
           type: integer
           description: System-generated unique numeric identifier
+          example: '500123'
         contactStatus:
           type: string
           description: Current status of the contact
           enum:
-            - Active
-            - Inactive
-            - Bounced
-            - Held
-            - Unsubscribed
+          - Active
+          - Inactive
+          - Bounced
+          - Held
+          - Unsubscribed
+          example: Active
         createdDate:
           type: string
           format: date-time
           description: Date and time the contact was created
+          example: '2026-01-15T10:30:00Z'
         modifiedDate:
           type: string
           format: date-time
           description: Date and time the contact was last modified
+          example: '2026-01-15T10:30:00Z'
         attributeSets:
           type: array
           description: Collection of attribute sets associated with the contact
           items:
             $ref: '#/components/schemas/AttributeSet'
+          example: []
       required:
-        - contactKey
+      - contactKey
     AttributeSet:
       type: object
       description: >-
@@ -1321,6 +1390,7 @@ components:
         name:
           type: string
           description: Name of the attribute set
+          example: Example Title
         items:
           type: array
           description: Collection of attribute value groups
@@ -1331,6 +1401,7 @@ components:
                 type: array
                 items:
                   $ref: '#/components/schemas/AttributeValue'
+          example: []
     AttributeValue:
       type: object
       description: A single attribute name-value pair within an attribute set
@@ -1338,11 +1409,13 @@ components:
         name:
           type: string
           description: Name of the attribute
+          example: Example Title
         value:
           description: Value of the attribute
+          example: example_value
       required:
-        - name
-        - value
+      - name
+      - value
     CreateContactsRequest:
       type: object
       description: Request body for creating one or more contacts
@@ -1350,13 +1423,15 @@ components:
         contactKey:
           type: string
           description: Unique identifier for the contact
+          example: example_value
         attributeSets:
           type: array
           description: Attribute sets and values to assign to the contact
           items:
             $ref: '#/components/schemas/AttributeSet'
+          example: []
       required:
-        - contactKey
+      - contactKey
     UpdateContactRequest:
       type: object
       description: Request body for updating contact attributes
@@ -1366,8 +1441,9 @@ components:
           description: Attribute sets and values to update
           items:
             $ref: '#/components/schemas/AttributeSet'
+          example: []
       required:
-        - attributeSets
+      - attributeSets
     ContactResponse:
       type: object
       description: Response returned after contact creation or update operations
@@ -1375,12 +1451,15 @@ components:
         operationStatus:
           type: string
           description: Overall status of the operation
+          example: example_value
         requestServiceMessageID:
           type: string
           description: Unique identifier for the request
+          example: '500123'
         responseDateTime:
           type: string
           format: date-time
+          example: '2026-01-15T10:30:00Z'
         resultMessages:
           type: array
           items:
@@ -1392,6 +1471,7 @@ components:
                 type: string
               resultMessage:
                 type: string
+          example: []
     ContactSearchRequest:
       type: object
       description: Request body for searching contacts with filter criteria
@@ -1403,8 +1483,8 @@ components:
             operator:
               type: string
               enum:
-                - AND
-                - OR
+              - AND
+              - OR
             conditions:
               type: array
               items:
@@ -1420,15 +1500,15 @@ components:
                   operator:
                     type: string
                     enum:
-                      - Equals
-                      - NotEquals
-                      - GreaterThan
-                      - LessThan
-                      - Contains
-                      - StartsWith
-                      - EndsWith
-                      - IsNull
-                      - IsNotNull
+                    - Equals
+                    - NotEquals
+                    - GreaterThan
+                    - LessThan
+                    - Contains
+                    - StartsWith
+                    - EndsWith
+                    - IsNull
+                    - IsNotNull
                   value:
                     type: object
                     properties:
@@ -1439,6 +1519,7 @@ components:
             conditionSets:
               type: array
               items: {}
+          example: example_value
         returnAttributes:
           type: array
           description: Attributes to include in the search results
@@ -1449,6 +1530,7 @@ components:
                 type: string
               name:
                 type: string
+          example: []
     ContactSearchResponse:
       type: object
       description: Response returned from a contact search operation
@@ -1456,34 +1538,43 @@ components:
         count:
           type: integer
           description: Total number of matching contacts
+          example: 10
         page:
           type: integer
+          example: 10
         pageSize:
           type: integer
+          example: 10
         items:
           type: array
           items:
             $ref: '#/components/schemas/Contact'
+          example: []
     DeleteContactResponse:
       type: object
       description: Response from a contact delete operation
       properties:
         operationStatus:
           type: string
+          example: example_value
         requestServiceMessageID:
           type: string
+          example: '500123'
         responseDateTime:
           type: string
           format: date-time
+          example: '2026-01-15T10:30:00Z'
         operationInitiated:
           type: boolean
           description: Whether the asynchronous delete was successfully initiated
+          example: true
     AttributeSetsResponse:
       type: object
       description: Response containing a collection of attribute sets
       properties:
         count:
           type: integer
+          example: 10
         items:
           type: array
           items:
@@ -1504,6 +1595,7 @@ components:
                       type: boolean
                     isReadOnly:
                       type: boolean
+          example: []
     Journey:
       type: object
       description: >-
@@ -1515,56 +1607,69 @@ components:
           type: string
           format: uuid
           description: System-generated unique identifier for the journey
+          example: abc123
         key:
           type: string
           description: Customer-defined unique key for the journey
+          example: example_value
         name:
           type: string
           description: Display name of the journey
+          example: Example Title
         description:
           type: string
           description: Description of the journey purpose
+          example: A sample description.
         version:
           type: integer
           description: Current version number of the journey
+          example: 10
         status:
           type: string
           description: Current status of the journey
           enum:
-            - Draft
-            - Published
-            - ScheduledToPublish
-            - Stopped
-            - Unpublished
+          - Draft
+          - Published
+          - ScheduledToPublish
+          - Stopped
+          - Unpublished
+          example: Draft
         createdDate:
           type: string
           format: date-time
+          example: '2026-01-15T10:30:00Z'
         modifiedDate:
           type: string
           format: date-time
+          example: '2026-01-15T10:30:00Z'
         workflowApiVersion:
           type: number
           description: Version of the Journey Builder API used
+          example: 42.5
         triggers:
           type: array
           description: Entry triggers that inject contacts into the journey
           items:
             $ref: '#/components/schemas/JourneyTrigger'
+          example: []
         activities:
           type: array
           description: Activities that contacts pass through in the journey
           items:
             $ref: '#/components/schemas/JourneyActivity'
+          example: []
         goals:
           type: array
           description: Goal criteria that measure journey success
           items:
             $ref: '#/components/schemas/JourneyGoal'
+          example: []
         exits:
           type: array
           description: Exit criteria that remove contacts from the journey
           items:
             $ref: '#/components/schemas/JourneyExit'
+          example: []
         stats:
           type: object
           description: Runtime statistics for the journey
@@ -1578,6 +1683,7 @@ components:
             metGoal:
               type: integer
               description: Number of contacts that met the journey goal
+          example: example_value
     JourneyDefinition:
       type: object
       description: Specification for creating or updating a journey
@@ -1585,34 +1691,42 @@ components:
         key:
           type: string
           description: Customer-defined unique key for the journey
+          example: example_value
         name:
           type: string
           description: Display name of the journey
+          example: Example Title
         description:
           type: string
           description: Description of the journey purpose
+          example: A sample description.
         workflowApiVersion:
           type: number
           description: Version of the Journey Builder API (e.g., 1.0)
+          example: 42.5
         triggers:
           type: array
           items:
             $ref: '#/components/schemas/JourneyTrigger'
+          example: []
         activities:
           type: array
           items:
             $ref: '#/components/schemas/JourneyActivity'
+          example: []
         goals:
           type: array
           items:
             $ref: '#/components/schemas/JourneyGoal'
+          example: []
         exits:
           type: array
           items:
             $ref: '#/components/schemas/JourneyExit'
+          example: []
       required:
-        - name
-        - workflowApiVersion
+      - name
+      - workflowApiVersion
     JourneyTrigger:
       type: object
       description: >-
@@ -1622,25 +1736,30 @@ components:
         key:
           type: string
           description: Unique key for the trigger within the journey
+          example: example_value
         name:
           type: string
           description: Display name of the trigger
+          example: Example Title
         type:
           type: string
           description: Type of trigger
           enum:
-            - APIEvent
-            - ScheduledAutomation
-            - Event
-            - ContactAudience
+          - APIEvent
+          - ScheduledAutomation
+          - Event
+          - ContactAudience
+          example: APIEvent
         eventDefinitionKey:
           type: string
           description: >-
             Key of the event definition associated with this trigger, used for
             API events
+          example: example_value
         configurationArguments:
           type: object
           description: Trigger-specific configuration
+          example: example_value
     JourneyActivity:
       type: object
       description: >-
@@ -1651,27 +1770,31 @@ components:
         key:
           type: string
           description: Unique key for the activity within the journey
+          example: example_value
         name:
           type: string
           description: Display name of the activity
+          example: Example Title
         type:
           type: string
           description: Type of activity
           enum:
-            - EMAILV2
-            - SMSSYNC
-            - PUSHNOTIFICATION
-            - WAIT
-            - RANDOM_SPLIT
-            - ENGAGEMENT_SPLIT
-            - DECISION_SPLIT
-            - JOIN
-            - DATAEXTENSIONUPDATE
-            - REST
-            - CUSTOM
+          - EMAILV2
+          - SMSSYNC
+          - PUSHNOTIFICATION
+          - WAIT
+          - RANDOM_SPLIT
+          - ENGAGEMENT_SPLIT
+          - DECISION_SPLIT
+          - JOIN
+          - DATAEXTENSIONUPDATE
+          - REST
+          - CUSTOM
+          example: EMAILV2
         configurationArguments:
           type: object
           description: Activity-specific configuration
+          example: example_value
         outcomes:
           type: array
           description: Possible outcomes of the activity leading to next steps
@@ -1683,33 +1806,41 @@ components:
               next:
                 type: string
                 description: Key of the next activity in the journey
+          example: []
       required:
-        - key
-        - type
+      - key
+      - type
     JourneyGoal:
       type: object
       description: Goal criteria for measuring journey success
       properties:
         key:
           type: string
+          example: example_value
         name:
           type: string
+          example: Example Title
         description:
           type: string
+          example: A sample description.
         metCriteria:
           type: string
           description: Criteria expression that defines when the goal is met
+          example: example_value
     JourneyExit:
       type: object
       description: Exit criteria that remove contacts from the journey
       properties:
         key:
           type: string
+          example: example_value
         name:
           type: string
+          example: Example Title
         criteria:
           type: string
           description: Criteria expression that triggers journey exit
+          example: example_value
     JourneyCollection:
       type: object
       description: Paginated collection of journeys
@@ -1717,16 +1848,20 @@ components:
         count:
           type: integer
           description: Total number of journeys matching the query
+          example: 10
         page:
           type: integer
           description: Current page number
+          example: 10
         pageSize:
           type: integer
           description: Number of items per page
+          example: 10
         items:
           type: array
           items:
             $ref: '#/components/schemas/Journey'
+          example: []
     EntryEvent:
       type: object
       description: >-
@@ -1736,19 +1871,22 @@ components:
         ContactKey:
           type: string
           description: Unique identifier for the contact entering the journey
+          example: example_value
         EventDefinitionKey:
           type: string
           description: >-
             Key of the event definition matching the journey entry trigger
+          example: example_value
         Data:
           type: object
           description: >-
             Additional data to pass to the journey as key-value pairs. These
             values are available to activities within the journey.
           additionalProperties: true
+          example: example_value
       required:
-        - ContactKey
-        - EventDefinitionKey
+      - ContactKey
+      - EventDefinitionKey
     EntryEventResponse:
       type: object
       description: Response returned after firing a journey entry event
@@ -1756,10 +1894,12 @@ components:
         requestId:
           type: string
           description: Unique identifier for the event request
+          example: '500123'
         eventInstanceId:
           type: string
           format: uuid
           description: Unique instance identifier for this event firing
+          example: '500123'
     PublishResponse:
       type: object
       description: Response returned when a journey publish operation is initiated
@@ -1767,8 +1907,10 @@ components:
         statusId:
           type: string
           description: Identifier for tracking the publish operation status
+          example: '500123'
         message:
           type: string
+          example: example_value
     Asset:
       type: object
       description: >-
@@ -1779,15 +1921,19 @@ components:
         id:
           type: integer
           description: System-generated unique identifier for the asset
+          example: abc123
         customerKey:
           type: string
           description: Customer-defined unique key for the asset
+          example: example_value
         name:
           type: string
           description: Display name of the asset
+          example: Example Title
         description:
           type: string
           description: Description of the asset
+          example: A sample description.
         assetType:
           $ref: '#/components/schemas/AssetType'
         category:
@@ -1800,11 +1946,13 @@ components:
               type: string
             parentId:
               type: integer
+          example: example_value
         content:
           type: string
           description: >-
             Primary content of the asset, typically HTML or text depending on
             asset type
+          example: example_value
         views:
           type: object
           description: >-
@@ -1831,15 +1979,18 @@ components:
               properties:
                 content:
                   type: string
+          example: example_value
         data:
           type: object
           description: Asset-type-specific data and configuration
           additionalProperties: true
+          example: example_value
         tags:
           type: array
           description: Tags assigned to the asset for organization
           items:
             type: string
+          example: []
         status:
           type: object
           properties:
@@ -1848,14 +1999,17 @@ components:
             name:
               type: string
               enum:
-                - Draft
-                - Approved
+              - Draft
+              - Approved
+          example: example_value
         createdDate:
           type: string
           format: date-time
+          example: '2026-01-15T10:30:00Z'
         modifiedDate:
           type: string
           format: date-time
+          example: '2026-01-15T10:30:00Z'
         createdBy:
           type: object
           properties:
@@ -1865,6 +2019,7 @@ components:
               type: string
             email:
               type: string
+          example: example_value
         modifiedBy:
           type: object
           properties:
@@ -1874,6 +2029,7 @@ components:
               type: string
             email:
               type: string
+          example: example_value
     AssetType:
       type: object
       description: >-
@@ -1884,9 +2040,11 @@ components:
         id:
           type: integer
           description: Numeric identifier for the asset type
+          example: abc123
         name:
           type: string
           description: Name of the asset type
+          example: Example Title
     AssetDefinition:
       type: object
       description: Specification for creating or updating an asset
@@ -1894,12 +2052,15 @@ components:
         name:
           type: string
           description: Display name of the asset
+          example: Example Title
         description:
           type: string
           description: Description of the asset
+          example: A sample description.
         customerKey:
           type: string
           description: Customer-defined unique key
+          example: example_value
         assetType:
           $ref: '#/components/schemas/AssetType'
         category:
@@ -1908,9 +2069,11 @@ components:
             id:
               type: integer
               description: ID of the category (folder) to place the asset in
+          example: example_value
         content:
           type: string
           description: Primary content of the asset
+          example: example_value
         views:
           type: object
           description: Channel-specific content views
@@ -1935,17 +2098,20 @@ components:
               properties:
                 content:
                   type: string
+          example: example_value
         data:
           type: object
           description: Asset-type-specific data
           additionalProperties: true
+          example: example_value
         tags:
           type: array
           items:
             type: string
+          example: []
       required:
-        - name
-        - assetType
+      - name
+      - assetType
     AssetCollection:
       type: object
       description: Paginated collection of assets
@@ -1953,16 +2119,20 @@ components:
         count:
           type: integer
           description: Total number of assets matching the query
+          example: 10
         page:
           type: integer
           description: Current page number
+          example: 10
         pageSize:
           type: integer
           description: Number of items per page
+          example: 10
         items:
           type: array
           items:
             $ref: '#/components/schemas/Asset'
+          example: []
     AssetQuery:
       type: object
       description: Advanced query object for searching assets
@@ -1974,6 +2144,7 @@ components:
               type: integer
             pageSize:
               type: integer
+          example: example_value
         query:
           type: object
           description: Query filter criteria
@@ -1985,17 +2156,17 @@ components:
               type: string
               description: Comparison operator
               enum:
-                - equal
-                - notEqual
-                - greaterThan
-                - greaterThanOrEqual
-                - lessThan
-                - lessThanOrEqual
-                - like
-                - isNull
-                - isNotNull
-                - between
-                - IN
+              - equal
+              - notEqual
+              - greaterThan
+              - greaterThanOrEqual
+              - lessThan
+              - lessThanOrEqual
+              - like
+              - isNull
+              - isNotNull
+              - between
+              - IN
             value:
               description: Value to compare against
             dateValue:
@@ -2011,8 +2182,9 @@ components:
             logicalOperator:
               type: string
               enum:
-                - AND
-                - OR
+              - AND
+              - OR
+          example: example_value
         sort:
           type: array
           items:
@@ -2023,23 +2195,28 @@ components:
               direction:
                 type: string
                 enum:
-                  - ASC
-                  - DESC
+                - ASC
+                - DESC
+          example: []
         fields:
           type: array
           description: Specific fields to include in the response
           items:
             type: string
+          example: []
     CategoryCollection:
       type: object
       description: Paginated collection of asset categories
       properties:
         count:
           type: integer
+          example: 10
         page:
           type: integer
+          example: 10
         pageSize:
           type: integer
+          example: 10
         items:
           type: array
           items:
@@ -2053,6 +2230,7 @@ components:
                 type: integer
               description:
                 type: string
+          example: []
     ErrorResponse:
       type: object
       description: Standard error response returned by the Marketing Cloud API
@@ -2060,9 +2238,12 @@ components:
         message:
           type: string
           description: Human-readable error message
+          example: example_value
         errorcode:
           type: integer
           description: Numeric error code
+          example: 10
         documentation:
           type: string
           description: URL to relevant documentation for this error
+          example: example_value

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AttributeSetsResponse",
+  "type": "object",
+  "description": "Response containing a collection of attribute sets",
+  "properties": {
+    "count": {
+      "type": "integer"
+    },
+    "items": {
+      "type": "array"
+    }
+  }
+}

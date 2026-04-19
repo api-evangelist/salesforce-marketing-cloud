@@ -1,0 +1,16 @@
+{
+  "id": "abc123",
+  "key": "example_value",
+  "name": "Example Title",
+  "description": "A sample description.",
+  "version": 10,
+  "status": "example_value",
+  "createdDate": "example_value",
+  "modifiedDate": "example_value",
+  "workflowApiVersion": 42.5,
+  "triggers": [],
+  "activities": [],
+  "goals": [],
+  "exits": [],
+  "stats": "example_value"
+}

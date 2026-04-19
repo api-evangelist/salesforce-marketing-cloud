@@ -1,0 +1,16 @@
+{
+  "id": "abc123",
+  "customerKey": "example_value",
+  "name": "Example Title",
+  "description": "A sample description.",
+  "category": "example_value",
+  "content": "example_value",
+  "views": "example_value",
+  "data": "example_value",
+  "tags": [],
+  "status": "example_value",
+  "createdDate": "example_value",
+  "modifiedDate": "example_value",
+  "createdBy": "example_value",
+  "modifiedBy": "example_value"
+}

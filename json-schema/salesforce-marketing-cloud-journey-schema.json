@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Journey",
+  "type": "object",
+  "description": "Represents a customer journey in Marketing Cloud. A journey defines an automated workflow that guides contacts through a series of marketing interactions across channels.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "System-generated unique identifier for the journey"
+    },
+    "key": {
+      "type": "string",
+      "description": "Customer-defined unique key for the journey"
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the journey"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the journey purpose"
+    },
+    "version": {
+      "type": "integer",
+      "description": "Current version number of the journey"
+    },
+    "status": {
+      "type": "string",
+      "description": "Current status of the journey"
+    },
+    "createdDate": {
+      "type": "string"
+    },
+    "modifiedDate": {
+      "type": "string"
+    },
+    "workflowApiVersion": {
+      "type": "number",
+      "description": "Version of the Journey Builder API used"
+    },
+    "triggers": {
+      "type": "array",
+      "description": "Entry triggers that inject contacts into the journey"
+    },
+    "activities": {
+      "type": "array",
+      "description": "Activities that contacts pass through in the journey"
+    },
+    "goals": {
+      "type": "array",
+      "description": "Goal criteria that measure journey success"
+    },
+    "exits": {
+      "type": "array",
+      "description": "Exit criteria that remove contacts from the journey"
+    },
+    "stats": {
+      "type": "object",
+      "description": "Runtime statistics for the journey"
+    }
+  }
+}

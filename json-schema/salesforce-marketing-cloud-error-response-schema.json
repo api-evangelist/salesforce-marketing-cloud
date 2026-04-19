@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ErrorResponse",
+  "type": "object",
+  "description": "Standard error response returned by the Marketing Cloud API",
+  "properties": {
+    "message": {
+      "type": "string",
+      "description": "Human-readable error message"
+    },
+    "errorcode": {
+      "type": "integer",
+      "description": "Numeric error code"
+    },
+    "documentation": {
+      "type": "string",
+      "description": "URL to relevant documentation for this error"
+    }
+  }
+}

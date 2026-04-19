@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AssetQuery",
+  "type": "object",
+  "description": "Advanced query object for searching assets",
+  "properties": {
+    "page": {
+      "type": "object"
+    },
+    "query": {
+      "type": "object",
+      "description": "Query filter criteria"
+    },
+    "sort": {
+      "type": "array"
+    },
+    "fields": {
+      "type": "array",
+      "description": "Specific fields to include in the response"
+    }
+  }
+}
