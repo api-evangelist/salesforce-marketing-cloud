@@ -1,0 +1,249 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+provider: Salesforce Marketing Cloud
+providerId: salesforce-marketing-cloud
+publisherName: Salesforce Marketing Cloud
+serviceCategory: API
+created: '2026-05-04'
+modified: '2026-05-04'
+tags:
+  - Automation
+  - Customer Journey
+  - Digital Marketing
+  - Email
+  - Marketing
+  - Personalization
+  - FinOps
+  - Cost Management
+  - FOCUS
+description: FinOps framework definition for the Salesforce Marketing Cloud API surface. Provides a FOCUS-aligned
+  mapping for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
+principles:
+  - name: Visibility
+    description: Make API consumption costs visible to engineering, product, and finance teams in near
+      real-time.
+  - name: Allocation
+    description: Tag every chargeable API call with the consuming team, environment, application, and
+      feature so cost can be allocated.
+  - name: Optimization
+    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
+      cost per useful unit of work.
+  - name: Accountability
+    description: Establish budget owners and chargeback or showback flows for each consuming team.
+domains:
+  - name: Understand Usage and Cost
+    capabilities:
+      - Data Ingestion
+      - Allocation
+      - Reporting and Analytics
+      - Anomaly Management
+  - name: Quantify Business Value
+    capabilities:
+      - Planning and Estimating
+      - Forecasting
+      - Budgeting
+      - Benchmarking
+      - Unit Economics
+  - name: Optimize Usage and Cost
+    capabilities:
+      - Architecting for Cloud
+      - Rate Optimization
+      - Workload Optimization
+      - Cloud Sustainability
+      - Licensing and SaaS
+  - name: Manage the FinOps Practice
+    capabilities:
+      - FinOps Practice Operations
+      - FinOps Education and Enablement
+      - Invoicing and Chargeback
+      - Onboarding Workloads
+      - Intersecting Disciplines
+billingModel:
+  pricingCategory: Usage-Based
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+    - Usage
+    - Purchase
+    - Tax
+    - Credit
+    - Adjustment
+  chargeFrequency: Recurring
+focusColumns:
+  ServiceName: Salesforce Marketing Cloud
+  ServiceCategory: Developer Tools / API
+  ProviderName: Salesforce Marketing Cloud
+  PublisherName: Salesforce Marketing Cloud
+  InvoiceIssuerName: Salesforce Marketing Cloud
+  PricingCategory: Usage-Based
+  PricingUnit: request
+  BillingCurrency: USD
+  ChargeCategory: Usage
+meters:
+  - name: api_requests
+    description: Count of billable API requests
+    unit: request
+    aggregation: sum
+    dimensions:
+      - api
+      - endpoint
+      - tier
+      - region
+      - consumer
+  - name: data_egress
+    description: Bytes returned over the network in API responses
+    unit: GB
+    aggregation: sum
+    dimensions:
+      - api
+      - region
+      - consumer
+  - name: compute_seconds
+    description: Server-side compute consumed by the request, where applicable
+    unit: second
+    aggregation: sum
+    dimensions:
+      - api
+      - endpoint
+      - tier
+apis:
+  - name: Marketing Cloud REST API
+    baseURL: https://YOUR_SUBDOMAIN.rest.marketingcloudapis.com
+    tags:
+      - Email
+      - Push
+      - REST
+      - SMS
+    serviceName: Marketing Cloud REST API
+    serviceCategory: API
+  - name: SOAP API
+    baseURL: https://YOUR_SUBDOMAIN.soap.marketingcloudapis.com
+    tags:
+      - Legacy
+      - SOAP
+      - Subscriber
+    serviceName: SOAP API
+    serviceCategory: API
+  - name: Transactional Messaging API
+    baseURL: https://YOUR_SUBDOMAIN.rest.marketingcloudapis.com/messaging/v1
+    tags:
+      - Messaging
+      - Transactional
+      - Triggered
+    serviceName: Transactional Messaging API
+    serviceCategory: API
+  - name: Journey Builder API
+    baseURL: https://YOUR_SUBDOMAIN.rest.marketingcloudapis.com/interaction/v1
+    tags:
+      - Automation
+      - Journey
+      - Orchestration
+    serviceName: Journey Builder API
+    serviceCategory: API
+  - name: Data Extensions API
+    baseURL: https://YOUR_SUBDOMAIN.rest.marketingcloudapis.com/data/v1
+    tags:
+      - Data
+      - Segmentation
+      - Storage
+    serviceName: Data Extensions API
+    serviceCategory: API
+  - name: Email Send Definition API
+    baseURL: https://YOUR_SUBDOMAIN.rest.marketingcloudapis.com/messaging/v1
+    tags:
+      - Campaigns
+      - Email
+      - Sending
+    serviceName: Email Send Definition API
+    serviceCategory: API
+  - name: Mobile Push API
+    baseURL: https://YOUR_SUBDOMAIN.rest.marketingcloudapis.com/push/v1
+    tags:
+      - Mobile
+      - Notifications
+      - Push
+    serviceName: Mobile Push API
+    serviceCategory: API
+  - name: SMS/MMS API
+    baseURL: https://YOUR_SUBDOMAIN.rest.marketingcloudapis.com/sms/v1
+    tags:
+      - MMS
+      - Mobile Messaging
+      - SMS
+    serviceName: SMS/MMS API
+    serviceCategory: API
+  - name: Asset API
+    baseURL: https://YOUR_SUBDOMAIN.rest.marketingcloudapis.com/asset/v1
+    tags:
+      - Assets
+      - Content
+      - Templates
+    serviceName: Asset API
+    serviceCategory: API
+  - name: Einstein Recommendations API
+    baseURL: https://YOUR_SUBDOMAIN.rest.marketingcloudapis.com/einstein/v1
+    tags:
+      - AI
+      - Personalization
+      - Recommendations
+    serviceName: Einstein Recommendations API
+    serviceCategory: API
+  - name: Content Builder API
+    baseURL: https://YOUR_SUBDOMAIN.rest.marketingcloudapis.com/asset/v1
+    tags:
+      - Assets
+      - Content
+      - Email
+      - Templates
+    serviceName: Content Builder API
+    serviceCategory: API
+  - name: Contacts API
+    baseURL: https://YOUR_SUBDOMAIN.rest.marketingcloudapis.com/contacts/v1
+    tags:
+      - Contacts
+      - Data
+      - Subscribers
+    serviceName: Contacts API
+    serviceCategory: API
+  - name: Automation Studio API
+    baseURL: https://YOUR_SUBDOMAIN.rest.marketingcloudapis.com/automation/v1
+    tags:
+      - Automation
+      - Scheduling
+      - Workflows
+    serviceName: Automation Studio API
+    serviceCategory: API
+  - name: Campaign API
+    baseURL: https://YOUR_SUBDOMAIN.rest.marketingcloudapis.com/hub/v1
+    tags:
+      - Campaigns
+      - Execution
+      - Marketing
+    serviceName: Campaign API
+    serviceCategory: API
+  - name: Event Notification Service API
+    baseURL: https://YOUR_SUBDOMAIN.rest.marketingcloudapis.com/platform/v1
+    tags:
+      - Events
+      - Notifications
+      - Real-Time
+      - Webhooks
+    serviceName: Event Notification Service API
+    serviceCategory: API
+unitEconomics:
+  - name: Cost per 1K Requests
+    metric: billed_cost / (api_requests / 1000)
+    target: TBD
+  - name: Cost per Active Consumer
+    metric: billed_cost / active_consumers
+    target: TBD
+maintainers:
+  - name: Kin Lane
+    email: kin@apievangelist.com
+    url: https://apievangelist.com
