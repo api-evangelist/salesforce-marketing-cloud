@@ -1,0 +1,346 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Salesforce Marketing Cloud REST API — Assets
+  description: 'Salesforce Marketing Cloud REST API — Assets. 7 operations. Lead operation: Salesforce Marketing Cloud List
+    Assets. Self-contained Naftiko capability covering one Salesforce Marketing Cloud business surface.'
+  tags:
+  - Salesforce Marketing Cloud
+  - Assets
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SALESFORCE_MARKETING_CLOUD_API_KEY: SALESFORCE_MARKETING_CLOUD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: salesforce-marketing-cloud-assets
+    baseUri: https://{subdomain}.rest.marketingcloudapis.com
+    description: Salesforce Marketing Cloud REST API — Assets business capability. Self-contained, no shared references.
+    resources:
+    - name: asset-v1-content-assets
+      path: /asset/v1/content/assets
+      operations:
+      - name: listassets
+        method: GET
+        description: Salesforce Marketing Cloud List Assets
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: $page
+          in: query
+          type: integer
+          description: Page number for pagination (1-based)
+        - name: $pageSize
+          in: query
+          type: integer
+          description: Number of assets per page
+        - name: $orderBy
+          in: query
+          type: string
+          description: Field to sort results by (e.g., modifiedDate DESC, name ASC)
+        - name: $filter
+          in: query
+          type: string
+          description: OData-style filter expression (e.g., assetType.name eq 'htmlemail')
+      - name: createasset
+        method: POST
+        description: Salesforce Marketing Cloud Create an Asset
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: asset-v1-content-assets-query
+      path: /asset/v1/content/assets/query
+      operations:
+      - name: queryassets
+        method: POST
+        description: Salesforce Marketing Cloud Query Assets With Advanced Filtering
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: asset-v1-content-assets-id
+      path: /asset/v1/content/assets/{id}
+      operations:
+      - name: getasset
+        method: GET
+        description: Salesforce Marketing Cloud Retrieve an Asset
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: Unique identifier of the asset
+          required: true
+      - name: updateasset
+        method: PUT
+        description: Salesforce Marketing Cloud Update an Asset
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: Unique identifier of the asset
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteasset
+        method: DELETE
+        description: Salesforce Marketing Cloud Delete an Asset
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: Unique identifier of the asset to delete
+          required: true
+    - name: asset-v1-content-categories
+      path: /asset/v1/content/categories
+      operations:
+      - name: listcategories
+        method: GET
+        description: Salesforce Marketing Cloud List Asset Categories
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: $page
+          in: query
+          type: integer
+          description: Page number for pagination (1-based)
+        - name: $pageSize
+          in: query
+          type: integer
+          description: Number of categories per page
+        - name: $filter
+          in: query
+          type: string
+          description: OData-style filter expression (e.g., parentId eq 12345)
+    authentication:
+      type: bearer
+      token: '{{env.SALESFORCE_MARKETING_CLOUD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: salesforce-marketing-cloud-assets-rest
+    port: 8080
+    description: REST adapter for Salesforce Marketing Cloud REST API — Assets. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/asset/v1/content/assets
+      name: asset-v1-content-assets
+      description: REST surface for asset-v1-content-assets.
+      operations:
+      - method: GET
+        name: listassets
+        description: Salesforce Marketing Cloud List Assets
+        call: salesforce-marketing-cloud-assets.listassets
+        with:
+          $page: rest.$page
+          $pageSize: rest.$pageSize
+          $orderBy: rest.$orderBy
+          $filter: rest.$filter
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createasset
+        description: Salesforce Marketing Cloud Create an Asset
+        call: salesforce-marketing-cloud-assets.createasset
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/asset/v1/content/assets/query
+      name: asset-v1-content-assets-query
+      description: REST surface for asset-v1-content-assets-query.
+      operations:
+      - method: POST
+        name: queryassets
+        description: Salesforce Marketing Cloud Query Assets With Advanced Filtering
+        call: salesforce-marketing-cloud-assets.queryassets
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/asset/v1/content/assets/{id}
+      name: asset-v1-content-assets-id
+      description: REST surface for asset-v1-content-assets-id.
+      operations:
+      - method: GET
+        name: getasset
+        description: Salesforce Marketing Cloud Retrieve an Asset
+        call: salesforce-marketing-cloud-assets.getasset
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateasset
+        description: Salesforce Marketing Cloud Update an Asset
+        call: salesforce-marketing-cloud-assets.updateasset
+        with:
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteasset
+        description: Salesforce Marketing Cloud Delete an Asset
+        call: salesforce-marketing-cloud-assets.deleteasset
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/asset/v1/content/categories
+      name: asset-v1-content-categories
+      description: REST surface for asset-v1-content-categories.
+      operations:
+      - method: GET
+        name: listcategories
+        description: Salesforce Marketing Cloud List Asset Categories
+        call: salesforce-marketing-cloud-assets.listcategories
+        with:
+          $page: rest.$page
+          $pageSize: rest.$pageSize
+          $filter: rest.$filter
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: salesforce-marketing-cloud-assets-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Salesforce Marketing Cloud REST API — Assets. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: salesforce-marketing-cloud-list-assets
+      description: Salesforce Marketing Cloud List Assets
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: salesforce-marketing-cloud-assets.listassets
+      with:
+        $page: tools.$page
+        $pageSize: tools.$pageSize
+        $orderBy: tools.$orderBy
+        $filter: tools.$filter
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: salesforce-marketing-cloud-create-asset
+      description: Salesforce Marketing Cloud Create an Asset
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: salesforce-marketing-cloud-assets.createasset
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: salesforce-marketing-cloud-query-assets
+      description: Salesforce Marketing Cloud Query Assets With Advanced Filtering
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: salesforce-marketing-cloud-assets.queryassets
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: salesforce-marketing-cloud-retrieve-asset
+      description: Salesforce Marketing Cloud Retrieve an Asset
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: salesforce-marketing-cloud-assets.getasset
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: salesforce-marketing-cloud-update-asset
+      description: Salesforce Marketing Cloud Update an Asset
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: salesforce-marketing-cloud-assets.updateasset
+      with:
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: salesforce-marketing-cloud-delete-asset
+      description: Salesforce Marketing Cloud Delete an Asset
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: salesforce-marketing-cloud-assets.deleteasset
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: salesforce-marketing-cloud-list-asset
+      description: Salesforce Marketing Cloud List Asset Categories
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: salesforce-marketing-cloud-assets.listcategories
+      with:
+        $page: tools.$page
+        $pageSize: tools.$pageSize
+        $filter: tools.$filter
+      outputParameters:
+      - type: object
+        mapping: $.
