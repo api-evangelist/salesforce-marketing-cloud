@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AssetCollection",
+  "title": "AssetCollection",
+  "type": "object",
+  "description": "Paginated collection of assets",
+  "properties": {
+    "count": {
+      "type": "integer",
+      "description": "Total number of assets matching the query",
+      "example": 10
+    },
+    "page": {
+      "type": "integer",
+      "description": "Current page number",
+      "example": 10
+    },
+    "pageSize": {
+      "type": "integer",
+      "description": "Number of items per page",
+      "example": 10
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Asset"
+      },
+      "example": []
+    }
+  }
+}

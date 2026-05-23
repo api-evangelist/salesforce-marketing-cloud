@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/JourneyActivity",
+  "title": "JourneyActivity",
+  "type": "object",
+  "description": "An activity within a journey. Activities represent the actions performed on contacts, such as sending emails, waiting, or making decisions.",
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "Unique key for the activity within the journey",
+      "example": "example_value"
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the activity",
+      "example": "Example Title"
+    },
+    "type": {
+      "type": "string",
+      "description": "Type of activity",
+      "enum": [
+        "EMAILV2",
+        "SMSSYNC",
+        "PUSHNOTIFICATION",
+        "WAIT",
+        "RANDOM_SPLIT",
+        "ENGAGEMENT_SPLIT",
+        "DECISION_SPLIT",
+        "JOIN",
+        "DATAEXTENSIONUPDATE",
+        "REST",
+        "CUSTOM"
+      ],
+      "example": "EMAILV2"
+    },
+    "configurationArguments": {
+      "type": "object",
+      "description": "Activity-specific configuration",
+      "example": "example_value"
+    },
+    "outcomes": {
+      "type": "array",
+      "description": "Possible outcomes of the activity leading to next steps",
+      "items": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "next": {
+            "type": "string",
+            "description": "Key of the next activity in the journey"
+          }
+        }
+      },
+      "example": []
+    }
+  },
+  "required": [
+    "key",
+    "type"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/JourneyGoal",
+  "title": "JourneyGoal",
+  "type": "object",
+  "description": "Goal criteria for measuring journey success",
+  "properties": {
+    "key": {
+      "type": "string",
+      "example": "example_value"
+    },
+    "name": {
+      "type": "string",
+      "example": "Example Title"
+    },
+    "description": {
+      "type": "string",
+      "example": "A sample description."
+    },
+    "metCriteria": {
+      "type": "string",
+      "description": "Criteria expression that defines when the goal is met",
+      "example": "example_value"
+    }
+  }
+}

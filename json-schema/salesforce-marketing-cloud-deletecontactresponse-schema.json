@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DeleteContactResponse",
+  "title": "DeleteContactResponse",
+  "type": "object",
+  "description": "Response from a contact delete operation",
+  "properties": {
+    "operationStatus": {
+      "type": "string",
+      "example": "example_value"
+    },
+    "requestServiceMessageID": {
+      "type": "string",
+      "example": "500123"
+    },
+    "responseDateTime": {
+      "type": "string",
+      "format": "date-time",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "operationInitiated": {
+      "type": "boolean",
+      "description": "Whether the asynchronous delete was successfully initiated",
+      "example": true
+    }
+  }
+}

@@ -1,0 +1,14 @@
+name: Salesforce Marketing Cloud Domain Vocabulary
+provider: Salesforce Marketing Cloud
+providerId: salesforce-marketing-cloud
+description: Tag-derived vocabulary for the Salesforce Marketing Cloud API surface; sourced from openapi/ tags.
+terms:
+- term: Assets
+  description: Manage marketing assets including images, documents, content blocks, and templates. The Asset API provides
+    CRUD operations for all content types stored in Content Builder.
+- term: Contacts
+  description: Create, retrieve, update, and delete contacts in Marketing Cloud. Contacts represent individuals who interact
+    with your marketing campaigns across channels.
+- term: Journeys
+  description: Create, manage, and automate customer journeys across multiple channels and touchpoints. Journeys define the
+    automated workflows that guide customers through marketing interactions.

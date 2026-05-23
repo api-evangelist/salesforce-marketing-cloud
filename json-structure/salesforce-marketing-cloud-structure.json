@@ -1,0 +1,384 @@
+{
+  "provider": "Salesforce Marketing Cloud",
+  "providerId": "salesforce-marketing-cloud",
+  "kind": "json-structure",
+  "description": "Structural overview of the Salesforce Marketing Cloud API surface; extracted from openapi/.",
+  "schemaCount": 27,
+  "operationCount": 21,
+  "schemas": [
+    {
+      "name": "Contact",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "contactKey"
+      ]
+    },
+    {
+      "name": "AttributeSet",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "AttributeValue",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "name",
+        "value"
+      ]
+    },
+    {
+      "name": "CreateContactsRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "contactKey"
+      ]
+    },
+    {
+      "name": "UpdateContactRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "attributeSets"
+      ]
+    },
+    {
+      "name": "ContactResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "ContactSearchRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "ContactSearchResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "DeleteContactResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "AttributeSetsResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "Journey",
+      "type": "object",
+      "propertyCount": 14,
+      "required": []
+    },
+    {
+      "name": "JourneyDefinition",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "name",
+        "workflowApiVersion"
+      ]
+    },
+    {
+      "name": "JourneyTrigger",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "JourneyActivity",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "key",
+        "type"
+      ]
+    },
+    {
+      "name": "JourneyGoal",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "JourneyExit",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "JourneyCollection",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "EntryEvent",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "ContactKey",
+        "EventDefinitionKey"
+      ]
+    },
+    {
+      "name": "EntryEventResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "PublishResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "Asset",
+      "type": "object",
+      "propertyCount": 15,
+      "required": []
+    },
+    {
+      "name": "AssetType",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "AssetDefinition",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "name",
+        "assetType"
+      ]
+    },
+    {
+      "name": "AssetCollection",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "AssetQuery",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "CategoryCollection",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "ErrorResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "POST",
+      "path": "/contacts/v1/contacts",
+      "operationId": "createContacts",
+      "summary": "Salesforce Marketing Cloud Create Contacts",
+      "tags": [
+        "Contacts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/contacts/v1/contacts/actions/search",
+      "operationId": "searchContacts",
+      "summary": "Salesforce Marketing Cloud Search Contacts",
+      "tags": [
+        "Contacts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/contacts/v1/contacts/{contactKey}",
+      "operationId": "getContact",
+      "summary": "Salesforce Marketing Cloud Retrieve a Contact by Contact Key",
+      "tags": [
+        "Contacts"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/contacts/v1/contacts/{contactKey}",
+      "operationId": "deleteContact",
+      "summary": "Salesforce Marketing Cloud Delete a Contact",
+      "tags": [
+        "Contacts"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/contacts/v1/contacts/{contactKey}",
+      "operationId": "updateContact",
+      "summary": "Salesforce Marketing Cloud Update a Contact",
+      "tags": [
+        "Contacts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/contacts/v1/attributeSets",
+      "operationId": "listAttributeSets",
+      "summary": "Salesforce Marketing Cloud List Attribute Sets",
+      "tags": [
+        "Contacts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/interaction/v1/interactions",
+      "operationId": "listJourneys",
+      "summary": "Salesforce Marketing Cloud List Journeys",
+      "tags": [
+        "Journeys"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/interaction/v1/interactions",
+      "operationId": "createJourney",
+      "summary": "Salesforce Marketing Cloud Create a Journey",
+      "tags": [
+        "Journeys"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/interaction/v1/interactions/{id}",
+      "operationId": "getJourney",
+      "summary": "Salesforce Marketing Cloud Retrieve a Journey",
+      "tags": [
+        "Journeys"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/interaction/v1/interactions/{id}",
+      "operationId": "updateJourney",
+      "summary": "Salesforce Marketing Cloud Update a Journey",
+      "tags": [
+        "Journeys"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/interaction/v1/interactions/{id}",
+      "operationId": "deleteJourney",
+      "summary": "Salesforce Marketing Cloud Delete a Journey",
+      "tags": [
+        "Journeys"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/interaction/v1/interactions/publishAsync/{id}",
+      "operationId": "publishJourney",
+      "summary": "Salesforce Marketing Cloud Publish a Journey",
+      "tags": [
+        "Journeys"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/interaction/v1/interactions/stop/{id}",
+      "operationId": "stopJourney",
+      "summary": "Salesforce Marketing Cloud Stop a Journey",
+      "tags": [
+        "Journeys"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/interaction/v1/events",
+      "operationId": "fireEntryEvent",
+      "summary": "Salesforce Marketing Cloud Fire a Journey Entry Event",
+      "tags": [
+        "Journeys"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/asset/v1/content/assets",
+      "operationId": "listAssets",
+      "summary": "Salesforce Marketing Cloud List Assets",
+      "tags": [
+        "Assets"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/asset/v1/content/assets",
+      "operationId": "createAsset",
+      "summary": "Salesforce Marketing Cloud Create an Asset",
+      "tags": [
+        "Assets"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/asset/v1/content/assets/{id}",
+      "operationId": "getAsset",
+      "summary": "Salesforce Marketing Cloud Retrieve an Asset",
+      "tags": [
+        "Assets"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/asset/v1/content/assets/{id}",
+      "operationId": "updateAsset",
+      "summary": "Salesforce Marketing Cloud Update an Asset",
+      "tags": [
+        "Assets"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/asset/v1/content/assets/{id}",
+      "operationId": "deleteAsset",
+      "summary": "Salesforce Marketing Cloud Delete an Asset",
+      "tags": [
+        "Assets"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/asset/v1/content/assets/query",
+      "operationId": "queryAssets",
+      "summary": "Salesforce Marketing Cloud Query Assets With Advanced Filtering",
+      "tags": [
+        "Assets"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/asset/v1/content/categories",
+      "operationId": "listCategories",
+      "summary": "Salesforce Marketing Cloud List Asset Categories",
+      "tags": [
+        "Assets"
+      ]
+    }
+  ]
+}

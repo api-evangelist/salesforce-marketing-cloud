@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateContactRequest",
+  "title": "UpdateContactRequest",
+  "type": "object",
+  "description": "Request body for updating contact attributes",
+  "properties": {
+    "attributeSets": {
+      "type": "array",
+      "description": "Attribute sets and values to update",
+      "items": {
+        "$ref": "#/components/schemas/AttributeSet"
+      },
+      "example": []
+    }
+  },
+  "required": [
+    "attributeSets"
+  ]
+}

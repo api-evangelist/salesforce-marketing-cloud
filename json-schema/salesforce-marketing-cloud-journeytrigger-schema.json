@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/JourneyTrigger",
+  "title": "JourneyTrigger",
+  "type": "object",
+  "description": "Entry trigger configuration for a journey. Defines how contacts enter the journey, such as via API event, scheduled automation, or audience.",
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "Unique key for the trigger within the journey",
+      "example": "example_value"
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the trigger",
+      "example": "Example Title"
+    },
+    "type": {
+      "type": "string",
+      "description": "Type of trigger",
+      "enum": [
+        "APIEvent",
+        "ScheduledAutomation",
+        "Event",
+        "ContactAudience"
+      ],
+      "example": "APIEvent"
+    },
+    "eventDefinitionKey": {
+      "type": "string",
+      "description": "Key of the event definition associated with this trigger, used for API events",
+      "example": "example_value"
+    },
+    "configurationArguments": {
+      "type": "object",
+      "description": "Trigger-specific configuration",
+      "example": "example_value"
+    }
+  }
+}

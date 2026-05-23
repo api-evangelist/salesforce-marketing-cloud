@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AssetQuery",
+  "title": "AssetQuery",
+  "type": "object",
+  "description": "Advanced query object for searching assets",
+  "properties": {
+    "page": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer"
+        },
+        "pageSize": {
+          "type": "integer"
+        }
+      },
+      "example": "example_value"
+    },
+    "query": {
+      "type": "object",
+      "description": "Query filter criteria",
+      "properties": {
+        "property": {
+          "type": "string",
+          "description": "Property name to filter on"
+        },
+        "simpleOperator": {
+          "type": "string",
+          "description": "Comparison operator",
+          "enum": [
+            "equal",
+            "notEqual",
+            "greaterThan",
+            "greaterThanOrEqual",
+            "lessThan",
+            "lessThanOrEqual",
+            "like",
+            "isNull",
+            "isNotNull",
+            "between",
+            "IN"
+          ]
+        },
+        "value": {
+          "description": "Value to compare against"
+        },
+        "dateValue": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Date value for date-based comparisons"
+        },
+        "leftOperand": {
+          "type": "object",
+          "description": "Left operand for compound queries"
+        },
+        "rightOperand": {
+          "type": "object",
+          "description": "Right operand for compound queries"
+        },
+        "logicalOperator": {
+          "type": "string",
+          "enum": [
+            "AND",
+            "OR"
+          ]
+        }
+      },
+      "example": "example_value"
+    },
+    "sort": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "property": {
+            "type": "string"
+          },
+          "direction": {
+            "type": "string",
+            "enum": [
+              "ASC",
+              "DESC"
+            ]
+          }
+        }
+      },
+      "example": []
+    },
+    "fields": {
+      "type": "array",
+      "description": "Specific fields to include in the response",
+      "items": {
+        "type": "string"
+      },
+      "example": []
+    }
+  }
+}

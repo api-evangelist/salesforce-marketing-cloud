@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ContactSearchRequest",
+  "title": "ContactSearchRequest",
+  "type": "object",
+  "description": "Request body for searching contacts with filter criteria",
+  "properties": {
+    "conditionSet": {
+      "type": "object",
+      "description": "Root condition set for the search",
+      "properties": {
+        "operator": {
+          "type": "string",
+          "enum": [
+            "AND",
+            "OR"
+          ]
+        },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "attribute": {
+                "type": "object",
+                "properties": {
+                  "groupName": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                }
+              },
+              "operator": {
+                "type": "string",
+                "enum": [
+                  "Equals",
+                  "NotEquals",
+                  "GreaterThan",
+                  "LessThan",
+                  "Contains",
+                  "StartsWith",
+                  "EndsWith",
+                  "IsNull",
+                  "IsNotNull"
+                ]
+              },
+              "value": {
+                "type": "object",
+                "properties": {
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "conditionSets": {
+          "type": "array",
+          "items": {}
+        }
+      },
+      "example": "example_value"
+    },
+    "returnAttributes": {
+      "type": "array",
+      "description": "Attributes to include in the search results",
+      "items": {
+        "type": "object",
+        "properties": {
+          "groupName": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "example": []
+    }
+  }
+}

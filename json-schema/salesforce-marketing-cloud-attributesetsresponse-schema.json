@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AttributeSetsResponse",
+  "title": "AttributeSetsResponse",
+  "type": "object",
+  "description": "Response containing a collection of attribute sets",
+  "properties": {
+    "count": {
+      "type": "integer",
+      "example": 10
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "attributes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "dataType": {
+                  "type": "string"
+                },
+                "isRequired": {
+                  "type": "boolean"
+                },
+                "isReadOnly": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      },
+      "example": []
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/JourneyDefinition",
+  "title": "JourneyDefinition",
+  "type": "object",
+  "description": "Specification for creating or updating a journey",
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "Customer-defined unique key for the journey",
+      "example": "example_value"
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the journey",
+      "example": "Example Title"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the journey purpose",
+      "example": "A sample description."
+    },
+    "workflowApiVersion": {
+      "type": "number",
+      "description": "Version of the Journey Builder API (e.g., 1.0)",
+      "example": 42.5
+    },
+    "triggers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/JourneyTrigger"
+      },
+      "example": []
+    },
+    "activities": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/JourneyActivity"
+      },
+      "example": []
+    },
+    "goals": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/JourneyGoal"
+      },
+      "example": []
+    },
+    "exits": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/JourneyExit"
+      },
+      "example": []
+    }
+  },
+  "required": [
+    "name",
+    "workflowApiVersion"
+  ]
+}

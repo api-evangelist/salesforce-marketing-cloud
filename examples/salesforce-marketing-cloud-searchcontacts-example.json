@@ -1,0 +1,42 @@
+{
+  "operationId": "searchContacts",
+  "method": "POST",
+  "path": "/contacts/v1/contacts/actions/search",
+  "summary": "Salesforce Marketing Cloud Search Contacts",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "example": {
+        "conditionSet": {
+          "operator": "AND",
+          "conditionSets": [],
+          "conditions": [
+            {
+              "attribute": {
+                "groupName": "Email Addresses",
+                "name": "Email Address"
+              },
+              "operator": "Equals",
+              "value": {
+                "items": [
+                  "user@example.com"
+                ]
+              }
+            }
+          ]
+        },
+        "returnAttributes": [
+          {
+            "groupName": "Email Addresses",
+            "name": "Email Address"
+          },
+          {
+            "groupName": "Email Addresses",
+            "name": "HTML Enabled"
+          }
+        ]
+      }
+    }
+  ],
+  "responseExamples": []
+}

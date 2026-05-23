@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AttributeValue",
+  "title": "AttributeValue",
+  "type": "object",
+  "description": "A single attribute name-value pair within an attribute set",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the attribute",
+      "example": "Example Title"
+    },
+    "value": {
+      "description": "Value of the attribute",
+      "example": "example_value"
+    }
+  },
+  "required": [
+    "name",
+    "value"
+  ]
+}

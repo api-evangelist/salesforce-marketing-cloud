@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ContactSearchResponse",
+  "title": "ContactSearchResponse",
+  "type": "object",
+  "description": "Response returned from a contact search operation",
+  "properties": {
+    "count": {
+      "type": "integer",
+      "description": "Total number of matching contacts",
+      "example": 10
+    },
+    "page": {
+      "type": "integer",
+      "example": 10
+    },
+    "pageSize": {
+      "type": "integer",
+      "example": 10
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Contact"
+      },
+      "example": []
+    }
+  }
+}

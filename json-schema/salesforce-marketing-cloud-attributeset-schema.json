@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AttributeSet",
+  "title": "AttributeSet",
+  "type": "object",
+  "description": "A named collection of attributes that define a category of contact data, such as Email Addresses or MobileConnect Demographics.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the attribute set",
+      "example": "Example Title"
+    },
+    "items": {
+      "type": "array",
+      "description": "Collection of attribute value groups",
+      "items": {
+        "type": "object",
+        "properties": {
+          "values": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AttributeValue"
+            }
+          }
+        }
+      },
+      "example": []
+    }
+  }
+}

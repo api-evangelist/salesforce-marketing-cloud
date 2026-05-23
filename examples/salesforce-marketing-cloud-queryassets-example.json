@@ -1,0 +1,35 @@
+{
+  "operationId": "queryAssets",
+  "method": "POST",
+  "path": "/asset/v1/content/assets/query",
+  "summary": "Salesforce Marketing Cloud Query Assets With Advanced Filtering",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "example": {
+        "page": {
+          "page": 1,
+          "pageSize": 50
+        },
+        "query": {
+          "property": "assetType.name",
+          "simpleOperator": "equal",
+          "value": "htmlemail"
+        },
+        "sort": [
+          {
+            "property": "modifiedDate",
+            "direction": "DESC"
+          }
+        ],
+        "fields": [
+          "id",
+          "name",
+          "assetType",
+          "modifiedDate"
+        ]
+      }
+    }
+  ],
+  "responseExamples": []
+}

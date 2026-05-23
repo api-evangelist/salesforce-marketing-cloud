@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EntryEvent",
+  "title": "EntryEvent",
+  "type": "object",
+  "description": "Event payload used to inject a contact into a journey via the API event trigger.",
+  "properties": {
+    "ContactKey": {
+      "type": "string",
+      "description": "Unique identifier for the contact entering the journey",
+      "example": "example_value"
+    },
+    "EventDefinitionKey": {
+      "type": "string",
+      "description": "Key of the event definition matching the journey entry trigger",
+      "example": "example_value"
+    },
+    "Data": {
+      "type": "object",
+      "description": "Additional data to pass to the journey as key-value pairs. These values are available to activities within the journey.",
+      "additionalProperties": true,
+      "example": "example_value"
+    }
+  },
+  "required": [
+    "ContactKey",
+    "EventDefinitionKey"
+  ]
+}

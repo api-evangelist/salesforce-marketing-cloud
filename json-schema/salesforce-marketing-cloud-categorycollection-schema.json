@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CategoryCollection",
+  "title": "CategoryCollection",
+  "type": "object",
+  "description": "Paginated collection of asset categories",
+  "properties": {
+    "count": {
+      "type": "integer",
+      "example": 10
+    },
+    "page": {
+      "type": "integer",
+      "example": 10
+    },
+    "pageSize": {
+      "type": "integer",
+      "example": 10
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "parentId": {
+            "type": "integer"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "example": []
+    }
+  }
+}

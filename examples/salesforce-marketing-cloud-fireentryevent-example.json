@@ -1,0 +1,21 @@
+{
+  "operationId": "fireEntryEvent",
+  "method": "POST",
+  "path": "/interaction/v1/events",
+  "summary": "Salesforce Marketing Cloud Fire a Journey Entry Event",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "example": {
+        "ContactKey": "example-contact-001",
+        "EventDefinitionKey": "APIEvent-welcome",
+        "Data": {
+          "FirstName": "Jane",
+          "LastName": "Smith",
+          "EmailAddress": "jane.smith@example.com"
+        }
+      }
+    }
+  ],
+  "responseExamples": []
+}

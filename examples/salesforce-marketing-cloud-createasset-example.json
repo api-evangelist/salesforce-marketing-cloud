@@ -1,0 +1,35 @@
+{
+  "operationId": "createAsset",
+  "method": "POST",
+  "path": "/asset/v1/content/assets",
+  "summary": "Salesforce Marketing Cloud Create an Asset",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "example": {
+        "name": "Welcome Email",
+        "description": "Welcome email sent to new subscribers",
+        "assetType": {
+          "name": "htmlemail",
+          "id": 208
+        },
+        "views": {
+          "html": {
+            "content": "<html><body><h1>Welcome!</h1></body></html>"
+          },
+          "subjectLine": {
+            "content": "Welcome to our newsletter"
+          }
+        },
+        "data": {
+          "email": {
+            "options": {
+              "characterEncoding": "utf-8"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "responseExamples": []
+}

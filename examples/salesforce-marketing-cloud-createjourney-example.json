@@ -1,0 +1,38 @@
+{
+  "operationId": "createJourney",
+  "method": "POST",
+  "path": "/interaction/v1/interactions",
+  "summary": "Salesforce Marketing Cloud Create a Journey",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "example": {
+        "name": "Welcome Journey",
+        "description": "Onboarding journey for new subscribers",
+        "key": "welcome-journey-001",
+        "workflowApiVersion": 1.0,
+        "triggers": [
+          {
+            "key": "event-trigger",
+            "name": "api-event",
+            "type": "APIEvent",
+            "eventDefinitionKey": "APIEvent-welcome"
+          }
+        ],
+        "activities": [
+          {
+            "key": "send-welcome-email",
+            "name": "Send Welcome Email",
+            "type": "EMAILV2",
+            "configurationArguments": {
+              "triggeredSend": {
+                "emailId": 12345
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "responseExamples": []
+}

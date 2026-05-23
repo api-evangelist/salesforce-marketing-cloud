@@ -1,0 +1,34 @@
+{
+  "operationId": "createContacts",
+  "method": "POST",
+  "path": "/contacts/v1/contacts",
+  "summary": "Salesforce Marketing Cloud Create Contacts",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "example": {
+        "contactKey": "example-contact-001",
+        "attributeSets": [
+          {
+            "name": "Email Addresses",
+            "items": [
+              {
+                "values": [
+                  {
+                    "name": "Email Address",
+                    "value": "user@example.com"
+                  },
+                  {
+                    "name": "HTML Enabled",
+                    "value": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "responseExamples": []
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/JourneyCollection",
+  "title": "JourneyCollection",
+  "type": "object",
+  "description": "Paginated collection of journeys",
+  "properties": {
+    "count": {
+      "type": "integer",
+      "description": "Total number of journeys matching the query",
+      "example": 10
+    },
+    "page": {
+      "type": "integer",
+      "description": "Current page number",
+      "example": 10
+    },
+    "pageSize": {
+      "type": "integer",
+      "description": "Number of items per page",
+      "example": 10
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Journey"
+      },
+      "example": []
+    }
+  }
+}

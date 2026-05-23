@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PublishResponse",
+  "title": "PublishResponse",
+  "type": "object",
+  "description": "Response returned when a journey publish operation is initiated",
+  "properties": {
+    "statusId": {
+      "type": "string",
+      "description": "Identifier for tracking the publish operation status",
+      "example": "500123"
+    },
+    "message": {
+      "type": "string",
+      "example": "example_value"
+    }
+  }
+}

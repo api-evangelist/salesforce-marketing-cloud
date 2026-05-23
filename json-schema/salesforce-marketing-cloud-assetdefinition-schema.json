@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AssetDefinition",
+  "title": "AssetDefinition",
+  "type": "object",
+  "description": "Specification for creating or updating an asset",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Display name of the asset",
+      "example": "Example Title"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the asset",
+      "example": "A sample description."
+    },
+    "customerKey": {
+      "type": "string",
+      "description": "Customer-defined unique key",
+      "example": "example_value"
+    },
+    "assetType": {
+      "$ref": "#/components/schemas/AssetType"
+    },
+    "category": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "ID of the category (folder) to place the asset in"
+        }
+      },
+      "example": "example_value"
+    },
+    "content": {
+      "type": "string",
+      "description": "Primary content of the asset",
+      "example": "example_value"
+    },
+    "views": {
+      "type": "object",
+      "description": "Channel-specific content views",
+      "properties": {
+        "html": {
+          "type": "object",
+          "properties": {
+            "content": {
+              "type": "string"
+            }
+          }
+        },
+        "text": {
+          "type": "object",
+          "properties": {
+            "content": {
+              "type": "string"
+            }
+          }
+        },
+        "subjectLine": {
+          "type": "object",
+          "properties": {
+            "content": {
+              "type": "string"
+            }
+          }
+        },
+        "preheader": {
+          "type": "object",
+          "properties": {
+            "content": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "example": "example_value"
+    },
+    "data": {
+      "type": "object",
+      "description": "Asset-type-specific data",
+      "additionalProperties": true,
+      "example": "example_value"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "example": []
+    }
+  },
+  "required": [
+    "name",
+    "assetType"
+  ]
+}
