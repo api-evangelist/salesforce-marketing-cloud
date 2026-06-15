@@ -1,0 +1,488 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Salesforce Marketing Cloud REST API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://YOUR_SUBDOMAIN.auth.marketingcloudapis.com/v2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Contacts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Marketing Cloud Create Contacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{subdomain}.rest.marketingcloudapis.com/contacts/v1/contacts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates one or more contacts in Marketing Cloud. Each contact requires a contactKey as a unique identifier. You can include attribute values for any defined attribute sets such as Email Addresses, MobileConnect Demographics, or custom attribute sets."
+        },
+        {
+          "info": {
+            "name": "Salesforce Marketing Cloud Search Contacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{subdomain}.rest.marketingcloudapis.com/contacts/v1/contacts/actions/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Searches for contacts using filter criteria. Supports filtering by contactKey, email address, or other contact attributes. Returns matching contacts with their associated attribute values."
+        },
+        {
+          "info": {
+            "name": "Salesforce Marketing Cloud Retrieve a Contact by Contact Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.rest.marketingcloudapis.com/contacts/v1/contacts/:contactKey",
+            "params": [
+              {
+                "name": "contactKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the contact"
+              }
+            ]
+          },
+          "docs": "Retrieves a single contact using the unique contactKey identifier. Returns the contact record with all associated attribute sets and values."
+        },
+        {
+          "info": {
+            "name": "Salesforce Marketing Cloud Update a Contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{subdomain}.rest.marketingcloudapis.com/contacts/v1/contacts/:contactKey",
+            "params": [
+              {
+                "name": "contactKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the contact"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing contact's attributes. Provide only the attribute sets and values that need to be changed. Unspecified attributes remain unchanged."
+        },
+        {
+          "info": {
+            "name": "Salesforce Marketing Cloud Delete a Contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{subdomain}.rest.marketingcloudapis.com/contacts/v1/contacts/:contactKey",
+            "params": [
+              {
+                "name": "contactKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the contact to delete"
+              }
+            ]
+          },
+          "docs": "Initiates an asynchronous delete operation for a contact identified by contactKey. This operation removes the contact and associated data from Marketing Cloud. The delete process runs asynchronously and may take time to complete."
+        },
+        {
+          "info": {
+            "name": "Salesforce Marketing Cloud List Attribute Sets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.rest.marketingcloudapis.com/contacts/v1/attributeSets"
+          },
+          "docs": "Retrieves all attribute sets defined in Marketing Cloud. Attribute sets define the structure of contact data, including system attribute sets like Email Addresses and MobileConnect Demographics, as well as custom attribute sets."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Journeys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Marketing Cloud List Journeys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.rest.marketingcloudapis.com/interaction/v1/interactions",
+            "params": [
+              {
+                "name": "$page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination (1-based)"
+              },
+              {
+                "name": "$pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of journeys per page"
+              },
+              {
+                "name": "$orderBy",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort results by (e.g., ModifiedDate DESC, Name ASC)"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter journeys by status (Draft, Published, ScheduledToPublish, Stopped, Unpublished)"
+              },
+              {
+                "name": "nameOrDescription",
+                "value": "",
+                "type": "query",
+                "description": "Filter journeys by name or description (partial match)"
+              }
+            ]
+          },
+          "docs": "Retrieves a collection of journeys. Supports pagination through page and pageSize parameters. Returns journey definitions including their current status, version, and configuration."
+        },
+        {
+          "info": {
+            "name": "Salesforce Marketing Cloud Create a Journey",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{subdomain}.rest.marketingcloudapis.com/interaction/v1/interactions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new journey in Marketing Cloud. The journey specification defines the entry event, activities, triggers, and overall workflow. Journeys are created in Draft status by default and must be published to become active."
+        },
+        {
+          "info": {
+            "name": "Salesforce Marketing Cloud Retrieve a Journey",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.rest.marketingcloudapis.com/interaction/v1/interactions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier (UUID) of the journey"
+              },
+              {
+                "name": "versionNumber",
+                "value": "",
+                "type": "query",
+                "description": "Specific version number to retrieve. If omitted, returns the latest version."
+              }
+            ]
+          },
+          "docs": "Retrieves a single journey by its unique identifier. Returns the complete journey specification including activities, triggers, goals, and exit criteria."
+        },
+        {
+          "info": {
+            "name": "Salesforce Marketing Cloud Update a Journey",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{subdomain}.rest.marketingcloudapis.com/interaction/v1/interactions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier (UUID) of the journey"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing journey. Only journeys in Draft status can be fully updated. Published journeys support limited modifications. Provide the complete journey specification including all activities and triggers."
+        },
+        {
+          "info": {
+            "name": "Salesforce Marketing Cloud Delete a Journey",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{subdomain}.rest.marketingcloudapis.com/interaction/v1/interactions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier (UUID) of the journey"
+              }
+            ]
+          },
+          "docs": "Deletes a journey. Only journeys in Draft or Stopped status can be deleted. Published journeys must first be stopped before deletion."
+        },
+        {
+          "info": {
+            "name": "Salesforce Marketing Cloud Publish a Journey",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{subdomain}.rest.marketingcloudapis.com/interaction/v1/interactions/publishAsync/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier (UUID) of the journey to publish"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Publishes a journey asynchronously, activating it for customer entry. Once published, contacts matching the entry criteria begin entering the journey. The publish operation returns a statusId for tracking progress."
+        },
+        {
+          "info": {
+            "name": "Salesforce Marketing Cloud Stop a Journey",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{subdomain}.rest.marketingcloudapis.com/interaction/v1/interactions/stop/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier (UUID) of the journey to stop"
+              }
+            ]
+          },
+          "docs": "Stops a published journey. Contacts currently in the journey can either complete their current activity or be ejected immediately based on the stop configuration."
+        },
+        {
+          "info": {
+            "name": "Salesforce Marketing Cloud Fire a Journey Entry Event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{subdomain}.rest.marketingcloudapis.com/interaction/v1/events",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Fires an entry event to inject a contact into a journey. The contact is identified by ContactKey and enters the journey associated with the specified EventDefinitionKey. Additional data can be passed as part of the event payload."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Assets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Marketing Cloud List Assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.rest.marketingcloudapis.com/asset/v1/content/assets",
+            "params": [
+              {
+                "name": "$page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination (1-based)"
+              },
+              {
+                "name": "$pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of assets per page"
+              },
+              {
+                "name": "$orderBy",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort results by (e.g., modifiedDate DESC, name ASC)"
+              },
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "OData-style filter expression (e.g., assetType.name eq 'htmlemail')"
+              }
+            ]
+          },
+          "docs": "Retrieves a collection of assets from Content Builder. Supports filtering, sorting, and pagination. Assets include emails, templates, images, content blocks, and other content types."
+        },
+        {
+          "info": {
+            "name": "Salesforce Marketing Cloud Create an Asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{subdomain}.rest.marketingcloudapis.com/asset/v1/content/assets",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new asset in Content Builder. The asset type determines the required and optional fields. Common asset types include htmlemail, templatebasedemail, htmlblock, codesnippetblock, and image."
+        },
+        {
+          "info": {
+            "name": "Salesforce Marketing Cloud Retrieve an Asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.rest.marketingcloudapis.com/asset/v1/content/assets/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the asset"
+              }
+            ]
+          },
+          "docs": "Retrieves a single asset by its unique identifier. Returns the complete asset definition including content, metadata, and associated category."
+        },
+        {
+          "info": {
+            "name": "Salesforce Marketing Cloud Update an Asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{subdomain}.rest.marketingcloudapis.com/asset/v1/content/assets/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the asset"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing asset. Provide the complete asset definition with all desired values. Fields not included in the request body are not modified."
+        },
+        {
+          "info": {
+            "name": "Salesforce Marketing Cloud Delete an Asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{subdomain}.rest.marketingcloudapis.com/asset/v1/content/assets/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the asset to delete"
+              }
+            ]
+          },
+          "docs": "Deletes an asset from Content Builder. This action is permanent and cannot be undone."
+        },
+        {
+          "info": {
+            "name": "Salesforce Marketing Cloud Query Assets With Advanced Filtering",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{subdomain}.rest.marketingcloudapis.com/asset/v1/content/assets/query",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Performs an advanced query against assets using a structured query object. Supports complex filtering with AND/OR logic, nested conditions, and multiple sort criteria. More powerful than the OData-style filter on the list endpoint."
+        },
+        {
+          "info": {
+            "name": "Salesforce Marketing Cloud List Asset Categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.rest.marketingcloudapis.com/asset/v1/content/categories",
+            "params": [
+              {
+                "name": "$page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination (1-based)"
+              },
+              {
+                "name": "$pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of categories per page"
+              },
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "OData-style filter expression (e.g., parentId eq 12345)"
+              }
+            ]
+          },
+          "docs": "Retrieves categories (folders) used to organize assets in Content Builder. Categories provide a hierarchical folder structure for content organization."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
