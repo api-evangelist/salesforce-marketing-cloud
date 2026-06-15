@@ -1,0 +1,1279 @@
+"""
+Salesforce Marketing Cloud GraphQL Schema
+Conceptual schema derived from the Salesforce Marketing Cloud REST API surface.
+Covers email sends, automation, contacts, data extensions, journey builder,
+content builder, tracking events, and transactional messaging.
+"""
+
+# -----------------------------------------------------------------------
+# Scalar Types
+# -----------------------------------------------------------------------
+
+scalar DateTime
+scalar JSON
+scalar Upload
+
+# -----------------------------------------------------------------------
+# Enum Types
+# -----------------------------------------------------------------------
+
+enum SubscriberStatus {
+  ACTIVE
+  BOUNCED
+  HELD
+  UNSUBSCRIBED
+  DELETED
+}
+
+enum EmailSendStatus {
+  PENDING
+  SENDING
+  SENT
+  CANCELLED
+  ERROR
+  SCHEDULED
+}
+
+enum AutomationStatus {
+  ACTIVE
+  INACTIVE
+  PAUSED
+  ERROR
+  SCHEDULED
+  RUNNING
+  STOPPED
+}
+
+enum AutomationRunStatus {
+  BUILDING
+  EXECUTING
+  COMPLETED
+  FAILED
+  CANCELLED
+  SKIPPED
+}
+
+enum JourneyStatus {
+  DRAFT
+  PUBLISHED
+  PAUSED
+  STOPPED
+  DELETED
+}
+
+enum JourneyActivityType {
+  EMAIL_ACTIVITY
+  SMS_ACTIVITY
+  PUSH_ACTIVITY
+  WAIT_ACTIVITY
+  DECISION_SPLIT
+  RANDOM_SPLIT
+  ENGAGEMENT_SPLIT
+  JOIN_ACTIVITY
+  GOAL_ACTIVITY
+  UPDATE_CONTACT
+  SALES_FORCE_ACTIVITY
+  REST_DECISION_SPLIT
+  CUSTOM_ACTIVITY
+}
+
+enum DataExtensionFieldType {
+  TEXT
+  NUMBER
+  DATE
+  BOOLEAN
+  EMAIL_ADDRESS
+  PHONE
+  DECIMAL
+  LOCALE
+}
+
+enum AssetType {
+  BLOCK
+  TEMPLATE
+  EMAIL
+  WEBPAGE
+  FILE
+  IMAGE
+  DOCUMENT
+  VIDEO
+  AUDIO
+  BANNER
+  PUSH_NOTIFICATION
+  SMS
+}
+
+enum MessageStatus {
+  DRAFT
+  ACTIVE
+  INACTIVE
+  DELETED
+}
+
+enum TrackingEventType {
+  OPEN
+  CLICK
+  BOUNCE
+  UNSUBSCRIBE
+  FORWARD_TO_FRIEND
+  SURVEY_RESPONSE
+  CONVERSION
+  SPAM_COMPLAINT
+}
+
+enum BounceType {
+  SOFT
+  HARD
+  TECHNICAL
+}
+
+enum ChannelType {
+  EMAIL
+  SMS
+  PUSH
+  SOCIAL
+  ADVERTISING
+  IN_APP
+}
+
+enum ContentBlockType {
+  HTML
+  TEXT
+  AMP_SCRIPT
+  SMART_CAPTURE
+  FREE_FORM
+  REFERENCE
+}
+
+enum AttributeType {
+  TEXT
+  NUMBER
+  DATE
+  BOOLEAN
+  EMAIL_ADDRESS
+  PHONE
+  DECIMAL
+}
+
+enum CampaignStatus {
+  DRAFT
+  ACTIVE
+  COMPLETED
+  CANCELLED
+}
+
+enum NotificationCallbackStatus {
+  ACTIVE
+  INACTIVE
+}
+
+enum SortOrder {
+  ASC
+  DESC
+}
+
+# -----------------------------------------------------------------------
+# Core Resource Types
+# -----------------------------------------------------------------------
+
+type Subscriber {
+  id: ID!
+  subscriberKey: String!
+  emailAddress: String
+  status: SubscriberStatus!
+  unsubscribedDate: DateTime
+  createdDate: DateTime!
+  modifiedDate: DateTime!
+  lists: [SubscriberList!]
+  attributes: [SubscriberAttribute!]
+  dataExtensions: [DataExtensionRow!]
+}
+
+type SubscriberList {
+  id: ID!
+  listId: String!
+  listName: String!
+  status: SubscriberStatus!
+  subscribedDate: DateTime
+  unsubscribedDate: DateTime
+}
+
+type SubscriberAttribute {
+  name: String!
+  value: String
+}
+
+type Contact {
+  id: ID!
+  contactKey: String!
+  attributeSets: [ContactAttributeSet!]
+  createdDate: DateTime!
+  modifiedDate: DateTime!
+}
+
+type ContactAttributeSet {
+  name: String!
+  items: [ContactAttribute!]
+}
+
+type ContactAttribute {
+  name: String!
+  value: String
+}
+
+type EmailMessage {
+  id: ID!
+  name: String!
+  subject: String!
+  htmlBody: String
+  textBody: String
+  status: MessageStatus!
+  fromName: String
+  fromEmail: String
+  preheader: String
+  categoryId: String
+  template: Asset
+  createdDate: DateTime!
+  modifiedDate: DateTime!
+}
+
+type EmailSendDefinition {
+  id: ID!
+  name: String!
+  description: String
+  status: EmailSendStatus!
+  emailId: String!
+  listId: String
+  dataExtensionId: String
+  fromName: String!
+  fromEmail: String!
+  subject: String!
+  scheduledTime: DateTime
+  sendClassificationId: String
+  suppressionLists: [String!]
+  tracking: TrackingSettings
+  createdDate: DateTime!
+  modifiedDate: DateTime!
+}
+
+type TrackingSettings {
+  opens: Boolean!
+  clicks: Boolean!
+  forwardToFriend: Boolean!
+  unsubscribes: Boolean!
+  conversions: Boolean!
+}
+
+type EmailSendResult {
+  jobId: ID!
+  sendDefinitionId: String!
+  status: EmailSendStatus!
+  requestedCount: Int
+  sentCount: Int
+  errorCount: Int
+  startDate: DateTime
+  endDate: DateTime
+}
+
+type TrackingEvent {
+  id: ID!
+  jobId: String!
+  eventType: TrackingEventType!
+  subscriberKey: String!
+  emailAddress: String
+  eventDate: DateTime!
+  url: String
+  bounceType: BounceType
+  bounceMessage: String
+  browserName: String
+  emailClientName: String
+  deviceType: String
+  ipAddress: String
+}
+
+type TrackingEventConnection {
+  edges: [TrackingEventEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type TrackingEventEdge {
+  node: TrackingEvent!
+  cursor: String!
+}
+
+type DataExtension {
+  id: ID!
+  customerKey: String!
+  name: String!
+  description: String
+  isSendable: Boolean!
+  isTestable: Boolean!
+  sendableSubscriberField: DataExtensionField
+  fields: [DataExtensionField!]!
+  rowCount: Int
+  retentionPolicy: DataExtensionRetentionPolicy
+  categoryId: String
+  createdDate: DateTime!
+  modifiedDate: DateTime!
+}
+
+type DataExtensionField {
+  name: String!
+  fieldType: DataExtensionFieldType!
+  isPrimaryKey: Boolean!
+  isRequired: Boolean!
+  maxLength: Int
+  defaultValue: String
+  ordinal: Int!
+}
+
+type DataExtensionRetentionPolicy {
+  dataRetentionPeriod: Int
+  dataRetentionPeriodUnitOfMeasure: String
+  resetRetentionPeriodOnImport: Boolean
+  deleteAtEndOfRetentionPeriod: Boolean
+  overrideDataRetentionDefaultSettings: Boolean
+}
+
+type DataExtensionRow {
+  keys: JSON!
+  values: JSON!
+}
+
+type DataExtensionConnection {
+  edges: [DataExtensionEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type DataExtensionEdge {
+  node: DataExtension!
+  cursor: String!
+}
+
+type Journey {
+  id: ID!
+  name: String!
+  description: String
+  key: String!
+  version: Int!
+  status: JourneyStatus!
+  channel: ChannelType
+  entryMode: String
+  defaults: JourneyDefaults
+  activities: [JourneyActivity!]!
+  triggers: [JourneyTrigger!]!
+  goals: [JourneyGoal!]
+  exits: [JourneyExit!]
+  stats: JourneyStats
+  publishedDate: DateTime
+  createdDate: DateTime!
+  modifiedDate: DateTime!
+}
+
+type JourneyDefaults {
+  email: String
+  mobileNumbers: [String!]
+  allowUnsubscribe: Boolean
+}
+
+type JourneyActivity {
+  id: ID!
+  key: String!
+  name: String!
+  type: JourneyActivityType!
+  outcomes: [JourneyActivityOutcome!]
+  arguments: JSON
+  configurationArguments: JSON
+  metaData: JSON
+}
+
+type JourneyActivityOutcome {
+  key: String!
+  next: String
+  arguments: JSON
+}
+
+type JourneyTrigger {
+  id: ID!
+  key: String!
+  name: String!
+  type: String!
+  arguments: JSON
+  configurationArguments: JSON
+  metaData: JSON
+  schedule: JourneySchedule
+}
+
+type JourneySchedule {
+  startDate: DateTime
+  endDate: DateTime
+  expression: String
+  timezone: String
+}
+
+type JourneyGoal {
+  id: ID!
+  key: String!
+  name: String!
+  type: String!
+  arguments: JSON
+  configurationArguments: JSON
+  metaData: JSON
+}
+
+type JourneyExit {
+  id: ID!
+  key: String!
+  name: String!
+  type: String!
+  arguments: JSON
+  configurationArguments: JSON
+  metaData: JSON
+}
+
+type JourneyStats {
+  currentPopulation: Int
+  cumulativePopulation: Int
+  metGoalCount: Int
+  metExitCriteriaCount: Int
+  populationPerActivity: [ActivityPopulation!]
+}
+
+type ActivityPopulation {
+  activityKey: String!
+  count: Int!
+}
+
+type JourneyContact {
+  contactKey: String!
+  journeyId: String!
+  activityKey: String
+  entryDate: DateTime!
+  exitDate: DateTime
+  exitReason: String
+  metGoal: Boolean
+}
+
+type Asset {
+  id: ID!
+  customerKey: String!
+  name: String!
+  description: String
+  assetType: AssetTypeDefinition!
+  status: AssetStatusDefinition
+  category: AssetCategory
+  content: String
+  data: JSON
+  meta: JSON
+  enterprise: AssetEnterprise
+  memberId: Int
+  createdDate: DateTime!
+  modifiedDate: DateTime!
+  owner: AssetOwner
+  availableViews: [String!]
+  views: JSON
+  tags: [String!]
+}
+
+type AssetTypeDefinition {
+  id: Int!
+  name: AssetType!
+  displayName: String!
+}
+
+type AssetStatusDefinition {
+  id: Int!
+  name: String!
+}
+
+type AssetCategory {
+  id: Int!
+  name: String!
+  parentId: Int
+  categoryType: String
+}
+
+type AssetEnterprise {
+  id: Int!
+  name: String!
+}
+
+type AssetOwner {
+  id: Int!
+  username: String!
+  name: String!
+  email: String
+}
+
+type AssetConnection {
+  edges: [AssetEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type AssetEdge {
+  node: Asset!
+  cursor: String!
+}
+
+type Automation {
+  id: ID!
+  name: String!
+  description: String
+  key: String!
+  status: AutomationStatus!
+  type: String
+  schedule: AutomationSchedule
+  steps: [AutomationStep!]!
+  notifications: [AutomationNotification!]
+  lastRunTime: DateTime
+  lastRunStatus: AutomationRunStatus
+  startDate: DateTime
+  endDate: DateTime
+  categoryId: String
+  createdDate: DateTime!
+  modifiedDate: DateTime!
+}
+
+type AutomationSchedule {
+  id: ID!
+  scheduledTime: DateTime
+  recurrence: AutomationRecurrence
+  timezone: String
+  occurrences: Int
+  endDate: DateTime
+}
+
+type AutomationRecurrence {
+  pattern: String!
+  interval: Int
+  daysOfWeek: [String!]
+  dayOfMonth: Int
+  monthOfYear: Int
+}
+
+type AutomationStep {
+  id: ID!
+  stepNumber: Int!
+  name: String!
+  activities: [AutomationActivity!]!
+}
+
+type AutomationActivity {
+  id: ID!
+  name: String!
+  activityType: String!
+  objectTypeId: Int
+  activityObjectId: String
+  displayOrder: Int
+}
+
+type AutomationNotification {
+  id: ID!
+  channel: String!
+  address: String!
+  active: Boolean!
+  notifyOnCompletion: Boolean
+  notifyOnError: Boolean
+  notifyOnSkip: Boolean
+}
+
+type AutomationRun {
+  id: ID!
+  automationId: String!
+  status: AutomationRunStatus!
+  startDate: DateTime
+  endDate: DateTime
+  errorMessage: String
+  stepResults: [AutomationStepResult!]
+}
+
+type AutomationStepResult {
+  stepNumber: Int!
+  stepName: String!
+  status: AutomationRunStatus!
+  startDate: DateTime
+  endDate: DateTime
+  activityResults: [AutomationActivityResult!]
+}
+
+type AutomationActivityResult {
+  activityId: String!
+  activityName: String!
+  status: AutomationRunStatus!
+  recordsProcessed: Int
+  errorMessage: String
+}
+
+type TransactionalEmailMessage {
+  id: ID!
+  definitionKey: String!
+  name: String!
+  description: String
+  status: MessageStatus!
+  content: TransactionalMessageContent!
+  subscriptions: TransactionalMessageSubscriptions!
+  options: TransactionalMessageOptions
+  createdDate: DateTime!
+  modifiedDate: DateTime!
+}
+
+type TransactionalMessageContent {
+  customerKey: String!
+}
+
+type TransactionalMessageSubscriptions {
+  dataExtension: String
+  autoAddSubscriber: Boolean
+  updateSubscriber: Boolean
+  list: TransactionalMessageList
+}
+
+type TransactionalMessageList {
+  listId: Int!
+}
+
+type TransactionalMessageOptions {
+  trackLinks: Boolean
+  cc: [String!]
+  bcc: [String!]
+  createJourney: Boolean
+}
+
+type TransactionalEmailSendResult {
+  requestId: ID!
+  errorcode: Int
+  responses: [TransactionalEmailResponse!]
+}
+
+type TransactionalEmailResponse {
+  hasErrors: Boolean!
+  recipientSendId: String
+  originalChannel: String
+  compositeId: String
+  messageKey: String
+}
+
+type SMSMessage {
+  id: ID!
+  shortCode: String!
+  countryCode: String!
+  keyword: String
+  messageText: String!
+  status: MessageStatus!
+  createdDate: DateTime!
+  modifiedDate: DateTime!
+}
+
+type PushMessage {
+  id: ID!
+  name: String!
+  title: String!
+  body: String!
+  status: MessageStatus!
+  sound: String
+  badge: String
+  openDirect: String
+  keys: [PushMessageKey!]
+  custom: JSON
+  createdDate: DateTime!
+  modifiedDate: DateTime!
+}
+
+type PushMessageKey {
+  key: String!
+  value: String!
+}
+
+type Campaign {
+  id: ID!
+  name: String!
+  description: String
+  campaignCode: String
+  color: String
+  favorite: Boolean!
+  status: CampaignStatus!
+  createdDate: DateTime!
+  modifiedDate: DateTime!
+  assets: [CampaignAsset!]
+}
+
+type CampaignAsset {
+  id: ID!
+  campaignId: String!
+  type: String!
+  itemId: String!
+}
+
+type EventNotificationCallback {
+  callbackId: ID!
+  callbackName: String!
+  url: String!
+  maxBatchSize: Int
+  status: NotificationCallbackStatus!
+  subscriptions: [EventNotificationSubscription!]
+}
+
+type EventNotificationSubscription {
+  subscriptionName: String!
+  callbackId: String!
+  eventCategoryTypes: [String!]!
+  filters: [String!]
+  status: NotificationCallbackStatus!
+}
+
+type EinsteinRecommendation {
+  id: ID!
+  name: String!
+  description: String
+  schema: String
+  itemLookup: EinsteinItemLookup
+  predicates: [EinsteinPredicate!]
+}
+
+type EinsteinItemLookup {
+  type: String!
+  keyField: String!
+}
+
+type EinsteinPredicate {
+  name: String!
+  value: String!
+}
+
+# -----------------------------------------------------------------------
+# Pagination Types
+# -----------------------------------------------------------------------
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type SubscriberConnection {
+  edges: [SubscriberEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type SubscriberEdge {
+  node: Subscriber!
+  cursor: String!
+}
+
+type JourneyConnection {
+  edges: [JourneyEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type JourneyEdge {
+  node: Journey!
+  cursor: String!
+}
+
+type AutomationConnection {
+  edges: [AutomationEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type AutomationEdge {
+  node: Automation!
+  cursor: String!
+}
+
+type CampaignConnection {
+  edges: [CampaignEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type CampaignEdge {
+  node: Campaign!
+  cursor: String!
+}
+
+type EmailMessageConnection {
+  edges: [EmailMessageEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type EmailMessageEdge {
+  node: EmailMessage!
+  cursor: String!
+}
+
+# -----------------------------------------------------------------------
+# Input Types
+# -----------------------------------------------------------------------
+
+input PaginationInput {
+  first: Int
+  after: String
+  last: Int
+  before: String
+}
+
+input SubscriberFilterInput {
+  status: SubscriberStatus
+  listId: String
+  emailAddress: String
+  subscriberKey: String
+}
+
+input CreateSubscriberInput {
+  subscriberKey: String!
+  emailAddress: String!
+  status: SubscriberStatus
+  attributes: [SubscriberAttributeInput!]
+  listIds: [String!]
+}
+
+input UpdateSubscriberInput {
+  emailAddress: String
+  status: SubscriberStatus
+  attributes: [SubscriberAttributeInput!]
+}
+
+input SubscriberAttributeInput {
+  name: String!
+  value: String!
+}
+
+input CreateContactInput {
+  contactKey: String!
+  attributeSets: [ContactAttributeSetInput!]
+}
+
+input ContactAttributeSetInput {
+  name: String!
+  items: [ContactAttributeInput!]!
+}
+
+input ContactAttributeInput {
+  name: String!
+  value: String!
+}
+
+input CreateDataExtensionInput {
+  name: String!
+  customerKey: String
+  description: String
+  isSendable: Boolean
+  isTestable: Boolean
+  fields: [DataExtensionFieldInput!]!
+  retentionPolicy: DataExtensionRetentionPolicyInput
+  categoryId: String
+}
+
+input DataExtensionFieldInput {
+  name: String!
+  fieldType: DataExtensionFieldType!
+  isPrimaryKey: Boolean
+  isRequired: Boolean
+  maxLength: Int
+  defaultValue: String
+}
+
+input DataExtensionRetentionPolicyInput {
+  dataRetentionPeriod: Int
+  dataRetentionPeriodUnitOfMeasure: String
+  resetRetentionPeriodOnImport: Boolean
+  deleteAtEndOfRetentionPeriod: Boolean
+  overrideDataRetentionDefaultSettings: Boolean
+}
+
+input UpsertDataExtensionRowInput {
+  keys: JSON!
+  values: JSON!
+}
+
+input CreateEmailSendDefinitionInput {
+  name: String!
+  description: String
+  emailId: String!
+  listId: String
+  dataExtensionId: String
+  fromName: String!
+  fromEmail: String!
+  subject: String!
+  scheduledTime: DateTime
+  sendClassificationId: String
+  suppressionLists: [String!]
+}
+
+input CreateJourneyInput {
+  name: String!
+  description: String
+  key: String
+  channel: ChannelType
+  entryMode: String
+  defaults: JourneyDefaultsInput
+  activities: [JourneyActivityInput!]!
+  triggers: [JourneyTriggerInput!]!
+  goals: [JourneyGoalInput!]
+  exits: [JourneyExitInput!]
+}
+
+input JourneyDefaultsInput {
+  email: String
+  mobileNumbers: [String!]
+  allowUnsubscribe: Boolean
+}
+
+input JourneyActivityInput {
+  key: String!
+  name: String!
+  type: JourneyActivityType!
+  outcomes: [JourneyActivityOutcomeInput!]
+  arguments: JSON
+  configurationArguments: JSON
+}
+
+input JourneyActivityOutcomeInput {
+  key: String!
+  next: String
+  arguments: JSON
+}
+
+input JourneyTriggerInput {
+  key: String!
+  name: String!
+  type: String!
+  arguments: JSON
+  configurationArguments: JSON
+  schedule: JourneyScheduleInput
+}
+
+input JourneyScheduleInput {
+  startDate: DateTime
+  endDate: DateTime
+  expression: String
+  timezone: String
+}
+
+input JourneyGoalInput {
+  key: String!
+  name: String!
+  type: String!
+  arguments: JSON
+  configurationArguments: JSON
+}
+
+input JourneyExitInput {
+  key: String!
+  name: String!
+  type: String!
+  arguments: JSON
+  configurationArguments: JSON
+}
+
+input InjectJourneyContactInput {
+  contactKey: String!
+  data: JSON
+  eventDefinitionKey: String!
+}
+
+input CreateAutomationInput {
+  name: String!
+  description: String
+  key: String
+  schedule: AutomationScheduleInput
+  steps: [AutomationStepInput!]!
+  notifications: [AutomationNotificationInput!]
+  startDate: DateTime
+  endDate: DateTime
+  categoryId: String
+}
+
+input AutomationScheduleInput {
+  scheduledTime: DateTime
+  recurrence: AutomationRecurrenceInput
+  timezone: String
+  occurrences: Int
+  endDate: DateTime
+}
+
+input AutomationRecurrenceInput {
+  pattern: String!
+  interval: Int
+  daysOfWeek: [String!]
+  dayOfMonth: Int
+  monthOfYear: Int
+}
+
+input AutomationStepInput {
+  stepNumber: Int!
+  name: String!
+  activities: [AutomationActivityInput!]!
+}
+
+input AutomationActivityInput {
+  name: String!
+  activityType: String!
+  objectTypeId: Int
+  activityObjectId: String
+  displayOrder: Int
+}
+
+input AutomationNotificationInput {
+  channel: String!
+  address: String!
+  active: Boolean!
+  notifyOnCompletion: Boolean
+  notifyOnError: Boolean
+  notifyOnSkip: Boolean
+}
+
+input CreateAssetInput {
+  name: String!
+  description: String
+  assetType: AssetTypeInput!
+  content: String
+  data: JSON
+  meta: JSON
+  category: AssetCategoryInput
+  tags: [String!]
+}
+
+input AssetTypeInput {
+  id: Int!
+}
+
+input AssetCategoryInput {
+  id: Int!
+}
+
+input CreateTransactionalEmailMessageInput {
+  definitionKey: String
+  name: String!
+  description: String
+  content: TransactionalMessageContentInput!
+  subscriptions: TransactionalMessageSubscriptionsInput!
+  options: TransactionalMessageOptionsInput
+}
+
+input TransactionalMessageContentInput {
+  customerKey: String!
+}
+
+input TransactionalMessageSubscriptionsInput {
+  dataExtension: String
+  autoAddSubscriber: Boolean
+  updateSubscriber: Boolean
+  list: TransactionalMessageListInput
+}
+
+input TransactionalMessageListInput {
+  listId: Int!
+}
+
+input TransactionalMessageOptionsInput {
+  trackLinks: Boolean
+  cc: [String!]
+  bcc: [String!]
+  createJourney: Boolean
+}
+
+input SendTransactionalEmailInput {
+  definitionKey: String!
+  recipients: [TransactionalEmailRecipientInput!]!
+}
+
+input TransactionalEmailRecipientInput {
+  contactKey: String!
+  to: TransactionalEmailToInput!
+  attributes: JSON
+}
+
+input TransactionalEmailToInput {
+  address: String!
+  subscriberKey: String
+}
+
+input CreateCampaignInput {
+  name: String!
+  description: String
+  campaignCode: String
+  color: String
+  favorite: Boolean
+}
+
+input EventNotificationCallbackInput {
+  callbackName: String!
+  url: String!
+  maxBatchSize: Int
+}
+
+input EventNotificationSubscriptionInput {
+  subscriptionName: String!
+  callbackId: String!
+  eventCategoryTypes: [String!]!
+  filters: [String!]
+}
+
+input TrackingEventFilterInput {
+  jobId: String
+  eventType: TrackingEventType
+  subscriberKey: String
+  startDate: DateTime
+  endDate: DateTime
+}
+
+# -----------------------------------------------------------------------
+# Query Root
+# -----------------------------------------------------------------------
+
+type Query {
+  # Subscriber queries
+  subscriber(subscriberKey: String!): Subscriber
+  subscribers(filter: SubscriberFilterInput, pagination: PaginationInput): SubscriberConnection!
+
+  # Contact queries
+  contact(contactKey: String!): Contact
+  contacts(pagination: PaginationInput): [Contact!]!
+
+  # Email message queries
+  emailMessage(id: ID!): EmailMessage
+  emailMessages(pagination: PaginationInput): EmailMessageConnection!
+
+  # Email send definition queries
+  emailSendDefinition(id: ID!): EmailSendDefinition
+  emailSendDefinitions(pagination: PaginationInput): [EmailSendDefinition!]!
+
+  # Tracking event queries
+  trackingEvents(filter: TrackingEventFilterInput, pagination: PaginationInput): TrackingEventConnection!
+  trackingEvent(id: ID!): TrackingEvent
+
+  # Data extension queries
+  dataExtension(customerKey: String!): DataExtension
+  dataExtensions(pagination: PaginationInput): DataExtensionConnection!
+  dataExtensionRows(customerKey: String!, filter: JSON, pagination: PaginationInput): [DataExtensionRow!]!
+
+  # Journey queries
+  journey(id: ID!): Journey
+  journeys(status: JourneyStatus, pagination: PaginationInput): JourneyConnection!
+  journeyByKey(key: String!, version: Int): Journey
+  journeyContacts(journeyId: ID!, pagination: PaginationInput): [JourneyContact!]!
+
+  # Asset queries
+  asset(id: ID!): Asset
+  assets(assetType: AssetType, categoryId: Int, pagination: PaginationInput): AssetConnection!
+  assetCategory(id: ID!): AssetCategory
+  assetCategories: [AssetCategory!]!
+
+  # Automation queries
+  automation(id: ID!): Automation
+  automations(status: AutomationStatus, pagination: PaginationInput): AutomationConnection!
+  automationRun(runId: ID!): AutomationRun
+  automationRuns(automationId: ID!, pagination: PaginationInput): [AutomationRun!]!
+
+  # Transactional messaging queries
+  transactionalEmailMessage(definitionKey: String!): TransactionalEmailMessage
+  transactionalEmailMessages(status: MessageStatus, pagination: PaginationInput): [TransactionalEmailMessage!]!
+
+  # SMS queries
+  smsMessage(id: ID!): SMSMessage
+  smsMessages(pagination: PaginationInput): [SMSMessage!]!
+
+  # Push notification queries
+  pushMessage(id: ID!): PushMessage
+  pushMessages(pagination: PaginationInput): [PushMessage!]!
+
+  # Campaign queries
+  campaign(id: ID!): Campaign
+  campaigns(status: CampaignStatus, pagination: PaginationInput): CampaignConnection!
+
+  # Event notification queries
+  eventNotificationCallback(callbackId: ID!): EventNotificationCallback
+  eventNotificationCallbacks: [EventNotificationCallback!]!
+  eventNotificationSubscription(subscriptionName: String!): EventNotificationSubscription
+
+  # Einstein recommendation queries
+  einsteinRecommendation(id: ID!): EinsteinRecommendation
+  einsteinRecommendations: [EinsteinRecommendation!]!
+}
+
+# -----------------------------------------------------------------------
+# Mutation Root
+# -----------------------------------------------------------------------
+
+type Mutation {
+  # Subscriber mutations
+  createSubscriber(input: CreateSubscriberInput!): Subscriber!
+  updateSubscriber(subscriberKey: String!, input: UpdateSubscriberInput!): Subscriber!
+  deleteSubscriber(subscriberKey: String!): Boolean!
+  unsubscribeSubscriber(subscriberKey: String!, listId: String): Boolean!
+
+  # Contact mutations
+  createContact(input: CreateContactInput!): Contact!
+  upsertContact(input: CreateContactInput!): Contact!
+  deleteContact(contactKey: String!): Boolean!
+
+  # Data extension mutations
+  createDataExtension(input: CreateDataExtensionInput!): DataExtension!
+  updateDataExtension(customerKey: String!, input: CreateDataExtensionInput!): DataExtension!
+  deleteDataExtension(customerKey: String!): Boolean!
+  upsertDataExtensionRows(customerKey: String!, rows: [UpsertDataExtensionRowInput!]!): Boolean!
+  deleteDataExtensionRows(customerKey: String!, keys: [JSON!]!): Boolean!
+
+  # Email send definition mutations
+  createEmailSendDefinition(input: CreateEmailSendDefinitionInput!): EmailSendDefinition!
+  updateEmailSendDefinition(id: ID!, input: CreateEmailSendDefinitionInput!): EmailSendDefinition!
+  deleteEmailSendDefinition(id: ID!): Boolean!
+  sendEmail(sendDefinitionId: ID!): EmailSendResult!
+  scheduleEmailSend(sendDefinitionId: ID!, scheduledTime: DateTime!): EmailSendDefinition!
+  cancelEmailSend(jobId: ID!): Boolean!
+
+  # Journey mutations
+  createJourney(input: CreateJourneyInput!): Journey!
+  updateJourney(id: ID!, input: CreateJourneyInput!): Journey!
+  publishJourney(id: ID!): Journey!
+  pauseJourney(id: ID!): Journey!
+  resumeJourney(id: ID!): Journey!
+  stopJourney(id: ID!): Journey!
+  deleteJourney(id: ID!): Boolean!
+  injectJourneyContact(input: InjectJourneyContactInput!): Boolean!
+  removeJourneyContact(journeyId: ID!, contactKey: String!): Boolean!
+
+  # Asset mutations
+  createAsset(input: CreateAssetInput!): Asset!
+  updateAsset(id: ID!, input: CreateAssetInput!): Asset!
+  deleteAsset(id: ID!): Boolean!
+  createAssetCategory(name: String!, parentId: Int): AssetCategory!
+
+  # Automation mutations
+  createAutomation(input: CreateAutomationInput!): Automation!
+  updateAutomation(id: ID!, input: CreateAutomationInput!): Automation!
+  deleteAutomation(id: ID!): Boolean!
+  startAutomation(id: ID!): Automation!
+  stopAutomation(id: ID!): Automation!
+  pauseAutomation(id: ID!): Automation!
+  resumeAutomation(id: ID!): Automation!
+
+  # Transactional messaging mutations
+  createTransactionalEmailMessage(input: CreateTransactionalEmailMessageInput!): TransactionalEmailMessage!
+  updateTransactionalEmailMessage(definitionKey: String!, input: CreateTransactionalEmailMessageInput!): TransactionalEmailMessage!
+  deleteTransactionalEmailMessage(definitionKey: String!): Boolean!
+  sendTransactionalEmail(input: SendTransactionalEmailInput!): TransactionalEmailSendResult!
+
+  # Campaign mutations
+  createCampaign(input: CreateCampaignInput!): Campaign!
+  updateCampaign(id: ID!, input: CreateCampaignInput!): Campaign!
+  deleteCampaign(id: ID!): Boolean!
+  addCampaignAsset(campaignId: ID!, assetType: String!, itemId: String!): CampaignAsset!
+  removeCampaignAsset(campaignId: ID!, assetId: ID!): Boolean!
+
+  # Event notification mutations
+  createEventNotificationCallback(input: EventNotificationCallbackInput!): EventNotificationCallback!
+  updateEventNotificationCallback(callbackId: ID!, input: EventNotificationCallbackInput!): EventNotificationCallback!
+  deleteEventNotificationCallback(callbackId: ID!): Boolean!
+  createEventNotificationSubscription(input: EventNotificationSubscriptionInput!): EventNotificationSubscription!
+  deleteEventNotificationSubscription(subscriptionName: String!): Boolean!
+}
