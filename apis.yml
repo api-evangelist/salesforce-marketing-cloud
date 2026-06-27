@@ -39,7 +39,7 @@ apis:
     url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/rate-limiting.html
   - type: BestPractices
     url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/rate-limiting-best-practices.html
-  - type: Errors
+  - type: ErrorCodes
     url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/rate-limiting-errors.html
   - url: graphql/salesforce-marketing-cloud-graphql.md
     type: GraphQL
@@ -138,7 +138,7 @@ apis:
   properties:
   - type: Documentation
     url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/push-notifications.html
-  - type: SDK
+  - type: SDKs
     url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/mobile-sdk.html
   tags:
   - Mobile
@@ -271,7 +271,7 @@ common:
   url: https://help.salesforce.com/s/
 - type: StatusPage
   url: https://status.salesforce.com/
-- type: SDK
+- type: SDKs
   url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/sdks.html
 - type: TermsOfService
   url: https://www.salesforce.com/company/legal/
