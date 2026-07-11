@@ -1,0 +1,223 @@
+generated: '2026-07-11'
+method: searched
+source: openapi/salesforce-marketing-cloud-openapi.yml
+docs: https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+note: Marketing Cloud Engagement scopes are assigned to an installed package's API
+  integration in Setup (not requested freely at authorization time); the token is
+  limited to the scopes selected for that integration. Categories and access levels
+  are described at https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/data-access-permissions.html.
+schemes:
+- name: OAuth2
+  source: openapi/salesforce-marketing-cloud-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://YOUR_SUBDOMAIN.auth.marketingcloudapis.com/v2/token
+  description: Marketing Cloud uses OAuth 2.0 client credentials flow for authentication. Obtain
+    a client ID and secret from an installed package in Marketing Cloud Setup, then exchange
+    them for an access token at the authentication endpoint.
+scopes:
+- scope: email_read
+  description: Enables email message management and sending (read access).
+  sources:
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/data-access-permissions.html
+- scope: email_write
+  description: Enables email message management and sending (write access).
+  sources:
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/data-access-permissions.html
+- scope: email_send
+  description: Enables email message management and sending (send access).
+  sources:
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/data-access-permissions.html
+- scope: push_read
+  description: Enables Push message management and sending (read access).
+  sources:
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/data-access-permissions.html
+- scope: push_write
+  description: Enables Push message management and sending (write access).
+  sources:
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/data-access-permissions.html
+- scope: push_send
+  description: Enables Push message management and sending (send access).
+  sources:
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/data-access-permissions.html
+- scope: sms_read
+  description: Enables SMS message management and sending (read access).
+  sources:
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/data-access-permissions.html
+- scope: sms_write
+  description: Enables SMS message management and sending (write access).
+  sources:
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/data-access-permissions.html
+- scope: sms_send
+  description: Enables SMS message management and sending (send access).
+  sources:
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/data-access-permissions.html
+- scope: documents_and_images_read
+  description: Enables management of documents and images in the portfolio or image
+    library (read access).
+  sources:
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/data-access-permissions.html
+- scope: documents_and_images_write
+  description: Enables management of documents and images in the portfolio or image
+    library (write access).
+  sources:
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/data-access-permissions.html
+- scope: saved_content_read
+  description: Enables management of content saved in content areas, surveys, and
+    coupons (read access).
+  sources:
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/data-access-permissions.html
+- scope: saved_content_write
+  description: Enables management of content saved in content areas, surveys, and
+    coupons (write access).
+  sources:
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/data-access-permissions.html
+- scope: automations_read
+  description: Enables management of Automation Studio programs and activities (read
+    access).
+  sources:
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/data-access-permissions.html
+- scope: journeys_read
+  description: Enables management of Journeys (read access).
+  sources:
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/data-access-permissions.html
+- scope: audiences_read
+  description: Read access to audience data.
+  sources:
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/data-access-permissions.html
+- scope: list_and_subscribers_read
+  description: Enables management of subscribers, lists, groups, filters, measures,
+    and preference management (read access).
+  sources:
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/data-access-permissions.html
+- scope: list_and_subscribers_write
+  description: Enables management of subscribers, lists, groups, filters, measures,
+    and preference management (write access).
+  sources:
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/data-access-permissions.html
+- scope: Contacts_access
+  description: Grants access to Contacts REST API resources.
+  sources:
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+- scope: data_extensions_read
+  description: Enables management of data extensions and relationships (read access).
+  sources:
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/data-access-permissions.html
+- scope: data_extensions_write
+  description: Enables management of data extensions and relationships (write access).
+  sources:
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/data-access-permissions.html
+- scope: file_location_create
+  description: Create access to file locations used for file transfer and import
+    operations.
+  sources:
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+- scope: file_location_view
+  description: View access to file locations used for file transfer and import operations.
+  sources:
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+- scope: file_location_delete
+  description: Delete access to file locations used for file transfer and import
+    operations.
+  sources:
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+- scope: tracking_events_read
+  description: Enables management of tracking event data associated with channels
+    (read access).
+  sources:
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/data-access-permissions.html
+- scope: approvals_read
+  description: Enables management of approval items (read access).
+  sources:
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/data-access-permissions.html
+- scope: approvals_write
+  description: Enables management of approval items; can edit and delete approval
+    comments (write access).
+  sources:
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/data-access-permissions.html
+- scope: campaign_read
+  description: Enables management of campaigns (read access).
+  sources:
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/data-access-permissions.html
+- scope: campaign_write
+  description: Enables management of campaigns (write access).
+  sources:
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/data-access-permissions.html
+- scope: tags_read
+  description: Read access to tags.
+  sources:
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+- scope: tags_write
+  description: Write access to tags.
+  sources:
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/data-access-permissions.html
+- scope: tags_create
+  description: Create access to tags.
+  sources:
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+- scope: tags_edit
+  description: Edit access to tags.
+  sources:
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+- scope: tags_delete
+  description: Delete access to tags.
+  sources:
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+- scope: event_notification_callback_create
+  description: Create Event Notification Service callbacks.
+  sources:
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+- scope: event_notification_callback_read
+  description: Read Event Notification Service callbacks.
+  sources:
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+- scope: event_notification_callback_update
+  description: Update Event Notification Service callbacks.
+  sources:
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+- scope: event_notification_callback_delete
+  description: Delete Event Notification Service callbacks.
+  sources:
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+- scope: event_notification_subscription_create
+  description: Create Event Notification Service subscriptions.
+  sources:
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+- scope: event_notification_subscription_read
+  description: Read Event Notification Service subscriptions.
+  sources:
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+- scope: event_notification_subscription_update
+  description: Update Event Notification Service subscriptions.
+  sources:
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+- scope: event_notification_subscription_delete
+  description: Delete Event Notification Service subscriptions.
+  sources:
+  - https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html

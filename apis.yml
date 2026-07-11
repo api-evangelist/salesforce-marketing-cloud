@@ -257,6 +257,12 @@ apis:
   - Real-Time
   - Webhooks
 common:
+- type: Authentication
+  url: authentication/salesforce-marketing-cloud-authentication.yml
+- type: OAuthScopes
+  url: scopes/salesforce-marketing-cloud-scopes.yml
+- url: https://developer.salesforce.com/blogs/feed
+  type: Blog
 - type: LinkedIn
   url: https://www.linkedin.com/showcase/salesforce-marketing-cloud-
 - type: DeveloperPortal
