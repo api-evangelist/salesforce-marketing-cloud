@@ -257,6 +257,8 @@ apis:
   - Real-Time
   - Webhooks
 common:
+- type: DomainSecurity
+  url: security/salesforce-marketing-cloud-domain-security.yml
 - type: Authentication
   url: authentication/salesforce-marketing-cloud-authentication.yml
 - type: OAuthScopes

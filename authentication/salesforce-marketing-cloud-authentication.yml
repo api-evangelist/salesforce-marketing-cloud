@@ -1,0 +1,20 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/salesforce-marketing-cloud-openapi.yml
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - clientCredentials
+schemes:
+- name: OAuth2
+  type: oauth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://YOUR_SUBDOMAIN.auth.marketingcloudapis.com/v2/token
+    scopes: 0
+  description: Marketing Cloud uses OAuth 2.0 client credentials flow for authentication. Obtain
+    a client ID and secret from an installed package in Marketing Cloud Setup, then exchange
+    them for an access token at the authentication endpoint.
+  sources:
+  - openapi/salesforce-marketing-cloud-openapi.yml
