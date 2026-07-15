@@ -257,6 +257,8 @@ apis:
   - Real-Time
   - Webhooks
 common:
+- type: AgenticAccess
+  url: agentic-access/salesforce-marketing-cloud-agentic-access.yml
 - type: DomainSecurity
   url: security/salesforce-marketing-cloud-domain-security.yml
 - type: Authentication
