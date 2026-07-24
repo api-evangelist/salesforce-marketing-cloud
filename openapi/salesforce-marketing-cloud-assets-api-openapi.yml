@@ -1,0 +1,753 @@
+openapi: 3.1.0
+info:
+  title: Salesforce Marketing Cloud REST Assets API
+  description: The Salesforce Marketing Cloud REST API provides programmatic access to Marketing Cloud features including contacts, journeys, and assets. The API uses JSON request and response bodies and OAuth 2.0 authentication via the Marketing Cloud authentication endpoint. All API requests require a valid access token obtained through the Server-to-Server OAuth flow.
+  version: 1.0.0
+  termsOfService: https://www.salesforce.com/company/legal/
+  contact:
+    name: Salesforce Marketing Cloud Support
+    url: https://help.salesforce.com/s/
+    email: support@salesforce.com
+  license:
+    name: Salesforce Master Subscription Agreement
+    url: https://www.salesforce.com/company/legal/agreements/
+servers:
+- url: https://{subdomain}.rest.marketingcloudapis.com
+  description: Marketing Cloud REST API endpoint
+  variables:
+    subdomain:
+      default: YOUR_SUBDOMAIN
+      description: Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.
+security:
+- OAuth2: []
+tags:
+- name: Assets
+  description: Manage marketing assets including images, documents, content blocks, and templates. The Asset API provides CRUD operations for all content types stored in Content Builder.
+  externalDocs:
+    description: Asset API Documentation
+    url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/asset-api.html
+paths:
+  /asset/v1/content/assets:
+    get:
+      operationId: listAssets
+      summary: Salesforce Marketing Cloud List Assets
+      description: Retrieves a collection of assets from Content Builder. Supports filtering, sorting, and pagination. Assets include emails, templates, images, content blocks, and other content types.
+      tags:
+      - Assets
+      parameters:
+      - name: $page
+        in: query
+        description: Page number for pagination (1-based)
+        schema:
+          type: integer
+          default: 1
+          minimum: 1
+      - name: $pageSize
+        in: query
+        description: Number of assets per page
+        schema:
+          type: integer
+          default: 50
+          minimum: 1
+          maximum: 200
+      - name: $orderBy
+        in: query
+        description: Field to sort results by (e.g., modifiedDate DESC, name ASC)
+        schema:
+          type: string
+      - name: $filter
+        in: query
+        description: OData-style filter expression (e.g., assetType.name eq 'htmlemail')
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Assets retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetCollection'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createAsset
+      summary: Salesforce Marketing Cloud Create an Asset
+      description: Creates a new asset in Content Builder. The asset type determines the required and optional fields. Common asset types include htmlemail, templatebasedemail, htmlblock, codesnippetblock, and image.
+      tags:
+      - Assets
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssetDefinition'
+            example:
+              name: Welcome Email
+              description: Welcome email sent to new subscribers
+              assetType:
+                name: htmlemail
+                id: 208
+              views:
+                html:
+                  content: <html><body><h1>Welcome!</h1></body></html>
+                subjectLine:
+                  content: Welcome to our newsletter
+              data:
+                email:
+                  options:
+                    characterEncoding: utf-8
+      responses:
+        '201':
+          description: Asset created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Asset'
+        '400':
+          description: Bad request - invalid asset definition
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /asset/v1/content/assets/{id}:
+    get:
+      operationId: getAsset
+      summary: Salesforce Marketing Cloud Retrieve an Asset
+      description: Retrieves a single asset by its unique identifier. Returns the complete asset definition including content, metadata, and associated category.
+      tags:
+      - Assets
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier of the asset
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Asset retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Asset'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Asset not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: updateAsset
+      summary: Salesforce Marketing Cloud Update an Asset
+      description: Updates an existing asset. Provide the complete asset definition with all desired values. Fields not included in the request body are not modified.
+      tags:
+      - Assets
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier of the asset
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssetDefinition'
+      responses:
+        '200':
+          description: Asset updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Asset'
+        '400':
+          description: Bad request - invalid asset definition
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Asset not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteAsset
+      summary: Salesforce Marketing Cloud Delete an Asset
+      description: Deletes an asset from Content Builder. This action is permanent and cannot be undone.
+      tags:
+      - Assets
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Unique identifier of the asset to delete
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Asset deleted successfully
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Asset not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /asset/v1/content/assets/query:
+    post:
+      operationId: queryAssets
+      summary: Salesforce Marketing Cloud Query Assets With Advanced Filtering
+      description: Performs an advanced query against assets using a structured query object. Supports complex filtering with AND/OR logic, nested conditions, and multiple sort criteria. More powerful than the OData-style filter on the list endpoint.
+      tags:
+      - Assets
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssetQuery'
+            example:
+              page:
+                page: 1
+                pageSize: 50
+              query:
+                property: assetType.name
+                simpleOperator: equal
+                value: htmlemail
+              sort:
+              - property: modifiedDate
+                direction: DESC
+              fields:
+              - id
+              - name
+              - assetType
+              - modifiedDate
+      responses:
+        '200':
+          description: Query results returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetCollection'
+        '400':
+          description: Bad request - invalid query
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /asset/v1/content/categories:
+    get:
+      operationId: listCategories
+      summary: Salesforce Marketing Cloud List Asset Categories
+      description: Retrieves categories (folders) used to organize assets in Content Builder. Categories provide a hierarchical folder structure for content organization.
+      tags:
+      - Assets
+      parameters:
+      - name: $page
+        in: query
+        description: Page number for pagination (1-based)
+        schema:
+          type: integer
+          default: 1
+      - name: $pageSize
+        in: query
+        description: Number of categories per page
+        schema:
+          type: integer
+          default: 50
+      - name: $filter
+        in: query
+        description: OData-style filter expression (e.g., parentId eq 12345)
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Categories retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryCollection'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    AssetType:
+      type: object
+      description: Defines the type of an asset. Each type has a unique ID and name. Common types include htmlemail (208), templatebasedemail (207), htmlblock (197), codesnippetblock (220), and image (28).
+      properties:
+        id:
+          type: integer
+          description: Numeric identifier for the asset type
+          example: abc123
+        name:
+          type: string
+          description: Name of the asset type
+          example: Example Title
+    Asset:
+      type: object
+      description: Represents a marketing asset in Content Builder. Assets include emails, templates, images, content blocks, and other content types used in marketing campaigns.
+      properties:
+        id:
+          type: integer
+          description: System-generated unique identifier for the asset
+          example: abc123
+        customerKey:
+          type: string
+          description: Customer-defined unique key for the asset
+          example: example_value
+        name:
+          type: string
+          description: Display name of the asset
+          example: Example Title
+        description:
+          type: string
+          description: Description of the asset
+          example: A sample description.
+        assetType:
+          $ref: '#/components/schemas/AssetType'
+        category:
+          type: object
+          description: Category (folder) containing the asset
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+            parentId:
+              type: integer
+          example: example_value
+        content:
+          type: string
+          description: Primary content of the asset, typically HTML or text depending on asset type
+          example: example_value
+        views:
+          type: object
+          description: Channel-specific content views (e.g., html, text, subjectLine, preheader)
+          properties:
+            html:
+              type: object
+              properties:
+                content:
+                  type: string
+            text:
+              type: object
+              properties:
+                content:
+                  type: string
+            subjectLine:
+              type: object
+              properties:
+                content:
+                  type: string
+            preheader:
+              type: object
+              properties:
+                content:
+                  type: string
+          example: example_value
+        data:
+          type: object
+          description: Asset-type-specific data and configuration
+          additionalProperties: true
+          example: example_value
+        tags:
+          type: array
+          description: Tags assigned to the asset for organization
+          items:
+            type: string
+          example: []
+        status:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+              enum:
+              - Draft
+              - Approved
+          example: example_value
+        createdDate:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        modifiedDate:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        createdBy:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+            email:
+              type: string
+          example: example_value
+        modifiedBy:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+            email:
+              type: string
+          example: example_value
+    AssetQuery:
+      type: object
+      description: Advanced query object for searching assets
+      properties:
+        page:
+          type: object
+          properties:
+            page:
+              type: integer
+            pageSize:
+              type: integer
+          example: example_value
+        query:
+          type: object
+          description: Query filter criteria
+          properties:
+            property:
+              type: string
+              description: Property name to filter on
+            simpleOperator:
+              type: string
+              description: Comparison operator
+              enum:
+              - equal
+              - notEqual
+              - greaterThan
+              - greaterThanOrEqual
+              - lessThan
+              - lessThanOrEqual
+              - like
+              - isNull
+              - isNotNull
+              - between
+              - IN
+            value:
+              description: Value to compare against
+            dateValue:
+              type: string
+              format: date-time
+              description: Date value for date-based comparisons
+            leftOperand:
+              type: object
+              description: Left operand for compound queries
+            rightOperand:
+              type: object
+              description: Right operand for compound queries
+            logicalOperator:
+              type: string
+              enum:
+              - AND
+              - OR
+          example: example_value
+        sort:
+          type: array
+          items:
+            type: object
+            properties:
+              property:
+                type: string
+              direction:
+                type: string
+                enum:
+                - ASC
+                - DESC
+          example: []
+        fields:
+          type: array
+          description: Specific fields to include in the response
+          items:
+            type: string
+          example: []
+    AssetDefinition:
+      type: object
+      description: Specification for creating or updating an asset
+      properties:
+        name:
+          type: string
+          description: Display name of the asset
+          example: Example Title
+        description:
+          type: string
+          description: Description of the asset
+          example: A sample description.
+        customerKey:
+          type: string
+          description: Customer-defined unique key
+          example: example_value
+        assetType:
+          $ref: '#/components/schemas/AssetType'
+        category:
+          type: object
+          properties:
+            id:
+              type: integer
+              description: ID of the category (folder) to place the asset in
+          example: example_value
+        content:
+          type: string
+          description: Primary content of the asset
+          example: example_value
+        views:
+          type: object
+          description: Channel-specific content views
+          properties:
+            html:
+              type: object
+              properties:
+                content:
+                  type: string
+            text:
+              type: object
+              properties:
+                content:
+                  type: string
+            subjectLine:
+              type: object
+              properties:
+                content:
+                  type: string
+            preheader:
+              type: object
+              properties:
+                content:
+                  type: string
+          example: example_value
+        data:
+          type: object
+          description: Asset-type-specific data
+          additionalProperties: true
+          example: example_value
+        tags:
+          type: array
+          items:
+            type: string
+          example: []
+      required:
+      - name
+      - assetType
+    ErrorResponse:
+      type: object
+      description: Standard error response returned by the Marketing Cloud API
+      properties:
+        message:
+          type: string
+          description: Human-readable error message
+          example: example_value
+        errorcode:
+          type: integer
+          description: Numeric error code
+          example: 10
+        documentation:
+          type: string
+          description: URL to relevant documentation for this error
+          example: example_value
+    CategoryCollection:
+      type: object
+      description: Paginated collection of asset categories
+      properties:
+        count:
+          type: integer
+          example: 10
+        page:
+          type: integer
+          example: 10
+        pageSize:
+          type: integer
+          example: 10
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
+              parentId:
+                type: integer
+              description:
+                type: string
+          example: []
+    AssetCollection:
+      type: object
+      description: Paginated collection of assets
+      properties:
+        count:
+          type: integer
+          description: Total number of assets matching the query
+          example: 10
+        page:
+          type: integer
+          description: Current page number
+          example: 10
+        pageSize:
+          type: integer
+          description: Number of items per page
+          example: 10
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Asset'
+          example: []
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: Marketing Cloud uses OAuth 2.0 client credentials flow for authentication. Obtain a client ID and secret from an installed package in Marketing Cloud Setup, then exchange them for an access token at the authentication endpoint.
+      flows:
+        clientCredentials:
+          tokenUrl: https://YOUR_SUBDOMAIN.auth.marketingcloudapis.com/v2/token
+          scopes: {}

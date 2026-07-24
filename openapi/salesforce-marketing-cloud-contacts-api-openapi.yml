@@ -1,0 +1,636 @@
+openapi: 3.1.0
+info:
+  title: Salesforce Marketing Cloud REST Assets Contacts API
+  description: The Salesforce Marketing Cloud REST API provides programmatic access to Marketing Cloud features including contacts, journeys, and assets. The API uses JSON request and response bodies and OAuth 2.0 authentication via the Marketing Cloud authentication endpoint. All API requests require a valid access token obtained through the Server-to-Server OAuth flow.
+  version: 1.0.0
+  termsOfService: https://www.salesforce.com/company/legal/
+  contact:
+    name: Salesforce Marketing Cloud Support
+    url: https://help.salesforce.com/s/
+    email: support@salesforce.com
+  license:
+    name: Salesforce Master Subscription Agreement
+    url: https://www.salesforce.com/company/legal/agreements/
+servers:
+- url: https://{subdomain}.rest.marketingcloudapis.com
+  description: Marketing Cloud REST API endpoint
+  variables:
+    subdomain:
+      default: YOUR_SUBDOMAIN
+      description: Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.
+security:
+- OAuth2: []
+tags:
+- name: Contacts
+  description: Create, retrieve, update, and delete contacts in Marketing Cloud. Contacts represent individuals who interact with your marketing campaigns across channels.
+  externalDocs:
+    description: Contacts API Documentation
+    url: https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_contacts/createContacts.html
+paths:
+  /contacts/v1/contacts:
+    post:
+      operationId: createContacts
+      summary: Salesforce Marketing Cloud Create Contacts
+      description: Creates one or more contacts in Marketing Cloud. Each contact requires a contactKey as a unique identifier. You can include attribute values for any defined attribute sets such as Email Addresses, MobileConnect Demographics, or custom attribute sets.
+      tags:
+      - Contacts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateContactsRequest'
+            example:
+              contactKey: example-contact-001
+              attributeSets:
+              - name: Email Addresses
+                items:
+                - values:
+                  - name: Email Address
+                    value: user@example.com
+                  - name: HTML Enabled
+                    value: true
+      responses:
+        '200':
+          description: Contacts created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactResponse'
+        '400':
+          description: Bad request - invalid contact data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized - invalid or expired access token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden - insufficient permissions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too many requests - rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /contacts/v1/contacts/actions/search:
+    post:
+      operationId: searchContacts
+      summary: Salesforce Marketing Cloud Search Contacts
+      description: Searches for contacts using filter criteria. Supports filtering by contactKey, email address, or other contact attributes. Returns matching contacts with their associated attribute values.
+      tags:
+      - Contacts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContactSearchRequest'
+            example:
+              conditionSet:
+                operator: AND
+                conditionSets: []
+                conditions:
+                - attribute:
+                    groupName: Email Addresses
+                    name: Email Address
+                  operator: Equals
+                  value:
+                    items:
+                    - user@example.com
+              returnAttributes:
+              - groupName: Email Addresses
+                name: Email Address
+              - groupName: Email Addresses
+                name: HTML Enabled
+      responses:
+        '200':
+          description: Search results returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactSearchResponse'
+        '400':
+          description: Bad request - invalid search criteria
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /contacts/v1/contacts/{contactKey}:
+    get:
+      operationId: getContact
+      summary: Salesforce Marketing Cloud Retrieve a Contact by Contact Key
+      description: Retrieves a single contact using the unique contactKey identifier. Returns the contact record with all associated attribute sets and values.
+      tags:
+      - Contacts
+      parameters:
+      - name: contactKey
+        in: path
+        required: true
+        description: Unique identifier for the contact
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Contact retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contact'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Contact not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    patch:
+      operationId: updateContact
+      summary: Salesforce Marketing Cloud Update a Contact
+      description: Updates an existing contact's attributes. Provide only the attribute sets and values that need to be changed. Unspecified attributes remain unchanged.
+      tags:
+      - Contacts
+      parameters:
+      - name: contactKey
+        in: path
+        required: true
+        description: Unique identifier for the contact
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateContactRequest'
+      responses:
+        '200':
+          description: Contact updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Contact not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteContact
+      summary: Salesforce Marketing Cloud Delete a Contact
+      description: Initiates an asynchronous delete operation for a contact identified by contactKey. This operation removes the contact and associated data from Marketing Cloud. The delete process runs asynchronously and may take time to complete.
+      tags:
+      - Contacts
+      parameters:
+      - name: contactKey
+        in: path
+        required: true
+        description: Unique identifier for the contact to delete
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Contact delete operation initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteContactResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Contact not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /contacts/v1/attributeSets:
+    get:
+      operationId: listAttributeSets
+      summary: Salesforce Marketing Cloud List Attribute Sets
+      description: Retrieves all attribute sets defined in Marketing Cloud. Attribute sets define the structure of contact data, including system attribute sets like Email Addresses and MobileConnect Demographics, as well as custom attribute sets.
+      tags:
+      - Contacts
+      responses:
+        '200':
+          description: Attribute sets retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttributeSetsResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ContactSearchRequest:
+      type: object
+      description: Request body for searching contacts with filter criteria
+      properties:
+        conditionSet:
+          type: object
+          description: Root condition set for the search
+          properties:
+            operator:
+              type: string
+              enum:
+              - AND
+              - OR
+            conditions:
+              type: array
+              items:
+                type: object
+                properties:
+                  attribute:
+                    type: object
+                    properties:
+                      groupName:
+                        type: string
+                      name:
+                        type: string
+                  operator:
+                    type: string
+                    enum:
+                    - Equals
+                    - NotEquals
+                    - GreaterThan
+                    - LessThan
+                    - Contains
+                    - StartsWith
+                    - EndsWith
+                    - IsNull
+                    - IsNotNull
+                  value:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          type: string
+            conditionSets:
+              type: array
+              items: {}
+          example: example_value
+        returnAttributes:
+          type: array
+          description: Attributes to include in the search results
+          items:
+            type: object
+            properties:
+              groupName:
+                type: string
+              name:
+                type: string
+          example: []
+    ErrorResponse:
+      type: object
+      description: Standard error response returned by the Marketing Cloud API
+      properties:
+        message:
+          type: string
+          description: Human-readable error message
+          example: example_value
+        errorcode:
+          type: integer
+          description: Numeric error code
+          example: 10
+        documentation:
+          type: string
+          description: URL to relevant documentation for this error
+          example: example_value
+    AttributeSet:
+      type: object
+      description: A named collection of attributes that define a category of contact data, such as Email Addresses or MobileConnect Demographics.
+      properties:
+        name:
+          type: string
+          description: Name of the attribute set
+          example: Example Title
+        items:
+          type: array
+          description: Collection of attribute value groups
+          items:
+            type: object
+            properties:
+              values:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AttributeValue'
+          example: []
+    DeleteContactResponse:
+      type: object
+      description: Response from a contact delete operation
+      properties:
+        operationStatus:
+          type: string
+          example: example_value
+        requestServiceMessageID:
+          type: string
+          example: '500123'
+        responseDateTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        operationInitiated:
+          type: boolean
+          description: Whether the asynchronous delete was successfully initiated
+          example: true
+    ContactSearchResponse:
+      type: object
+      description: Response returned from a contact search operation
+      properties:
+        count:
+          type: integer
+          description: Total number of matching contacts
+          example: 10
+        page:
+          type: integer
+          example: 10
+        pageSize:
+          type: integer
+          example: 10
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contact'
+          example: []
+    ContactResponse:
+      type: object
+      description: Response returned after contact creation or update operations
+      properties:
+        operationStatus:
+          type: string
+          description: Overall status of the operation
+          example: example_value
+        requestServiceMessageID:
+          type: string
+          description: Unique identifier for the request
+          example: '500123'
+        responseDateTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        resultMessages:
+          type: array
+          items:
+            type: object
+            properties:
+              resultType:
+                type: string
+              resultCode:
+                type: string
+              resultMessage:
+                type: string
+          example: []
+    UpdateContactRequest:
+      type: object
+      description: Request body for updating contact attributes
+      properties:
+        attributeSets:
+          type: array
+          description: Attribute sets and values to update
+          items:
+            $ref: '#/components/schemas/AttributeSet'
+          example: []
+      required:
+      - attributeSets
+    CreateContactsRequest:
+      type: object
+      description: Request body for creating one or more contacts
+      properties:
+        contactKey:
+          type: string
+          description: Unique identifier for the contact
+          example: example_value
+        attributeSets:
+          type: array
+          description: Attribute sets and values to assign to the contact
+          items:
+            $ref: '#/components/schemas/AttributeSet'
+          example: []
+      required:
+      - contactKey
+    Contact:
+      type: object
+      description: Represents a contact in Marketing Cloud. A contact is an individual who interacts with marketing campaigns across channels.
+      properties:
+        contactKey:
+          type: string
+          description: Unique identifier for the contact. This value is used across all Marketing Cloud channels and applications.
+          example: example_value
+        contactID:
+          type: integer
+          description: System-generated unique numeric identifier
+          example: '500123'
+        contactStatus:
+          type: string
+          description: Current status of the contact
+          enum:
+          - Active
+          - Inactive
+          - Bounced
+          - Held
+          - Unsubscribed
+          example: Active
+        createdDate:
+          type: string
+          format: date-time
+          description: Date and time the contact was created
+          example: '2026-01-15T10:30:00Z'
+        modifiedDate:
+          type: string
+          format: date-time
+          description: Date and time the contact was last modified
+          example: '2026-01-15T10:30:00Z'
+        attributeSets:
+          type: array
+          description: Collection of attribute sets associated with the contact
+          items:
+            $ref: '#/components/schemas/AttributeSet'
+          example: []
+      required:
+      - contactKey
+    AttributeSetsResponse:
+      type: object
+      description: Response containing a collection of attribute sets
+      properties:
+        count:
+          type: integer
+          example: 10
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              attributes:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    dataType:
+                      type: string
+                    isRequired:
+                      type: boolean
+                    isReadOnly:
+                      type: boolean
+          example: []
+    AttributeValue:
+      type: object
+      description: A single attribute name-value pair within an attribute set
+      properties:
+        name:
+          type: string
+          description: Name of the attribute
+          example: Example Title
+        value:
+          description: Value of the attribute
+          example: example_value
+      required:
+      - name
+      - value
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: Marketing Cloud uses OAuth 2.0 client credentials flow for authentication. Obtain a client ID and secret from an installed package in Marketing Cloud Setup, then exchange them for an access token at the authentication endpoint.
+      flows:
+        clientCredentials:
+          tokenUrl: https://YOUR_SUBDOMAIN.auth.marketingcloudapis.com/v2/token
+          scopes: {}
