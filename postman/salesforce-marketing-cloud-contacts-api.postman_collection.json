@@ -1,0 +1,2179 @@
+{
+  "info": {
+    "_postman_id": "5a466abb-52eb-4178-8fcc-ee67caf7d9a3",
+    "name": "Salesforce Marketing Cloud REST Assets Contacts API",
+    "description": "The Salesforce Marketing Cloud REST API provides programmatic access to Marketing Cloud features including contacts, journeys, and assets. The API uses JSON request and response bodies and OAuth 2.0 authentication via the Marketing Cloud authentication endpoint. All API requests require a valid access token obtained through the Server-to-Server OAuth flow.\n\nContact Support:\n Name: Salesforce Marketing Cloud Support\n Email: support@salesforce.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:50:16.000Z",
+    "updatedAt": "2026-07-28T02:50:16.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5a466abb-52eb-4178-8fcc-ee67caf7d9a3"
+  },
+  "item": [
+    {
+      "name": "contacts",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "contacts",
+              "item": [
+                {
+                  "name": "actions",
+                  "item": [
+                    {
+                      "name": "search",
+                      "item": [
+                        {
+                          "name": "Salesforce Marketing Cloud Search Contacts",
+                          "id": "80062505-c2a0-4346-a50d-d7023278180f",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"conditionSet\": {\n    \"operator\": \"OR\",\n    \"conditions\": [\n      {\n        \"attribute\": {\n          \"groupName\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"operator\": \"Equals\",\n        \"value\": {\n          \"items\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      },\n      {\n        \"attribute\": {\n          \"groupName\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"operator\": \"Contains\",\n        \"value\": {\n          \"items\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      }\n    ]\n  },\n  \"returnAttributes\": [\n    {\n      \"groupName\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"groupName\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/contacts/v1/contacts/actions/search",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "contacts",
+                                "v1",
+                                "contacts",
+                                "actions",
+                                "search"
+                              ]
+                            },
+                            "description": "Searches for contacts using filter criteria. Supports filtering by contactKey, email address, or other contact attributes. Returns matching contacts with their associated attribute values."
+                          },
+                          "response": [
+                            {
+                              "id": "d6f4649b-f9be-4922-a1ee-64c2ddad3f4a",
+                              "name": "Search results returned",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"conditionSet\": {\n    \"operator\": \"OR\",\n    \"conditions\": [\n      {\n        \"attribute\": {\n          \"groupName\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"operator\": \"Equals\",\n        \"value\": {\n          \"items\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      },\n      {\n        \"attribute\": {\n          \"groupName\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"operator\": \"Contains\",\n        \"value\": {\n          \"items\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      }\n    ]\n  },\n  \"returnAttributes\": [\n    {\n      \"groupName\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"groupName\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/contacts/v1/contacts/actions/search",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "contacts",
+                                    "v1",
+                                    "contacts",
+                                    "actions",
+                                    "search"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"count\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"pageSize\": \"<integer>\",\n  \"items\": [\n    {\n      \"contactKey\": \"<string>\",\n      \"contactID\": \"<integer>\",\n      \"contactStatus\": \"Unsubscribed\",\n      \"createdDate\": \"<dateTime>\",\n      \"modifiedDate\": \"<dateTime>\",\n      \"attributeSets\": [\n        {\n          \"name\": \"<string>\",\n          \"items\": [\n            {\n              \"values\": [\n                {\n                  \"name\": \"<string>\",\n                  \"value\": {\n                    \"description\": \"Value of the attribute\",\n                    \"example\": \"example_value\"\n                  }\n                },\n                {\n                  \"name\": \"<string>\",\n                  \"value\": {\n                    \"description\": \"Value of the attribute\",\n                    \"example\": \"example_value\"\n                  }\n                }\n              ]\n            },\n            {\n              \"values\": [\n                {\n                  \"name\": \"<string>\",\n                  \"value\": {\n                    \"description\": \"Value of the attribute\",\n                    \"example\": \"example_value\"\n                  }\n                },\n                {\n                  \"name\": \"<string>\",\n                  \"value\": {\n                    \"description\": \"Value of the attribute\",\n                    \"example\": \"example_value\"\n                  }\n                }\n              ]\n            }\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"items\": [\n            {\n              \"values\": [\n                {\n                  \"name\": \"<string>\",\n                  \"value\": {\n                    \"description\": \"Value of the attribute\",\n                    \"example\": \"example_value\"\n                  }\n                },\n                {\n                  \"name\": \"<string>\",\n                  \"value\": {\n                    \"description\": \"Value of the attribute\",\n                    \"example\": \"example_value\"\n                  }\n                }\n              ]\n            },\n            {\n              \"values\": [\n                {\n                  \"name\": \"<string>\",\n                  \"value\": {\n                    \"description\": \"Value of the attribute\",\n                    \"example\": \"example_value\"\n                  }\n                },\n                {\n                  \"name\": \"<string>\",\n                  \"value\": {\n                    \"description\": \"Value of the attribute\",\n                    \"example\": \"example_value\"\n                  }\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"contactKey\": \"<string>\",\n      \"contactID\": \"<integer>\",\n      \"contactStatus\": \"Active\",\n      \"createdDate\": \"<dateTime>\",\n      \"modifiedDate\": \"<dateTime>\",\n      \"attributeSets\": [\n        {\n          \"name\": \"<string>\",\n          \"items\": [\n            {\n              \"values\": [\n                {\n                  \"name\": \"<string>\",\n                  \"value\": {\n                    \"description\": \"Value of the attribute\",\n                    \"example\": \"example_value\"\n                  }\n                },\n                {\n                  \"name\": \"<string>\",\n                  \"value\": {\n                    \"description\": \"Value of the attribute\",\n                    \"example\": \"example_value\"\n                  }\n                }\n              ]\n            },\n            {\n              \"values\": [\n                {\n                  \"name\": \"<string>\",\n                  \"value\": {\n                    \"description\": \"Value of the attribute\",\n                    \"example\": \"example_value\"\n                  }\n                },\n                {\n                  \"name\": \"<string>\",\n                  \"value\": {\n                    \"description\": \"Value of the attribute\",\n                    \"example\": \"example_value\"\n                  }\n                }\n              ]\n            }\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"items\": [\n            {\n              \"values\": [\n                {\n                  \"name\": \"<string>\",\n                  \"value\": {\n                    \"description\": \"Value of the attribute\",\n                    \"example\": \"example_value\"\n                  }\n                },\n                {\n                  \"name\": \"<string>\",\n                  \"value\": {\n                    \"description\": \"Value of the attribute\",\n                    \"example\": \"example_value\"\n                  }\n                }\n              ]\n            },\n            {\n              \"values\": [\n                {\n                  \"name\": \"<string>\",\n                  \"value\": {\n                    \"description\": \"Value of the attribute\",\n                    \"example\": \"example_value\"\n                  }\n                },\n                {\n                  \"name\": \"<string>\",\n                  \"value\": {\n                    \"description\": \"Value of the attribute\",\n                    \"example\": \"example_value\"\n                  }\n                }\n              ]\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:50:16.000Z",
+                              "updatedAt": "2026-07-28T02:50:16.000Z",
+                              "uid": "35240-d6f4649b-f9be-4922-a1ee-64c2ddad3f4a"
+                            },
+                            {
+                              "id": "7e45456d-94e0-44b4-b3ff-710bf032e38c",
+                              "name": "Bad request - invalid search criteria",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"conditionSet\": {\n    \"operator\": \"OR\",\n    \"conditions\": [\n      {\n        \"attribute\": {\n          \"groupName\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"operator\": \"Equals\",\n        \"value\": {\n          \"items\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      },\n      {\n        \"attribute\": {\n          \"groupName\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"operator\": \"Contains\",\n        \"value\": {\n          \"items\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      }\n    ]\n  },\n  \"returnAttributes\": [\n    {\n      \"groupName\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"groupName\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/contacts/v1/contacts/actions/search",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "contacts",
+                                    "v1",
+                                    "contacts",
+                                    "actions",
+                                    "search"
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:50:16.000Z",
+                              "updatedAt": "2026-07-28T02:50:16.000Z",
+                              "uid": "35240-7e45456d-94e0-44b4-b3ff-710bf032e38c"
+                            },
+                            {
+                              "id": "e41329e3-8609-4375-84bd-c9fbdf3b76ca",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"conditionSet\": {\n    \"operator\": \"OR\",\n    \"conditions\": [\n      {\n        \"attribute\": {\n          \"groupName\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"operator\": \"Equals\",\n        \"value\": {\n          \"items\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      },\n      {\n        \"attribute\": {\n          \"groupName\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"operator\": \"Contains\",\n        \"value\": {\n          \"items\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      }\n    ]\n  },\n  \"returnAttributes\": [\n    {\n      \"groupName\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"groupName\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/contacts/v1/contacts/actions/search",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "contacts",
+                                    "v1",
+                                    "contacts",
+                                    "actions",
+                                    "search"
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:50:16.000Z",
+                              "updatedAt": "2026-07-28T02:50:16.000Z",
+                              "uid": "35240-e41329e3-8609-4375-84bd-c9fbdf3b76ca"
+                            },
+                            {
+                              "id": "d367e052-cb45-4ba2-9d25-e5d4c059d157",
+                              "name": "Too many requests",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"conditionSet\": {\n    \"operator\": \"OR\",\n    \"conditions\": [\n      {\n        \"attribute\": {\n          \"groupName\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"operator\": \"Equals\",\n        \"value\": {\n          \"items\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      },\n      {\n        \"attribute\": {\n          \"groupName\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"operator\": \"Contains\",\n        \"value\": {\n          \"items\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      }\n    ]\n  },\n  \"returnAttributes\": [\n    {\n      \"groupName\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"groupName\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/contacts/v1/contacts/actions/search",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "contacts",
+                                    "v1",
+                                    "contacts",
+                                    "actions",
+                                    "search"
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:50:16.000Z",
+                              "updatedAt": "2026-07-28T02:50:16.000Z",
+                              "uid": "35240-d367e052-cb45-4ba2-9d25-e5d4c059d157"
+                            },
+                            {
+                              "id": "f96543fd-7f21-4a87-950f-f966372a8cf6",
+                              "name": "Internal server error",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"conditionSet\": {\n    \"operator\": \"OR\",\n    \"conditions\": [\n      {\n        \"attribute\": {\n          \"groupName\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"operator\": \"Equals\",\n        \"value\": {\n          \"items\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      },\n      {\n        \"attribute\": {\n          \"groupName\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"operator\": \"Contains\",\n        \"value\": {\n          \"items\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      }\n    ]\n  },\n  \"returnAttributes\": [\n    {\n      \"groupName\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"groupName\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/contacts/v1/contacts/actions/search",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "contacts",
+                                    "v1",
+                                    "contacts",
+                                    "actions",
+                                    "search"
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:50:16.000Z",
+                              "updatedAt": "2026-07-28T02:50:16.000Z",
+                              "uid": "35240-f96543fd-7f21-4a87-950f-f966372a8cf6"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:50:16.000Z",
+                          "updatedAt": "2026-07-28T02:50:16.000Z",
+                          "uid": "35240-80062505-c2a0-4346-a50d-d7023278180f"
+                        }
+                      ],
+                      "id": "67bc602b-52d4-49fc-bf4e-9313f90e4c42",
+                      "createdAt": "2026-07-28T02:50:16.000Z",
+                      "updatedAt": "2026-07-28T02:50:16.000Z",
+                      "uid": "35240-67bc602b-52d4-49fc-bf4e-9313f90e4c42"
+                    }
+                  ],
+                  "id": "64f0ca14-93ab-4ddc-be8f-11c226082fb3",
+                  "createdAt": "2026-07-28T02:50:16.000Z",
+                  "updatedAt": "2026-07-28T02:50:16.000Z",
+                  "uid": "35240-64f0ca14-93ab-4ddc-be8f-11c226082fb3"
+                },
+                {
+                  "name": "{contactKey}",
+                  "item": [
+                    {
+                      "name": "Salesforce Marketing Cloud Retrieve a Contact by Contact Key",
+                      "id": "50d470ca-76a1-4638-9537-1aad1716d9e1",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/contacts/v1/contacts/:contactKey",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "contacts",
+                            "v1",
+                            "contacts",
+                            ":contactKey"
+                          ],
+                          "variable": [
+                            {
+                              "id": "2f641e8a-b1c6-4b5b-885d-158467899d49",
+                              "key": "contactKey",
+                              "value": "<string>",
+                              "description": "(Required) Unique identifier for the contact"
+                            }
+                          ]
+                        },
+                        "description": "Retrieves a single contact using the unique contactKey identifier. Returns the contact record with all associated attribute sets and values."
+                      },
+                      "response": [
+                        {
+                          "id": "a1c11840-2493-48b7-b4b7-65594527c6f3",
+                          "name": "Contact retrieved successfully",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/contacts/v1/contacts/:contactKey",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "contacts",
+                                "v1",
+                                "contacts",
+                                ":contactKey"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "contactKey"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"contactKey\": \"<string>\",\n  \"contactID\": \"<integer>\",\n  \"contactStatus\": \"Held\",\n  \"createdDate\": \"<dateTime>\",\n  \"modifiedDate\": \"<dateTime>\",\n  \"attributeSets\": [\n    {\n      \"name\": \"<string>\",\n      \"items\": [\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        },\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"items\": [\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        },\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:50:16.000Z",
+                          "updatedAt": "2026-07-28T02:50:16.000Z",
+                          "uid": "35240-a1c11840-2493-48b7-b4b7-65594527c6f3"
+                        },
+                        {
+                          "id": "e8ee7cc8-fab2-4393-ac79-12f3b2b2c1fe",
+                          "name": "Bad request",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/contacts/v1/contacts/:contactKey",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "contacts",
+                                "v1",
+                                "contacts",
+                                ":contactKey"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "contactKey"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:50:16.000Z",
+                          "updatedAt": "2026-07-28T02:50:16.000Z",
+                          "uid": "35240-e8ee7cc8-fab2-4393-ac79-12f3b2b2c1fe"
+                        },
+                        {
+                          "id": "24f8262d-19c4-42a3-83d6-bb08e2d78479",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/contacts/v1/contacts/:contactKey",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "contacts",
+                                "v1",
+                                "contacts",
+                                ":contactKey"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "contactKey"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:50:16.000Z",
+                          "updatedAt": "2026-07-28T02:50:16.000Z",
+                          "uid": "35240-24f8262d-19c4-42a3-83d6-bb08e2d78479"
+                        },
+                        {
+                          "id": "d627a0fb-dbdb-4e5d-b49e-c5b9adfae2e1",
+                          "name": "Contact not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/contacts/v1/contacts/:contactKey",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "contacts",
+                                "v1",
+                                "contacts",
+                                ":contactKey"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "contactKey"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:50:16.000Z",
+                          "updatedAt": "2026-07-28T02:50:16.000Z",
+                          "uid": "35240-d627a0fb-dbdb-4e5d-b49e-c5b9adfae2e1"
+                        },
+                        {
+                          "id": "090d14ad-46b8-4e13-8811-2ff9fad5c33e",
+                          "name": "Too many requests",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/contacts/v1/contacts/:contactKey",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "contacts",
+                                "v1",
+                                "contacts",
+                                ":contactKey"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "contactKey"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:50:16.000Z",
+                          "updatedAt": "2026-07-28T02:50:16.000Z",
+                          "uid": "35240-090d14ad-46b8-4e13-8811-2ff9fad5c33e"
+                        },
+                        {
+                          "id": "3ea0ce04-8610-4ee8-89e8-4e1606dadb9d",
+                          "name": "Internal server error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/contacts/v1/contacts/:contactKey",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "contacts",
+                                "v1",
+                                "contacts",
+                                ":contactKey"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "contactKey"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:50:16.000Z",
+                          "updatedAt": "2026-07-28T02:50:16.000Z",
+                          "uid": "35240-3ea0ce04-8610-4ee8-89e8-4e1606dadb9d"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:50:16.000Z",
+                      "updatedAt": "2026-07-28T02:50:16.000Z",
+                      "uid": "35240-50d470ca-76a1-4638-9537-1aad1716d9e1"
+                    },
+                    {
+                      "name": "Salesforce Marketing Cloud Update a Contact",
+                      "id": "9b1ed12b-5372-4baf-aa71-037ffc88cb35",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"attributeSets\": [\n    {\n      \"name\": \"<string>\",\n      \"items\": [\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        },\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"items\": [\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        },\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/contacts/v1/contacts/:contactKey",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "contacts",
+                            "v1",
+                            "contacts",
+                            ":contactKey"
+                          ],
+                          "variable": [
+                            {
+                              "id": "8427c892-de88-408f-a900-08d6d58ae326",
+                              "key": "contactKey",
+                              "value": "<string>",
+                              "description": "(Required) Unique identifier for the contact"
+                            }
+                          ]
+                        },
+                        "description": "Updates an existing contact's attributes. Provide only the attribute sets and values that need to be changed. Unspecified attributes remain unchanged."
+                      },
+                      "response": [
+                        {
+                          "id": "30643234-f6a6-41bb-9778-aec5e56a8a8a",
+                          "name": "Contact updated successfully",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"attributeSets\": [\n    {\n      \"name\": \"<string>\",\n      \"items\": [\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        },\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"items\": [\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        },\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/contacts/v1/contacts/:contactKey",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "contacts",
+                                "v1",
+                                "contacts",
+                                ":contactKey"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "contactKey"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"operationStatus\": \"<string>\",\n  \"requestServiceMessageID\": \"<string>\",\n  \"responseDateTime\": \"<dateTime>\",\n  \"resultMessages\": [\n    {\n      \"resultType\": \"<string>\",\n      \"resultCode\": \"<string>\",\n      \"resultMessage\": \"<string>\"\n    },\n    {\n      \"resultType\": \"<string>\",\n      \"resultCode\": \"<string>\",\n      \"resultMessage\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:50:16.000Z",
+                          "updatedAt": "2026-07-28T02:50:16.000Z",
+                          "uid": "35240-30643234-f6a6-41bb-9778-aec5e56a8a8a"
+                        },
+                        {
+                          "id": "4e58689b-a270-4a0f-8fb6-168dc74f0ade",
+                          "name": "Bad request",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"attributeSets\": [\n    {\n      \"name\": \"<string>\",\n      \"items\": [\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        },\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"items\": [\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        },\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/contacts/v1/contacts/:contactKey",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "contacts",
+                                "v1",
+                                "contacts",
+                                ":contactKey"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "contactKey"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:50:16.000Z",
+                          "updatedAt": "2026-07-28T02:50:16.000Z",
+                          "uid": "35240-4e58689b-a270-4a0f-8fb6-168dc74f0ade"
+                        },
+                        {
+                          "id": "55053b73-28df-4bfe-b03a-1a2a43318054",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"attributeSets\": [\n    {\n      \"name\": \"<string>\",\n      \"items\": [\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        },\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"items\": [\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        },\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/contacts/v1/contacts/:contactKey",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "contacts",
+                                "v1",
+                                "contacts",
+                                ":contactKey"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "contactKey"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:50:16.000Z",
+                          "updatedAt": "2026-07-28T02:50:16.000Z",
+                          "uid": "35240-55053b73-28df-4bfe-b03a-1a2a43318054"
+                        },
+                        {
+                          "id": "311fc4aa-6b36-49cf-a322-77912f65b28d",
+                          "name": "Contact not found",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"attributeSets\": [\n    {\n      \"name\": \"<string>\",\n      \"items\": [\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        },\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"items\": [\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        },\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/contacts/v1/contacts/:contactKey",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "contacts",
+                                "v1",
+                                "contacts",
+                                ":contactKey"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "contactKey"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:50:16.000Z",
+                          "updatedAt": "2026-07-28T02:50:16.000Z",
+                          "uid": "35240-311fc4aa-6b36-49cf-a322-77912f65b28d"
+                        },
+                        {
+                          "id": "b846a901-3b0b-444a-bbb9-7494ffbf9e42",
+                          "name": "Too many requests",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"attributeSets\": [\n    {\n      \"name\": \"<string>\",\n      \"items\": [\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        },\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"items\": [\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        },\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/contacts/v1/contacts/:contactKey",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "contacts",
+                                "v1",
+                                "contacts",
+                                ":contactKey"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "contactKey"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:50:16.000Z",
+                          "updatedAt": "2026-07-28T02:50:16.000Z",
+                          "uid": "35240-b846a901-3b0b-444a-bbb9-7494ffbf9e42"
+                        },
+                        {
+                          "id": "38c5ca98-521c-49f8-aeff-27c66532c997",
+                          "name": "Internal server error",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"attributeSets\": [\n    {\n      \"name\": \"<string>\",\n      \"items\": [\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        },\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"items\": [\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        },\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/contacts/v1/contacts/:contactKey",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "contacts",
+                                "v1",
+                                "contacts",
+                                ":contactKey"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "contactKey"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:50:16.000Z",
+                          "updatedAt": "2026-07-28T02:50:16.000Z",
+                          "uid": "35240-38c5ca98-521c-49f8-aeff-27c66532c997"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:50:16.000Z",
+                      "updatedAt": "2026-07-28T02:50:16.000Z",
+                      "uid": "35240-9b1ed12b-5372-4baf-aa71-037ffc88cb35"
+                    },
+                    {
+                      "name": "Salesforce Marketing Cloud Delete a Contact",
+                      "id": "fac63fea-efb9-4df3-9e1b-5794dcf5fe71",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/contacts/v1/contacts/:contactKey",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "contacts",
+                            "v1",
+                            "contacts",
+                            ":contactKey"
+                          ],
+                          "variable": [
+                            {
+                              "id": "a4555862-1935-4b41-8e08-483b3e2f7102",
+                              "key": "contactKey",
+                              "value": "<string>",
+                              "description": "(Required) Unique identifier for the contact to delete"
+                            }
+                          ]
+                        },
+                        "description": "Initiates an asynchronous delete operation for a contact identified by contactKey. This operation removes the contact and associated data from Marketing Cloud. The delete process runs asynchronously and may take time to complete."
+                      },
+                      "response": [
+                        {
+                          "id": "742c1e95-9adb-4918-bfba-95fe61f14ee9",
+                          "name": "Contact delete operation initiated",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/contacts/v1/contacts/:contactKey",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "contacts",
+                                "v1",
+                                "contacts",
+                                ":contactKey"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "contactKey"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"operationStatus\": \"<string>\",\n  \"requestServiceMessageID\": \"<string>\",\n  \"responseDateTime\": \"<dateTime>\",\n  \"operationInitiated\": \"<boolean>\"\n}",
+                          "createdAt": "2026-07-28T02:50:16.000Z",
+                          "updatedAt": "2026-07-28T02:50:16.000Z",
+                          "uid": "35240-742c1e95-9adb-4918-bfba-95fe61f14ee9"
+                        },
+                        {
+                          "id": "e69f90c8-dd25-43fd-9c7d-fe21eb6a62e0",
+                          "name": "Bad request",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/contacts/v1/contacts/:contactKey",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "contacts",
+                                "v1",
+                                "contacts",
+                                ":contactKey"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "contactKey"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:50:16.000Z",
+                          "updatedAt": "2026-07-28T02:50:16.000Z",
+                          "uid": "35240-e69f90c8-dd25-43fd-9c7d-fe21eb6a62e0"
+                        },
+                        {
+                          "id": "223bbc51-5ac1-4f27-856a-b890d2418bd0",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/contacts/v1/contacts/:contactKey",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "contacts",
+                                "v1",
+                                "contacts",
+                                ":contactKey"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "contactKey"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:50:16.000Z",
+                          "updatedAt": "2026-07-28T02:50:16.000Z",
+                          "uid": "35240-223bbc51-5ac1-4f27-856a-b890d2418bd0"
+                        },
+                        {
+                          "id": "867ee88f-1598-46ff-83cc-0d2166b3b54d",
+                          "name": "Contact not found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/contacts/v1/contacts/:contactKey",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "contacts",
+                                "v1",
+                                "contacts",
+                                ":contactKey"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "contactKey"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:50:16.000Z",
+                          "updatedAt": "2026-07-28T02:50:16.000Z",
+                          "uid": "35240-867ee88f-1598-46ff-83cc-0d2166b3b54d"
+                        },
+                        {
+                          "id": "40a8bccb-9ba6-4cd3-b8f1-9164e832020e",
+                          "name": "Too many requests",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/contacts/v1/contacts/:contactKey",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "contacts",
+                                "v1",
+                                "contacts",
+                                ":contactKey"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "contactKey"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:50:16.000Z",
+                          "updatedAt": "2026-07-28T02:50:16.000Z",
+                          "uid": "35240-40a8bccb-9ba6-4cd3-b8f1-9164e832020e"
+                        },
+                        {
+                          "id": "4ef93e1c-57c4-4c2f-a957-dc92858670d6",
+                          "name": "Internal server error",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/contacts/v1/contacts/:contactKey",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "contacts",
+                                "v1",
+                                "contacts",
+                                ":contactKey"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "contactKey"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:50:16.000Z",
+                          "updatedAt": "2026-07-28T02:50:16.000Z",
+                          "uid": "35240-4ef93e1c-57c4-4c2f-a957-dc92858670d6"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:50:16.000Z",
+                      "updatedAt": "2026-07-28T02:50:16.000Z",
+                      "uid": "35240-fac63fea-efb9-4df3-9e1b-5794dcf5fe71"
+                    }
+                  ],
+                  "id": "509a4839-4d69-4856-a3f4-1cff3e0af528",
+                  "createdAt": "2026-07-28T02:50:16.000Z",
+                  "updatedAt": "2026-07-28T02:50:16.000Z",
+                  "uid": "35240-509a4839-4d69-4856-a3f4-1cff3e0af528"
+                },
+                {
+                  "name": "Salesforce Marketing Cloud Create Contacts",
+                  "id": "da6e19ee-9275-436d-a0d4-6c66557da404",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"contactKey\": \"<string>\",\n  \"attributeSets\": [\n    {\n      \"name\": \"<string>\",\n      \"items\": [\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        },\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"items\": [\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        },\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/contacts/v1/contacts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "contacts",
+                        "v1",
+                        "contacts"
+                      ]
+                    },
+                    "description": "Creates one or more contacts in Marketing Cloud. Each contact requires a contactKey as a unique identifier. You can include attribute values for any defined attribute sets such as Email Addresses, MobileConnect Demographics, or custom attribute sets."
+                  },
+                  "response": [
+                    {
+                      "id": "5858021a-ee59-4cee-9b82-85294f2092cc",
+                      "name": "Contacts created successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"contactKey\": \"<string>\",\n  \"attributeSets\": [\n    {\n      \"name\": \"<string>\",\n      \"items\": [\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        },\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"items\": [\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        },\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/contacts/v1/contacts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "contacts",
+                            "v1",
+                            "contacts"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"operationStatus\": \"<string>\",\n  \"requestServiceMessageID\": \"<string>\",\n  \"responseDateTime\": \"<dateTime>\",\n  \"resultMessages\": [\n    {\n      \"resultType\": \"<string>\",\n      \"resultCode\": \"<string>\",\n      \"resultMessage\": \"<string>\"\n    },\n    {\n      \"resultType\": \"<string>\",\n      \"resultCode\": \"<string>\",\n      \"resultMessage\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:50:16.000Z",
+                      "updatedAt": "2026-07-28T02:50:16.000Z",
+                      "uid": "35240-5858021a-ee59-4cee-9b82-85294f2092cc"
+                    },
+                    {
+                      "id": "f331dd68-6973-4577-a85a-894fdd328117",
+                      "name": "Bad request - invalid contact data",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"contactKey\": \"<string>\",\n  \"attributeSets\": [\n    {\n      \"name\": \"<string>\",\n      \"items\": [\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        },\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"items\": [\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        },\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/contacts/v1/contacts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "contacts",
+                            "v1",
+                            "contacts"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:50:16.000Z",
+                      "updatedAt": "2026-07-28T02:50:16.000Z",
+                      "uid": "35240-f331dd68-6973-4577-a85a-894fdd328117"
+                    },
+                    {
+                      "id": "90ae6dae-4392-4455-9932-7210cb5dd3d8",
+                      "name": "Unauthorized - invalid or expired access token",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"contactKey\": \"<string>\",\n  \"attributeSets\": [\n    {\n      \"name\": \"<string>\",\n      \"items\": [\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        },\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"items\": [\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        },\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/contacts/v1/contacts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "contacts",
+                            "v1",
+                            "contacts"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:50:16.000Z",
+                      "updatedAt": "2026-07-28T02:50:16.000Z",
+                      "uid": "35240-90ae6dae-4392-4455-9932-7210cb5dd3d8"
+                    },
+                    {
+                      "id": "52884de1-f502-440b-b3b5-e04b3d819809",
+                      "name": "Forbidden - insufficient permissions",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"contactKey\": \"<string>\",\n  \"attributeSets\": [\n    {\n      \"name\": \"<string>\",\n      \"items\": [\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        },\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"items\": [\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        },\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/contacts/v1/contacts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "contacts",
+                            "v1",
+                            "contacts"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:50:16.000Z",
+                      "updatedAt": "2026-07-28T02:50:16.000Z",
+                      "uid": "35240-52884de1-f502-440b-b3b5-e04b3d819809"
+                    },
+                    {
+                      "id": "9b383f79-6ecd-4198-8d65-6ce30bc6bb80",
+                      "name": "Too many requests - rate limit exceeded",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"contactKey\": \"<string>\",\n  \"attributeSets\": [\n    {\n      \"name\": \"<string>\",\n      \"items\": [\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        },\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"items\": [\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        },\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/contacts/v1/contacts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "contacts",
+                            "v1",
+                            "contacts"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:50:16.000Z",
+                      "updatedAt": "2026-07-28T02:50:16.000Z",
+                      "uid": "35240-9b383f79-6ecd-4198-8d65-6ce30bc6bb80"
+                    },
+                    {
+                      "id": "c250c8e5-67e4-4bcd-a965-71716a82e623",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"contactKey\": \"<string>\",\n  \"attributeSets\": [\n    {\n      \"name\": \"<string>\",\n      \"items\": [\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        },\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"items\": [\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        },\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {\n                \"description\": \"Value of the attribute\",\n                \"example\": \"example_value\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/contacts/v1/contacts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "contacts",
+                            "v1",
+                            "contacts"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:50:16.000Z",
+                      "updatedAt": "2026-07-28T02:50:16.000Z",
+                      "uid": "35240-c250c8e5-67e4-4bcd-a965-71716a82e623"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:50:16.000Z",
+                  "updatedAt": "2026-07-28T02:50:16.000Z",
+                  "uid": "35240-da6e19ee-9275-436d-a0d4-6c66557da404"
+                }
+              ],
+              "id": "4291f0e3-58ae-4e5c-b897-7c7069d70d00",
+              "createdAt": "2026-07-28T02:50:16.000Z",
+              "updatedAt": "2026-07-28T02:50:16.000Z",
+              "uid": "35240-4291f0e3-58ae-4e5c-b897-7c7069d70d00"
+            },
+            {
+              "name": "attributeSets",
+              "item": [
+                {
+                  "name": "Salesforce Marketing Cloud List Attribute Sets",
+                  "id": "881bd023-31b8-4eca-8e5c-87b824092b8c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/contacts/v1/attributeSets",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "contacts",
+                        "v1",
+                        "attributeSets"
+                      ]
+                    },
+                    "description": "Retrieves all attribute sets defined in Marketing Cloud. Attribute sets define the structure of contact data, including system attribute sets like Email Addresses and MobileConnect Demographics, as well as custom attribute sets."
+                  },
+                  "response": [
+                    {
+                      "id": "03dd0fef-5cdb-4e80-911d-e6eed8eb16ec",
+                      "name": "Attribute sets retrieved",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/contacts/v1/attributeSets",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "contacts",
+                            "v1",
+                            "attributeSets"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"count\": \"<integer>\",\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"attributes\": [\n        {\n          \"name\": \"<string>\",\n          \"dataType\": \"<string>\",\n          \"isRequired\": \"<boolean>\",\n          \"isReadOnly\": \"<boolean>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"dataType\": \"<string>\",\n          \"isRequired\": \"<boolean>\",\n          \"isReadOnly\": \"<boolean>\"\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"attributes\": [\n        {\n          \"name\": \"<string>\",\n          \"dataType\": \"<string>\",\n          \"isRequired\": \"<boolean>\",\n          \"isReadOnly\": \"<boolean>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"dataType\": \"<string>\",\n          \"isRequired\": \"<boolean>\",\n          \"isReadOnly\": \"<boolean>\"\n        }\n      ]\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:50:16.000Z",
+                      "updatedAt": "2026-07-28T02:50:16.000Z",
+                      "uid": "35240-03dd0fef-5cdb-4e80-911d-e6eed8eb16ec"
+                    },
+                    {
+                      "id": "ebca8748-551f-4018-90c4-2a9d61dde433",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/contacts/v1/attributeSets",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "contacts",
+                            "v1",
+                            "attributeSets"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:50:16.000Z",
+                      "updatedAt": "2026-07-28T02:50:16.000Z",
+                      "uid": "35240-ebca8748-551f-4018-90c4-2a9d61dde433"
+                    },
+                    {
+                      "id": "fb358f61-0fa6-4bab-bdf7-e3d27239a476",
+                      "name": "Too many requests",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/contacts/v1/attributeSets",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "contacts",
+                            "v1",
+                            "attributeSets"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:50:16.000Z",
+                      "updatedAt": "2026-07-28T02:50:16.000Z",
+                      "uid": "35240-fb358f61-0fa6-4bab-bdf7-e3d27239a476"
+                    },
+                    {
+                      "id": "5cafb935-c3e9-4f0c-865e-4ed5fbe41be0",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/contacts/v1/attributeSets",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "contacts",
+                            "v1",
+                            "attributeSets"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:50:16.000Z",
+                      "updatedAt": "2026-07-28T02:50:16.000Z",
+                      "uid": "35240-5cafb935-c3e9-4f0c-865e-4ed5fbe41be0"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:50:16.000Z",
+                  "updatedAt": "2026-07-28T02:50:16.000Z",
+                  "uid": "35240-881bd023-31b8-4eca-8e5c-87b824092b8c"
+                }
+              ],
+              "id": "4e5a4163-8c74-4cfa-a287-bf3fc11a8b1c",
+              "createdAt": "2026-07-28T02:50:16.000Z",
+              "updatedAt": "2026-07-28T02:50:16.000Z",
+              "uid": "35240-4e5a4163-8c74-4cfa-a287-bf3fc11a8b1c"
+            }
+          ],
+          "id": "5b09685b-cd03-4013-8b6d-f683f99adef2",
+          "createdAt": "2026-07-28T02:50:16.000Z",
+          "updatedAt": "2026-07-28T02:50:16.000Z",
+          "uid": "35240-5b09685b-cd03-4013-8b6d-f683f99adef2"
+        }
+      ],
+      "id": "f6ae34de-a28e-4893-849b-823310b4021f",
+      "createdAt": "2026-07-28T02:50:16.000Z",
+      "updatedAt": "2026-07-28T02:50:16.000Z",
+      "uid": "35240-f6ae34de-a28e-4893-849b-823310b4021f"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://YOUR_SUBDOMAIN.auth.marketingcloudapis.com/v2/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "subdomain",
+      "value": "YOUR_SUBDOMAIN"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{subdomain}}.rest.marketingcloudapis.com"
+    }
+  ]
+}

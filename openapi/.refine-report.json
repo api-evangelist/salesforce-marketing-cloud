@@ -1,0 +1,18 @@
+{
+  "provider": "salesforce-marketing-cloud",
+  "sources": [
+    "salesforce-marketing-cloud-assets-api-openapi.yml",
+    "salesforce-marketing-cloud-contacts-api-openapi.yml",
+    "salesforce-marketing-cloud-journeys-api-openapi.yml"
+  ],
+  "outputs": [
+    "salesforce-marketing-cloud-assets-api-openapi.yml",
+    "salesforce-marketing-cloud-contacts-api-openapi.yml",
+    "salesforce-marketing-cloud-journeys-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

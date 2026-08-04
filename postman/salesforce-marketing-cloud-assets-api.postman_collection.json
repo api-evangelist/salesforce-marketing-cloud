@@ -1,0 +1,2451 @@
+{
+  "info": {
+    "_postman_id": "7ec02e60-fe28-4fa4-9d72-5de9f29292b6",
+    "name": "Salesforce Marketing Cloud REST Assets API",
+    "description": "The Salesforce Marketing Cloud REST API provides programmatic access to Marketing Cloud features including contacts, journeys, and assets. The API uses JSON request and response bodies and OAuth 2.0 authentication via the Marketing Cloud authentication endpoint. All API requests require a valid access token obtained through the Server-to-Server OAuth flow.\n\nContact Support:\n Name: Salesforce Marketing Cloud Support\n Email: support@salesforce.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:50:01.000Z",
+    "updatedAt": "2026-07-28T02:50:02.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7ec02e60-fe28-4fa4-9d72-5de9f29292b6"
+  },
+  "item": [
+    {
+      "name": "asset",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "content",
+              "item": [
+                {
+                  "name": "assets",
+                  "item": [
+                    {
+                      "name": "{id}",
+                      "item": [
+                        {
+                          "name": "Salesforce Marketing Cloud Retrieve an Asset",
+                          "id": "334624c2-0418-4412-9fc1-3f1225d937a7",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/asset/v1/content/assets/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "asset",
+                                "v1",
+                                "content",
+                                "assets",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "76bb6b21-4734-40a4-8e1c-6c71d647d2da",
+                                  "key": "id",
+                                  "value": "<integer>",
+                                  "description": "(Required) Unique identifier of the asset"
+                                }
+                              ]
+                            },
+                            "description": "Retrieves a single asset by its unique identifier. Returns the complete asset definition including content, metadata, and associated category."
+                          },
+                          "response": [
+                            {
+                              "id": "a11975e1-6f01-45b8-9fe2-cb9094875223",
+                              "name": "Asset retrieved successfully",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/asset/v1/content/assets/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "asset",
+                                    "v1",
+                                    "content",
+                                    "assets",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<integer>\",\n  \"customerKey\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"assetType\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\"\n  },\n  \"category\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"parentId\": \"<integer>\"\n  },\n  \"content\": \"<string>\",\n  \"views\": {\n    \"html\": {\n      \"content\": \"<string>\"\n    },\n    \"text\": {\n      \"content\": \"<string>\"\n    },\n    \"subjectLine\": {\n      \"content\": \"<string>\"\n    },\n    \"preheader\": {\n      \"content\": \"<string>\"\n    }\n  },\n  \"data\": {\n    \"quis45\": true\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": {\n    \"id\": \"<integer>\",\n    \"name\": \"Approved\"\n  },\n  \"createdDate\": \"<dateTime>\",\n  \"modifiedDate\": \"<dateTime>\",\n  \"createdBy\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"modifiedBy\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"email\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:50:02.000Z",
+                              "updatedAt": "2026-07-28T02:50:02.000Z",
+                              "uid": "35240-a11975e1-6f01-45b8-9fe2-cb9094875223"
+                            },
+                            {
+                              "id": "7e701236-38f2-426d-9302-808e797a0944",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/asset/v1/content/assets/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "asset",
+                                    "v1",
+                                    "content",
+                                    "assets",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:50:02.000Z",
+                              "updatedAt": "2026-07-28T02:50:02.000Z",
+                              "uid": "35240-7e701236-38f2-426d-9302-808e797a0944"
+                            },
+                            {
+                              "id": "c21aad63-f14b-45ad-81b3-de0f328e984f",
+                              "name": "Asset not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/asset/v1/content/assets/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "asset",
+                                    "v1",
+                                    "content",
+                                    "assets",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:50:02.000Z",
+                              "updatedAt": "2026-07-28T02:50:02.000Z",
+                              "uid": "35240-c21aad63-f14b-45ad-81b3-de0f328e984f"
+                            },
+                            {
+                              "id": "0e1ee390-82b8-449b-9331-8e05fb42f68c",
+                              "name": "Too many requests",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/asset/v1/content/assets/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "asset",
+                                    "v1",
+                                    "content",
+                                    "assets",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:50:02.000Z",
+                              "updatedAt": "2026-07-28T02:50:02.000Z",
+                              "uid": "35240-0e1ee390-82b8-449b-9331-8e05fb42f68c"
+                            },
+                            {
+                              "id": "3f7afe94-c208-4814-b485-4d26f9b010a7",
+                              "name": "Internal server error",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/asset/v1/content/assets/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "asset",
+                                    "v1",
+                                    "content",
+                                    "assets",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:50:02.000Z",
+                              "updatedAt": "2026-07-28T02:50:02.000Z",
+                              "uid": "35240-3f7afe94-c208-4814-b485-4d26f9b010a7"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:50:02.000Z",
+                          "updatedAt": "2026-07-28T02:50:02.000Z",
+                          "uid": "35240-334624c2-0418-4412-9fc1-3f1225d937a7"
+                        },
+                        {
+                          "name": "Salesforce Marketing Cloud Update an Asset",
+                          "id": "94400600-2016-469d-afca-7575aec8f396",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"assetType\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"customerKey\": \"<string>\",\n  \"category\": {\n    \"id\": \"<integer>\"\n  },\n  \"content\": \"<string>\",\n  \"views\": {\n    \"html\": {\n      \"content\": \"<string>\"\n    },\n    \"text\": {\n      \"content\": \"<string>\"\n    },\n    \"subjectLine\": {\n      \"content\": \"<string>\"\n    },\n    \"preheader\": {\n      \"content\": \"<string>\"\n    }\n  },\n  \"data\": {\n    \"doloref_\": -29840390\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/asset/v1/content/assets/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "asset",
+                                "v1",
+                                "content",
+                                "assets",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "3f1a3ae0-8a21-413f-87ee-4e91ecda3325",
+                                  "key": "id",
+                                  "value": "<integer>",
+                                  "description": "(Required) Unique identifier of the asset"
+                                }
+                              ]
+                            },
+                            "description": "Updates an existing asset. Provide the complete asset definition with all desired values. Fields not included in the request body are not modified."
+                          },
+                          "response": [
+                            {
+                              "id": "13d59864-37ba-4b6b-a2ff-836aa4ba5fc7",
+                              "name": "Asset updated successfully",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"assetType\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"customerKey\": \"<string>\",\n  \"category\": {\n    \"id\": \"<integer>\"\n  },\n  \"content\": \"<string>\",\n  \"views\": {\n    \"html\": {\n      \"content\": \"<string>\"\n    },\n    \"text\": {\n      \"content\": \"<string>\"\n    },\n    \"subjectLine\": {\n      \"content\": \"<string>\"\n    },\n    \"preheader\": {\n      \"content\": \"<string>\"\n    }\n  },\n  \"data\": {\n    \"doloref_\": -29840390\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/asset/v1/content/assets/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "asset",
+                                    "v1",
+                                    "content",
+                                    "assets",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<integer>\",\n  \"customerKey\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"assetType\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\"\n  },\n  \"category\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"parentId\": \"<integer>\"\n  },\n  \"content\": \"<string>\",\n  \"views\": {\n    \"html\": {\n      \"content\": \"<string>\"\n    },\n    \"text\": {\n      \"content\": \"<string>\"\n    },\n    \"subjectLine\": {\n      \"content\": \"<string>\"\n    },\n    \"preheader\": {\n      \"content\": \"<string>\"\n    }\n  },\n  \"data\": {\n    \"quis45\": true\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": {\n    \"id\": \"<integer>\",\n    \"name\": \"Approved\"\n  },\n  \"createdDate\": \"<dateTime>\",\n  \"modifiedDate\": \"<dateTime>\",\n  \"createdBy\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"modifiedBy\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"email\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:50:02.000Z",
+                              "updatedAt": "2026-07-28T02:50:02.000Z",
+                              "uid": "35240-13d59864-37ba-4b6b-a2ff-836aa4ba5fc7"
+                            },
+                            {
+                              "id": "8f7c4c84-e871-4d41-ada1-b89a64e976b1",
+                              "name": "Bad request - invalid asset definition",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"assetType\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"customerKey\": \"<string>\",\n  \"category\": {\n    \"id\": \"<integer>\"\n  },\n  \"content\": \"<string>\",\n  \"views\": {\n    \"html\": {\n      \"content\": \"<string>\"\n    },\n    \"text\": {\n      \"content\": \"<string>\"\n    },\n    \"subjectLine\": {\n      \"content\": \"<string>\"\n    },\n    \"preheader\": {\n      \"content\": \"<string>\"\n    }\n  },\n  \"data\": {\n    \"doloref_\": -29840390\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/asset/v1/content/assets/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "asset",
+                                    "v1",
+                                    "content",
+                                    "assets",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:50:02.000Z",
+                              "updatedAt": "2026-07-28T02:50:02.000Z",
+                              "uid": "35240-8f7c4c84-e871-4d41-ada1-b89a64e976b1"
+                            },
+                            {
+                              "id": "33f935ed-ddfc-4a41-9677-ba8be0e2ae07",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"assetType\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"customerKey\": \"<string>\",\n  \"category\": {\n    \"id\": \"<integer>\"\n  },\n  \"content\": \"<string>\",\n  \"views\": {\n    \"html\": {\n      \"content\": \"<string>\"\n    },\n    \"text\": {\n      \"content\": \"<string>\"\n    },\n    \"subjectLine\": {\n      \"content\": \"<string>\"\n    },\n    \"preheader\": {\n      \"content\": \"<string>\"\n    }\n  },\n  \"data\": {\n    \"doloref_\": -29840390\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/asset/v1/content/assets/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "asset",
+                                    "v1",
+                                    "content",
+                                    "assets",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:50:02.000Z",
+                              "updatedAt": "2026-07-28T02:50:02.000Z",
+                              "uid": "35240-33f935ed-ddfc-4a41-9677-ba8be0e2ae07"
+                            },
+                            {
+                              "id": "a78f6986-ed51-4645-bc8d-f7c104dbb542",
+                              "name": "Asset not found",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"assetType\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"customerKey\": \"<string>\",\n  \"category\": {\n    \"id\": \"<integer>\"\n  },\n  \"content\": \"<string>\",\n  \"views\": {\n    \"html\": {\n      \"content\": \"<string>\"\n    },\n    \"text\": {\n      \"content\": \"<string>\"\n    },\n    \"subjectLine\": {\n      \"content\": \"<string>\"\n    },\n    \"preheader\": {\n      \"content\": \"<string>\"\n    }\n  },\n  \"data\": {\n    \"doloref_\": -29840390\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/asset/v1/content/assets/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "asset",
+                                    "v1",
+                                    "content",
+                                    "assets",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:50:02.000Z",
+                              "updatedAt": "2026-07-28T02:50:02.000Z",
+                              "uid": "35240-a78f6986-ed51-4645-bc8d-f7c104dbb542"
+                            },
+                            {
+                              "id": "62b77178-79c7-47cf-8a1c-ce25005eab84",
+                              "name": "Too many requests",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"assetType\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"customerKey\": \"<string>\",\n  \"category\": {\n    \"id\": \"<integer>\"\n  },\n  \"content\": \"<string>\",\n  \"views\": {\n    \"html\": {\n      \"content\": \"<string>\"\n    },\n    \"text\": {\n      \"content\": \"<string>\"\n    },\n    \"subjectLine\": {\n      \"content\": \"<string>\"\n    },\n    \"preheader\": {\n      \"content\": \"<string>\"\n    }\n  },\n  \"data\": {\n    \"doloref_\": -29840390\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/asset/v1/content/assets/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "asset",
+                                    "v1",
+                                    "content",
+                                    "assets",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:50:02.000Z",
+                              "updatedAt": "2026-07-28T02:50:02.000Z",
+                              "uid": "35240-62b77178-79c7-47cf-8a1c-ce25005eab84"
+                            },
+                            {
+                              "id": "abf35315-76bc-4ecd-871d-332da7201bfd",
+                              "name": "Internal server error",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"assetType\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"customerKey\": \"<string>\",\n  \"category\": {\n    \"id\": \"<integer>\"\n  },\n  \"content\": \"<string>\",\n  \"views\": {\n    \"html\": {\n      \"content\": \"<string>\"\n    },\n    \"text\": {\n      \"content\": \"<string>\"\n    },\n    \"subjectLine\": {\n      \"content\": \"<string>\"\n    },\n    \"preheader\": {\n      \"content\": \"<string>\"\n    }\n  },\n  \"data\": {\n    \"doloref_\": -29840390\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/asset/v1/content/assets/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "asset",
+                                    "v1",
+                                    "content",
+                                    "assets",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:50:02.000Z",
+                              "updatedAt": "2026-07-28T02:50:02.000Z",
+                              "uid": "35240-abf35315-76bc-4ecd-871d-332da7201bfd"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:50:02.000Z",
+                          "updatedAt": "2026-07-28T02:50:02.000Z",
+                          "uid": "35240-94400600-2016-469d-afca-7575aec8f396"
+                        },
+                        {
+                          "name": "Salesforce Marketing Cloud Delete an Asset",
+                          "id": "0639d18d-9aac-4c1a-836e-a9e44dbaf7a0",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/asset/v1/content/assets/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "asset",
+                                "v1",
+                                "content",
+                                "assets",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "348fd6a1-c38c-4d76-8380-4172b4c8c94f",
+                                  "key": "id",
+                                  "value": "<integer>",
+                                  "description": "(Required) Unique identifier of the asset to delete"
+                                }
+                              ]
+                            },
+                            "description": "Deletes an asset from Content Builder. This action is permanent and cannot be undone."
+                          },
+                          "response": [
+                            {
+                              "id": "a3656e1f-25cb-42b7-9452-a5b2fb81f30b",
+                              "name": "Asset deleted successfully",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/asset/v1/content/assets/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "asset",
+                                    "v1",
+                                    "content",
+                                    "assets",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:50:02.000Z",
+                              "updatedAt": "2026-07-28T02:50:02.000Z",
+                              "uid": "35240-a3656e1f-25cb-42b7-9452-a5b2fb81f30b"
+                            },
+                            {
+                              "id": "89046e38-2a31-48fd-8c47-675b336284d0",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/asset/v1/content/assets/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "asset",
+                                    "v1",
+                                    "content",
+                                    "assets",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:50:02.000Z",
+                              "updatedAt": "2026-07-28T02:50:02.000Z",
+                              "uid": "35240-89046e38-2a31-48fd-8c47-675b336284d0"
+                            },
+                            {
+                              "id": "5c4a42c9-c7ae-4ffd-8431-04f1656c4e37",
+                              "name": "Asset not found",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/asset/v1/content/assets/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "asset",
+                                    "v1",
+                                    "content",
+                                    "assets",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:50:02.000Z",
+                              "updatedAt": "2026-07-28T02:50:02.000Z",
+                              "uid": "35240-5c4a42c9-c7ae-4ffd-8431-04f1656c4e37"
+                            },
+                            {
+                              "id": "c3cbb2f2-b1eb-4e31-b6cf-7946f1166876",
+                              "name": "Too many requests",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/asset/v1/content/assets/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "asset",
+                                    "v1",
+                                    "content",
+                                    "assets",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:50:02.000Z",
+                              "updatedAt": "2026-07-28T02:50:02.000Z",
+                              "uid": "35240-c3cbb2f2-b1eb-4e31-b6cf-7946f1166876"
+                            },
+                            {
+                              "id": "c3c2063f-d27c-4ffa-9d5e-4ec6fec96473",
+                              "name": "Internal server error",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/asset/v1/content/assets/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "asset",
+                                    "v1",
+                                    "content",
+                                    "assets",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:50:02.000Z",
+                              "updatedAt": "2026-07-28T02:50:02.000Z",
+                              "uid": "35240-c3c2063f-d27c-4ffa-9d5e-4ec6fec96473"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:50:02.000Z",
+                          "updatedAt": "2026-07-28T02:50:02.000Z",
+                          "uid": "35240-0639d18d-9aac-4c1a-836e-a9e44dbaf7a0"
+                        }
+                      ],
+                      "id": "c49a9a67-09fa-495c-9ff1-ebe151002aed",
+                      "createdAt": "2026-07-28T02:50:02.000Z",
+                      "updatedAt": "2026-07-28T02:50:02.000Z",
+                      "uid": "35240-c49a9a67-09fa-495c-9ff1-ebe151002aed"
+                    },
+                    {
+                      "name": "query",
+                      "item": [
+                        {
+                          "name": "Salesforce Marketing Cloud Query Assets With Advanced Filtering",
+                          "id": "dcc5dacd-87c7-405d-88d4-222bc193ab56",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"page\": {\n    \"page\": \"<integer>\",\n    \"pageSize\": \"<integer>\"\n  },\n  \"query\": {\n    \"property\": \"<string>\",\n    \"simpleOperator\": \"like\",\n    \"value\": {\n      \"description\": \"Value to compare against\"\n    },\n    \"dateValue\": \"<dateTime>\",\n    \"leftOperand\": {},\n    \"rightOperand\": {},\n    \"logicalOperator\": \"AND\"\n  },\n  \"sort\": [\n    {\n      \"property\": \"<string>\",\n      \"direction\": \"DESC\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"direction\": \"ASC\"\n    }\n  ],\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/asset/v1/content/assets/query",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "asset",
+                                "v1",
+                                "content",
+                                "assets",
+                                "query"
+                              ]
+                            },
+                            "description": "Performs an advanced query against assets using a structured query object. Supports complex filtering with AND/OR logic, nested conditions, and multiple sort criteria. More powerful than the OData-style filter on the list endpoint."
+                          },
+                          "response": [
+                            {
+                              "id": "98c10fa7-e217-4d97-a319-d22e2df82d90",
+                              "name": "Query results returned",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"page\": {\n    \"page\": \"<integer>\",\n    \"pageSize\": \"<integer>\"\n  },\n  \"query\": {\n    \"property\": \"<string>\",\n    \"simpleOperator\": \"like\",\n    \"value\": {\n      \"description\": \"Value to compare against\"\n    },\n    \"dateValue\": \"<dateTime>\",\n    \"leftOperand\": {},\n    \"rightOperand\": {},\n    \"logicalOperator\": \"AND\"\n  },\n  \"sort\": [\n    {\n      \"property\": \"<string>\",\n      \"direction\": \"DESC\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"direction\": \"ASC\"\n    }\n  ],\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/asset/v1/content/assets/query",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "asset",
+                                    "v1",
+                                    "content",
+                                    "assets",
+                                    "query"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"count\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"pageSize\": \"<integer>\",\n  \"items\": [\n    {\n      \"id\": \"<integer>\",\n      \"customerKey\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"assetType\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      },\n      \"category\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"parentId\": \"<integer>\"\n      },\n      \"content\": \"<string>\",\n      \"views\": {\n        \"html\": {\n          \"content\": \"<string>\"\n        },\n        \"text\": {\n          \"content\": \"<string>\"\n        },\n        \"subjectLine\": {\n          \"content\": \"<string>\"\n        },\n        \"preheader\": {\n          \"content\": \"<string>\"\n        }\n      },\n      \"data\": {\n        \"proidenta\": -98880625\n      },\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"status\": {\n        \"id\": \"<integer>\",\n        \"name\": \"Draft\"\n      },\n      \"createdDate\": \"<dateTime>\",\n      \"modifiedDate\": \"<dateTime>\",\n      \"createdBy\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"email\": \"<string>\"\n      },\n      \"modifiedBy\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"email\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<integer>\",\n      \"customerKey\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"assetType\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      },\n      \"category\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"parentId\": \"<integer>\"\n      },\n      \"content\": \"<string>\",\n      \"views\": {\n        \"html\": {\n          \"content\": \"<string>\"\n        },\n        \"text\": {\n          \"content\": \"<string>\"\n        },\n        \"subjectLine\": {\n          \"content\": \"<string>\"\n        },\n        \"preheader\": {\n          \"content\": \"<string>\"\n        }\n      },\n      \"data\": {\n        \"quis_4\": 27986690.016678706,\n        \"ad64\": true\n      },\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"status\": {\n        \"id\": \"<integer>\",\n        \"name\": \"Draft\"\n      },\n      \"createdDate\": \"<dateTime>\",\n      \"modifiedDate\": \"<dateTime>\",\n      \"createdBy\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"email\": \"<string>\"\n      },\n      \"modifiedBy\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"email\": \"<string>\"\n      }\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:50:02.000Z",
+                              "updatedAt": "2026-07-28T02:50:02.000Z",
+                              "uid": "35240-98c10fa7-e217-4d97-a319-d22e2df82d90"
+                            },
+                            {
+                              "id": "32ae1d91-5b58-4f19-a4b1-efa1f77b0f5c",
+                              "name": "Bad request - invalid query",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"page\": {\n    \"page\": \"<integer>\",\n    \"pageSize\": \"<integer>\"\n  },\n  \"query\": {\n    \"property\": \"<string>\",\n    \"simpleOperator\": \"like\",\n    \"value\": {\n      \"description\": \"Value to compare against\"\n    },\n    \"dateValue\": \"<dateTime>\",\n    \"leftOperand\": {},\n    \"rightOperand\": {},\n    \"logicalOperator\": \"AND\"\n  },\n  \"sort\": [\n    {\n      \"property\": \"<string>\",\n      \"direction\": \"DESC\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"direction\": \"ASC\"\n    }\n  ],\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/asset/v1/content/assets/query",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "asset",
+                                    "v1",
+                                    "content",
+                                    "assets",
+                                    "query"
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:50:02.000Z",
+                              "updatedAt": "2026-07-28T02:50:02.000Z",
+                              "uid": "35240-32ae1d91-5b58-4f19-a4b1-efa1f77b0f5c"
+                            },
+                            {
+                              "id": "a6a3fd86-a388-4a96-8506-70ee221e82d0",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"page\": {\n    \"page\": \"<integer>\",\n    \"pageSize\": \"<integer>\"\n  },\n  \"query\": {\n    \"property\": \"<string>\",\n    \"simpleOperator\": \"like\",\n    \"value\": {\n      \"description\": \"Value to compare against\"\n    },\n    \"dateValue\": \"<dateTime>\",\n    \"leftOperand\": {},\n    \"rightOperand\": {},\n    \"logicalOperator\": \"AND\"\n  },\n  \"sort\": [\n    {\n      \"property\": \"<string>\",\n      \"direction\": \"DESC\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"direction\": \"ASC\"\n    }\n  ],\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/asset/v1/content/assets/query",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "asset",
+                                    "v1",
+                                    "content",
+                                    "assets",
+                                    "query"
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:50:02.000Z",
+                              "updatedAt": "2026-07-28T02:50:02.000Z",
+                              "uid": "35240-a6a3fd86-a388-4a96-8506-70ee221e82d0"
+                            },
+                            {
+                              "id": "69d6d5c5-4d63-42de-bbb3-afeadb7d7698",
+                              "name": "Too many requests",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"page\": {\n    \"page\": \"<integer>\",\n    \"pageSize\": \"<integer>\"\n  },\n  \"query\": {\n    \"property\": \"<string>\",\n    \"simpleOperator\": \"like\",\n    \"value\": {\n      \"description\": \"Value to compare against\"\n    },\n    \"dateValue\": \"<dateTime>\",\n    \"leftOperand\": {},\n    \"rightOperand\": {},\n    \"logicalOperator\": \"AND\"\n  },\n  \"sort\": [\n    {\n      \"property\": \"<string>\",\n      \"direction\": \"DESC\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"direction\": \"ASC\"\n    }\n  ],\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/asset/v1/content/assets/query",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "asset",
+                                    "v1",
+                                    "content",
+                                    "assets",
+                                    "query"
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:50:02.000Z",
+                              "updatedAt": "2026-07-28T02:50:02.000Z",
+                              "uid": "35240-69d6d5c5-4d63-42de-bbb3-afeadb7d7698"
+                            },
+                            {
+                              "id": "43a41fd0-c34a-41ff-ab4d-90282060204b",
+                              "name": "Internal server error",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"page\": {\n    \"page\": \"<integer>\",\n    \"pageSize\": \"<integer>\"\n  },\n  \"query\": {\n    \"property\": \"<string>\",\n    \"simpleOperator\": \"like\",\n    \"value\": {\n      \"description\": \"Value to compare against\"\n    },\n    \"dateValue\": \"<dateTime>\",\n    \"leftOperand\": {},\n    \"rightOperand\": {},\n    \"logicalOperator\": \"AND\"\n  },\n  \"sort\": [\n    {\n      \"property\": \"<string>\",\n      \"direction\": \"DESC\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"direction\": \"ASC\"\n    }\n  ],\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/asset/v1/content/assets/query",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "asset",
+                                    "v1",
+                                    "content",
+                                    "assets",
+                                    "query"
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:50:02.000Z",
+                              "updatedAt": "2026-07-28T02:50:02.000Z",
+                              "uid": "35240-43a41fd0-c34a-41ff-ab4d-90282060204b"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:50:02.000Z",
+                          "updatedAt": "2026-07-28T02:50:02.000Z",
+                          "uid": "35240-dcc5dacd-87c7-405d-88d4-222bc193ab56"
+                        }
+                      ],
+                      "id": "e7a2a436-90b5-462f-b200-0ec1c7580c2b",
+                      "createdAt": "2026-07-28T02:50:02.000Z",
+                      "updatedAt": "2026-07-28T02:50:02.000Z",
+                      "uid": "35240-e7a2a436-90b5-462f-b200-0ec1c7580c2b"
+                    },
+                    {
+                      "name": "Salesforce Marketing Cloud List Assets",
+                      "id": "22b99df0-1986-4783-8b1f-ad5363661e47",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/asset/v1/content/assets?$page=1&$pageSize=50&$orderBy=<string>&$filter=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "asset",
+                            "v1",
+                            "content",
+                            "assets"
+                          ],
+                          "query": [
+                            {
+                              "description": "Page number for pagination (1-based)",
+                              "key": "$page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Number of assets per page",
+                              "key": "$pageSize",
+                              "value": "50"
+                            },
+                            {
+                              "description": "Field to sort results by (e.g., modifiedDate DESC, name ASC)",
+                              "key": "$orderBy",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "OData-style filter expression (e.g., assetType.name eq 'htmlemail')",
+                              "key": "$filter",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "description": "Retrieves a collection of assets from Content Builder. Supports filtering, sorting, and pagination. Assets include emails, templates, images, content blocks, and other content types."
+                      },
+                      "response": [
+                        {
+                          "id": "626e31db-b114-43ac-8cbd-144a6a2b7317",
+                          "name": "Assets retrieved successfully",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/asset/v1/content/assets?$page=1&$pageSize=50&$orderBy=<string>&$filter=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "asset",
+                                "v1",
+                                "content",
+                                "assets"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Page number for pagination (1-based)",
+                                  "key": "$page",
+                                  "value": "1"
+                                },
+                                {
+                                  "description": "Number of assets per page",
+                                  "key": "$pageSize",
+                                  "value": "50"
+                                },
+                                {
+                                  "description": "Field to sort results by (e.g., modifiedDate DESC, name ASC)",
+                                  "key": "$orderBy",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "OData-style filter expression (e.g., assetType.name eq 'htmlemail')",
+                                  "key": "$filter",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"count\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"pageSize\": \"<integer>\",\n  \"items\": [\n    {\n      \"id\": \"<integer>\",\n      \"customerKey\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"assetType\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      },\n      \"category\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"parentId\": \"<integer>\"\n      },\n      \"content\": \"<string>\",\n      \"views\": {\n        \"html\": {\n          \"content\": \"<string>\"\n        },\n        \"text\": {\n          \"content\": \"<string>\"\n        },\n        \"subjectLine\": {\n          \"content\": \"<string>\"\n        },\n        \"preheader\": {\n          \"content\": \"<string>\"\n        }\n      },\n      \"data\": {\n        \"proidenta\": -98880625\n      },\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"status\": {\n        \"id\": \"<integer>\",\n        \"name\": \"Draft\"\n      },\n      \"createdDate\": \"<dateTime>\",\n      \"modifiedDate\": \"<dateTime>\",\n      \"createdBy\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"email\": \"<string>\"\n      },\n      \"modifiedBy\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"email\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<integer>\",\n      \"customerKey\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"assetType\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      },\n      \"category\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"parentId\": \"<integer>\"\n      },\n      \"content\": \"<string>\",\n      \"views\": {\n        \"html\": {\n          \"content\": \"<string>\"\n        },\n        \"text\": {\n          \"content\": \"<string>\"\n        },\n        \"subjectLine\": {\n          \"content\": \"<string>\"\n        },\n        \"preheader\": {\n          \"content\": \"<string>\"\n        }\n      },\n      \"data\": {\n        \"quis_4\": 27986690.016678706,\n        \"ad64\": true\n      },\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"status\": {\n        \"id\": \"<integer>\",\n        \"name\": \"Draft\"\n      },\n      \"createdDate\": \"<dateTime>\",\n      \"modifiedDate\": \"<dateTime>\",\n      \"createdBy\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"email\": \"<string>\"\n      },\n      \"modifiedBy\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"email\": \"<string>\"\n      }\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:50:02.000Z",
+                          "updatedAt": "2026-07-28T02:50:02.000Z",
+                          "uid": "35240-626e31db-b114-43ac-8cbd-144a6a2b7317"
+                        },
+                        {
+                          "id": "85583144-2255-4d64-bc7b-fd17fea08fe6",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/asset/v1/content/assets?$page=1&$pageSize=50&$orderBy=<string>&$filter=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "asset",
+                                "v1",
+                                "content",
+                                "assets"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Page number for pagination (1-based)",
+                                  "key": "$page",
+                                  "value": "1"
+                                },
+                                {
+                                  "description": "Number of assets per page",
+                                  "key": "$pageSize",
+                                  "value": "50"
+                                },
+                                {
+                                  "description": "Field to sort results by (e.g., modifiedDate DESC, name ASC)",
+                                  "key": "$orderBy",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "OData-style filter expression (e.g., assetType.name eq 'htmlemail')",
+                                  "key": "$filter",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:50:02.000Z",
+                          "updatedAt": "2026-07-28T02:50:02.000Z",
+                          "uid": "35240-85583144-2255-4d64-bc7b-fd17fea08fe6"
+                        },
+                        {
+                          "id": "860eb317-8346-47e5-ae5f-95000b58719f",
+                          "name": "Too many requests",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/asset/v1/content/assets?$page=1&$pageSize=50&$orderBy=<string>&$filter=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "asset",
+                                "v1",
+                                "content",
+                                "assets"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Page number for pagination (1-based)",
+                                  "key": "$page",
+                                  "value": "1"
+                                },
+                                {
+                                  "description": "Number of assets per page",
+                                  "key": "$pageSize",
+                                  "value": "50"
+                                },
+                                {
+                                  "description": "Field to sort results by (e.g., modifiedDate DESC, name ASC)",
+                                  "key": "$orderBy",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "OData-style filter expression (e.g., assetType.name eq 'htmlemail')",
+                                  "key": "$filter",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:50:02.000Z",
+                          "updatedAt": "2026-07-28T02:50:02.000Z",
+                          "uid": "35240-860eb317-8346-47e5-ae5f-95000b58719f"
+                        },
+                        {
+                          "id": "9acf7402-c3a5-470e-840d-5ec82303ddfe",
+                          "name": "Internal server error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/asset/v1/content/assets?$page=1&$pageSize=50&$orderBy=<string>&$filter=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "asset",
+                                "v1",
+                                "content",
+                                "assets"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Page number for pagination (1-based)",
+                                  "key": "$page",
+                                  "value": "1"
+                                },
+                                {
+                                  "description": "Number of assets per page",
+                                  "key": "$pageSize",
+                                  "value": "50"
+                                },
+                                {
+                                  "description": "Field to sort results by (e.g., modifiedDate DESC, name ASC)",
+                                  "key": "$orderBy",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "OData-style filter expression (e.g., assetType.name eq 'htmlemail')",
+                                  "key": "$filter",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:50:02.000Z",
+                          "updatedAt": "2026-07-28T02:50:02.000Z",
+                          "uid": "35240-9acf7402-c3a5-470e-840d-5ec82303ddfe"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:50:02.000Z",
+                      "updatedAt": "2026-07-28T02:50:02.000Z",
+                      "uid": "35240-22b99df0-1986-4783-8b1f-ad5363661e47"
+                    },
+                    {
+                      "name": "Salesforce Marketing Cloud Create an Asset",
+                      "id": "43c84b26-9d10-4e29-a329-11afb5bd301c",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"assetType\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"customerKey\": \"<string>\",\n  \"category\": {\n    \"id\": \"<integer>\"\n  },\n  \"content\": \"<string>\",\n  \"views\": {\n    \"html\": {\n      \"content\": \"<string>\"\n    },\n    \"text\": {\n      \"content\": \"<string>\"\n    },\n    \"subjectLine\": {\n      \"content\": \"<string>\"\n    },\n    \"preheader\": {\n      \"content\": \"<string>\"\n    }\n  },\n  \"data\": {\n    \"doloref_\": -29840390\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/asset/v1/content/assets",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "asset",
+                            "v1",
+                            "content",
+                            "assets"
+                          ]
+                        },
+                        "description": "Creates a new asset in Content Builder. The asset type determines the required and optional fields. Common asset types include htmlemail, templatebasedemail, htmlblock, codesnippetblock, and image."
+                      },
+                      "response": [
+                        {
+                          "id": "db06542b-1384-41f2-b88e-9c962c1c9ae8",
+                          "name": "Asset created successfully",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"assetType\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"customerKey\": \"<string>\",\n  \"category\": {\n    \"id\": \"<integer>\"\n  },\n  \"content\": \"<string>\",\n  \"views\": {\n    \"html\": {\n      \"content\": \"<string>\"\n    },\n    \"text\": {\n      \"content\": \"<string>\"\n    },\n    \"subjectLine\": {\n      \"content\": \"<string>\"\n    },\n    \"preheader\": {\n      \"content\": \"<string>\"\n    }\n  },\n  \"data\": {\n    \"doloref_\": -29840390\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/asset/v1/content/assets",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "asset",
+                                "v1",
+                                "content",
+                                "assets"
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<integer>\",\n  \"customerKey\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"assetType\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\"\n  },\n  \"category\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"parentId\": \"<integer>\"\n  },\n  \"content\": \"<string>\",\n  \"views\": {\n    \"html\": {\n      \"content\": \"<string>\"\n    },\n    \"text\": {\n      \"content\": \"<string>\"\n    },\n    \"subjectLine\": {\n      \"content\": \"<string>\"\n    },\n    \"preheader\": {\n      \"content\": \"<string>\"\n    }\n  },\n  \"data\": {\n    \"quis45\": true\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"status\": {\n    \"id\": \"<integer>\",\n    \"name\": \"Approved\"\n  },\n  \"createdDate\": \"<dateTime>\",\n  \"modifiedDate\": \"<dateTime>\",\n  \"createdBy\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"modifiedBy\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"email\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:50:02.000Z",
+                          "updatedAt": "2026-07-28T02:50:02.000Z",
+                          "uid": "35240-db06542b-1384-41f2-b88e-9c962c1c9ae8"
+                        },
+                        {
+                          "id": "19e580e6-7457-4d0d-9546-19de71f28980",
+                          "name": "Bad request - invalid asset definition",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"assetType\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"customerKey\": \"<string>\",\n  \"category\": {\n    \"id\": \"<integer>\"\n  },\n  \"content\": \"<string>\",\n  \"views\": {\n    \"html\": {\n      \"content\": \"<string>\"\n    },\n    \"text\": {\n      \"content\": \"<string>\"\n    },\n    \"subjectLine\": {\n      \"content\": \"<string>\"\n    },\n    \"preheader\": {\n      \"content\": \"<string>\"\n    }\n  },\n  \"data\": {\n    \"doloref_\": -29840390\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/asset/v1/content/assets",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "asset",
+                                "v1",
+                                "content",
+                                "assets"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:50:02.000Z",
+                          "updatedAt": "2026-07-28T02:50:02.000Z",
+                          "uid": "35240-19e580e6-7457-4d0d-9546-19de71f28980"
+                        },
+                        {
+                          "id": "3868b474-1be2-4176-9845-38948caf91a4",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"assetType\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"customerKey\": \"<string>\",\n  \"category\": {\n    \"id\": \"<integer>\"\n  },\n  \"content\": \"<string>\",\n  \"views\": {\n    \"html\": {\n      \"content\": \"<string>\"\n    },\n    \"text\": {\n      \"content\": \"<string>\"\n    },\n    \"subjectLine\": {\n      \"content\": \"<string>\"\n    },\n    \"preheader\": {\n      \"content\": \"<string>\"\n    }\n  },\n  \"data\": {\n    \"doloref_\": -29840390\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/asset/v1/content/assets",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "asset",
+                                "v1",
+                                "content",
+                                "assets"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:50:02.000Z",
+                          "updatedAt": "2026-07-28T02:50:02.000Z",
+                          "uid": "35240-3868b474-1be2-4176-9845-38948caf91a4"
+                        },
+                        {
+                          "id": "2d013741-47de-466b-b02d-0aaef5fc821e",
+                          "name": "Too many requests",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"assetType\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"customerKey\": \"<string>\",\n  \"category\": {\n    \"id\": \"<integer>\"\n  },\n  \"content\": \"<string>\",\n  \"views\": {\n    \"html\": {\n      \"content\": \"<string>\"\n    },\n    \"text\": {\n      \"content\": \"<string>\"\n    },\n    \"subjectLine\": {\n      \"content\": \"<string>\"\n    },\n    \"preheader\": {\n      \"content\": \"<string>\"\n    }\n  },\n  \"data\": {\n    \"doloref_\": -29840390\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/asset/v1/content/assets",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "asset",
+                                "v1",
+                                "content",
+                                "assets"
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:50:02.000Z",
+                          "updatedAt": "2026-07-28T02:50:02.000Z",
+                          "uid": "35240-2d013741-47de-466b-b02d-0aaef5fc821e"
+                        },
+                        {
+                          "id": "90f09064-cbc1-4e8d-94d9-14ce1b5e2da4",
+                          "name": "Internal server error",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"assetType\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"customerKey\": \"<string>\",\n  \"category\": {\n    \"id\": \"<integer>\"\n  },\n  \"content\": \"<string>\",\n  \"views\": {\n    \"html\": {\n      \"content\": \"<string>\"\n    },\n    \"text\": {\n      \"content\": \"<string>\"\n    },\n    \"subjectLine\": {\n      \"content\": \"<string>\"\n    },\n    \"preheader\": {\n      \"content\": \"<string>\"\n    }\n  },\n  \"data\": {\n    \"doloref_\": -29840390\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/asset/v1/content/assets",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "asset",
+                                "v1",
+                                "content",
+                                "assets"
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:50:02.000Z",
+                          "updatedAt": "2026-07-28T02:50:02.000Z",
+                          "uid": "35240-90f09064-cbc1-4e8d-94d9-14ce1b5e2da4"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:50:02.000Z",
+                      "updatedAt": "2026-07-28T02:50:02.000Z",
+                      "uid": "35240-43c84b26-9d10-4e29-a329-11afb5bd301c"
+                    }
+                  ],
+                  "id": "cd79e979-2c59-4e60-a0cd-cbb297844d6f",
+                  "createdAt": "2026-07-28T02:50:02.000Z",
+                  "updatedAt": "2026-07-28T02:50:02.000Z",
+                  "uid": "35240-cd79e979-2c59-4e60-a0cd-cbb297844d6f"
+                },
+                {
+                  "name": "categories",
+                  "item": [
+                    {
+                      "name": "Salesforce Marketing Cloud List Asset Categories",
+                      "id": "0d87a777-e0cd-4f22-8142-7b7c6e73406c",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/asset/v1/content/categories?$page=1&$pageSize=50&$filter=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "asset",
+                            "v1",
+                            "content",
+                            "categories"
+                          ],
+                          "query": [
+                            {
+                              "description": "Page number for pagination (1-based)",
+                              "key": "$page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Number of categories per page",
+                              "key": "$pageSize",
+                              "value": "50"
+                            },
+                            {
+                              "description": "OData-style filter expression (e.g., parentId eq 12345)",
+                              "key": "$filter",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "description": "Retrieves categories (folders) used to organize assets in Content Builder. Categories provide a hierarchical folder structure for content organization."
+                      },
+                      "response": [
+                        {
+                          "id": "4979cc53-52a4-4015-96fe-c6c017d5dec0",
+                          "name": "Categories retrieved successfully",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/asset/v1/content/categories?$page=1&$pageSize=50&$filter=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "asset",
+                                "v1",
+                                "content",
+                                "categories"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Page number for pagination (1-based)",
+                                  "key": "$page",
+                                  "value": "1"
+                                },
+                                {
+                                  "description": "Number of categories per page",
+                                  "key": "$pageSize",
+                                  "value": "50"
+                                },
+                                {
+                                  "description": "OData-style filter expression (e.g., parentId eq 12345)",
+                                  "key": "$filter",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"count\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"pageSize\": \"<integer>\",\n  \"items\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"parentId\": \"<integer>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"parentId\": \"<integer>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:50:02.000Z",
+                          "updatedAt": "2026-07-28T02:50:02.000Z",
+                          "uid": "35240-4979cc53-52a4-4015-96fe-c6c017d5dec0"
+                        },
+                        {
+                          "id": "85d552ef-1223-45e7-a415-7591c41f366b",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/asset/v1/content/categories?$page=1&$pageSize=50&$filter=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "asset",
+                                "v1",
+                                "content",
+                                "categories"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Page number for pagination (1-based)",
+                                  "key": "$page",
+                                  "value": "1"
+                                },
+                                {
+                                  "description": "Number of categories per page",
+                                  "key": "$pageSize",
+                                  "value": "50"
+                                },
+                                {
+                                  "description": "OData-style filter expression (e.g., parentId eq 12345)",
+                                  "key": "$filter",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:50:02.000Z",
+                          "updatedAt": "2026-07-28T02:50:02.000Z",
+                          "uid": "35240-85d552ef-1223-45e7-a415-7591c41f366b"
+                        },
+                        {
+                          "id": "52d6c939-08a9-4a7d-8a5a-69b2248410a7",
+                          "name": "Too many requests",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/asset/v1/content/categories?$page=1&$pageSize=50&$filter=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "asset",
+                                "v1",
+                                "content",
+                                "categories"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Page number for pagination (1-based)",
+                                  "key": "$page",
+                                  "value": "1"
+                                },
+                                {
+                                  "description": "Number of categories per page",
+                                  "key": "$pageSize",
+                                  "value": "50"
+                                },
+                                {
+                                  "description": "OData-style filter expression (e.g., parentId eq 12345)",
+                                  "key": "$filter",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:50:02.000Z",
+                          "updatedAt": "2026-07-28T02:50:02.000Z",
+                          "uid": "35240-52d6c939-08a9-4a7d-8a5a-69b2248410a7"
+                        },
+                        {
+                          "id": "df2ce4fc-23e0-44ae-8bcd-eee090587c27",
+                          "name": "Internal server error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/asset/v1/content/categories?$page=1&$pageSize=50&$filter=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "asset",
+                                "v1",
+                                "content",
+                                "categories"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Page number for pagination (1-based)",
+                                  "key": "$page",
+                                  "value": "1"
+                                },
+                                {
+                                  "description": "Number of categories per page",
+                                  "key": "$pageSize",
+                                  "value": "50"
+                                },
+                                {
+                                  "description": "OData-style filter expression (e.g., parentId eq 12345)",
+                                  "key": "$filter",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:50:02.000Z",
+                          "updatedAt": "2026-07-28T02:50:02.000Z",
+                          "uid": "35240-df2ce4fc-23e0-44ae-8bcd-eee090587c27"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:50:02.000Z",
+                      "updatedAt": "2026-07-28T02:50:02.000Z",
+                      "uid": "35240-0d87a777-e0cd-4f22-8142-7b7c6e73406c"
+                    }
+                  ],
+                  "id": "9347307a-2b59-4ca6-b04a-a00961ba44bc",
+                  "createdAt": "2026-07-28T02:50:02.000Z",
+                  "updatedAt": "2026-07-28T02:50:02.000Z",
+                  "uid": "35240-9347307a-2b59-4ca6-b04a-a00961ba44bc"
+                }
+              ],
+              "id": "b7085a42-ae21-45db-9551-d0f53c5bb1fe",
+              "createdAt": "2026-07-28T02:50:02.000Z",
+              "updatedAt": "2026-07-28T02:50:02.000Z",
+              "uid": "35240-b7085a42-ae21-45db-9551-d0f53c5bb1fe"
+            }
+          ],
+          "id": "134a7fea-4ac3-433b-a4f2-7ff429c58872",
+          "createdAt": "2026-07-28T02:50:02.000Z",
+          "updatedAt": "2026-07-28T02:50:02.000Z",
+          "uid": "35240-134a7fea-4ac3-433b-a4f2-7ff429c58872"
+        }
+      ],
+      "id": "4910bf6b-c378-47f0-aac0-4efa5e005185",
+      "createdAt": "2026-07-28T02:50:02.000Z",
+      "updatedAt": "2026-07-28T02:50:02.000Z",
+      "uid": "35240-4910bf6b-c378-47f0-aac0-4efa5e005185"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://YOUR_SUBDOMAIN.auth.marketingcloudapis.com/v2/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "subdomain",
+      "value": "YOUR_SUBDOMAIN"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{subdomain}}.rest.marketingcloudapis.com"
+    }
+  ]
+}

@@ -1,0 +1,3105 @@
+{
+  "info": {
+    "_postman_id": "c72d3212-0212-44b0-ab22-a2a5cd161118",
+    "name": "Salesforce Marketing Cloud REST Assets Journeys API",
+    "description": "The Salesforce Marketing Cloud REST API provides programmatic access to Marketing Cloud features including contacts, journeys, and assets. The API uses JSON request and response bodies and OAuth 2.0 authentication via the Marketing Cloud authentication endpoint. All API requests require a valid access token obtained through the Server-to-Server OAuth flow.\n\nContact Support:\n Name: Salesforce Marketing Cloud Support\n Email: support@salesforce.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:50:17.000Z",
+    "updatedAt": "2026-07-28T02:50:17.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c72d3212-0212-44b0-ab22-a2a5cd161118"
+  },
+  "item": [
+    {
+      "name": "interaction",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "interactions",
+              "item": [
+                {
+                  "name": "{id}",
+                  "item": [
+                    {
+                      "name": "Salesforce Marketing Cloud Retrieve a Journey",
+                      "id": "33422d49-4e23-4d93-9642-8ee81920ba33",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/interaction/v1/interactions/:id?versionNumber=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "interaction",
+                            "v1",
+                            "interactions",
+                            ":id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Specific version number to retrieve. If omitted, returns the latest version.",
+                              "key": "versionNumber",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "7c737fc3-5969-4adb-b73a-6c37b6d5289c",
+                              "key": "id",
+                              "value": "<uuid>",
+                              "description": "(Required) Unique identifier (UUID) of the journey"
+                            }
+                          ]
+                        },
+                        "description": "Retrieves a single journey by its unique identifier. Returns the complete journey specification including activities, triggers, goals, and exit criteria."
+                      },
+                      "response": [
+                        {
+                          "id": "bd6d481a-6c6c-40ae-8943-937bf5120293",
+                          "name": "Journey retrieved successfully",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/interaction/v1/interactions/:id?versionNumber=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "interaction",
+                                "v1",
+                                "interactions",
+                                ":id"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Specific version number to retrieve. If omitted, returns the latest version.",
+                                  "key": "versionNumber",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<uuid>\",\n  \"key\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"version\": \"<integer>\",\n  \"status\": \"Draft\",\n  \"createdDate\": \"<dateTime>\",\n  \"modifiedDate\": \"<dateTime>\",\n  \"workflowApiVersion\": \"<number>\",\n  \"triggers\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"ScheduledAutomation\",\n      \"eventDefinitionKey\": \"<string>\",\n      \"configurationArguments\": {}\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"ScheduledAutomation\",\n      \"eventDefinitionKey\": \"<string>\",\n      \"configurationArguments\": {}\n    }\n  ],\n  \"activities\": [\n    {\n      \"key\": \"<string>\",\n      \"type\": \"CUSTOM\",\n      \"name\": \"<string>\",\n      \"configurationArguments\": {},\n      \"outcomes\": [\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"key\": \"<string>\",\n      \"type\": \"REST\",\n      \"name\": \"<string>\",\n      \"configurationArguments\": {},\n      \"outcomes\": [\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"goals\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"metCriteria\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"metCriteria\": \"<string>\"\n    }\n  ],\n  \"exits\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"criteria\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"criteria\": \"<string>\"\n    }\n  ],\n  \"stats\": {\n    \"currentPopulation\": \"<integer>\",\n    \"cumulativePopulation\": \"<integer>\",\n    \"metGoal\": \"<integer>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:50:17.000Z",
+                          "updatedAt": "2026-07-28T02:50:17.000Z",
+                          "uid": "35240-bd6d481a-6c6c-40ae-8943-937bf5120293"
+                        },
+                        {
+                          "id": "e65c5dea-072f-4138-8a80-ac756d3ebc86",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/interaction/v1/interactions/:id?versionNumber=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "interaction",
+                                "v1",
+                                "interactions",
+                                ":id"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Specific version number to retrieve. If omitted, returns the latest version.",
+                                  "key": "versionNumber",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:50:17.000Z",
+                          "updatedAt": "2026-07-28T02:50:17.000Z",
+                          "uid": "35240-e65c5dea-072f-4138-8a80-ac756d3ebc86"
+                        },
+                        {
+                          "id": "914aff61-b60a-4586-98b0-dc5b3db5fa27",
+                          "name": "Journey not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/interaction/v1/interactions/:id?versionNumber=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "interaction",
+                                "v1",
+                                "interactions",
+                                ":id"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Specific version number to retrieve. If omitted, returns the latest version.",
+                                  "key": "versionNumber",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:50:17.000Z",
+                          "updatedAt": "2026-07-28T02:50:17.000Z",
+                          "uid": "35240-914aff61-b60a-4586-98b0-dc5b3db5fa27"
+                        },
+                        {
+                          "id": "22e3ddf7-6246-4c3e-8f69-80577391932c",
+                          "name": "Too many requests",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/interaction/v1/interactions/:id?versionNumber=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "interaction",
+                                "v1",
+                                "interactions",
+                                ":id"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Specific version number to retrieve. If omitted, returns the latest version.",
+                                  "key": "versionNumber",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:50:17.000Z",
+                          "updatedAt": "2026-07-28T02:50:17.000Z",
+                          "uid": "35240-22e3ddf7-6246-4c3e-8f69-80577391932c"
+                        },
+                        {
+                          "id": "31f73f44-ab56-4363-9595-9565376d3948",
+                          "name": "Internal server error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/interaction/v1/interactions/:id?versionNumber=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "interaction",
+                                "v1",
+                                "interactions",
+                                ":id"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Specific version number to retrieve. If omitted, returns the latest version.",
+                                  "key": "versionNumber",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:50:17.000Z",
+                          "updatedAt": "2026-07-28T02:50:17.000Z",
+                          "uid": "35240-31f73f44-ab56-4363-9595-9565376d3948"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:50:17.000Z",
+                      "updatedAt": "2026-07-28T02:50:17.000Z",
+                      "uid": "35240-33422d49-4e23-4d93-9642-8ee81920ba33"
+                    },
+                    {
+                      "name": "Salesforce Marketing Cloud Update a Journey",
+                      "id": "751f39a7-bde7-42fb-9e7e-f7bc48489810",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"workflowApiVersion\": \"<number>\",\n  \"key\": \"<string>\",\n  \"description\": \"<string>\",\n  \"triggers\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"ScheduledAutomation\",\n      \"eventDefinitionKey\": \"<string>\",\n      \"configurationArguments\": {}\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"APIEvent\",\n      \"eventDefinitionKey\": \"<string>\",\n      \"configurationArguments\": {}\n    }\n  ],\n  \"activities\": [\n    {\n      \"key\": \"<string>\",\n      \"type\": \"DECISION_SPLIT\",\n      \"name\": \"<string>\",\n      \"configurationArguments\": {},\n      \"outcomes\": [\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"key\": \"<string>\",\n      \"type\": \"EMAILV2\",\n      \"name\": \"<string>\",\n      \"configurationArguments\": {},\n      \"outcomes\": [\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"goals\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"metCriteria\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"metCriteria\": \"<string>\"\n    }\n  ],\n  \"exits\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"criteria\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"criteria\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/interaction/v1/interactions/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "interaction",
+                            "v1",
+                            "interactions",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "f178b0e9-591d-4218-b8b0-72bfdce3555c",
+                              "key": "id",
+                              "value": "<uuid>",
+                              "description": "(Required) Unique identifier (UUID) of the journey"
+                            }
+                          ]
+                        },
+                        "description": "Updates an existing journey. Only journeys in Draft status can be fully updated. Published journeys support limited modifications. Provide the complete journey specification including all activities and triggers."
+                      },
+                      "response": [
+                        {
+                          "id": "8cb7ac83-76ad-4be8-9db9-7c927ced16de",
+                          "name": "Journey updated successfully",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"workflowApiVersion\": \"<number>\",\n  \"key\": \"<string>\",\n  \"description\": \"<string>\",\n  \"triggers\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"ScheduledAutomation\",\n      \"eventDefinitionKey\": \"<string>\",\n      \"configurationArguments\": {}\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"APIEvent\",\n      \"eventDefinitionKey\": \"<string>\",\n      \"configurationArguments\": {}\n    }\n  ],\n  \"activities\": [\n    {\n      \"key\": \"<string>\",\n      \"type\": \"DECISION_SPLIT\",\n      \"name\": \"<string>\",\n      \"configurationArguments\": {},\n      \"outcomes\": [\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"key\": \"<string>\",\n      \"type\": \"EMAILV2\",\n      \"name\": \"<string>\",\n      \"configurationArguments\": {},\n      \"outcomes\": [\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"goals\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"metCriteria\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"metCriteria\": \"<string>\"\n    }\n  ],\n  \"exits\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"criteria\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"criteria\": \"<string>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/interaction/v1/interactions/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "interaction",
+                                "v1",
+                                "interactions",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<uuid>\",\n  \"key\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"version\": \"<integer>\",\n  \"status\": \"Draft\",\n  \"createdDate\": \"<dateTime>\",\n  \"modifiedDate\": \"<dateTime>\",\n  \"workflowApiVersion\": \"<number>\",\n  \"triggers\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"ScheduledAutomation\",\n      \"eventDefinitionKey\": \"<string>\",\n      \"configurationArguments\": {}\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"ScheduledAutomation\",\n      \"eventDefinitionKey\": \"<string>\",\n      \"configurationArguments\": {}\n    }\n  ],\n  \"activities\": [\n    {\n      \"key\": \"<string>\",\n      \"type\": \"CUSTOM\",\n      \"name\": \"<string>\",\n      \"configurationArguments\": {},\n      \"outcomes\": [\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"key\": \"<string>\",\n      \"type\": \"REST\",\n      \"name\": \"<string>\",\n      \"configurationArguments\": {},\n      \"outcomes\": [\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"goals\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"metCriteria\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"metCriteria\": \"<string>\"\n    }\n  ],\n  \"exits\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"criteria\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"criteria\": \"<string>\"\n    }\n  ],\n  \"stats\": {\n    \"currentPopulation\": \"<integer>\",\n    \"cumulativePopulation\": \"<integer>\",\n    \"metGoal\": \"<integer>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:50:17.000Z",
+                          "updatedAt": "2026-07-28T02:50:17.000Z",
+                          "uid": "35240-8cb7ac83-76ad-4be8-9db9-7c927ced16de"
+                        },
+                        {
+                          "id": "4188cc65-24e4-4d2e-a892-b986b7e48381",
+                          "name": "Bad request - invalid journey specification",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"workflowApiVersion\": \"<number>\",\n  \"key\": \"<string>\",\n  \"description\": \"<string>\",\n  \"triggers\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"ScheduledAutomation\",\n      \"eventDefinitionKey\": \"<string>\",\n      \"configurationArguments\": {}\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"APIEvent\",\n      \"eventDefinitionKey\": \"<string>\",\n      \"configurationArguments\": {}\n    }\n  ],\n  \"activities\": [\n    {\n      \"key\": \"<string>\",\n      \"type\": \"DECISION_SPLIT\",\n      \"name\": \"<string>\",\n      \"configurationArguments\": {},\n      \"outcomes\": [\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"key\": \"<string>\",\n      \"type\": \"EMAILV2\",\n      \"name\": \"<string>\",\n      \"configurationArguments\": {},\n      \"outcomes\": [\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"goals\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"metCriteria\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"metCriteria\": \"<string>\"\n    }\n  ],\n  \"exits\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"criteria\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"criteria\": \"<string>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/interaction/v1/interactions/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "interaction",
+                                "v1",
+                                "interactions",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:50:17.000Z",
+                          "updatedAt": "2026-07-28T02:50:17.000Z",
+                          "uid": "35240-4188cc65-24e4-4d2e-a892-b986b7e48381"
+                        },
+                        {
+                          "id": "e58309af-3ae2-4346-92f6-f50f56c51e0a",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"workflowApiVersion\": \"<number>\",\n  \"key\": \"<string>\",\n  \"description\": \"<string>\",\n  \"triggers\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"ScheduledAutomation\",\n      \"eventDefinitionKey\": \"<string>\",\n      \"configurationArguments\": {}\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"APIEvent\",\n      \"eventDefinitionKey\": \"<string>\",\n      \"configurationArguments\": {}\n    }\n  ],\n  \"activities\": [\n    {\n      \"key\": \"<string>\",\n      \"type\": \"DECISION_SPLIT\",\n      \"name\": \"<string>\",\n      \"configurationArguments\": {},\n      \"outcomes\": [\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"key\": \"<string>\",\n      \"type\": \"EMAILV2\",\n      \"name\": \"<string>\",\n      \"configurationArguments\": {},\n      \"outcomes\": [\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"goals\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"metCriteria\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"metCriteria\": \"<string>\"\n    }\n  ],\n  \"exits\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"criteria\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"criteria\": \"<string>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/interaction/v1/interactions/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "interaction",
+                                "v1",
+                                "interactions",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:50:17.000Z",
+                          "updatedAt": "2026-07-28T02:50:17.000Z",
+                          "uid": "35240-e58309af-3ae2-4346-92f6-f50f56c51e0a"
+                        },
+                        {
+                          "id": "56417b1f-eae9-4dba-92bf-c82288b6d027",
+                          "name": "Journey not found",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"workflowApiVersion\": \"<number>\",\n  \"key\": \"<string>\",\n  \"description\": \"<string>\",\n  \"triggers\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"ScheduledAutomation\",\n      \"eventDefinitionKey\": \"<string>\",\n      \"configurationArguments\": {}\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"APIEvent\",\n      \"eventDefinitionKey\": \"<string>\",\n      \"configurationArguments\": {}\n    }\n  ],\n  \"activities\": [\n    {\n      \"key\": \"<string>\",\n      \"type\": \"DECISION_SPLIT\",\n      \"name\": \"<string>\",\n      \"configurationArguments\": {},\n      \"outcomes\": [\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"key\": \"<string>\",\n      \"type\": \"EMAILV2\",\n      \"name\": \"<string>\",\n      \"configurationArguments\": {},\n      \"outcomes\": [\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"goals\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"metCriteria\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"metCriteria\": \"<string>\"\n    }\n  ],\n  \"exits\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"criteria\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"criteria\": \"<string>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/interaction/v1/interactions/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "interaction",
+                                "v1",
+                                "interactions",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:50:17.000Z",
+                          "updatedAt": "2026-07-28T02:50:17.000Z",
+                          "uid": "35240-56417b1f-eae9-4dba-92bf-c82288b6d027"
+                        },
+                        {
+                          "id": "33aeec39-d849-47c9-b168-7ceb5013609a",
+                          "name": "Conflict - journey is in a non-editable state",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"workflowApiVersion\": \"<number>\",\n  \"key\": \"<string>\",\n  \"description\": \"<string>\",\n  \"triggers\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"ScheduledAutomation\",\n      \"eventDefinitionKey\": \"<string>\",\n      \"configurationArguments\": {}\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"APIEvent\",\n      \"eventDefinitionKey\": \"<string>\",\n      \"configurationArguments\": {}\n    }\n  ],\n  \"activities\": [\n    {\n      \"key\": \"<string>\",\n      \"type\": \"DECISION_SPLIT\",\n      \"name\": \"<string>\",\n      \"configurationArguments\": {},\n      \"outcomes\": [\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"key\": \"<string>\",\n      \"type\": \"EMAILV2\",\n      \"name\": \"<string>\",\n      \"configurationArguments\": {},\n      \"outcomes\": [\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"goals\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"metCriteria\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"metCriteria\": \"<string>\"\n    }\n  ],\n  \"exits\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"criteria\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"criteria\": \"<string>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/interaction/v1/interactions/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "interaction",
+                                "v1",
+                                "interactions",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Conflict",
+                          "code": 409,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:50:17.000Z",
+                          "updatedAt": "2026-07-28T02:50:17.000Z",
+                          "uid": "35240-33aeec39-d849-47c9-b168-7ceb5013609a"
+                        },
+                        {
+                          "id": "d64b4078-a8ff-4082-816c-263a4a881805",
+                          "name": "Too many requests",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"workflowApiVersion\": \"<number>\",\n  \"key\": \"<string>\",\n  \"description\": \"<string>\",\n  \"triggers\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"ScheduledAutomation\",\n      \"eventDefinitionKey\": \"<string>\",\n      \"configurationArguments\": {}\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"APIEvent\",\n      \"eventDefinitionKey\": \"<string>\",\n      \"configurationArguments\": {}\n    }\n  ],\n  \"activities\": [\n    {\n      \"key\": \"<string>\",\n      \"type\": \"DECISION_SPLIT\",\n      \"name\": \"<string>\",\n      \"configurationArguments\": {},\n      \"outcomes\": [\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"key\": \"<string>\",\n      \"type\": \"EMAILV2\",\n      \"name\": \"<string>\",\n      \"configurationArguments\": {},\n      \"outcomes\": [\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"goals\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"metCriteria\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"metCriteria\": \"<string>\"\n    }\n  ],\n  \"exits\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"criteria\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"criteria\": \"<string>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/interaction/v1/interactions/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "interaction",
+                                "v1",
+                                "interactions",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:50:17.000Z",
+                          "updatedAt": "2026-07-28T02:50:17.000Z",
+                          "uid": "35240-d64b4078-a8ff-4082-816c-263a4a881805"
+                        },
+                        {
+                          "id": "1e5394db-ead3-42b6-a147-4cf18577b817",
+                          "name": "Internal server error",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"workflowApiVersion\": \"<number>\",\n  \"key\": \"<string>\",\n  \"description\": \"<string>\",\n  \"triggers\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"ScheduledAutomation\",\n      \"eventDefinitionKey\": \"<string>\",\n      \"configurationArguments\": {}\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"APIEvent\",\n      \"eventDefinitionKey\": \"<string>\",\n      \"configurationArguments\": {}\n    }\n  ],\n  \"activities\": [\n    {\n      \"key\": \"<string>\",\n      \"type\": \"DECISION_SPLIT\",\n      \"name\": \"<string>\",\n      \"configurationArguments\": {},\n      \"outcomes\": [\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"key\": \"<string>\",\n      \"type\": \"EMAILV2\",\n      \"name\": \"<string>\",\n      \"configurationArguments\": {},\n      \"outcomes\": [\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"goals\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"metCriteria\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"metCriteria\": \"<string>\"\n    }\n  ],\n  \"exits\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"criteria\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"criteria\": \"<string>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/interaction/v1/interactions/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "interaction",
+                                "v1",
+                                "interactions",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:50:17.000Z",
+                          "updatedAt": "2026-07-28T02:50:17.000Z",
+                          "uid": "35240-1e5394db-ead3-42b6-a147-4cf18577b817"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:50:17.000Z",
+                      "updatedAt": "2026-07-28T02:50:17.000Z",
+                      "uid": "35240-751f39a7-bde7-42fb-9e7e-f7bc48489810"
+                    },
+                    {
+                      "name": "Salesforce Marketing Cloud Delete a Journey",
+                      "id": "46897591-aafa-444e-8f63-469a19cf9b12",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/interaction/v1/interactions/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "interaction",
+                            "v1",
+                            "interactions",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "5bcd245c-7739-4a6f-90f1-bdaf61c0db20",
+                              "key": "id",
+                              "value": "<uuid>",
+                              "description": "(Required) Unique identifier (UUID) of the journey"
+                            }
+                          ]
+                        },
+                        "description": "Deletes a journey. Only journeys in Draft or Stopped status can be deleted. Published journeys must first be stopped before deletion."
+                      },
+                      "response": [
+                        {
+                          "id": "13377f1b-aba0-47b2-9278-f6235be619d3",
+                          "name": "Journey deleted successfully",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/interaction/v1/interactions/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "interaction",
+                                "v1",
+                                "interactions",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:50:17.000Z",
+                          "updatedAt": "2026-07-28T02:50:17.000Z",
+                          "uid": "35240-13377f1b-aba0-47b2-9278-f6235be619d3"
+                        },
+                        {
+                          "id": "07778433-cd81-4358-87d0-3f85f588207e",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/interaction/v1/interactions/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "interaction",
+                                "v1",
+                                "interactions",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:50:17.000Z",
+                          "updatedAt": "2026-07-28T02:50:17.000Z",
+                          "uid": "35240-07778433-cd81-4358-87d0-3f85f588207e"
+                        },
+                        {
+                          "id": "ab2bc108-8856-42bd-9e91-b81f5ae3486d",
+                          "name": "Journey not found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/interaction/v1/interactions/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "interaction",
+                                "v1",
+                                "interactions",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:50:17.000Z",
+                          "updatedAt": "2026-07-28T02:50:17.000Z",
+                          "uid": "35240-ab2bc108-8856-42bd-9e91-b81f5ae3486d"
+                        },
+                        {
+                          "id": "912e9f33-b7f2-4b13-9580-3dc0208dd996",
+                          "name": "Conflict - journey cannot be deleted in current state",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/interaction/v1/interactions/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "interaction",
+                                "v1",
+                                "interactions",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Conflict",
+                          "code": 409,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:50:17.000Z",
+                          "updatedAt": "2026-07-28T02:50:17.000Z",
+                          "uid": "35240-912e9f33-b7f2-4b13-9580-3dc0208dd996"
+                        },
+                        {
+                          "id": "b762e6b3-8ff8-4ae9-bb16-eb7fe157d272",
+                          "name": "Too many requests",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/interaction/v1/interactions/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "interaction",
+                                "v1",
+                                "interactions",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:50:17.000Z",
+                          "updatedAt": "2026-07-28T02:50:17.000Z",
+                          "uid": "35240-b762e6b3-8ff8-4ae9-bb16-eb7fe157d272"
+                        },
+                        {
+                          "id": "c182d781-6ace-4cd2-841f-86543186b0bc",
+                          "name": "Internal server error",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/interaction/v1/interactions/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "interaction",
+                                "v1",
+                                "interactions",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:50:17.000Z",
+                          "updatedAt": "2026-07-28T02:50:17.000Z",
+                          "uid": "35240-c182d781-6ace-4cd2-841f-86543186b0bc"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:50:17.000Z",
+                      "updatedAt": "2026-07-28T02:50:17.000Z",
+                      "uid": "35240-46897591-aafa-444e-8f63-469a19cf9b12"
+                    }
+                  ],
+                  "id": "1815c4f2-8588-4aab-9418-3be7c0f20601",
+                  "createdAt": "2026-07-28T02:50:17.000Z",
+                  "updatedAt": "2026-07-28T02:50:17.000Z",
+                  "uid": "35240-1815c4f2-8588-4aab-9418-3be7c0f20601"
+                },
+                {
+                  "name": "publishAsync",
+                  "item": [
+                    {
+                      "name": "{id}",
+                      "item": [
+                        {
+                          "name": "Salesforce Marketing Cloud Publish a Journey",
+                          "id": "b1403a44-377d-4489-b359-14ce8a9203bd",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"versionNumber\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/interaction/v1/interactions/publishAsync/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "interaction",
+                                "v1",
+                                "interactions",
+                                "publishAsync",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "dfc974b1-cbdd-4026-ae5d-c3451c17ce86",
+                                  "key": "id",
+                                  "value": "<uuid>",
+                                  "description": "(Required) Unique identifier (UUID) of the journey to publish"
+                                }
+                              ]
+                            },
+                            "description": "Publishes a journey asynchronously, activating it for customer entry. Once published, contacts matching the entry criteria begin entering the journey. The publish operation returns a statusId for tracking progress."
+                          },
+                          "response": [
+                            {
+                              "id": "f8e61eba-5e5e-47fa-98b6-b9a22cc584c4",
+                              "name": "Publish operation initiated",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"versionNumber\": \"<integer>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/interaction/v1/interactions/publishAsync/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "interaction",
+                                    "v1",
+                                    "interactions",
+                                    "publishAsync",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Accepted",
+                              "code": 202,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"statusId\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:50:17.000Z",
+                              "updatedAt": "2026-07-28T02:50:17.000Z",
+                              "uid": "35240-f8e61eba-5e5e-47fa-98b6-b9a22cc584c4"
+                            },
+                            {
+                              "id": "99dfa858-f9e6-4f28-bb8d-18d63c8fe824",
+                              "name": "Bad request - journey not in publishable state",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"versionNumber\": \"<integer>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/interaction/v1/interactions/publishAsync/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "interaction",
+                                    "v1",
+                                    "interactions",
+                                    "publishAsync",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:50:17.000Z",
+                              "updatedAt": "2026-07-28T02:50:17.000Z",
+                              "uid": "35240-99dfa858-f9e6-4f28-bb8d-18d63c8fe824"
+                            },
+                            {
+                              "id": "4936df1a-64d5-4b62-8dec-db79c6a4aa97",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"versionNumber\": \"<integer>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/interaction/v1/interactions/publishAsync/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "interaction",
+                                    "v1",
+                                    "interactions",
+                                    "publishAsync",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:50:17.000Z",
+                              "updatedAt": "2026-07-28T02:50:17.000Z",
+                              "uid": "35240-4936df1a-64d5-4b62-8dec-db79c6a4aa97"
+                            },
+                            {
+                              "id": "fc3b85d7-fba9-48e8-9bdf-71986b267d75",
+                              "name": "Journey not found",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"versionNumber\": \"<integer>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/interaction/v1/interactions/publishAsync/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "interaction",
+                                    "v1",
+                                    "interactions",
+                                    "publishAsync",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:50:17.000Z",
+                              "updatedAt": "2026-07-28T02:50:17.000Z",
+                              "uid": "35240-fc3b85d7-fba9-48e8-9bdf-71986b267d75"
+                            },
+                            {
+                              "id": "a36b3074-8dd3-4a53-96fe-67e852aab970",
+                              "name": "Too many requests",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"versionNumber\": \"<integer>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/interaction/v1/interactions/publishAsync/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "interaction",
+                                    "v1",
+                                    "interactions",
+                                    "publishAsync",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:50:17.000Z",
+                              "updatedAt": "2026-07-28T02:50:17.000Z",
+                              "uid": "35240-a36b3074-8dd3-4a53-96fe-67e852aab970"
+                            },
+                            {
+                              "id": "4e78c73d-f914-4b2c-a472-f788731b6785",
+                              "name": "Internal server error",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"versionNumber\": \"<integer>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/interaction/v1/interactions/publishAsync/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "interaction",
+                                    "v1",
+                                    "interactions",
+                                    "publishAsync",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:50:17.000Z",
+                              "updatedAt": "2026-07-28T02:50:17.000Z",
+                              "uid": "35240-4e78c73d-f914-4b2c-a472-f788731b6785"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:50:17.000Z",
+                          "updatedAt": "2026-07-28T02:50:17.000Z",
+                          "uid": "35240-b1403a44-377d-4489-b359-14ce8a9203bd"
+                        }
+                      ],
+                      "id": "f242a2bd-7c78-4952-aa92-20bd6cca7473",
+                      "createdAt": "2026-07-28T02:50:17.000Z",
+                      "updatedAt": "2026-07-28T02:50:17.000Z",
+                      "uid": "35240-f242a2bd-7c78-4952-aa92-20bd6cca7473"
+                    }
+                  ],
+                  "id": "6768fcbe-ed47-484c-ab57-9bf64161953c",
+                  "createdAt": "2026-07-28T02:50:17.000Z",
+                  "updatedAt": "2026-07-28T02:50:17.000Z",
+                  "uid": "35240-6768fcbe-ed47-484c-ab57-9bf64161953c"
+                },
+                {
+                  "name": "stop",
+                  "item": [
+                    {
+                      "name": "{id}",
+                      "item": [
+                        {
+                          "name": "Salesforce Marketing Cloud Stop a Journey",
+                          "id": "ee12b3ff-84aa-4460-b63e-34d8100fae9a",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/interaction/v1/interactions/stop/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "interaction",
+                                "v1",
+                                "interactions",
+                                "stop",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "e13e363c-f72c-40ec-8068-7b793104e500",
+                                  "key": "id",
+                                  "value": "<uuid>",
+                                  "description": "(Required) Unique identifier (UUID) of the journey to stop"
+                                }
+                              ]
+                            },
+                            "description": "Stops a published journey. Contacts currently in the journey can either complete their current activity or be ejected immediately based on the stop configuration."
+                          },
+                          "response": [
+                            {
+                              "id": "50f627db-81ab-470c-b1fc-659cc6f8562f",
+                              "name": "Journey stopped successfully",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/interaction/v1/interactions/stop/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "interaction",
+                                    "v1",
+                                    "interactions",
+                                    "stop",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<uuid>\",\n  \"key\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"version\": \"<integer>\",\n  \"status\": \"Draft\",\n  \"createdDate\": \"<dateTime>\",\n  \"modifiedDate\": \"<dateTime>\",\n  \"workflowApiVersion\": \"<number>\",\n  \"triggers\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"ScheduledAutomation\",\n      \"eventDefinitionKey\": \"<string>\",\n      \"configurationArguments\": {}\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"ScheduledAutomation\",\n      \"eventDefinitionKey\": \"<string>\",\n      \"configurationArguments\": {}\n    }\n  ],\n  \"activities\": [\n    {\n      \"key\": \"<string>\",\n      \"type\": \"CUSTOM\",\n      \"name\": \"<string>\",\n      \"configurationArguments\": {},\n      \"outcomes\": [\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"key\": \"<string>\",\n      \"type\": \"REST\",\n      \"name\": \"<string>\",\n      \"configurationArguments\": {},\n      \"outcomes\": [\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"goals\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"metCriteria\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"metCriteria\": \"<string>\"\n    }\n  ],\n  \"exits\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"criteria\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"criteria\": \"<string>\"\n    }\n  ],\n  \"stats\": {\n    \"currentPopulation\": \"<integer>\",\n    \"cumulativePopulation\": \"<integer>\",\n    \"metGoal\": \"<integer>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:50:17.000Z",
+                              "updatedAt": "2026-07-28T02:50:17.000Z",
+                              "uid": "35240-50f627db-81ab-470c-b1fc-659cc6f8562f"
+                            },
+                            {
+                              "id": "0f6a9092-f7b4-4606-be6a-1fbe33dfd48c",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/interaction/v1/interactions/stop/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "interaction",
+                                    "v1",
+                                    "interactions",
+                                    "stop",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:50:17.000Z",
+                              "updatedAt": "2026-07-28T02:50:17.000Z",
+                              "uid": "35240-0f6a9092-f7b4-4606-be6a-1fbe33dfd48c"
+                            },
+                            {
+                              "id": "897c076b-028a-4fb5-86aa-e4d9c6c8f9ab",
+                              "name": "Journey not found",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/interaction/v1/interactions/stop/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "interaction",
+                                    "v1",
+                                    "interactions",
+                                    "stop",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:50:17.000Z",
+                              "updatedAt": "2026-07-28T02:50:17.000Z",
+                              "uid": "35240-897c076b-028a-4fb5-86aa-e4d9c6c8f9ab"
+                            },
+                            {
+                              "id": "213a6c57-75bb-4dcb-8e9b-8a93ef365962",
+                              "name": "Conflict - journey is not in a stoppable state",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/interaction/v1/interactions/stop/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "interaction",
+                                    "v1",
+                                    "interactions",
+                                    "stop",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Conflict",
+                              "code": 409,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:50:17.000Z",
+                              "updatedAt": "2026-07-28T02:50:17.000Z",
+                              "uid": "35240-213a6c57-75bb-4dcb-8e9b-8a93ef365962"
+                            },
+                            {
+                              "id": "3b343991-89c3-4662-aaf4-44b0fa4d03f4",
+                              "name": "Too many requests",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/interaction/v1/interactions/stop/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "interaction",
+                                    "v1",
+                                    "interactions",
+                                    "stop",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:50:17.000Z",
+                              "updatedAt": "2026-07-28T02:50:17.000Z",
+                              "uid": "35240-3b343991-89c3-4662-aaf4-44b0fa4d03f4"
+                            },
+                            {
+                              "id": "052879f6-fc88-49bf-badf-40a17f63c730",
+                              "name": "Internal server error",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/interaction/v1/interactions/stop/:id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "interaction",
+                                    "v1",
+                                    "interactions",
+                                    "stop",
+                                    ":id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:50:17.000Z",
+                              "updatedAt": "2026-07-28T02:50:17.000Z",
+                              "uid": "35240-052879f6-fc88-49bf-badf-40a17f63c730"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:50:17.000Z",
+                          "updatedAt": "2026-07-28T02:50:17.000Z",
+                          "uid": "35240-ee12b3ff-84aa-4460-b63e-34d8100fae9a"
+                        }
+                      ],
+                      "id": "4e44cce0-0634-4d58-9e48-0dff107482d7",
+                      "createdAt": "2026-07-28T02:50:17.000Z",
+                      "updatedAt": "2026-07-28T02:50:17.000Z",
+                      "uid": "35240-4e44cce0-0634-4d58-9e48-0dff107482d7"
+                    }
+                  ],
+                  "id": "6bf9ec3c-b5ab-4454-97bb-d231d690c8f5",
+                  "createdAt": "2026-07-28T02:50:17.000Z",
+                  "updatedAt": "2026-07-28T02:50:17.000Z",
+                  "uid": "35240-6bf9ec3c-b5ab-4454-97bb-d231d690c8f5"
+                },
+                {
+                  "name": "Salesforce Marketing Cloud List Journeys",
+                  "id": "6e2ba86d-6378-4a03-bd92-f7aa8066c628",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/interaction/v1/interactions?$page=1&$pageSize=50&$orderBy=<string>&status=Unpublished&nameOrDescription=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "interaction",
+                        "v1",
+                        "interactions"
+                      ],
+                      "query": [
+                        {
+                          "description": "Page number for pagination (1-based)",
+                          "key": "$page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Number of journeys per page",
+                          "key": "$pageSize",
+                          "value": "50"
+                        },
+                        {
+                          "description": "Field to sort results by (e.g., ModifiedDate DESC, Name ASC)",
+                          "key": "$orderBy",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter journeys by status (Draft, Published, ScheduledToPublish, Stopped, Unpublished)",
+                          "key": "status",
+                          "value": "Unpublished"
+                        },
+                        {
+                          "description": "Filter journeys by name or description (partial match)",
+                          "key": "nameOrDescription",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves a collection of journeys. Supports pagination through page and pageSize parameters. Returns journey definitions including their current status, version, and configuration."
+                  },
+                  "response": [
+                    {
+                      "id": "91f5b3f7-ac39-40f0-b488-46292d56c641",
+                      "name": "Journeys retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/interaction/v1/interactions?$page=1&$pageSize=50&$orderBy=<string>&status=Unpublished&nameOrDescription=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "interaction",
+                            "v1",
+                            "interactions"
+                          ],
+                          "query": [
+                            {
+                              "description": "Page number for pagination (1-based)",
+                              "key": "$page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Number of journeys per page",
+                              "key": "$pageSize",
+                              "value": "50"
+                            },
+                            {
+                              "description": "Field to sort results by (e.g., ModifiedDate DESC, Name ASC)",
+                              "key": "$orderBy",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter journeys by status (Draft, Published, ScheduledToPublish, Stopped, Unpublished)",
+                              "key": "status",
+                              "value": "Unpublished"
+                            },
+                            {
+                              "description": "Filter journeys by name or description (partial match)",
+                              "key": "nameOrDescription",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"count\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"pageSize\": \"<integer>\",\n  \"items\": [\n    {\n      \"id\": \"<uuid>\",\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"version\": \"<integer>\",\n      \"status\": \"ScheduledToPublish\",\n      \"createdDate\": \"<dateTime>\",\n      \"modifiedDate\": \"<dateTime>\",\n      \"workflowApiVersion\": \"<number>\",\n      \"triggers\": [\n        {\n          \"key\": \"<string>\",\n          \"name\": \"<string>\",\n          \"type\": \"Event\",\n          \"eventDefinitionKey\": \"<string>\",\n          \"configurationArguments\": {}\n        },\n        {\n          \"key\": \"<string>\",\n          \"name\": \"<string>\",\n          \"type\": \"Event\",\n          \"eventDefinitionKey\": \"<string>\",\n          \"configurationArguments\": {}\n        }\n      ],\n      \"activities\": [\n        {\n          \"key\": \"<string>\",\n          \"type\": \"ENGAGEMENT_SPLIT\",\n          \"name\": \"<string>\",\n          \"configurationArguments\": {},\n          \"outcomes\": [\n            {\n              \"key\": \"<string>\",\n              \"next\": \"<string>\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"next\": \"<string>\"\n            }\n          ]\n        },\n        {\n          \"key\": \"<string>\",\n          \"type\": \"DATAEXTENSIONUPDATE\",\n          \"name\": \"<string>\",\n          \"configurationArguments\": {},\n          \"outcomes\": [\n            {\n              \"key\": \"<string>\",\n              \"next\": \"<string>\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"next\": \"<string>\"\n            }\n          ]\n        }\n      ],\n      \"goals\": [\n        {\n          \"key\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"metCriteria\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"metCriteria\": \"<string>\"\n        }\n      ],\n      \"exits\": [\n        {\n          \"key\": \"<string>\",\n          \"name\": \"<string>\",\n          \"criteria\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"name\": \"<string>\",\n          \"criteria\": \"<string>\"\n        }\n      ],\n      \"stats\": {\n        \"currentPopulation\": \"<integer>\",\n        \"cumulativePopulation\": \"<integer>\",\n        \"metGoal\": \"<integer>\"\n      }\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"version\": \"<integer>\",\n      \"status\": \"Published\",\n      \"createdDate\": \"<dateTime>\",\n      \"modifiedDate\": \"<dateTime>\",\n      \"workflowApiVersion\": \"<number>\",\n      \"triggers\": [\n        {\n          \"key\": \"<string>\",\n          \"name\": \"<string>\",\n          \"type\": \"Event\",\n          \"eventDefinitionKey\": \"<string>\",\n          \"configurationArguments\": {}\n        },\n        {\n          \"key\": \"<string>\",\n          \"name\": \"<string>\",\n          \"type\": \"Event\",\n          \"eventDefinitionKey\": \"<string>\",\n          \"configurationArguments\": {}\n        }\n      ],\n      \"activities\": [\n        {\n          \"key\": \"<string>\",\n          \"type\": \"DECISION_SPLIT\",\n          \"name\": \"<string>\",\n          \"configurationArguments\": {},\n          \"outcomes\": [\n            {\n              \"key\": \"<string>\",\n              \"next\": \"<string>\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"next\": \"<string>\"\n            }\n          ]\n        },\n        {\n          \"key\": \"<string>\",\n          \"type\": \"SMSSYNC\",\n          \"name\": \"<string>\",\n          \"configurationArguments\": {},\n          \"outcomes\": [\n            {\n              \"key\": \"<string>\",\n              \"next\": \"<string>\"\n            },\n            {\n              \"key\": \"<string>\",\n              \"next\": \"<string>\"\n            }\n          ]\n        }\n      ],\n      \"goals\": [\n        {\n          \"key\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"metCriteria\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"metCriteria\": \"<string>\"\n        }\n      ],\n      \"exits\": [\n        {\n          \"key\": \"<string>\",\n          \"name\": \"<string>\",\n          \"criteria\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"name\": \"<string>\",\n          \"criteria\": \"<string>\"\n        }\n      ],\n      \"stats\": {\n        \"currentPopulation\": \"<integer>\",\n        \"cumulativePopulation\": \"<integer>\",\n        \"metGoal\": \"<integer>\"\n      }\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:50:17.000Z",
+                      "updatedAt": "2026-07-28T02:50:17.000Z",
+                      "uid": "35240-91f5b3f7-ac39-40f0-b488-46292d56c641"
+                    },
+                    {
+                      "id": "758bb791-5caf-43e3-bdf0-7034a69b29a1",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/interaction/v1/interactions?$page=1&$pageSize=50&$orderBy=<string>&status=Unpublished&nameOrDescription=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "interaction",
+                            "v1",
+                            "interactions"
+                          ],
+                          "query": [
+                            {
+                              "description": "Page number for pagination (1-based)",
+                              "key": "$page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Number of journeys per page",
+                              "key": "$pageSize",
+                              "value": "50"
+                            },
+                            {
+                              "description": "Field to sort results by (e.g., ModifiedDate DESC, Name ASC)",
+                              "key": "$orderBy",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter journeys by status (Draft, Published, ScheduledToPublish, Stopped, Unpublished)",
+                              "key": "status",
+                              "value": "Unpublished"
+                            },
+                            {
+                              "description": "Filter journeys by name or description (partial match)",
+                              "key": "nameOrDescription",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:50:17.000Z",
+                      "updatedAt": "2026-07-28T02:50:17.000Z",
+                      "uid": "35240-758bb791-5caf-43e3-bdf0-7034a69b29a1"
+                    },
+                    {
+                      "id": "c9824372-5771-4a84-91ca-7ed8413140d5",
+                      "name": "Too many requests",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/interaction/v1/interactions?$page=1&$pageSize=50&$orderBy=<string>&status=Unpublished&nameOrDescription=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "interaction",
+                            "v1",
+                            "interactions"
+                          ],
+                          "query": [
+                            {
+                              "description": "Page number for pagination (1-based)",
+                              "key": "$page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Number of journeys per page",
+                              "key": "$pageSize",
+                              "value": "50"
+                            },
+                            {
+                              "description": "Field to sort results by (e.g., ModifiedDate DESC, Name ASC)",
+                              "key": "$orderBy",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter journeys by status (Draft, Published, ScheduledToPublish, Stopped, Unpublished)",
+                              "key": "status",
+                              "value": "Unpublished"
+                            },
+                            {
+                              "description": "Filter journeys by name or description (partial match)",
+                              "key": "nameOrDescription",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:50:17.000Z",
+                      "updatedAt": "2026-07-28T02:50:17.000Z",
+                      "uid": "35240-c9824372-5771-4a84-91ca-7ed8413140d5"
+                    },
+                    {
+                      "id": "3d1e0712-3a99-4f28-a9d9-4f3afb875c2e",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/interaction/v1/interactions?$page=1&$pageSize=50&$orderBy=<string>&status=Unpublished&nameOrDescription=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "interaction",
+                            "v1",
+                            "interactions"
+                          ],
+                          "query": [
+                            {
+                              "description": "Page number for pagination (1-based)",
+                              "key": "$page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Number of journeys per page",
+                              "key": "$pageSize",
+                              "value": "50"
+                            },
+                            {
+                              "description": "Field to sort results by (e.g., ModifiedDate DESC, Name ASC)",
+                              "key": "$orderBy",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter journeys by status (Draft, Published, ScheduledToPublish, Stopped, Unpublished)",
+                              "key": "status",
+                              "value": "Unpublished"
+                            },
+                            {
+                              "description": "Filter journeys by name or description (partial match)",
+                              "key": "nameOrDescription",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:50:17.000Z",
+                      "updatedAt": "2026-07-28T02:50:17.000Z",
+                      "uid": "35240-3d1e0712-3a99-4f28-a9d9-4f3afb875c2e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:50:17.000Z",
+                  "updatedAt": "2026-07-28T02:50:17.000Z",
+                  "uid": "35240-6e2ba86d-6378-4a03-bd92-f7aa8066c628"
+                },
+                {
+                  "name": "Salesforce Marketing Cloud Create a Journey",
+                  "id": "687448d1-2b8a-4264-bd53-61596a9bb135",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"workflowApiVersion\": \"<number>\",\n  \"key\": \"<string>\",\n  \"description\": \"<string>\",\n  \"triggers\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"ScheduledAutomation\",\n      \"eventDefinitionKey\": \"<string>\",\n      \"configurationArguments\": {}\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"APIEvent\",\n      \"eventDefinitionKey\": \"<string>\",\n      \"configurationArguments\": {}\n    }\n  ],\n  \"activities\": [\n    {\n      \"key\": \"<string>\",\n      \"type\": \"DECISION_SPLIT\",\n      \"name\": \"<string>\",\n      \"configurationArguments\": {},\n      \"outcomes\": [\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"key\": \"<string>\",\n      \"type\": \"EMAILV2\",\n      \"name\": \"<string>\",\n      \"configurationArguments\": {},\n      \"outcomes\": [\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"goals\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"metCriteria\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"metCriteria\": \"<string>\"\n    }\n  ],\n  \"exits\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"criteria\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"criteria\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/interaction/v1/interactions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "interaction",
+                        "v1",
+                        "interactions"
+                      ]
+                    },
+                    "description": "Creates a new journey in Marketing Cloud. The journey specification defines the entry event, activities, triggers, and overall workflow. Journeys are created in Draft status by default and must be published to become active."
+                  },
+                  "response": [
+                    {
+                      "id": "0247cc94-5ec8-40a1-be18-c628ff4e714e",
+                      "name": "Journey created successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"workflowApiVersion\": \"<number>\",\n  \"key\": \"<string>\",\n  \"description\": \"<string>\",\n  \"triggers\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"ScheduledAutomation\",\n      \"eventDefinitionKey\": \"<string>\",\n      \"configurationArguments\": {}\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"APIEvent\",\n      \"eventDefinitionKey\": \"<string>\",\n      \"configurationArguments\": {}\n    }\n  ],\n  \"activities\": [\n    {\n      \"key\": \"<string>\",\n      \"type\": \"DECISION_SPLIT\",\n      \"name\": \"<string>\",\n      \"configurationArguments\": {},\n      \"outcomes\": [\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"key\": \"<string>\",\n      \"type\": \"EMAILV2\",\n      \"name\": \"<string>\",\n      \"configurationArguments\": {},\n      \"outcomes\": [\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"goals\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"metCriteria\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"metCriteria\": \"<string>\"\n    }\n  ],\n  \"exits\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"criteria\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"criteria\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/interaction/v1/interactions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "interaction",
+                            "v1",
+                            "interactions"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<uuid>\",\n  \"key\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"version\": \"<integer>\",\n  \"status\": \"Draft\",\n  \"createdDate\": \"<dateTime>\",\n  \"modifiedDate\": \"<dateTime>\",\n  \"workflowApiVersion\": \"<number>\",\n  \"triggers\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"ScheduledAutomation\",\n      \"eventDefinitionKey\": \"<string>\",\n      \"configurationArguments\": {}\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"ScheduledAutomation\",\n      \"eventDefinitionKey\": \"<string>\",\n      \"configurationArguments\": {}\n    }\n  ],\n  \"activities\": [\n    {\n      \"key\": \"<string>\",\n      \"type\": \"CUSTOM\",\n      \"name\": \"<string>\",\n      \"configurationArguments\": {},\n      \"outcomes\": [\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"key\": \"<string>\",\n      \"type\": \"REST\",\n      \"name\": \"<string>\",\n      \"configurationArguments\": {},\n      \"outcomes\": [\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"goals\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"metCriteria\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"metCriteria\": \"<string>\"\n    }\n  ],\n  \"exits\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"criteria\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"criteria\": \"<string>\"\n    }\n  ],\n  \"stats\": {\n    \"currentPopulation\": \"<integer>\",\n    \"cumulativePopulation\": \"<integer>\",\n    \"metGoal\": \"<integer>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:50:17.000Z",
+                      "updatedAt": "2026-07-28T02:50:17.000Z",
+                      "uid": "35240-0247cc94-5ec8-40a1-be18-c628ff4e714e"
+                    },
+                    {
+                      "id": "eea801f0-e432-40e1-87c0-0c0ad2490a50",
+                      "name": "Bad request - invalid journey specification",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"workflowApiVersion\": \"<number>\",\n  \"key\": \"<string>\",\n  \"description\": \"<string>\",\n  \"triggers\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"ScheduledAutomation\",\n      \"eventDefinitionKey\": \"<string>\",\n      \"configurationArguments\": {}\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"APIEvent\",\n      \"eventDefinitionKey\": \"<string>\",\n      \"configurationArguments\": {}\n    }\n  ],\n  \"activities\": [\n    {\n      \"key\": \"<string>\",\n      \"type\": \"DECISION_SPLIT\",\n      \"name\": \"<string>\",\n      \"configurationArguments\": {},\n      \"outcomes\": [\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"key\": \"<string>\",\n      \"type\": \"EMAILV2\",\n      \"name\": \"<string>\",\n      \"configurationArguments\": {},\n      \"outcomes\": [\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"goals\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"metCriteria\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"metCriteria\": \"<string>\"\n    }\n  ],\n  \"exits\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"criteria\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"criteria\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/interaction/v1/interactions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "interaction",
+                            "v1",
+                            "interactions"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:50:17.000Z",
+                      "updatedAt": "2026-07-28T02:50:17.000Z",
+                      "uid": "35240-eea801f0-e432-40e1-87c0-0c0ad2490a50"
+                    },
+                    {
+                      "id": "2f29e1db-7268-4e6f-8d9c-d82114151cf8",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"workflowApiVersion\": \"<number>\",\n  \"key\": \"<string>\",\n  \"description\": \"<string>\",\n  \"triggers\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"ScheduledAutomation\",\n      \"eventDefinitionKey\": \"<string>\",\n      \"configurationArguments\": {}\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"APIEvent\",\n      \"eventDefinitionKey\": \"<string>\",\n      \"configurationArguments\": {}\n    }\n  ],\n  \"activities\": [\n    {\n      \"key\": \"<string>\",\n      \"type\": \"DECISION_SPLIT\",\n      \"name\": \"<string>\",\n      \"configurationArguments\": {},\n      \"outcomes\": [\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"key\": \"<string>\",\n      \"type\": \"EMAILV2\",\n      \"name\": \"<string>\",\n      \"configurationArguments\": {},\n      \"outcomes\": [\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"goals\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"metCriteria\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"metCriteria\": \"<string>\"\n    }\n  ],\n  \"exits\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"criteria\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"criteria\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/interaction/v1/interactions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "interaction",
+                            "v1",
+                            "interactions"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:50:17.000Z",
+                      "updatedAt": "2026-07-28T02:50:17.000Z",
+                      "uid": "35240-2f29e1db-7268-4e6f-8d9c-d82114151cf8"
+                    },
+                    {
+                      "id": "a962af80-d047-40f7-aa73-9c2233a9b926",
+                      "name": "Too many requests",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"workflowApiVersion\": \"<number>\",\n  \"key\": \"<string>\",\n  \"description\": \"<string>\",\n  \"triggers\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"ScheduledAutomation\",\n      \"eventDefinitionKey\": \"<string>\",\n      \"configurationArguments\": {}\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"APIEvent\",\n      \"eventDefinitionKey\": \"<string>\",\n      \"configurationArguments\": {}\n    }\n  ],\n  \"activities\": [\n    {\n      \"key\": \"<string>\",\n      \"type\": \"DECISION_SPLIT\",\n      \"name\": \"<string>\",\n      \"configurationArguments\": {},\n      \"outcomes\": [\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"key\": \"<string>\",\n      \"type\": \"EMAILV2\",\n      \"name\": \"<string>\",\n      \"configurationArguments\": {},\n      \"outcomes\": [\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"goals\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"metCriteria\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"metCriteria\": \"<string>\"\n    }\n  ],\n  \"exits\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"criteria\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"criteria\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/interaction/v1/interactions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "interaction",
+                            "v1",
+                            "interactions"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:50:17.000Z",
+                      "updatedAt": "2026-07-28T02:50:17.000Z",
+                      "uid": "35240-a962af80-d047-40f7-aa73-9c2233a9b926"
+                    },
+                    {
+                      "id": "25c68e58-b7d2-41ae-b1be-d9556b03129b",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"workflowApiVersion\": \"<number>\",\n  \"key\": \"<string>\",\n  \"description\": \"<string>\",\n  \"triggers\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"ScheduledAutomation\",\n      \"eventDefinitionKey\": \"<string>\",\n      \"configurationArguments\": {}\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"APIEvent\",\n      \"eventDefinitionKey\": \"<string>\",\n      \"configurationArguments\": {}\n    }\n  ],\n  \"activities\": [\n    {\n      \"key\": \"<string>\",\n      \"type\": \"DECISION_SPLIT\",\n      \"name\": \"<string>\",\n      \"configurationArguments\": {},\n      \"outcomes\": [\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"key\": \"<string>\",\n      \"type\": \"EMAILV2\",\n      \"name\": \"<string>\",\n      \"configurationArguments\": {},\n      \"outcomes\": [\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"goals\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"metCriteria\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"metCriteria\": \"<string>\"\n    }\n  ],\n  \"exits\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"criteria\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"criteria\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/interaction/v1/interactions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "interaction",
+                            "v1",
+                            "interactions"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:50:17.000Z",
+                      "updatedAt": "2026-07-28T02:50:17.000Z",
+                      "uid": "35240-25c68e58-b7d2-41ae-b1be-d9556b03129b"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:50:17.000Z",
+                  "updatedAt": "2026-07-28T02:50:17.000Z",
+                  "uid": "35240-687448d1-2b8a-4264-bd53-61596a9bb135"
+                }
+              ],
+              "id": "73402367-9880-4189-989f-f296e4c2f5e8",
+              "createdAt": "2026-07-28T02:50:17.000Z",
+              "updatedAt": "2026-07-28T02:50:17.000Z",
+              "uid": "35240-73402367-9880-4189-989f-f296e4c2f5e8"
+            },
+            {
+              "name": "events",
+              "item": [
+                {
+                  "name": "Salesforce Marketing Cloud Fire a Journey Entry Event",
+                  "id": "3bb9b65b-d6ac-436d-9f65-cfe43a0468b0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"ContactKey\": \"<string>\",\n  \"EventDefinitionKey\": \"<string>\",\n  \"Data\": {\n    \"veniamc9\": \"in occaecat Duis elit sint\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/interaction/v1/events",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "interaction",
+                        "v1",
+                        "events"
+                      ]
+                    },
+                    "description": "Fires an entry event to inject a contact into a journey. The contact is identified by ContactKey and enters the journey associated with the specified EventDefinitionKey. Additional data can be passed as part of the event payload."
+                  },
+                  "response": [
+                    {
+                      "id": "0998c0d2-bf83-47a7-8429-da5e166f4056",
+                      "name": "Event fired successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"ContactKey\": \"<string>\",\n  \"EventDefinitionKey\": \"<string>\",\n  \"Data\": {\n    \"veniamc9\": \"in occaecat Duis elit sint\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/interaction/v1/events",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "interaction",
+                            "v1",
+                            "events"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"requestId\": \"<string>\",\n  \"eventInstanceId\": \"<uuid>\"\n}",
+                      "createdAt": "2026-07-28T02:50:17.000Z",
+                      "updatedAt": "2026-07-28T02:50:17.000Z",
+                      "uid": "35240-0998c0d2-bf83-47a7-8429-da5e166f4056"
+                    },
+                    {
+                      "id": "2b622097-9c5c-4407-925a-d8341c0ea023",
+                      "name": "Bad request - invalid event data",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"ContactKey\": \"<string>\",\n  \"EventDefinitionKey\": \"<string>\",\n  \"Data\": {\n    \"veniamc9\": \"in occaecat Duis elit sint\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/interaction/v1/events",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "interaction",
+                            "v1",
+                            "events"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:50:17.000Z",
+                      "updatedAt": "2026-07-28T02:50:17.000Z",
+                      "uid": "35240-2b622097-9c5c-4407-925a-d8341c0ea023"
+                    },
+                    {
+                      "id": "c11b9a53-1316-4c1f-b92b-f0b02060b43d",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"ContactKey\": \"<string>\",\n  \"EventDefinitionKey\": \"<string>\",\n  \"Data\": {\n    \"veniamc9\": \"in occaecat Duis elit sint\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/interaction/v1/events",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "interaction",
+                            "v1",
+                            "events"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:50:17.000Z",
+                      "updatedAt": "2026-07-28T02:50:17.000Z",
+                      "uid": "35240-c11b9a53-1316-4c1f-b92b-f0b02060b43d"
+                    },
+                    {
+                      "id": "b7dbb0af-46ef-4b24-b0f4-20ee0025c193",
+                      "name": "Too many requests",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"ContactKey\": \"<string>\",\n  \"EventDefinitionKey\": \"<string>\",\n  \"Data\": {\n    \"veniamc9\": \"in occaecat Duis elit sint\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/interaction/v1/events",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "interaction",
+                            "v1",
+                            "events"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:50:17.000Z",
+                      "updatedAt": "2026-07-28T02:50:17.000Z",
+                      "uid": "35240-b7dbb0af-46ef-4b24-b0f4-20ee0025c193"
+                    },
+                    {
+                      "id": "46b556bb-ab0e-4252-bb6a-e47a3c8a6fbb",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"ContactKey\": \"<string>\",\n  \"EventDefinitionKey\": \"<string>\",\n  \"Data\": {\n    \"veniamc9\": \"in occaecat Duis elit sint\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/interaction/v1/events",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "interaction",
+                            "v1",
+                            "events"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"errorcode\": \"<integer>\",\n  \"documentation\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:50:17.000Z",
+                      "updatedAt": "2026-07-28T02:50:17.000Z",
+                      "uid": "35240-46b556bb-ab0e-4252-bb6a-e47a3c8a6fbb"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:50:17.000Z",
+                  "updatedAt": "2026-07-28T02:50:17.000Z",
+                  "uid": "35240-3bb9b65b-d6ac-436d-9f65-cfe43a0468b0"
+                }
+              ],
+              "id": "5d424707-a45d-41da-ac5a-7ff7c20d75f6",
+              "createdAt": "2026-07-28T02:50:17.000Z",
+              "updatedAt": "2026-07-28T02:50:17.000Z",
+              "uid": "35240-5d424707-a45d-41da-ac5a-7ff7c20d75f6"
+            }
+          ],
+          "id": "072ee912-435e-4455-9c30-5fad50b881d8",
+          "createdAt": "2026-07-28T02:50:17.000Z",
+          "updatedAt": "2026-07-28T02:50:17.000Z",
+          "uid": "35240-072ee912-435e-4455-9c30-5fad50b881d8"
+        }
+      ],
+      "id": "a214d2e0-8d6d-4af5-8a07-6e63093938ea",
+      "createdAt": "2026-07-28T02:50:17.000Z",
+      "updatedAt": "2026-07-28T02:50:17.000Z",
+      "uid": "35240-a214d2e0-8d6d-4af5-8a07-6e63093938ea"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://YOUR_SUBDOMAIN.auth.marketingcloudapis.com/v2/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "subdomain",
+      "value": "YOUR_SUBDOMAIN"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{subdomain}}.rest.marketingcloudapis.com"
+    }
+  ]
+}
