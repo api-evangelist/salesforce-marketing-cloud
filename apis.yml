@@ -1,7 +1,17 @@
 name: Salesforce Marketing Cloud
-description: Salesforce Marketing Cloud is a comprehensive digital marketing platform
-  that enables businesses to manage customer journeys, email marketing, mobile messaging,
-  social media marketing, advertising, and data analytics.
+description: >-
+  Salesforce Marketing Cloud Engagement is an enterprise digital marketing platform for
+  customer journeys, email marketing, mobile messaging (SMS/MMS and push), advertising,
+  content management and marketing data. Its API surface is tenant-scoped: every REST call
+  goes to https://{subdomain}.rest.marketingcloudapis.com and every SOAP call to
+  https://{subdomain}.soap.marketingcloudapis.com, with OAuth 2.0 tokens issued per tenant
+  from https://{subdomain}.auth.marketingcloudapis.com/v2/token and scopes granted to an
+  Installed Package rather than requested at authorization time. Product areas are versioned
+  independently at v1 behind route prefixes (/asset, /contacts, /interaction, /data,
+  /messaging, /push, /sms, /automation, /hub, /platform). Salesforce also operates a
+  first-party hosted MCP server for Marketing Cloud Engagement, generally available since
+  June 2026, exposing 142 tools across eleven product areas, and an outbound webhook product,
+  the Event Notification Service, with HMAC-SHA256 signed callbacks.
 accessModel:
   pricing: enterprise
   onboarding: approval
@@ -18,17 +28,23 @@ accessModel:
 image: https://www.salesforce.com/content/dam/web/en_us/www/images/nav/logo-salesforce.svg
 url: https://www.salesforce.com/products/marketing-cloud/overview/
 created: '2024-01-15'
-modified: '2026-05-19'
+modified: '2026-08-13'
 specificationVersion: '0.18'
 type:
 - Index
 tags:
 - Automation
+- Content Management
 - Customer Journey
 - Digital Marketing
 - Email
 - Marketing
+- Marketing Automation
+- MCP
+- Mobile Messaging
 - Personalization
+- SMS
+- Webhooks
 apis:
 - name: SOAP API
   description: >-
@@ -281,6 +297,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/salesforce-marketing-cloud-assets-api-openapi.yml
+  - type: Overlay
+    url: overlays/salesforce-marketing-cloud-assets-api-overlay.yaml
   - type: Documentation
     url: >-
       https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/rest-api-overview.html
@@ -314,6 +332,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/salesforce-marketing-cloud-contacts-api-openapi.yml
+  - type: Overlay
+    url: overlays/salesforce-marketing-cloud-contacts-api-overlay.yaml
   - type: Documentation
     url: >-
       https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/rest-api-overview.html
@@ -347,6 +367,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/salesforce-marketing-cloud-journeys-api-openapi.yml
+  - type: Overlay
+    url: overlays/salesforce-marketing-cloud-journeys-api-overlay.yaml
   - type: Documentation
     url: >-
       https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/rest-api-overview.html
@@ -402,13 +424,67 @@ common:
 - type: Pricing
   url: https://www.salesforce.com/products/marketing-cloud/pricing/
 - type: ChangeLog
-  url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/release-notes.html
+  url: https://help.salesforce.com/s/articleView?id=sf.mc_rn_release_notes.htm&type=5
 - type: RateLimits
   url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/rate-limiting.html
 - type: GitHubRepository
   url: https://github.com/salesforce-marketingcloud/SFDC-MC-REST-Style-Guide
 - type: Training
   url: https://trailhead.salesforce.com/en/content/learn/trails/get-started-with-marketing-cloud
+- type: Packages
+  url: packages/salesforce-marketing-cloud-packages.yml
+- type: SDKs
+  url: packages/salesforce-marketing-cloud-packages.yml
+- type: WellKnown
+  url: well-known/salesforce-marketing-cloud-well-known.yml
+- type: MCPServer
+  url: mcp/salesforce-marketing-cloud-mcp.yml
+- type: ToolCrosswalk
+  url: mcp/salesforce-marketing-cloud-tool-crosswalk.yml
+- type: LLMsTxt
+  url: llms/salesforce-marketing-cloud-llms.txt
+- type: Conformance
+  url: conformance/salesforce-marketing-cloud-conformance.yml
+- type: Compliance
+  url: https://compliance.salesforce.com/
+- type: ErrorCatalog
+  url: errors/salesforce-marketing-cloud-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/salesforce-marketing-cloud-lifecycle.yml
+- type: Deprecation
+  url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/api_rest_eol.htm
+- type: VulnerabilityDisclosure
+  url: security/salesforce-marketing-cloud-vulnerability-disclosure.yml
+- type: Security
+  url: https://www.salesforce.com/company/disclosure/
+- type: TrustCenter
+  url: https://trust.salesforce.com/
+- type: Conventions
+  url: conventions/salesforce-marketing-cloud-conventions.yml
+- type: Idempotency
+  url: conventions/salesforce-marketing-cloud-conventions.yml
+- type: ChangeLog
+  url: changelog/salesforce-marketing-cloud-changelog.yml
+- type: Components
+  url: components/salesforce-marketing-cloud-components.yml
+- type: DataModel
+  url: data-model/salesforce-marketing-cloud-data-model.yml
+- type: Webhooks
+  url: asyncapi/salesforce-marketing-cloud-webhooks.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Plans
+  url: plans/salesforce-marketing-cloud-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/salesforce-marketing-cloud-rate-limits.yml
+- type: GitHubOrganization
+  url: https://github.com/salesforce-marketingcloud
+- type: PrivacyPolicy
+  url: https://www.salesforce.com/company/legal/privacy/
+- type: SignUp
+  url: https://www.salesforce.com/form/signup/freetrial-marketing-cloud/
+- type: GettingStarted
+  url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/get-started-index.html
 - type: Features
   data:
   - name: Email Marketing
@@ -477,3 +553,8 @@ contact:
 - name: Salesforce Marketing Cloud Support
   email: support@salesforce.com
   url: https://help.salesforce.com/s/
+x-enrichment:
+  date: '2026-08-13'
+  status: enriched
+  artifacts_added: 25
+  pass: local-v1
