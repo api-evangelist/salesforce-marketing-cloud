@@ -29,7 +29,7 @@ image: https://www.salesforce.com/content/dam/web/en_us/www/images/nav/logo-sale
 url: https://www.salesforce.com/products/marketing-cloud/overview/
 created: '2024-01-15'
 modified: '2026-08-13'
-specificationVersion: '0.18'
+specificationVersion: '0.23'
 type:
 - Index
 tags:
