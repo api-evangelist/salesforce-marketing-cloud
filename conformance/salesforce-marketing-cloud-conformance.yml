@@ -1,0 +1,127 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://compliance.salesforce.com/ (HTTP 200, probed 2026-08-13), the MCE MCP server's
+  RFC 8414 / RFC 9728 documents saved in well-known/, and the OpenAPI in openapi/
+note: >-
+  Mixed provenance by design. The compliance program entries are searched from Salesforce's
+  own published compliance page; the protocol entries are either probed from live
+  /.well-known/ documents or derived from the specs in this repo. Every entry names its
+  evidence.
+standards:
+- id: oauth2
+  conforms: true
+  evidence: >-
+    openapi components.securitySchemes.OAuth2 declares an oauth2 clientCredentials flow with
+    tokenUrl https://{subdomain}.auth.marketingcloudapis.com/v2/token across all three specs.
+- id: rfc8414-oauth-authorization-server-metadata
+  conforms: true
+  evidence: >-
+    https://mai-mce-mcp-cdp1.sfdc-yfeipo.svc.sfdcfc.net/.well-known/oauth-authorization-server
+    returned HTTP 200 with a valid metadata document (probed 2026-08-13). Saved verbatim at
+    well-known/salesforce-marketing-cloud-oauth-authorization-server.json.
+  scope: MCE MCP server only, not the REST/SOAP APIs.
+- id: rfc9728-oauth-protected-resource-metadata
+  conforms: true
+  evidence: >-
+    https://mai-mce-mcp-cdp1.sfdc-yfeipo.svc.sfdcfc.net/.well-known/oauth-protected-resource
+    returned HTTP 200 (probed 2026-08-13). Saved verbatim in well-known/.
+  scope: MCE MCP server only.
+- id: rfc7636-pkce
+  conforms: true
+  evidence: >-
+    The MCP authorization-server metadata declares code_challenge_methods_supported: [S256].
+  scope: MCE MCP server only.
+- id: rfc7591-dynamic-client-registration
+  conforms: true
+  evidence: >-
+    The MCP authorization-server metadata declares a registration_endpoint
+    (https://mai-mce-mcp-cdp1.sfdc-yfeipo.svc.sfdcfc.net/register).
+  scope: MCE MCP server only.
+- id: oidc-discovery
+  conforms: false
+  evidence: >-
+    /.well-known/openid-configuration returns 404 on the MCP host and on www.salesforce.com
+    (probed 2026-08-13). Marketing Cloud Engagement's own auth service is tenant-scoped and
+    was not probeable.
+- id: mcp
+  conforms: true
+  evidence: >-
+    First-party hosted MCP server for Marketing Cloud Engagement, GA 2026-06-02, 142 tools.
+    See mcp/salesforce-marketing-cloud-mcp.yml.
+- id: a2a
+  conforms: false
+  evidence: >-
+    No agent card. /.well-known/agent-card.json and /.well-known/agent.json return 404 on
+    www.salesforce.com, api.salesforce.com, trailhead.salesforce.com and the MCP host, and
+    403 on developer.salesforce.com (probed 2026-08-13).
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    Errors are a proprietary JSON envelope ({message, errorcode, documentation}), not
+    application/problem+json. No 4xx/5xx response in openapi/ declares that media type.
+- id: rfc6585-429
+  conforms: true
+  evidence: >-
+    Rate limiting returns HTTP 429 Too Many Requests with a Retry-After header and error
+    codes 50100 / 50200, per
+    https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/rate-limiting-errors.html.
+    Every operation in openapi/ declares a 429 response.
+- id: ietf-ratelimit-headers
+  conforms: false
+  evidence: >-
+    Salesforce documents Retry-After only. No RateLimit-Limit / RateLimit-Remaining /
+    RateLimit-Reset or X-RateLimit-* headers are published for Marketing Cloud Engagement.
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: >-
+    No Sunset or Deprecation header support is documented for Marketing Cloud Engagement.
+    Retirement is communicated through release notes and Salesforce Help articles.
+- id: hmac-sha256-webhook-signing
+  conforms: true
+  evidence: >-
+    Event Notification Service signs callbacks with HMAC-SHA256, base64 encoded, in the
+    x-sfmc-ens-signature header. See
+    https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/ens-notification-signing.html
+- id: json-api
+  conforms: false
+  evidence: Proprietary JSON collection envelope ({count, page, pageSize, items}), not JSON:API.
+- id: odata
+  conforms: partial
+  evidence: >-
+    Collection endpoints use OData-flavoured query parameters ($page, $pageSize, $orderBy,
+    $filter) but do not implement the OData protocol. Derived from openapi/ parameters.
+- id: soap-1-1
+  conforms: true
+  evidence: >-
+    Marketing Cloud Engagement ships a SOAP Web Service API at
+    https://{subdomain}.soap.marketingcloudapis.com alongside REST.
+- id: graphql
+  conforms: false
+  evidence: >-
+    Salesforce publishes no GraphQL endpoint for Marketing Cloud Engagement. The schema in
+    graphql/ is an API Evangelist conceptual derivation, not a provider surface.
+compliance_program:
+  published: true
+  url: https://compliance.salesforce.com/
+  trust_center: https://trust.salesforce.com/
+  certifications:
+  - SOC 1
+  - SOC 2
+  - ISO 27001
+  - ISO 27017
+  - ISO 27018
+  - PCI DSS
+  - HIPAA
+  - FedRAMP
+  - CSA STAR
+  - GDPR
+  evidence:
+  - source: https://compliance.salesforce.com/
+    status: 200
+    keywords: [SOC 1, SOC 2, ISO 27001, ISO 27017, ISO 27018, PCI DSS, HIPAA, FedRAMP, CSA STAR, GDPR]
+    fetched: '2026-08-13'
+  note: >-
+    Salesforce publishes certifications at the corporate level; the compliance page enumerates
+    per-product/per-cloud scope. Not every certification applies to every Marketing Cloud
+    edition — check the certificate scope statement before relying on one.

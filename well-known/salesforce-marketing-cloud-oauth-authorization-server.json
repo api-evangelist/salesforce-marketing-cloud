@@ -1,0 +1,11 @@
+{
+  "response_types_supported" : [ "code" ],
+  "code_challenge_methods_supported" : [ "S256" ],
+  "grant_types_supported" : [ "authorization_code", "refresh_token" ],
+  "registration_endpoint" : "https://mai-mce-mcp-cdp1.sfdc-yfeipo.svc.sfdcfc.net/register",
+  "token_endpoint_auth_methods_supported" : [ "none" ],
+  "issuer" : "https://mai-mce-mcp-cdp1.sfdc-yfeipo.svc.sfdcfc.net/api/mcp",
+  "authorization_endpoint" : "https://mai-mce-mcp-cdp1.sfdc-yfeipo.svc.sfdcfc.net/authorize",
+  "token_endpoint" : "https://mai-mce-mcp-cdp1.sfdc-yfeipo.svc.sfdcfc.net/token",
+  "service_documentation" : "https://mai-mce-mcp-cdp1.sfdc-yfeipo.svc.sfdcfc.net/api/mcp/health"
+}

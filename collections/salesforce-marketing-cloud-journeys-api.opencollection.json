@@ -1,0 +1,211 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Salesforce Marketing Cloud REST Assets Journeys API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://YOUR_SUBDOMAIN.auth.marketingcloudapis.com/v2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Journeys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Marketing Cloud List Journeys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.rest.marketingcloudapis.com/interaction/v1/interactions",
+            "params": [
+              {
+                "name": "$page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination (1-based)"
+              },
+              {
+                "name": "$pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of journeys per page"
+              },
+              {
+                "name": "$orderBy",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort results by (e.g., ModifiedDate DESC, Name ASC)"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter journeys by status (Draft, Published, ScheduledToPublish, Stopped, Unpublished)"
+              },
+              {
+                "name": "nameOrDescription",
+                "value": "",
+                "type": "query",
+                "description": "Filter journeys by name or description (partial match)"
+              }
+            ]
+          },
+          "docs": "Retrieves a collection of journeys. Supports pagination through page and pageSize parameters. Returns journey definitions including their current status, version, and configuration."
+        },
+        {
+          "info": {
+            "name": "Salesforce Marketing Cloud Create a Journey",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{subdomain}.rest.marketingcloudapis.com/interaction/v1/interactions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new journey in Marketing Cloud. The journey specification defines the entry event, activities, triggers, and overall workflow. Journeys are created in Draft status by default and must be published to become active."
+        },
+        {
+          "info": {
+            "name": "Salesforce Marketing Cloud Retrieve a Journey",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.rest.marketingcloudapis.com/interaction/v1/interactions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier (UUID) of the journey"
+              },
+              {
+                "name": "versionNumber",
+                "value": "",
+                "type": "query",
+                "description": "Specific version number to retrieve. If omitted, returns the latest version."
+              }
+            ]
+          },
+          "docs": "Retrieves a single journey by its unique identifier. Returns the complete journey specification including activities, triggers, goals, and exit criteria."
+        },
+        {
+          "info": {
+            "name": "Salesforce Marketing Cloud Update a Journey",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{subdomain}.rest.marketingcloudapis.com/interaction/v1/interactions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier (UUID) of the journey"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing journey. Only journeys in Draft status can be fully updated. Published journeys support limited modifications. Provide the complete journey specification including all activities and triggers."
+        },
+        {
+          "info": {
+            "name": "Salesforce Marketing Cloud Delete a Journey",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{subdomain}.rest.marketingcloudapis.com/interaction/v1/interactions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier (UUID) of the journey"
+              }
+            ]
+          },
+          "docs": "Deletes a journey. Only journeys in Draft or Stopped status can be deleted. Published journeys must first be stopped before deletion."
+        },
+        {
+          "info": {
+            "name": "Salesforce Marketing Cloud Publish a Journey",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{subdomain}.rest.marketingcloudapis.com/interaction/v1/interactions/publishAsync/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier (UUID) of the journey to publish"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Publishes a journey asynchronously, activating it for customer entry. Once published, contacts matching the entry criteria begin entering the journey. The publish operation returns a statusId for tracking progress."
+        },
+        {
+          "info": {
+            "name": "Salesforce Marketing Cloud Stop a Journey",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{subdomain}.rest.marketingcloudapis.com/interaction/v1/interactions/stop/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier (UUID) of the journey to stop"
+              }
+            ]
+          },
+          "docs": "Stops a published journey. Contacts currently in the journey can either complete their current activity or be ejected immediately based on the stop configuration."
+        },
+        {
+          "info": {
+            "name": "Salesforce Marketing Cloud Fire a Journey Entry Event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{subdomain}.rest.marketingcloudapis.com/interaction/v1/events",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Fires an entry event to inject a contact into a journey. The contact is identified by ContactKey and enters the journey associated with the specified EventDefinitionKey. Additional data can be passed as part of the event payload."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

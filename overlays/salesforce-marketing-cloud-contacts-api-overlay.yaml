@@ -1,0 +1,37 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Salesforce Marketing Cloud REST Assets Contacts API
+  version: 1.0.0
+extends: openapi/salesforce-marketing-cloud-contacts-api-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: salesforce-marketing-cloud
+    x-apievangelist-generated: '2026-08-13'
+    x-apievangelist-method: generated
+    x-apievangelist-note: API Evangelist overlay. Captures enrichment-pipeline findings about this contract
+      without mutating the harvested spec.
+    x-mcp-server: https://mai-mce-mcp-cdp1.sfdc-yfeipo.svc.sfdcfc.net/t/{tenantID}/c/{clientID}/api/mcp
+    x-tool-crosswalk: mcp/salesforce-marketing-cloud-tool-crosswalk.yml
+    x-conventions: conventions/salesforce-marketing-cloud-conventions.yml
+    x-error-catalog: errors/salesforce-marketing-cloud-problem-types.yml
+    x-rate-limits: rate-limits/salesforce-marketing-cloud-rate-limits.yml
+    x-lifecycle: lifecycle/salesforce-marketing-cloud-lifecycle.yml
+- target: $.servers[0]
+  update:
+    x-tenant-scoped: true
+    x-subdomain-source: Marketing Cloud Setup > Apps > Installed Packages
+    x-auth-host: https://{subdomain}.auth.marketingcloudapis.com
+- target: $.components.securitySchemes.OAuth2
+  update:
+    x-scope-model: Scopes are granted to an Installed Package in Marketing Cloud Setup, not requested
+      at authorization time. See scopes/salesforce-marketing-cloud-scopes.yml.
+    x-scopes-reference: https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+- target: $.paths.*.*.responses['429']
+  update:
+    x-rate-limit-headers:
+    - Retry-After
+    x-error-codes:
+    - 50100
+    - 50200
+    x-reference: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/rate-limiting-errors.html

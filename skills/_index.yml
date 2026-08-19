@@ -1,0 +1,24 @@
+generated: '2026-08-13'
+method: generated
+source: >-
+  Grounded in the operationIds in openapi/*.yml (grepped, not invented) and in Salesforce's
+  published MCE MCP tool reference. Salesforce publishes no AGENTS.md or skill files for
+  Marketing Cloud Engagement; searched the docs host and the salesforce-marketingcloud GitHub
+  organization on 2026-08-13.
+skills:
+- file: salesforce-marketing-cloud-create-and-publish-journey.md
+  name: Create and publish a Marketing Cloud journey
+  api: openapi/salesforce-marketing-cloud-journeys-api-openapi.yml
+  operations: [createJourney, getJourney, publishJourney, listJourneys]
+- file: salesforce-marketing-cloud-enter-contact-into-journey.md
+  name: Enter a contact into a running journey
+  api: openapi/salesforce-marketing-cloud-contacts-api-openapi.yml
+  operations: [searchContacts, getContact, createContacts, listAttributeSets, fireEntryEvent]
+- file: salesforce-marketing-cloud-manage-content-assets.md
+  name: Manage Content Builder assets
+  api: openapi/salesforce-marketing-cloud-assets-api-openapi.yml
+  operations: [listAssets, queryAssets, getAsset, createAsset, updateAsset, deleteAsset, listCategories]
+- file: salesforce-marketing-cloud-connect-mcp-server.md
+  name: Connect to the Marketing Cloud Engagement MCP server
+  api: mcp/salesforce-marketing-cloud-mcp.yml
+  operations: [sfmc_get_journeys, sfmc_get_data_extensions, sfmc_get_content_assets, sfmc_send_transactional_email, sfmc_stop_journey]

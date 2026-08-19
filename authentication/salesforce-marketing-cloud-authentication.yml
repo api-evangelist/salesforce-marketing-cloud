@@ -1,20 +1,92 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/salesforce-marketing-cloud-openapi.yml
+generated: '2026-08-13'
+method: searched
+source: openapi/salesforce-marketing-cloud-*-openapi.yml (derived baseline)
+docs:
+  overview: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/authentication.html
+  integration_types: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/integration-considerations.html
+  server_to_server: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/access-token-s2s.html
+  scopes: >-
+    https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_rest_permission_scopes/rest-permissions-and-scopes.html
+note: >-
+  Upgraded from derived to searched on 2026-08-13. The captured OpenAPI declares only the
+  clientCredentials flow; Salesforce's docs additionally document an authorization code flow
+  for web and public apps, plus the token-response fields that make this API workable — most
+  importantly rest_instance_url and soap_instance_url, which are how a client discovers its
+  own tenant hosts. A client that hardcodes a subdomain instead of reading these is doing it
+  wrong.
 summary:
-  types:
-  - oauth2
-  oauth2_flows:
-  - clientCredentials
+  types: [oauth2]
+  oauth2_flows: [clientCredentials, authorizationCode]
+  api_key_in: []
+  mutual_tls: false
+  openid_connect: false
 schemes:
 - name: OAuth2
   type: oauth2
   flows:
   - flow: clientCredentials
-    tokenUrl: https://YOUR_SUBDOMAIN.auth.marketingcloudapis.com/v2/token
+    tokenUrl: https://{subdomain}.auth.marketingcloudapis.com/v2/token
     scopes: 0
-  description: Marketing Cloud uses OAuth 2.0 client credentials flow for authentication. Obtain
-    a client ID and secret from an installed package in Marketing Cloud Setup, then exchange
-    them for an access token at the authentication endpoint.
+    integration_type: Server-to-Server
+    docs: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/access-token-s2s.html
+  - flow: authorizationCode
+    tokenUrl: https://{subdomain}.auth.marketingcloudapis.com/v2/token
+    integration_type: Web and Public App
+    docs: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/integration-considerations.html
+    note: >-
+      'Web and Public App Integrations with Authorization Code Grant Type.' Declared in the
+      docs but NOT declared in any captured OpenAPI, which only models clientCredentials.
+  description: >-
+    Marketing Cloud Engagement uses OAuth 2.0. Credentials come from an API Integration
+    inside an Installed Package created in Marketing Cloud Setup > Apps > Installed Packages.
+    The Installed Package also fixes which scopes the integration may ever hold.
   sources:
-  - openapi/salesforce-marketing-cloud-openapi.yml
+  - openapi/salesforce-marketing-cloud-assets-api-openapi.yml
+  - openapi/salesforce-marketing-cloud-contacts-api-openapi.yml
+  - openapi/salesforce-marketing-cloud-journeys-api-openapi.yml
+token_request:
+  method: POST
+  path: /v2/token
+  host: 'https://{subdomain}.auth.marketingcloudapis.com'
+  fields:
+  - {name: grant_type, required: true, value: client_credentials}
+  - {name: client_id, required: true}
+  - {name: client_secret, required: true}
+  - {name: scope, required: false, description: Space-separated permissions list.}
+  - {name: account_id, required: false, description: 'Business unit MID. "For server-to-server integrations that use the client credentials flow, specify the MID in the account_id parameter of your v2/token request."'}
+token_response:
+  fields:
+  - {name: access_token, description: 'Acts as a session ID that the application uses to make requests. Max 512 characters.'}
+  - {name: token_type, value: Bearer}
+  - {name: expires_in, value: 1080, description: '"The value has the value 1080, representing 1,080 seconds, or 18 minutes." The real token lifetime is 20 minutes; expires_in is deliberately reported short so a client refreshes before expiry.'}
+  - {name: rest_instance_url, description: The REST API base URL for this tenant. Use this rather than constructing the host.}
+  - {name: soap_instance_url, description: The SOAP API base URL for this tenant.}
+  - {name: scope, description: The permission values actually assigned to the token.}
+request_header: 'Authorization: Bearer <access_token>'
+tenancy:
+  subdomain_required: true
+  subdomain_source: Marketing Cloud Setup > Apps > Installed Packages
+  note: >-
+    Auth, REST and SOAP each live on a different tenant host
+    ({subdomain}.auth / .rest / .soap .marketingcloudapis.com). There is no global host.
+authorization_model:
+  scope_grant: installed-package
+  runtime_scope_request: false
+  note: >-
+    Scopes are assigned to the Installed Package by an administrator and are fixed for that
+    integration. The scope parameter on the token request can only narrow what the package
+    already holds; it cannot request anything new. A 403 with an errorcode in the 20000 class
+    is therefore an administrative problem, not a client one — it cannot be resolved in code.
+  artifact: scopes/salesforce-marketing-cloud-scopes.yml
+mcp_authentication:
+  differs: true
+  model: OAuth 2.0 authorization code with PKCE (S256), dynamic client registration
+  note: >-
+    The MCE MCP server does NOT use the marketingcloudapis.com auth host. It runs its own
+    authorization server with RFC 8414 metadata, an RFC 7591 registration endpoint and PKCE.
+    See mcp/salesforce-marketing-cloud-mcp.yml and
+    well-known/salesforce-marketing-cloud-oauth-authorization-server.json.
+legacy:
+  v1_endpoint: https://{subdomain}.auth.marketingcloudapis.com/v1/requestToken
+  status: superseded
+  note: The legacy ExactTarget token service. New integrations use v2.

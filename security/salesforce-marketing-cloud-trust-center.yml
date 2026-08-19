@@ -1,0 +1,42 @@
+generated: '2026-08-13'
+method: searched
+probe: true
+source: https://trust.salesforce.com/
+note: >-
+  The mechanical probe reported trust=none; verified by hand on 2026-08-13. Salesforce runs a
+  two-surface trust program: trust.salesforce.com for live availability and incident history,
+  and compliance.salesforce.com (also served at trust.salesforce.com/compliance) for the
+  certification register.
+url: https://trust.salesforce.com/
+compliance_url: https://compliance.salesforce.com/
+security_url: https://security.salesforce.com/
+status_url: https://status.salesforce.com/
+certifications:
+- SOC 1
+- SOC 2
+- ISO 27001
+- ISO 27017
+- ISO 27018
+- PCI DSS
+- HIPAA
+- FedRAMP
+- CSA STAR
+- GDPR
+scope_note: >-
+  Certifications are published at the Salesforce corporate level with per-cloud and
+  per-service scope statements. Not every certification covers every Marketing Cloud
+  Engagement edition or region — read the scope statement on the individual certificate
+  before relying on it for a Marketing Cloud workload.
+evidence:
+- source: https://trust.salesforce.com/
+  status: 200
+  fetched: '2026-08-13'
+  keywords: [trust]
+- source: https://compliance.salesforce.com/
+  status: 200
+  fetched: '2026-08-13'
+  keywords: [SOC 1, SOC 2, ISO 27001, ISO 27017, ISO 27018, PCI DSS, HIPAA, FedRAMP, CSA STAR, GDPR, Responsible Disclosure]
+- source: https://trust.salesforce.com/compliance
+  status: 200
+  fetched: '2026-08-13'
+  keywords: [SOC 1, SOC 2, ISO 27001, PCI DSS, HIPAA, FedRAMP, CSA STAR]

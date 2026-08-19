@@ -1,0 +1,3367 @@
+{
+  "item": [
+    {
+      "id": "99c8bea8-9037-48f3-8d51-32865a0f2280",
+      "name": "Journeys",
+      "description": {
+        "content": "Create, manage, and automate customer journeys across multiple channels and touchpoints. Journeys define the automated workflows that guide customers through marketing interactions.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "11701308-5316-4ebe-bce5-862da08fef85",
+          "name": "Salesforce Marketing Cloud List Journeys",
+          "request": {
+            "name": "Salesforce Marketing Cloud List Journeys",
+            "description": {
+              "content": "Retrieves a collection of journeys. Supports pagination through page and pageSize parameters. Returns journey definitions including their current status, version, and configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "interaction",
+                "v1",
+                "interactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$page",
+                  "value": "1",
+                  "description": "Page number for pagination (1-based)"
+                },
+                {
+                  "disabled": false,
+                  "key": "$pageSize",
+                  "value": "50",
+                  "description": "Number of journeys per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "$orderBy",
+                  "value": "<string>",
+                  "description": "Field to sort results by (e.g., ModifiedDate DESC, Name ASC)"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter journeys by status (Draft, Published, ScheduledToPublish, Stopped, Unpublished)"
+                },
+                {
+                  "disabled": false,
+                  "key": "nameOrDescription",
+                  "value": "<string>",
+                  "description": "Filter journeys by name or description (partial match)"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e6544442-d363-4d43-ab32-d9545fc0f136",
+              "name": "Journeys retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "interactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "$pageSize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "$orderBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nameOrDescription",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 10,\n  \"page\": 10,\n  \"pageSize\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "981317e2-6ec0-4e62-aa9c-4ec989fbff75",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "interactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "$pageSize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "$orderBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nameOrDescription",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1470761f-a256-4c1f-93dd-816f14641570",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "interactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "$pageSize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "$orderBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nameOrDescription",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1ae0adec-3b05-4b1d-9966-54fb17bfe60d",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "interactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "$pageSize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "$orderBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nameOrDescription",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9a0c3626-deac-4ec7-a6d5-189e20c56b50",
+          "name": "Salesforce Marketing Cloud Create a Journey",
+          "request": {
+            "name": "Salesforce Marketing Cloud Create a Journey",
+            "description": {
+              "content": "Creates a new journey in Marketing Cloud. The journey specification defines the entry event, activities, triggers, and overall workflow. Journeys are created in Draft status by default and must be published to become active.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "interaction",
+                "v1",
+                "interactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"workflowApiVersion\": \"<number>\",\n  \"key\": \"<string>\",\n  \"description\": \"<string>\",\n  \"triggers\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"eventDefinitionKey\": \"<string>\",\n      \"configurationArguments\": \"<object>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"eventDefinitionKey\": \"<string>\",\n      \"configurationArguments\": \"<object>\"\n    }\n  ],\n  \"activities\": [\n    {\n      \"key\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"configurationArguments\": \"<object>\",\n      \"outcomes\": [\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"key\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"configurationArguments\": \"<object>\",\n      \"outcomes\": [\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"goals\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"metCriteria\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"metCriteria\": \"<string>\"\n    }\n  ],\n  \"exits\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"criteria\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"criteria\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e67b2242-d501-4535-8e3c-6e14f51d552f",
+              "name": "Journey created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "interactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Welcome Journey\",\n  \"description\": \"Onboarding journey for new subscribers\",\n  \"key\": \"welcome-journey-001\",\n  \"workflowApiVersion\": 1,\n  \"triggers\": [\n    {\n      \"key\": \"event-trigger\",\n      \"name\": \"api-event\",\n      \"type\": \"APIEvent\",\n      \"eventDefinitionKey\": \"APIEvent-welcome\"\n    }\n  ],\n  \"activities\": [\n    {\n      \"key\": \"send-welcome-email\",\n      \"name\": \"Send Welcome Email\",\n      \"type\": \"EMAILV2\",\n      \"configurationArguments\": {\n        \"triggeredSend\": {\n          \"emailId\": 12345\n        }\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"6dbf767d-9554-f14a-28a8-94e7ee1beaca\",\n  \"key\": \"example_value\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"version\": 10,\n  \"status\": \"Draft\",\n  \"createdDate\": \"2026-01-15T10:30:00Z\",\n  \"modifiedDate\": \"2026-01-15T10:30:00Z\",\n  \"workflowApiVersion\": 42.5,\n  \"stats\": {\n    \"currentPopulation\": 1530,\n    \"cumulativePopulation\": 7736,\n    \"metGoal\": 9465\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "087debe6-1132-443e-ba90-c32688c14808",
+              "name": "Bad request - invalid journey specification",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "interactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Welcome Journey\",\n  \"description\": \"Onboarding journey for new subscribers\",\n  \"key\": \"welcome-journey-001\",\n  \"workflowApiVersion\": 1,\n  \"triggers\": [\n    {\n      \"key\": \"event-trigger\",\n      \"name\": \"api-event\",\n      \"type\": \"APIEvent\",\n      \"eventDefinitionKey\": \"APIEvent-welcome\"\n    }\n  ],\n  \"activities\": [\n    {\n      \"key\": \"send-welcome-email\",\n      \"name\": \"Send Welcome Email\",\n      \"type\": \"EMAILV2\",\n      \"configurationArguments\": {\n        \"triggeredSend\": {\n          \"emailId\": 12345\n        }\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6f32f8ab-b1f2-4a4e-a56a-4ce613a762eb",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "interactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Welcome Journey\",\n  \"description\": \"Onboarding journey for new subscribers\",\n  \"key\": \"welcome-journey-001\",\n  \"workflowApiVersion\": 1,\n  \"triggers\": [\n    {\n      \"key\": \"event-trigger\",\n      \"name\": \"api-event\",\n      \"type\": \"APIEvent\",\n      \"eventDefinitionKey\": \"APIEvent-welcome\"\n    }\n  ],\n  \"activities\": [\n    {\n      \"key\": \"send-welcome-email\",\n      \"name\": \"Send Welcome Email\",\n      \"type\": \"EMAILV2\",\n      \"configurationArguments\": {\n        \"triggeredSend\": {\n          \"emailId\": 12345\n        }\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4e96a64f-89b0-4ce6-93b9-3bbf4121b60c",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "interactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Welcome Journey\",\n  \"description\": \"Onboarding journey for new subscribers\",\n  \"key\": \"welcome-journey-001\",\n  \"workflowApiVersion\": 1,\n  \"triggers\": [\n    {\n      \"key\": \"event-trigger\",\n      \"name\": \"api-event\",\n      \"type\": \"APIEvent\",\n      \"eventDefinitionKey\": \"APIEvent-welcome\"\n    }\n  ],\n  \"activities\": [\n    {\n      \"key\": \"send-welcome-email\",\n      \"name\": \"Send Welcome Email\",\n      \"type\": \"EMAILV2\",\n      \"configurationArguments\": {\n        \"triggeredSend\": {\n          \"emailId\": 12345\n        }\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e64b8d98-f153-4b37-a1f4-50e7a280b942",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "interactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Welcome Journey\",\n  \"description\": \"Onboarding journey for new subscribers\",\n  \"key\": \"welcome-journey-001\",\n  \"workflowApiVersion\": 1,\n  \"triggers\": [\n    {\n      \"key\": \"event-trigger\",\n      \"name\": \"api-event\",\n      \"type\": \"APIEvent\",\n      \"eventDefinitionKey\": \"APIEvent-welcome\"\n    }\n  ],\n  \"activities\": [\n    {\n      \"key\": \"send-welcome-email\",\n      \"name\": \"Send Welcome Email\",\n      \"type\": \"EMAILV2\",\n      \"configurationArguments\": {\n        \"triggeredSend\": {\n          \"emailId\": 12345\n        }\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4d17d312-0325-433a-aed7-2328e5d4cccc",
+          "name": "Salesforce Marketing Cloud Retrieve a Journey",
+          "request": {
+            "name": "Salesforce Marketing Cloud Retrieve a Journey",
+            "description": {
+              "content": "Retrieves a single journey by its unique identifier. Returns the complete journey specification including activities, triggers, goals, and exit criteria.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "interaction",
+                "v1",
+                "interactions",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "versionNumber",
+                  "value": "<integer>",
+                  "description": "Specific version number to retrieve. If omitted, returns the latest version."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier (UUID) of the journey"
+                },
+                {
+                  "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0fea6971-efc9-44d0-902c-f19edfdd084c",
+              "name": "Journey retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "interactions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "versionNumber",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier (UUID) of the journey"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"6dbf767d-9554-f14a-28a8-94e7ee1beaca\",\n  \"key\": \"example_value\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"version\": 10,\n  \"status\": \"Draft\",\n  \"createdDate\": \"2026-01-15T10:30:00Z\",\n  \"modifiedDate\": \"2026-01-15T10:30:00Z\",\n  \"workflowApiVersion\": 42.5,\n  \"stats\": {\n    \"currentPopulation\": 1530,\n    \"cumulativePopulation\": 7736,\n    \"metGoal\": 9465\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ef1d55a3-cda6-4e2f-b12f-f6bfdcf79d1c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "interactions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "versionNumber",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier (UUID) of the journey"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "602efcee-2b31-4d17-81e4-19552fe7a733",
+              "name": "Journey not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "interactions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "versionNumber",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier (UUID) of the journey"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "594ab58d-809b-4224-a8be-4aa23a6f7954",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "interactions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "versionNumber",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier (UUID) of the journey"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2859677b-14a8-430a-92ff-3fc695e3b48d",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "interactions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "versionNumber",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier (UUID) of the journey"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5fd5e137-b3a0-4020-afb5-7c3997351ebe",
+          "name": "Salesforce Marketing Cloud Update a Journey",
+          "request": {
+            "name": "Salesforce Marketing Cloud Update a Journey",
+            "description": {
+              "content": "Updates an existing journey. Only journeys in Draft status can be fully updated. Published journeys support limited modifications. Provide the complete journey specification including all activities and triggers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "interaction",
+                "v1",
+                "interactions",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier (UUID) of the journey"
+                },
+                {
+                  "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"workflowApiVersion\": \"<number>\",\n  \"key\": \"<string>\",\n  \"description\": \"<string>\",\n  \"triggers\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"eventDefinitionKey\": \"<string>\",\n      \"configurationArguments\": \"<object>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"eventDefinitionKey\": \"<string>\",\n      \"configurationArguments\": \"<object>\"\n    }\n  ],\n  \"activities\": [\n    {\n      \"key\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"configurationArguments\": \"<object>\",\n      \"outcomes\": [\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"key\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"configurationArguments\": \"<object>\",\n      \"outcomes\": [\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"next\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"goals\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"metCriteria\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"metCriteria\": \"<string>\"\n    }\n  ],\n  \"exits\": [\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"criteria\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"name\": \"<string>\",\n      \"criteria\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b340755c-7017-42e8-8229-4b476ae15c3a",
+              "name": "Journey updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "interactions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier (UUID) of the journey"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"workflowApiVersion\": 42.5,\n  \"key\": \"example_value\",\n  \"description\": \"A sample description.\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"6dbf767d-9554-f14a-28a8-94e7ee1beaca\",\n  \"key\": \"example_value\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"version\": 10,\n  \"status\": \"Draft\",\n  \"createdDate\": \"2026-01-15T10:30:00Z\",\n  \"modifiedDate\": \"2026-01-15T10:30:00Z\",\n  \"workflowApiVersion\": 42.5,\n  \"stats\": {\n    \"currentPopulation\": 1530,\n    \"cumulativePopulation\": 7736,\n    \"metGoal\": 9465\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e4f00ff1-e5b5-41f5-978e-91d624015afb",
+              "name": "Bad request - invalid journey specification",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "interactions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier (UUID) of the journey"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"workflowApiVersion\": 42.5,\n  \"key\": \"example_value\",\n  \"description\": \"A sample description.\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "762ec5df-ee7e-45f5-af3d-f84cbbb31873",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "interactions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier (UUID) of the journey"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"workflowApiVersion\": 42.5,\n  \"key\": \"example_value\",\n  \"description\": \"A sample description.\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "590bbcaa-5e1f-48d4-832a-d68eb85d28c3",
+              "name": "Journey not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "interactions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier (UUID) of the journey"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"workflowApiVersion\": 42.5,\n  \"key\": \"example_value\",\n  \"description\": \"A sample description.\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0a00b996-95f5-4921-924b-9ee0dd4469a6",
+              "name": "Conflict - journey is in a non-editable state",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "interactions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier (UUID) of the journey"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"workflowApiVersion\": 42.5,\n  \"key\": \"example_value\",\n  \"description\": \"A sample description.\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2523773b-59a5-40d6-8bdf-4433d3b156a0",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "interactions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier (UUID) of the journey"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"workflowApiVersion\": 42.5,\n  \"key\": \"example_value\",\n  \"description\": \"A sample description.\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3c32569a-7bcd-4973-8cc1-3f40a464e158",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "interactions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier (UUID) of the journey"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"workflowApiVersion\": 42.5,\n  \"key\": \"example_value\",\n  \"description\": \"A sample description.\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a1fc3342-2275-4ebd-abaa-5dee53d3f271",
+          "name": "Salesforce Marketing Cloud Delete a Journey",
+          "request": {
+            "name": "Salesforce Marketing Cloud Delete a Journey",
+            "description": {
+              "content": "Deletes a journey. Only journeys in Draft or Stopped status can be deleted. Published journeys must first be stopped before deletion.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "interaction",
+                "v1",
+                "interactions",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier (UUID) of the journey"
+                },
+                {
+                  "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2b1c2c32-e454-4bb0-9421-27716a754b08",
+              "name": "Journey deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "interactions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier (UUID) of the journey"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ae0f617f-1ef7-41c4-aa24-a9fa51e349a6",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "interactions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier (UUID) of the journey"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b7d1f237-a54d-4de8-9fe1-34bc272e3148",
+              "name": "Journey not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "interactions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier (UUID) of the journey"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9ce21f2a-79a5-46c9-a697-bac3eb61b2b0",
+              "name": "Conflict - journey cannot be deleted in current state",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "interactions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier (UUID) of the journey"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "33475eef-24b1-49ae-8660-3cc1f424513d",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "interactions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier (UUID) of the journey"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1956dc5d-fbd5-4407-9063-53e144888b95",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "interactions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier (UUID) of the journey"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "663877ca-8850-45fb-b9af-a33925e07a36",
+          "name": "Salesforce Marketing Cloud Publish a Journey",
+          "request": {
+            "name": "Salesforce Marketing Cloud Publish a Journey",
+            "description": {
+              "content": "Publishes a journey asynchronously, activating it for customer entry. Once published, contacts matching the entry criteria begin entering the journey. The publish operation returns a statusId for tracking progress.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "interaction",
+                "v1",
+                "interactions",
+                "publishAsync",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier (UUID) of the journey to publish"
+                },
+                {
+                  "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"versionNumber\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "831c6214-a9ec-44cf-ad0a-8f902c8878c6",
+              "name": "Publish operation initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "interactions",
+                    "publishAsync",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier (UUID) of the journey to publish"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"versionNumber\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusId\": \"500123\",\n  \"message\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55db2226-1abd-4693-bf60-133177709fff",
+              "name": "Bad request - journey not in publishable state",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "interactions",
+                    "publishAsync",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier (UUID) of the journey to publish"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"versionNumber\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9e8f28b3-88c8-4ad5-a461-987bd4741749",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "interactions",
+                    "publishAsync",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier (UUID) of the journey to publish"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"versionNumber\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f51fded2-8e23-4f17-bbcf-04d729ceecfd",
+              "name": "Journey not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "interactions",
+                    "publishAsync",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier (UUID) of the journey to publish"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"versionNumber\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "893ce135-147c-4d0e-9551-d139fe997a36",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "interactions",
+                    "publishAsync",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier (UUID) of the journey to publish"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"versionNumber\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f3740a6a-05c2-4cb7-b7d0-60a868bdaa90",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "interactions",
+                    "publishAsync",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier (UUID) of the journey to publish"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"versionNumber\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1ea94770-3b85-439c-96f9-99ca0f19e5c7",
+          "name": "Salesforce Marketing Cloud Stop a Journey",
+          "request": {
+            "name": "Salesforce Marketing Cloud Stop a Journey",
+            "description": {
+              "content": "Stops a published journey. Contacts currently in the journey can either complete their current activity or be ejected immediately based on the stop configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "interaction",
+                "v1",
+                "interactions",
+                "stop",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier (UUID) of the journey to stop"
+                },
+                {
+                  "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "609e0d50-c0c0-4b2a-8e05-3c14bd0a497b",
+              "name": "Journey stopped successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "interactions",
+                    "stop",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier (UUID) of the journey to stop"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"6dbf767d-9554-f14a-28a8-94e7ee1beaca\",\n  \"key\": \"example_value\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"version\": 10,\n  \"status\": \"Draft\",\n  \"createdDate\": \"2026-01-15T10:30:00Z\",\n  \"modifiedDate\": \"2026-01-15T10:30:00Z\",\n  \"workflowApiVersion\": 42.5,\n  \"stats\": {\n    \"currentPopulation\": 1530,\n    \"cumulativePopulation\": 7736,\n    \"metGoal\": 9465\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb7efea4-ece5-4919-993a-74d9c6100b7b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "interactions",
+                    "stop",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier (UUID) of the journey to stop"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5a1b9f05-7101-4336-b8a7-a078b95c9dc4",
+              "name": "Journey not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "interactions",
+                    "stop",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier (UUID) of the journey to stop"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "435c5efd-a3b7-40dc-ba5d-8a0d7aa228b4",
+              "name": "Conflict - journey is not in a stoppable state",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "interactions",
+                    "stop",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier (UUID) of the journey to stop"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e2d0346e-65f4-4221-a8a4-eb84c8764b4f",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "interactions",
+                    "stop",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier (UUID) of the journey to stop"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c37ff5ee-ea7d-4fd9-96c1-f821d3b13ea7",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "interactions",
+                    "stop",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier (UUID) of the journey to stop"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "23f26d78-9a87-4a85-8016-e8a29334ae52",
+          "name": "Salesforce Marketing Cloud Fire a Journey Entry Event",
+          "request": {
+            "name": "Salesforce Marketing Cloud Fire a Journey Entry Event",
+            "description": {
+              "content": "Fires an entry event to inject a contact into a journey. The contact is identified by ContactKey and enters the journey associated with the specified EventDefinitionKey. Additional data can be passed as part of the event payload.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "interaction",
+                "v1",
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ContactKey\": \"<string>\",\n  \"EventDefinitionKey\": \"<string>\",\n  \"Data\": {\n    \"key_0\": 5924.2479035572205\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3c0a95ed-7374-4fac-ab38-0e6220473d61",
+              "name": "Event fired successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ContactKey\": \"example-contact-001\",\n  \"EventDefinitionKey\": \"APIEvent-welcome\",\n  \"Data\": {\n    \"FirstName\": \"Jane\",\n    \"LastName\": \"Smith\",\n    \"EmailAddress\": \"jane.smith@example.com\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"500123\",\n  \"eventInstanceId\": \"421d2885-d8a0-c2d5-0e45-5892fc4177f0\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "30558373-ea34-4971-bb53-c1a0185ff588",
+              "name": "Bad request - invalid event data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ContactKey\": \"example-contact-001\",\n  \"EventDefinitionKey\": \"APIEvent-welcome\",\n  \"Data\": {\n    \"FirstName\": \"Jane\",\n    \"LastName\": \"Smith\",\n    \"EmailAddress\": \"jane.smith@example.com\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f8457306-c622-4554-b741-17d16c5c66cc",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ContactKey\": \"example-contact-001\",\n  \"EventDefinitionKey\": \"APIEvent-welcome\",\n  \"Data\": {\n    \"FirstName\": \"Jane\",\n    \"LastName\": \"Smith\",\n    \"EmailAddress\": \"jane.smith@example.com\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "247a67b5-bd01-4a2f-b860-496a8044a273",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ContactKey\": \"example-contact-001\",\n  \"EventDefinitionKey\": \"APIEvent-welcome\",\n  \"Data\": {\n    \"FirstName\": \"Jane\",\n    \"LastName\": \"Smith\",\n    \"EmailAddress\": \"jane.smith@example.com\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "38b8afda-fa9a-4fcd-824c-f09043df4dd4",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "interaction",
+                    "v1",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ContactKey\": \"example-contact-001\",\n  \"EventDefinitionKey\": \"APIEvent-welcome\",\n  \"Data\": {\n    \"FirstName\": \"Jane\",\n    \"LastName\": \"Smith\",\n    \"EmailAddress\": \"jane.smith@example.com\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "YOUR_SUBDOMAIN",
+      "key": "subdomain"
+    },
+    {
+      "type": "string",
+      "value": "https://{{subdomain}}.rest.marketingcloudapis.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://YOUR_SUBDOMAIN.auth.marketingcloudapis.com/v2/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f587389a-0384-47c4-a05e-d1d8fe4f14a9",
+    "name": "Salesforce Marketing Cloud REST Assets Journeys API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Salesforce Marketing Cloud REST API provides programmatic access to Marketing Cloud features including contacts, journeys, and assets. The API uses JSON request and response bodies and OAuth 2.0 authentication via the Marketing Cloud authentication endpoint. All API requests require a valid access token obtained through the Server-to-Server OAuth flow.\n\nContact Support:\n Name: Salesforce Marketing Cloud Support\n Email: support@salesforce.com",
+      "type": "text/plain"
+    }
+  }
+}

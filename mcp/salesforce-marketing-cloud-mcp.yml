@@ -1,0 +1,225 @@
+generated: '2026-08-13'
+method: searched
+status: published
+source: https://developer.salesforce.com/docs/marketing/mce-mcp/guide/mce-mcp.html
+docs:
+  overview: https://developer.salesforce.com/docs/marketing/mce-mcp/guide/mce-mcp.html
+  setup: https://developer.salesforce.com/docs/marketing/mce-mcp/guide/mce-mcp-setup.html
+  use: https://developer.salesforce.com/docs/marketing/mce-mcp/guide/mce-mcp-use.html
+  tool_reference: https://developer.salesforce.com/docs/marketing/mce-mcp/references
+  announcement: >-
+    https://developer.salesforce.com/blogs/2026/06/the-mcp-server-for-marketing-cloud-engagement-is-now-ga
+server:
+  name: MCP Server for Marketing Cloud Engagement
+  vendor: Salesforce, Inc.
+  transport: http
+  ga_date: '2026-06-02'
+  tool_prefix: sfmc_
+deployment:
+  mode: remote
+  endpoint: >-
+    https://mai-mce-mcp-cdp1.sfdc-yfeipo.svc.sfdcfc.net/t/{tenantID}/c/{clientID}/api/mcp
+  endpoints:
+  - region: US
+    url: >-
+      https://mai-mce-mcp-cdp1.sfdc-yfeipo.svc.sfdcfc.net/t/{tenantID}/c/{clientID}/api/mcp
+  - region: EU
+    url: >-
+      https://mai-mce-mcp-cdp1.sfdc-yzvdd4.svc.sfdcfc.net/t/{tenantID}/c/{clientID}/api/mcp
+  install: null
+  package: null
+  auth: oauth
+  verified: probed
+  note: >-
+    Remote hosted server operated by Salesforce — an agent POSTs to the URL above, there is
+    nothing to install. The path is templated per tenant: {tenantID} and {clientID} come from
+    an Installed Package created in Marketing Cloud Engagement Setup, so the URL is real but
+    tenant-scoped, exactly like the REST baseURL. Verified by probing the server root:
+    /.well-known/oauth-authorization-server and /.well-known/oauth-protected-resource both
+    return 200 with real RFC 8414 / RFC 9728 documents (saved in well-known/). Salesforce
+    publishes an install line for Claude Code:
+    "claude mcp add -s user --transport http CONFIG_NAME
+    https://mai-mce-mcp-cdp1.sfdc-yfeipo.svc.sfdcfc.net/t/{tenantID}/c/{clientID}/api/mcp"
+    — that is a client-side registration of the REMOTE URL, not a local stdio package.
+authorization:
+  model: OAuth 2.0 authorization code with PKCE
+  issuer: https://mai-mce-mcp-cdp1.sfdc-yfeipo.svc.sfdcfc.net/api/mcp
+  authorization_endpoint: https://mai-mce-mcp-cdp1.sfdc-yfeipo.svc.sfdcfc.net/authorize
+  token_endpoint: https://mai-mce-mcp-cdp1.sfdc-yfeipo.svc.sfdcfc.net/token
+  registration_endpoint: https://mai-mce-mcp-cdp1.sfdc-yfeipo.svc.sfdcfc.net/register
+  grant_types_supported: [authorization_code, refresh_token]
+  code_challenge_methods_supported: [S256]
+  token_endpoint_auth_methods_supported: [none]
+  source: well-known/salesforce-marketing-cloud-oauth-authorization-server.json
+  permissions_note: >-
+    Salesforce states: "An agent's permissions are a combination of the scopes in a
+    dedicated, installed package and your own user permissions." Tool-level scope
+    requirements are published per tool in the reference (e.g. sfmc_send_outbound_sms_message
+    requires "Channels | SMS | Send"). See scopes/salesforce-marketing-cloud-scopes.yml.
+introspection:
+  tools_list_probed: true
+  tools_list_status: 405
+  tools_list_note: >-
+    POST tools/list against the un-tenanted server root
+    (https://mai-mce-mcp-cdp1.sfdc-yfeipo.svc.sfdcfc.net/api/mcp) returns HTTP 405 Method
+    Not Allowed — the live MCP endpoint only exists under /t/{tenantID}/c/{clientID}/.
+    Live inputSchema introspection therefore requires an authenticated Marketing Cloud
+    tenant. The tool list below is transcribed from Salesforce's own published tool
+    reference (names and descriptions verbatim); input schemas are NOT recorded because we
+    could not read them, and are not guessed.
+tool_count: 142
+categories:
+- {name: Automations, count: 35, reference: https://developer.salesforce.com/docs/marketing/mce-mcp/references/mce-mcp-tools/mce-mcp-tools-automations.html}
+- {name: Campaigns, count: 8, reference: https://developer.salesforce.com/docs/marketing/mce-mcp/references/mce-mcp-tools/mce-mcp-tools-campaigns.html}
+- {name: Contacts, count: 11, reference: https://developer.salesforce.com/docs/marketing/mce-mcp/references/mce-mcp-tools/mce-mcp-tools-contacts.html}
+- {name: Content, count: 13, reference: https://developer.salesforce.com/docs/marketing/mce-mcp/references/mce-mcp-tools/mce-mcp-tools-content.html}
+- {name: Data Extensions, count: 19, reference: https://developer.salesforce.com/docs/marketing/mce-mcp/references/mce-mcp-tools/mce-mcp-tools-data-extensions.html}
+- {name: Email, count: 5, reference: https://developer.salesforce.com/docs/marketing/mce-mcp/references/mce-mcp-tools/mce-mcp-tools-email.html}
+- {name: Journeys, count: 36, reference: https://developer.salesforce.com/docs/marketing/mce-mcp/references/mce-mcp-tools/mce-mcp-tools-journeys.html}
+- {name: Push, count: 1, reference: https://developer.salesforce.com/docs/marketing/mce-mcp/references/mce-mcp-tools/mce-mcp-tools-push.html}
+- {name: SMS, count: 8, reference: https://developer.salesforce.com/docs/marketing/mce-mcp/references/mce-mcp-tools/mce-mcp-tools-sms.html}
+- {name: Tracking, count: 1, reference: https://developer.salesforce.com/docs/marketing/mce-mcp/references/mce-mcp-tools/mce-mcp-tools-tracking.html}
+- {name: Utilities, count: 5, reference: https://developer.salesforce.com/docs/marketing/mce-mcp/references/mce-mcp-tools/mce-mcp-tools-utilities.html}
+tools:
+- {name: sfmc_create_automation, category: Automations, description: Create an Automation Studio automation.}
+- {name: sfmc_create_automation_file_transfer, category: Automations, description: Create a file transfer activity in Automation Studio.}
+- {name: sfmc_create_ftp_location, category: Automations, description: Create a file transfer location.}
+- {name: sfmc_create_sql_query, category: Automations, description: Create a SQL query activity.}
+- {name: sfmc_delete_automation_file_transfer, category: Automations, description: Delete an Automation Studio file transfer activity.}
+- {name: sfmc_delete_ftp_location, category: Automations, description: Deactivate a file transfer location.}
+- {name: sfmc_execute_script_activity, category: Automations, description: Execute an SSJS activity.}
+- {name: sfmc_get_automation, category: Automations, description: Retrieve an automation.}
+- {name: sfmc_get_automation_categories, category: Automations, description: List all automation folders.}
+- {name: sfmc_get_automation_file_transfer, category: Automations, description: Retrieve details of an Automation Studio file transfer activity.}
+- {name: sfmc_get_automation_file_transfers, category: Automations, description: Retrieve a list of file transfer activities from Automation Studio.}
+- {name: sfmc_get_automation_filters, category: Automations, description: Retrieve a list of filter activities from Automation Studio.}
+- {name: sfmc_get_automation_filter_definitions, category: Automations, description: Retrieve a list of filter definitions used by filter activities.}
+- {name: sfmc_get_automation_ftp_locations, category: Automations, description: Retrieve a list of file transfer locations from Automation Studio.}
+- {name: sfmc_get_automation_imports, category: Automations, description: Retrieve a list of all import file activities from Automation Studio.}
+- {name: sfmc_get_automation_instance, category: Automations, description: Retrieve a specific instance of an automation execution.}
+- {name: sfmc_get_automation_scripts, category: Automations, description: Retrieve a list of SSJS activities.}
+- {name: sfmc_get_automation_trigger_status, category: Automations, description: Check the status of a trigger API request.}
+- {name: sfmc_get_automations, category: Automations, description: List all automations.}
+- {name: sfmc_get_ftp_location, category: Automations, description: Retrieve a file transfer location.}
+- {name: sfmc_get_sql_queries, category: Automations, description: List all SQL query activities.}
+- {name: sfmc_get_sql_query, category: Automations, description: Retrieve a SQL query activity.}
+- {name: sfmc_run_automation, category: Automations, description: Run an automation immediately.}
+- {name: sfmc_run_automation_activities, category: Automations, description: Run a set of activities in an automation by ID.}
+- {name: sfmc_run_automation_activities_by_key, category: Automations, description: Run a set of activities in an automation by external key.}
+- {name: sfmc_run_sql_query, category: Automations, description: Execute a SQL query activity.}
+- {name: sfmc_start_automation_file_transfer, category: Automations, description: Run a file transfer activity in Automation Studio immediately.}
+- {name: sfmc_update_automation, category: Automations, description: Update an automation.}
+- {name: sfmc_update_automation_file_transfer, category: Automations, description: Update a file transfer activity in Automation Studio.}
+- {name: sfmc_update_automation_file_trigger, category: Automations, description: Activate or deactivate the file trigger for an automation by ID.}
+- {name: sfmc_update_automation_file_trigger_by_key, category: Automations, description: Activate or deactivate the file trigger for an automation by external key.}
+- {name: sfmc_update_automation_trigger, category: Automations, description: Activate or deactivate the schedule trigger for an automation.}
+- {name: sfmc_update_ftp_location, category: Automations, description: Update a file transfer location.}
+- {name: sfmc_update_sql_query, category: Automations, description: Update a SQL query activity.}
+- {name: sfmc_validate_sql_query, category: Automations, description: Validate SQL query text.}
+- {name: sfmc_associate_campaign_asset, category: Campaigns, description: Associate assets with a campaign.}
+- {name: sfmc_create_campaign, category: Campaigns, description: Create a campaign.}
+- {name: sfmc_delete_campaign, category: Campaigns, description: Delete a campaign.}
+- {name: sfmc_get_campaign, category: Campaigns, description: Retrieve details of a campaign.}
+- {name: sfmc_get_campaign_assets, category: Campaigns, description: List the assets associated with a campaign.}
+- {name: sfmc_get_campaigns, category: Campaigns, description: List all campaigns.}
+- {name: sfmc_remove_campaign_asset, category: Campaigns, description: Remove an asset from a campaign.}
+- {name: sfmc_update_campaign, category: Campaigns, description: Update a campaign.}
+- {name: sfmc_delete_contacts, category: Contacts, description: Delete one or more contacts and their attributes.}
+- {name: sfmc_get_attribute_set_by_name, category: Contacts, description: Retrieve data from an attribute set by name.}
+- {name: sfmc_get_attribute_set_definition, category: Contacts, description: Retrieve an attribute set definition.}
+- {name: sfmc_get_attribute_set_definitions, category: Contacts, description: List attribute set definitions from the contact model.}
+- {name: sfmc_get_contact_key_by_email_address, category: Contacts, description: Retrieve contact keys by email address.}
+- {name: sfmc_get_email_subscription_status, category: Contacts, description: Retrieve the email subscription status of a subscriber.}
+- {name: sfmc_get_list_subscribers, category: Contacts, description: Retrieve all members of a classic list.}
+- {name: sfmc_get_push_opt_in_status_by_subscriber_key, category: Contacts, description: Retrieve the push subscription status of a subscriber.}
+- {name: sfmc_retrieve_contact_status, category: Contacts, description: Retrieve the status of a contact.}
+- {name: sfmc_search_attributes, category: Contacts, description: Search across all available attribute sets.}
+- {name: sfmc_update_contact_attributes, category: Contacts, description: Update subscriber attributes in the contact profile or a Data Extension.}
+- {name: sfmc_create_content_builder_asset, category: Content, description: Create an asset in Content Builder.}
+- {name: sfmc_create_content_folder, category: Content, description: Create a folder in Content Builder.}
+- {name: sfmc_create_email, category: Content, description: Create an HTML email asset.}
+- {name: sfmc_create_email_template, category: Content, description: Create an email template asset.}
+- {name: sfmc_create_sms, category: Content, description: Create an SMS message asset.}
+- {name: sfmc_delete_content_folder, category: Content, description: Delete a folder., destructive: true}
+- {name: sfmc_get_content_assets, category: Content, description: Query Content Builder assets by using simple filters., read_only: true}
+- {name: sfmc_get_content_builder_asset, category: Content, description: Retrieve Content Builder asset by ID., read_only: true}
+- {name: sfmc_get_content_builder_asset_types, category: Content, description: List all available Content Builder asset types with their numeric IDs and names., read_only: true}
+- {name: sfmc_get_content_categories, category: Content, description: List Content Builder folders., read_only: true}
+- {name: sfmc_search_content_builder_assets, category: Content, description: Use advanced queries to search for assets in Content Builder., read_only: true}
+- {name: sfmc_update_content_builder_asset, category: Content, description: Update an asset., destructive: true}
+- {name: sfmc_update_content_folder, category: Content, description: Rename or move a folder., destructive: true}
+- {name: sfmc_bulk_upsert_data_extension_rows, category: Data Extensions, description: Async bulk upsert rows into a Data Extension.}
+- {name: sfmc_bulk_upsert_data_event_rows, category: Data Extensions, description: Batch upsert multiple rows into a Data Extension by external key.}
+- {name: sfmc_clear_data_extension_data, category: Data Extensions, description: Clear all data from a data extension.}
+- {name: sfmc_create_data_extension, category: Data Extensions, description: Create a data extension.}
+- {name: sfmc_create_data_extension_field_async, category: Data Extensions, description: Add fields to a data extension.}
+- {name: sfmc_delete_data_extension, category: Data Extensions, description: Delete a data extension.}
+- {name: sfmc_get_bulk_job_status, category: Data Extensions, description: Get the status of an async bulk data job.}
+- {name: sfmc_get_bulk_job_results, category: Data Extensions, description: Get the results of a completed async bulk data job.}
+- {name: sfmc_get_data_extension, category: Data Extensions, description: Retrieve a data extension.}
+- {name: sfmc_get_data_extension_fields, category: Data Extensions, description: Retrieve the field definitions for a data extension.}
+- {name: sfmc_get_data_extension_folders, category: Data Extensions, description: List all data extension folders.}
+- {name: sfmc_get_data_extension_link, category: Data Extensions, description: Create and output a direct link to a data extension in the Marketing Cloud UI.}
+- {name: sfmc_get_data_extensions, category: Data Extensions, description: Search and list data extensions.}
+- {name: sfmc_get_data_extensions_by_category, category: Data Extensions, description: Retrieve all data extensions in a folder.}
+- {name: sfmc_query_data_extension_rows, category: Data Extensions, description: Query rows from a Data Extension by its external key, with filtering and pagination.}
+- {name: sfmc_retrieve_data_extension_record, category: Data Extensions, description: Retrieve a single row from a data extension.}
+- {name: sfmc_update_data_extension, category: Data Extensions, description: Update the properties of a data extension.}
+- {name: sfmc_update_data_extension_field_async, category: Data Extensions, description: Update the fields in a data extension asynchronously.}
+- {name: sfmc_upsert_data_extension_record, category: Data Extensions, description: Update a row into a data extension, or insert a row if it doesn't exist.}
+- {name: sfmc_create_email_send_definition, category: Email, description: Create an email send definition for transactional messaging.}
+- {name: sfmc_create_triggered_send_definition, category: Email, description: Create a triggered send definition.}
+- {name: sfmc_get_transactional_send_status, category: Email, description: Get the status of a transactional email send request.}
+- {name: sfmc_get_triggered_send_summary, category: Email, description: 'Retrieve metrics (including sends, opens, clicks, and bounces) for a triggered send.'}
+- {name: sfmc_send_transactional_email, category: Email, description: Send a transactional email by specifying a message definition.}
+- {name: sfmc_api_event_trigger, category: Journeys, description: Create an API event trigger for journey entry.}
+- {name: sfmc_create_event_definition, category: Journeys, description: Define an event that triggers a journey.}
+- {name: sfmc_create_journey, category: Journeys, description: Determines which journey type to create and routes the user to the correct creation tool.}
+- {name: sfmc_create_journey_builder_journey, category: Journeys, description: Create a journey.}
+- {name: sfmc_data_extension_trigger, category: Journeys, description: Create a data extension entry trigger for journey entry.}
+- {name: sfmc_decision_split_activity, category: Journeys, description: Construct a decision split activity for a journey and hold it in memory.}
+- {name: sfmc_delete_event_definition, category: Journeys, description: Delete an event definition.}
+- {name: sfmc_delete_journey, category: Journeys, description: Delete a journey.}
+- {name: sfmc_einstein_engagement_frequency_activity, category: Journeys, description: Construct an Einstein Engagement Frequency activity and hold it in memory.}
+- {name: sfmc_einstein_sto_activity, category: Journeys, description: Construct an Einstein Send Time Optimization activity and hold it in memory.}
+- {name: sfmc_email_activity, category: Journeys, description: Construct an email activity and hold it in memory.}
+- {name: sfmc_engagement_decision_activity, category: Journeys, description: Construct an engagement decision activity and hold it in memory.}
+- {name: sfmc_exit_contact_from_journey, category: Journeys, description: Remove a contact from an active journey.}
+- {name: sfmc_exit_contact_from_journey_status, category: Journeys, description: Check the status of a request to remove a contact from a journey.}
+- {name: sfmc_fire_journey_event, category: Journeys, description: Fire a journey event to add a contact to a journey or to signal a wait activity.}
+- {name: sfmc_get_event_definition, category: Journeys, description: Retrieve an event definition by ID or key.}
+- {name: sfmc_get_event_definitions, category: Journeys, description: List the available event definitions.}
+- {name: sfmc_get_journey, category: Journeys, description: Retrieve all the steps and other configuration elements for a journey.}
+- {name: sfmc_get_journey_link, category: Journeys, description: Get a direct link to a journey in the Journey Builder UI.}
+- {name: sfmc_get_journey_publish_status, category: Journeys, description: Check the publication status of a journey.}
+- {name: sfmc_get_journey_versions, category: Journeys, description: List all versions of a specific journey.}
+- {name: sfmc_get_journeys, category: Journeys, description: List the journeys in the current account.}
+- {name: sfmc_insert_contacts_into_journey_async, category: Journeys, description: Insert a batch of contacts into a journey asynchronously.}
+- {name: sfmc_insert_contacts_into_journey_status, category: Journeys, description: Check the status of a batch contact insertion.}
+- {name: sfmc_pause_journey, category: Journeys, description: Pause a running journey.}
+- {name: sfmc_publish_journey, category: Journeys, description: Publish a version of a journey asynchronously.}
+- {name: sfmc_random_split_activity, category: Journeys, description: Construct a random split activity and hold it in memory.}
+- {name: sfmc_refresh_transactional_email, category: Journeys, description: Refresh content for a transactional email send definition.}
+- {name: sfmc_republish_journey_content, category: Journeys, description: Refresh all email content in a running journey without creating another version.}
+- {name: sfmc_republish_triggered_send, category: Journeys, description: Refresh content for a classic triggered send definition.}
+- {name: sfmc_resume_journey, category: Journeys, description: Resume a paused journey.}
+- {name: sfmc_sms_activity, category: Journeys, description: Construct an SMS activity and hold it in memory.}
+- {name: sfmc_stop_journey, category: Journeys, description: Permanently stop a running journey.}
+- {name: sfmc_update_event_definition, category: Journeys, description: Modify an event definition.}
+- {name: sfmc_update_journey, category: Journeys, description: Modify the content of a journey.}
+- {name: sfmc_wait_activity, category: Journeys, description: Construct a wait activity and hold it in memory.}
+- {name: sfmc_send_push_notification, category: Push, description: Send a push notification to a contact immediately., scopes: 'Channels | Push | Send'}
+- {name: sfmc_create_mobileconnect_keyword, category: SMS, description: Create a MobileConnect keyword., scopes: 'Channels | SMS | Write'}
+- {name: sfmc_create_sms_definition, category: SMS, description: Create a definition for a transactional SMS message., scopes: 'Channels | SMS | Write'}
+- {name: sfmc_create_sms_send_definition, category: SMS, description: Create an SMS send definition for transactional messaging., scopes: 'Channels | SMS | Write'}
+- {name: sfmc_get_mobileconnect_codes, category: SMS, description: Retrieve MobileConnect configurations for short or long codes., scopes: 'Channels | SMS | Read'}
+- {name: sfmc_get_sms_definition, category: SMS, description: Retrieve an SMS message definition by its key., scopes: 'Channels | SMS | Read'}
+- {name: sfmc_get_sms_definitions, category: SMS, description: List all definitions for transactional SMS messages., scopes: 'Channels | SMS | Read'}
+- {name: sfmc_get_sms_subscription_status, category: SMS, description: Retrieve the subscription status for an SMS message definition., scopes: 'Channels | SMS | Read'}
+- {name: sfmc_send_outbound_sms_message, category: SMS, description: Send a transactional SMS message immediately., scopes: 'Channels | SMS | Send'}
+- {name: sfmc_get_tracking_events, category: Tracking, description: Retrieve tracking and engagement data for an email., scopes: 'Data | Tracking Events | Read', read_only: true}
+- {name: sfmc_describe_object, category: Utilities, description: Describe the properties of an object.}
+- {name: sfmc_get_lists, category: Utilities, description: Retrieve all available subscriber lists.}
+- {name: sfmc_get_send_classifications, category: Utilities, description: Retrieve all available send classifications.}
+- {name: sfmc_get_sender_profiles, category: Utilities, description: Retrieve all available sender profiles.}
+- {name: sfmc_get_timezones, category: Utilities, description: List available time zones for Marketing Cloud Engagement.}

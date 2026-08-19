@@ -1,0 +1,2656 @@
+{
+  "item": [
+    {
+      "id": "9796431b-23da-4a94-85ee-c1a4da3a02a1",
+      "name": "Assets",
+      "description": {
+        "content": "Manage marketing assets including images, documents, content blocks, and templates. The Asset API provides CRUD operations for all content types stored in Content Builder.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d26a8333-23b2-4b94-9789-e155cbe55292",
+          "name": "Salesforce Marketing Cloud List Assets",
+          "request": {
+            "name": "Salesforce Marketing Cloud List Assets",
+            "description": {
+              "content": "Retrieves a collection of assets from Content Builder. Supports filtering, sorting, and pagination. Assets include emails, templates, images, content blocks, and other content types.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "asset",
+                "v1",
+                "content",
+                "assets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$page",
+                  "value": "1",
+                  "description": "Page number for pagination (1-based)"
+                },
+                {
+                  "disabled": false,
+                  "key": "$pageSize",
+                  "value": "50",
+                  "description": "Number of assets per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "$orderBy",
+                  "value": "<string>",
+                  "description": "Field to sort results by (e.g., modifiedDate DESC, name ASC)"
+                },
+                {
+                  "disabled": false,
+                  "key": "$filter",
+                  "value": "<string>",
+                  "description": "OData-style filter expression (e.g., assetType.name eq 'htmlemail')"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ec1bc5f4-8b34-4205-a1c4-696e464576e2",
+              "name": "Assets retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    "v1",
+                    "content",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "$pageSize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "$orderBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 10,\n  \"page\": 10,\n  \"pageSize\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "05fe1327-0cf3-4ffd-b36b-325f290b09e5",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    "v1",
+                    "content",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "$pageSize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "$orderBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "235d01fb-ee82-48ac-8397-017899fbc175",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    "v1",
+                    "content",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "$pageSize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "$orderBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5a63f2b1-4025-4c68-ace8-34547dd8c071",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    "v1",
+                    "content",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "$pageSize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "$orderBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "064b31b8-2b3c-41cf-8a5f-bae2201904a0",
+          "name": "Salesforce Marketing Cloud Create an Asset",
+          "request": {
+            "name": "Salesforce Marketing Cloud Create an Asset",
+            "description": {
+              "content": "Creates a new asset in Content Builder. The asset type determines the required and optional fields. Common asset types include htmlemail, templatebasedemail, htmlblock, codesnippetblock, and image.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "asset",
+                "v1",
+                "content",
+                "assets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"assetType\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"customerKey\": \"<string>\",\n  \"category\": {\n    \"id\": \"<integer>\"\n  },\n  \"content\": \"<string>\",\n  \"views\": {\n    \"html\": {\n      \"content\": \"<string>\"\n    },\n    \"text\": {\n      \"content\": \"<string>\"\n    },\n    \"subjectLine\": {\n      \"content\": \"<string>\"\n    },\n    \"preheader\": {\n      \"content\": \"<string>\"\n    }\n  },\n  \"data\": {\n    \"key_0\": 729.043571896919,\n    \"key_1\": true\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4557da74-ad52-40bf-bfb9-2a42f58bd8c4",
+              "name": "Asset created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    "v1",
+                    "content",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Welcome Email\",\n  \"description\": \"Welcome email sent to new subscribers\",\n  \"assetType\": {\n    \"name\": \"htmlemail\",\n    \"id\": 208\n  },\n  \"views\": {\n    \"html\": {\n      \"content\": \"<html><body><h1>Welcome!</h1></body></html>\"\n    },\n    \"subjectLine\": {\n      \"content\": \"Welcome to our newsletter\"\n    }\n  },\n  \"data\": {\n    \"email\": {\n      \"options\": {\n        \"characterEncoding\": \"utf-8\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 5851,\n  \"customerKey\": \"example_value\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"assetType\": {\n    \"id\": 3208,\n    \"name\": \"Example Title\"\n  },\n  \"category\": {\n    \"id\": 1908,\n    \"name\": \"string\",\n    \"parentId\": 3291\n  },\n  \"content\": \"example_value\",\n  \"views\": {\n    \"html\": {\n      \"content\": \"string\"\n    },\n    \"text\": {\n      \"content\": \"string\"\n    },\n    \"subjectLine\": {\n      \"content\": \"string\"\n    },\n    \"preheader\": {\n      \"content\": \"string\"\n    }\n  },\n  \"data\": {\n    \"key_0\": \"string\",\n    \"key_1\": false\n  },\n  \"status\": {\n    \"id\": 8701,\n    \"name\": \"Approved\"\n  },\n  \"createdDate\": \"2026-01-15T10:30:00Z\",\n  \"modifiedDate\": \"2026-01-15T10:30:00Z\",\n  \"createdBy\": {\n    \"id\": 9714,\n    \"name\": \"string\",\n    \"email\": \"string\"\n  },\n  \"modifiedBy\": {\n    \"id\": 2235,\n    \"name\": \"string\",\n    \"email\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "18158677-c4d6-4ad7-a8c4-98ba199d3c59",
+              "name": "Bad request - invalid asset definition",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    "v1",
+                    "content",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Welcome Email\",\n  \"description\": \"Welcome email sent to new subscribers\",\n  \"assetType\": {\n    \"name\": \"htmlemail\",\n    \"id\": 208\n  },\n  \"views\": {\n    \"html\": {\n      \"content\": \"<html><body><h1>Welcome!</h1></body></html>\"\n    },\n    \"subjectLine\": {\n      \"content\": \"Welcome to our newsletter\"\n    }\n  },\n  \"data\": {\n    \"email\": {\n      \"options\": {\n        \"characterEncoding\": \"utf-8\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1777a253-a5f5-4df1-907d-ed17c14f27dd",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    "v1",
+                    "content",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Welcome Email\",\n  \"description\": \"Welcome email sent to new subscribers\",\n  \"assetType\": {\n    \"name\": \"htmlemail\",\n    \"id\": 208\n  },\n  \"views\": {\n    \"html\": {\n      \"content\": \"<html><body><h1>Welcome!</h1></body></html>\"\n    },\n    \"subjectLine\": {\n      \"content\": \"Welcome to our newsletter\"\n    }\n  },\n  \"data\": {\n    \"email\": {\n      \"options\": {\n        \"characterEncoding\": \"utf-8\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb772d85-f575-448b-bcb5-04189375e0a8",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    "v1",
+                    "content",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Welcome Email\",\n  \"description\": \"Welcome email sent to new subscribers\",\n  \"assetType\": {\n    \"name\": \"htmlemail\",\n    \"id\": 208\n  },\n  \"views\": {\n    \"html\": {\n      \"content\": \"<html><body><h1>Welcome!</h1></body></html>\"\n    },\n    \"subjectLine\": {\n      \"content\": \"Welcome to our newsletter\"\n    }\n  },\n  \"data\": {\n    \"email\": {\n      \"options\": {\n        \"characterEncoding\": \"utf-8\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0f0428ec-0fdf-482d-bea3-ae359b91fba8",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    "v1",
+                    "content",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Welcome Email\",\n  \"description\": \"Welcome email sent to new subscribers\",\n  \"assetType\": {\n    \"name\": \"htmlemail\",\n    \"id\": 208\n  },\n  \"views\": {\n    \"html\": {\n      \"content\": \"<html><body><h1>Welcome!</h1></body></html>\"\n    },\n    \"subjectLine\": {\n      \"content\": \"Welcome to our newsletter\"\n    }\n  },\n  \"data\": {\n    \"email\": {\n      \"options\": {\n        \"characterEncoding\": \"utf-8\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "753c05d5-886e-4e89-9006-3e54b2070555",
+          "name": "Salesforce Marketing Cloud Retrieve an Asset",
+          "request": {
+            "name": "Salesforce Marketing Cloud Retrieve an Asset",
+            "description": {
+              "content": "Retrieves a single asset by its unique identifier. Returns the complete asset definition including content, metadata, and associated category.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "asset",
+                "v1",
+                "content",
+                "assets",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier of the asset"
+                },
+                {
+                  "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6c84bf18-938e-45d2-a96d-459cea00543a",
+              "name": "Asset retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    "v1",
+                    "content",
+                    "assets",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the asset"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 5851,\n  \"customerKey\": \"example_value\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"assetType\": {\n    \"id\": 3208,\n    \"name\": \"Example Title\"\n  },\n  \"category\": {\n    \"id\": 1908,\n    \"name\": \"string\",\n    \"parentId\": 3291\n  },\n  \"content\": \"example_value\",\n  \"views\": {\n    \"html\": {\n      \"content\": \"string\"\n    },\n    \"text\": {\n      \"content\": \"string\"\n    },\n    \"subjectLine\": {\n      \"content\": \"string\"\n    },\n    \"preheader\": {\n      \"content\": \"string\"\n    }\n  },\n  \"data\": {\n    \"key_0\": \"string\",\n    \"key_1\": false\n  },\n  \"status\": {\n    \"id\": 8701,\n    \"name\": \"Approved\"\n  },\n  \"createdDate\": \"2026-01-15T10:30:00Z\",\n  \"modifiedDate\": \"2026-01-15T10:30:00Z\",\n  \"createdBy\": {\n    \"id\": 9714,\n    \"name\": \"string\",\n    \"email\": \"string\"\n  },\n  \"modifiedBy\": {\n    \"id\": 2235,\n    \"name\": \"string\",\n    \"email\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b82013cc-e114-455e-8e45-a4cc2cf37ea9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    "v1",
+                    "content",
+                    "assets",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the asset"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "03758ba6-763b-42ac-bb24-2436d73db18d",
+              "name": "Asset not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    "v1",
+                    "content",
+                    "assets",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the asset"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "92abb797-7224-4c53-a300-248806e77a00",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    "v1",
+                    "content",
+                    "assets",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the asset"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "91559f3b-1632-4d2a-9a02-a20e0edba956",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    "v1",
+                    "content",
+                    "assets",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the asset"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ebc35ad1-5fbb-4f03-8862-fca787c61bd3",
+          "name": "Salesforce Marketing Cloud Update an Asset",
+          "request": {
+            "name": "Salesforce Marketing Cloud Update an Asset",
+            "description": {
+              "content": "Updates an existing asset. Provide the complete asset definition with all desired values. Fields not included in the request body are not modified.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "asset",
+                "v1",
+                "content",
+                "assets",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier of the asset"
+                },
+                {
+                  "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"assetType\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"customerKey\": \"<string>\",\n  \"category\": {\n    \"id\": \"<integer>\"\n  },\n  \"content\": \"<string>\",\n  \"views\": {\n    \"html\": {\n      \"content\": \"<string>\"\n    },\n    \"text\": {\n      \"content\": \"<string>\"\n    },\n    \"subjectLine\": {\n      \"content\": \"<string>\"\n    },\n    \"preheader\": {\n      \"content\": \"<string>\"\n    }\n  },\n  \"data\": {\n    \"key_0\": 729.043571896919,\n    \"key_1\": true\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "860e20d6-4a04-4700-bbd3-5ae35b438b74",
+              "name": "Asset updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    "v1",
+                    "content",
+                    "assets",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the asset"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"assetType\": {\n    \"id\": 8049,\n    \"name\": \"Example Title\"\n  },\n  \"description\": \"A sample description.\",\n  \"customerKey\": \"example_value\",\n  \"category\": {\n    \"id\": \"<integer>\"\n  },\n  \"content\": \"example_value\",\n  \"views\": {\n    \"html\": {\n      \"content\": \"<string>\"\n    },\n    \"text\": {\n      \"content\": \"<string>\"\n    },\n    \"subjectLine\": {\n      \"content\": \"<string>\"\n    },\n    \"preheader\": {\n      \"content\": \"<string>\"\n    }\n  },\n  \"data\": {\n    \"key_0\": \"string\",\n    \"key_1\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 5851,\n  \"customerKey\": \"example_value\",\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"assetType\": {\n    \"id\": 3208,\n    \"name\": \"Example Title\"\n  },\n  \"category\": {\n    \"id\": 1908,\n    \"name\": \"string\",\n    \"parentId\": 3291\n  },\n  \"content\": \"example_value\",\n  \"views\": {\n    \"html\": {\n      \"content\": \"string\"\n    },\n    \"text\": {\n      \"content\": \"string\"\n    },\n    \"subjectLine\": {\n      \"content\": \"string\"\n    },\n    \"preheader\": {\n      \"content\": \"string\"\n    }\n  },\n  \"data\": {\n    \"key_0\": \"string\",\n    \"key_1\": false\n  },\n  \"status\": {\n    \"id\": 8701,\n    \"name\": \"Approved\"\n  },\n  \"createdDate\": \"2026-01-15T10:30:00Z\",\n  \"modifiedDate\": \"2026-01-15T10:30:00Z\",\n  \"createdBy\": {\n    \"id\": 9714,\n    \"name\": \"string\",\n    \"email\": \"string\"\n  },\n  \"modifiedBy\": {\n    \"id\": 2235,\n    \"name\": \"string\",\n    \"email\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4403443f-b7bd-41b7-9c75-2d9ecc0656b0",
+              "name": "Bad request - invalid asset definition",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    "v1",
+                    "content",
+                    "assets",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the asset"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"assetType\": {\n    \"id\": 8049,\n    \"name\": \"Example Title\"\n  },\n  \"description\": \"A sample description.\",\n  \"customerKey\": \"example_value\",\n  \"category\": {\n    \"id\": \"<integer>\"\n  },\n  \"content\": \"example_value\",\n  \"views\": {\n    \"html\": {\n      \"content\": \"<string>\"\n    },\n    \"text\": {\n      \"content\": \"<string>\"\n    },\n    \"subjectLine\": {\n      \"content\": \"<string>\"\n    },\n    \"preheader\": {\n      \"content\": \"<string>\"\n    }\n  },\n  \"data\": {\n    \"key_0\": \"string\",\n    \"key_1\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4adb3549-4bc4-4e81-a8ef-7472b23faeba",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    "v1",
+                    "content",
+                    "assets",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the asset"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"assetType\": {\n    \"id\": 8049,\n    \"name\": \"Example Title\"\n  },\n  \"description\": \"A sample description.\",\n  \"customerKey\": \"example_value\",\n  \"category\": {\n    \"id\": \"<integer>\"\n  },\n  \"content\": \"example_value\",\n  \"views\": {\n    \"html\": {\n      \"content\": \"<string>\"\n    },\n    \"text\": {\n      \"content\": \"<string>\"\n    },\n    \"subjectLine\": {\n      \"content\": \"<string>\"\n    },\n    \"preheader\": {\n      \"content\": \"<string>\"\n    }\n  },\n  \"data\": {\n    \"key_0\": \"string\",\n    \"key_1\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "773f6dac-0bae-4292-b4f2-90d60c310b28",
+              "name": "Asset not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    "v1",
+                    "content",
+                    "assets",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the asset"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"assetType\": {\n    \"id\": 8049,\n    \"name\": \"Example Title\"\n  },\n  \"description\": \"A sample description.\",\n  \"customerKey\": \"example_value\",\n  \"category\": {\n    \"id\": \"<integer>\"\n  },\n  \"content\": \"example_value\",\n  \"views\": {\n    \"html\": {\n      \"content\": \"<string>\"\n    },\n    \"text\": {\n      \"content\": \"<string>\"\n    },\n    \"subjectLine\": {\n      \"content\": \"<string>\"\n    },\n    \"preheader\": {\n      \"content\": \"<string>\"\n    }\n  },\n  \"data\": {\n    \"key_0\": \"string\",\n    \"key_1\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ac6a23e1-4958-43f0-a283-e93814c23833",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    "v1",
+                    "content",
+                    "assets",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the asset"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"assetType\": {\n    \"id\": 8049,\n    \"name\": \"Example Title\"\n  },\n  \"description\": \"A sample description.\",\n  \"customerKey\": \"example_value\",\n  \"category\": {\n    \"id\": \"<integer>\"\n  },\n  \"content\": \"example_value\",\n  \"views\": {\n    \"html\": {\n      \"content\": \"<string>\"\n    },\n    \"text\": {\n      \"content\": \"<string>\"\n    },\n    \"subjectLine\": {\n      \"content\": \"<string>\"\n    },\n    \"preheader\": {\n      \"content\": \"<string>\"\n    }\n  },\n  \"data\": {\n    \"key_0\": \"string\",\n    \"key_1\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8badd84d-b4b6-492b-bdab-ed7af67c8636",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    "v1",
+                    "content",
+                    "assets",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the asset"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"assetType\": {\n    \"id\": 8049,\n    \"name\": \"Example Title\"\n  },\n  \"description\": \"A sample description.\",\n  \"customerKey\": \"example_value\",\n  \"category\": {\n    \"id\": \"<integer>\"\n  },\n  \"content\": \"example_value\",\n  \"views\": {\n    \"html\": {\n      \"content\": \"<string>\"\n    },\n    \"text\": {\n      \"content\": \"<string>\"\n    },\n    \"subjectLine\": {\n      \"content\": \"<string>\"\n    },\n    \"preheader\": {\n      \"content\": \"<string>\"\n    }\n  },\n  \"data\": {\n    \"key_0\": \"string\",\n    \"key_1\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ed7b9281-3bcc-4f51-ae97-d16aec20cd29",
+          "name": "Salesforce Marketing Cloud Delete an Asset",
+          "request": {
+            "name": "Salesforce Marketing Cloud Delete an Asset",
+            "description": {
+              "content": "Deletes an asset from Content Builder. This action is permanent and cannot be undone.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "asset",
+                "v1",
+                "content",
+                "assets",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier of the asset to delete"
+                },
+                {
+                  "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "545c3ec4-3664-4453-8499-aa9648574fb8",
+              "name": "Asset deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    "v1",
+                    "content",
+                    "assets",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the asset to delete"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bd5d92fd-4f8d-4370-9d24-94f9c3d056e1",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    "v1",
+                    "content",
+                    "assets",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the asset to delete"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "76729730-8db6-438a-8f0e-8d52ae0c417b",
+              "name": "Asset not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    "v1",
+                    "content",
+                    "assets",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the asset to delete"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "154f4f3b-92c2-43c3-8d0c-c434718bb166",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    "v1",
+                    "content",
+                    "assets",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the asset to delete"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "66056f5e-8db2-4682-925e-498f1822a7f1",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    "v1",
+                    "content",
+                    "assets",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier of the asset to delete"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1d73bb28-af04-4a8b-aeed-b030085c96fd",
+          "name": "Salesforce Marketing Cloud Query Assets With Advanced Filtering",
+          "request": {
+            "name": "Salesforce Marketing Cloud Query Assets With Advanced Filtering",
+            "description": {
+              "content": "Performs an advanced query against assets using a structured query object. Supports complex filtering with AND/OR logic, nested conditions, and multiple sort criteria. More powerful than the OData-style filter on the list endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "asset",
+                "v1",
+                "content",
+                "assets",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"page\": {\n    \"page\": \"<integer>\",\n    \"pageSize\": \"<integer>\"\n  },\n  \"query\": {\n    \"property\": \"<string>\",\n    \"simpleOperator\": \"<string>\",\n    \"value\": {},\n    \"dateValue\": \"<dateTime>\",\n    \"leftOperand\": \"<object>\",\n    \"rightOperand\": \"<object>\",\n    \"logicalOperator\": \"<string>\"\n  },\n  \"sort\": [\n    {\n      \"property\": \"<string>\",\n      \"direction\": \"<string>\"\n    },\n    {\n      \"property\": \"<string>\",\n      \"direction\": \"<string>\"\n    }\n  ],\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6e7f2137-5baf-4e35-9a13-35f3f9a9d7a7",
+              "name": "Query results returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    "v1",
+                    "content",
+                    "assets",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"page\": {\n    \"page\": 1,\n    \"pageSize\": 50\n  },\n  \"query\": {\n    \"property\": \"assetType.name\",\n    \"simpleOperator\": \"equal\",\n    \"value\": \"htmlemail\"\n  },\n  \"sort\": [\n    {\n      \"property\": \"modifiedDate\",\n      \"direction\": \"DESC\"\n    }\n  ],\n  \"fields\": [\n    \"id\",\n    \"name\",\n    \"assetType\",\n    \"modifiedDate\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 10,\n  \"page\": 10,\n  \"pageSize\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c5bf29e5-261c-4632-85eb-2afe8dd78ae2",
+              "name": "Bad request - invalid query",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    "v1",
+                    "content",
+                    "assets",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"page\": {\n    \"page\": 1,\n    \"pageSize\": 50\n  },\n  \"query\": {\n    \"property\": \"assetType.name\",\n    \"simpleOperator\": \"equal\",\n    \"value\": \"htmlemail\"\n  },\n  \"sort\": [\n    {\n      \"property\": \"modifiedDate\",\n      \"direction\": \"DESC\"\n    }\n  ],\n  \"fields\": [\n    \"id\",\n    \"name\",\n    \"assetType\",\n    \"modifiedDate\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7a990202-e954-45d5-b1a1-61a70dcf3278",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    "v1",
+                    "content",
+                    "assets",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"page\": {\n    \"page\": 1,\n    \"pageSize\": 50\n  },\n  \"query\": {\n    \"property\": \"assetType.name\",\n    \"simpleOperator\": \"equal\",\n    \"value\": \"htmlemail\"\n  },\n  \"sort\": [\n    {\n      \"property\": \"modifiedDate\",\n      \"direction\": \"DESC\"\n    }\n  ],\n  \"fields\": [\n    \"id\",\n    \"name\",\n    \"assetType\",\n    \"modifiedDate\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "14b39f82-7c08-4ad3-aa16-fb25695afd43",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    "v1",
+                    "content",
+                    "assets",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"page\": {\n    \"page\": 1,\n    \"pageSize\": 50\n  },\n  \"query\": {\n    \"property\": \"assetType.name\",\n    \"simpleOperator\": \"equal\",\n    \"value\": \"htmlemail\"\n  },\n  \"sort\": [\n    {\n      \"property\": \"modifiedDate\",\n      \"direction\": \"DESC\"\n    }\n  ],\n  \"fields\": [\n    \"id\",\n    \"name\",\n    \"assetType\",\n    \"modifiedDate\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "138a9bff-a38a-45c9-8575-3f937d4d63c7",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    "v1",
+                    "content",
+                    "assets",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"page\": {\n    \"page\": 1,\n    \"pageSize\": 50\n  },\n  \"query\": {\n    \"property\": \"assetType.name\",\n    \"simpleOperator\": \"equal\",\n    \"value\": \"htmlemail\"\n  },\n  \"sort\": [\n    {\n      \"property\": \"modifiedDate\",\n      \"direction\": \"DESC\"\n    }\n  ],\n  \"fields\": [\n    \"id\",\n    \"name\",\n    \"assetType\",\n    \"modifiedDate\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "445dc2b8-931c-4262-ba02-182fc457e875",
+          "name": "Salesforce Marketing Cloud List Asset Categories",
+          "request": {
+            "name": "Salesforce Marketing Cloud List Asset Categories",
+            "description": {
+              "content": "Retrieves categories (folders) used to organize assets in Content Builder. Categories provide a hierarchical folder structure for content organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "asset",
+                "v1",
+                "content",
+                "categories"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$page",
+                  "value": "1",
+                  "description": "Page number for pagination (1-based)"
+                },
+                {
+                  "disabled": false,
+                  "key": "$pageSize",
+                  "value": "50",
+                  "description": "Number of categories per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "$filter",
+                  "value": "<string>",
+                  "description": "OData-style filter expression (e.g., parentId eq 12345)"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "35c0cfe1-f151-4d09-b477-8c8b8e5bed92",
+              "name": "Categories retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    "v1",
+                    "content",
+                    "categories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "$pageSize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 10,\n  \"page\": 10,\n  \"pageSize\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "577e8cf9-168c-4628-9fd3-87f19918cb06",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    "v1",
+                    "content",
+                    "categories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "$pageSize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1409607e-3fc6-4ef2-a1a0-0d825006e78c",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    "v1",
+                    "content",
+                    "categories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "$pageSize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4b733cd4-516f-4946-bc17-92188ee5d9e8",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "asset",
+                    "v1",
+                    "content",
+                    "categories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "$pageSize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "YOUR_SUBDOMAIN",
+      "key": "subdomain"
+    },
+    {
+      "type": "string",
+      "value": "https://{{subdomain}}.rest.marketingcloudapis.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://YOUR_SUBDOMAIN.auth.marketingcloudapis.com/v2/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5c2808fb-209e-4d06-8958-b250a29df4bf",
+    "name": "Salesforce Marketing Cloud REST Assets API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Salesforce Marketing Cloud REST API provides programmatic access to Marketing Cloud features including contacts, journeys, and assets. The API uses JSON request and response bodies and OAuth 2.0 authentication via the Marketing Cloud authentication endpoint. All API requests require a valid access token obtained through the Server-to-Server OAuth flow.\n\nContact Support:\n Name: Salesforce Marketing Cloud Support\n Email: support@salesforce.com",
+      "type": "text/plain"
+    }
+  }
+}

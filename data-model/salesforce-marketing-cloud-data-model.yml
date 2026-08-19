@@ -1,0 +1,177 @@
+generated: '2026-08-13'
+method: derived
+source:
+- openapi/salesforce-marketing-cloud-assets-api-openapi.yml
+- openapi/salesforce-marketing-cloud-contacts-api-openapi.yml
+- openapi/salesforce-marketing-cloud-journeys-api-openapi.yml
+docs: https://developer.salesforce.com/docs/marketing/marketing-cloud/references
+note: >-
+  Entity graph derived from components.schemas $ref links and id-reference fields across the
+  three OpenAPI documents in this repo. It therefore covers three of Marketing Cloud
+  Engagement's eleven product areas — Content Builder assets, the contact model, and Journey
+  Builder. The absent areas (Data Extensions, Automation Studio, Transactional Messaging,
+  MobileConnect, MobilePush, Campaigns, Einstein) have no captured spec, so their entities are
+  named in cross_domain_references only where a captured schema actually points at them.
+  Nothing is invented from product knowledge.
+identity:
+  primary_key_style: mixed
+  note: >-
+    Marketing Cloud Engagement has NO uniform id scheme and no id prefixes. Three different
+    identity styles coexist in the captured specs and an integrator must handle all three -
+    an integer surrogate id (Asset.id), a string GUID id plus a separate customer-defined
+    external key (Journey.id + Journey.key), and a customer-defined natural key with a
+    system integer alongside it (Contact.contactKey + Contact.contactID).
+  patterns:
+  - {entity: Asset, key: id, type: integer, external_key: customerKey}
+  - {entity: Journey, key: id, type: string, external_key: key}
+  - {entity: Contact, key: contactKey, type: string, system_id: contactID}
+  external_key_note: >-
+    customerKey (assets) and key (journeys) are CUSTOMER-DEFINED external keys. They are the
+    stable handle for automation and the field most integrations should address, because the
+    system id is not portable across business units or environments.
+entities:
+- name: Asset
+  domain: Content Builder
+  source: openapi/salesforce-marketing-cloud-assets-api-openapi.yml
+  key: id
+  external_key: customerKey
+  fields: [id, customerKey, name, description, assetType, category, content, views, data, tags, status, createdDate, modifiedDate, createdBy, modifiedBy]
+  operations: [listAssets, createAsset, getAsset, updateAsset, deleteAsset, queryAssets]
+- name: AssetType
+  domain: Content Builder
+  source: openapi/salesforce-marketing-cloud-assets-api-openapi.yml
+  key: id
+  fields: [id, name]
+  note: >-
+    Enumeration entity. The numeric assetType id is what distinguishes an HTML email from a
+    template from an image from a content block — a single createAsset operation creates all
+    of them, discriminated only by this value.
+- name: AssetDefinition
+  domain: Content Builder
+  kind: request-shape
+  source: openapi/salesforce-marketing-cloud-assets-api-openapi.yml
+  note: Write projection of Asset used by createAsset and updateAsset.
+- name: Category
+  domain: Content Builder
+  source: openapi/salesforce-marketing-cloud-assets-api-openapi.yml
+  operations: [listCategories]
+  note: >-
+    Content Builder folder. Modelled as an untyped object on Asset.category in the captured
+    spec, and returned as untyped items[] by listCategories, so no field list is asserted.
+- name: Contact
+  domain: Contact model
+  source: openapi/salesforce-marketing-cloud-contacts-api-openapi.yml
+  key: contactKey
+  system_id: contactID
+  fields: [contactKey, contactID, contactStatus, createdDate, modifiedDate, attributeSets]
+  operations: [createContacts, searchContacts, getContact, updateContact, deleteContact]
+- name: AttributeSet
+  domain: Contact model
+  source: openapi/salesforce-marketing-cloud-contacts-api-openapi.yml
+  key: name
+  fields: [name, items]
+  operations: [listAttributeSets]
+  note: >-
+    The contact model is attribute-set shaped rather than column shaped: a Contact carries an
+    array of named AttributeSets, each holding AttributeValues. There is no fixed contact
+    schema, which is why searchContacts takes a conditionSet and a returnAttributes list.
+- name: AttributeValue
+  domain: Contact model
+  source: openapi/salesforce-marketing-cloud-contacts-api-openapi.yml
+  fields: [name, value]
+- name: Journey
+  domain: Journey Builder
+  source: openapi/salesforce-marketing-cloud-journeys-api-openapi.yml
+  key: id
+  external_key: key
+  fields: [id, key, name, description, version, status, createdDate, modifiedDate, workflowApiVersion, triggers, activities, goals, exits, stats]
+  operations: [listJourneys, createJourney, getJourney, updateJourney, deleteJourney, publishJourney, stopJourney]
+  versioned: true
+  version_note: >-
+    Journey carries an explicit integer version and getJourney takes a versionNumber query
+    parameter. A published journey version is immutable — edits create a new version. This is
+    the source of the 409 responses on updateJourney, deleteJourney and stopJourney.
+- name: JourneyDefinition
+  domain: Journey Builder
+  kind: request-shape
+  source: openapi/salesforce-marketing-cloud-journeys-api-openapi.yml
+  note: Write projection of Journey used by createJourney and updateJourney.
+- name: JourneyTrigger
+  domain: Journey Builder
+  key: key
+  fields: [key, name, type, eventDefinitionKey, configurationArguments]
+- name: JourneyActivity
+  domain: Journey Builder
+  key: key
+  fields: [key, name, type, configurationArguments, outcomes]
+- name: JourneyGoal
+  domain: Journey Builder
+  key: key
+  fields: [key, name, description, metCriteria]
+- name: JourneyExit
+  domain: Journey Builder
+  key: key
+  fields: [key, name, criteria]
+- name: EntryEvent
+  domain: Journey Builder
+  kind: request-shape
+  fields: [ContactKey, EventDefinitionKey, Data]
+  operations: [fireEntryEvent]
+  note: >-
+    The join point between the contact model and Journey Builder, and the only place in the
+    captured specs where PascalCase field naming appears (ContactKey, EventDefinitionKey,
+    Data) instead of the camelCase used everywhere else.
+relationships:
+- {from: Asset, to: AssetType, type: has_one, via: assetType, evidence: '$ref components/schemas/AssetType'}
+- {from: AssetCollection, to: Asset, type: has_many, via: items, evidence: '$ref array items'}
+- {from: AssetDefinition, to: AssetType, type: has_one, via: assetType, evidence: '$ref components/schemas/AssetType'}
+- {from: Asset, to: Category, type: belongs_to, via: category, evidence: untyped object field named category; listCategories confirms the entity}
+- {from: Contact, to: AttributeSet, type: has_many, via: attributeSets, evidence: '$ref array items'}
+- {from: AttributeSet, to: AttributeValue, type: has_many, via: items, evidence: 'schema name AttributeValue; items[] untyped in the captured spec'}
+- {from: CreateContactsRequest, to: AttributeSet, type: has_many, via: attributeSets, evidence: '$ref array items'}
+- {from: UpdateContactRequest, to: AttributeSet, type: has_many, via: attributeSets, evidence: '$ref array items'}
+- {from: ContactSearchResponse, to: Contact, type: has_many, via: items, evidence: '$ref array items'}
+- {from: Journey, to: JourneyTrigger, type: has_many, via: triggers, evidence: '$ref array items'}
+- {from: Journey, to: JourneyActivity, type: has_many, via: activities, evidence: '$ref array items'}
+- {from: Journey, to: JourneyGoal, type: has_many, via: goals, evidence: '$ref array items'}
+- {from: Journey, to: JourneyExit, type: has_many, via: exits, evidence: '$ref array items'}
+- {from: JourneyDefinition, to: JourneyTrigger, type: has_many, via: triggers, evidence: '$ref array items'}
+- {from: JourneyDefinition, to: JourneyActivity, type: has_many, via: activities, evidence: '$ref array items'}
+- {from: JourneyDefinition, to: JourneyGoal, type: has_many, via: goals, evidence: '$ref array items'}
+- {from: JourneyDefinition, to: JourneyExit, type: has_many, via: exits, evidence: '$ref array items'}
+- {from: JourneyCollection, to: Journey, type: has_many, via: items, evidence: '$ref array items'}
+- {from: EntryEvent, to: Contact, type: belongs_to, via: ContactKey, evidence: id-reference field matching Contact.contactKey}
+- {from: EntryEvent, to: EventDefinition, type: belongs_to, via: EventDefinitionKey, evidence: id-reference field; EventDefinition itself has no captured schema}
+- {from: JourneyTrigger, to: EventDefinition, type: belongs_to, via: eventDefinitionKey, evidence: id-reference field; EventDefinition itself has no captured schema}
+cross_domain_references:
+- entity: EventDefinition
+  referenced_by: [EntryEvent.EventDefinitionKey, JourneyTrigger.eventDefinitionKey]
+  captured: false
+  note: >-
+    Referenced by key from two captured schemas but has no schema or operation in this repo.
+    Salesforce's MCP server exposes it directly (sfmc_create_event_definition,
+    sfmc_get_event_definitions), which confirms it is a real first-class entity we have not
+    captured a contract for.
+- entity: DataExtension
+  referenced_by: [Journey activities and triggers via configurationArguments]
+  captured: false
+  note: >-
+    The central storage entity of Marketing Cloud Engagement. Reachable only through untyped
+    configurationArguments in the captured specs. 19 MCP tools operate on it.
+async_response_entities:
+- {name: PublishResponse, fields: [statusId, message], note: 'publishJourney returns 202 with a statusId to poll — the journey is not published when the call returns.'}
+- {name: EntryEventResponse, fields: [requestId, eventInstanceId], note: 'fireEntryEvent returns a requestId and eventInstanceId; the contact has not necessarily entered the journey yet.'}
+- {name: ContactResponse, fields: [operationStatus, requestServiceMessageID, responseDateTime, resultMessages]}
+- {name: DeleteContactResponse, fields: [operationStatus, requestServiceMessageID, responseDateTime, operationInitiated], note: 'operationInitiated is a boolean — contact deletion is queued, not immediate.'}
+collection_envelope:
+  fields: [count, page, pageSize, items]
+  used_by: [AssetCollection, CategoryCollection, JourneyCollection, ContactSearchResponse]
+  note: >-
+    AttributeSetsResponse breaks the pattern — it carries count and items but no page or
+    pageSize, so listAttributeSets is unpaginated.
+coverage:
+  entities: 18
+  relationships: 21
+  specs_covered: 3
+  product_areas_covered: 3
+  product_areas_total: 11

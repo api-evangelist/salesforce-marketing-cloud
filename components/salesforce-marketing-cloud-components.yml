@@ -1,0 +1,74 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/creating-activities.html,
+  https://github.com/salesforce-marketingcloud/blocksdk,
+  https://github.com/salesforce-marketingcloud/sfmc-example-jb-custom-activity
+note: >-
+  Marketing Cloud Engagement's client-side extension surface is unusual: rather than shipping
+  embeddable widgets that a customer drops into THEIR site, Salesforce ships SDKs that let a
+  customer embed THEIR OWN application inside the Marketing Cloud UI, as an iframe with a
+  postMessage bridge. Both families below are inversion-of-control extension points, not
+  drop-in UI components, and both are hosted by the customer on their own public HTTPS server.
+  Distinct from the server-side and mobile SDKs in packages/.
+families:
+- name: Content Builder Block SDK
+  kind: iframe-embedded editor extension
+  description: >-
+    Lets a third party build a custom content block that appears in the Content Builder editor.
+    The block application is hosted by the developer and loaded into an iframe inside Content
+    Builder; the SDK is the postMessage bridge that reads and writes the block's content and
+    metadata.
+  loader:
+    library: blocksdk
+    registry: npm
+    version: 1.3.0
+    published: '2020-05-06'
+    url: https://www.npmjs.com/package/blocksdk
+    repository: https://github.com/salesforce-marketingcloud/blocksdk
+    official: true
+    status: archived
+  hosting: Developer-hosted, public HTTPS.
+  registration: Registered as a Content Block application extension in an Installed Package.
+- name: Journey Builder Custom Activity
+  kind: iframe-embedded canvas extension
+  description: >-
+    Lets a third party add a custom activity to the Journey Builder canvas. Salesforce's own
+    description of the three required parts: the Custom Activity UI "contains the activity's
+    code and assets and is hosted on a public web server"; config.json is the "application
+    extension that defines your custom activity"; and customActivity.js "contains Postmonger
+    events and sits in between your configuration app in the iframe and Journey Builder."
+  loader:
+    library: postmonger
+    registry: npm
+    version: 0.0.16
+    published: '2017-04-07'
+    url: https://www.npmjs.com/package/postmonger
+    repository: https://github.com/kevinparkerson/postmonger
+    official: false
+    note: >-
+      Postmonger is the event framework Salesforce's own documentation and examples require,
+      but the npm package is published from an individual's repository, not from the
+      salesforce-marketingcloud organization, and its last release is 2017-04-07. A
+      first-party extension point whose mandatory client library is a nine-year-old
+      third-party package is a real supply-chain observation, recorded here rather than
+      smoothed over.
+  manifest:
+    file: config.json
+    description: Application extension descriptor defining the activity, its steps and its endpoints.
+  hosting: 'Developer-hosted, public web server with SSL (port 443). Salesforce recommends Heroku.'
+  registration: Register the custom component endpoint in an Installed Package.
+  example: https://github.com/salesforce-marketingcloud/sfmc-example-jb-custom-activity
+  docs: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/creating-activities.html
+  status: >-
+    The example repository is archived (last push 2023-03-05); the documented extension point
+    itself is current.
+not_included:
+- name: MobilePush / Personalization SDKs
+  reason: >-
+    Native mobile and web SDKs that render in the customer's own app. Catalogued in
+    packages/salesforce-marketing-cloud-packages.yml, not here.
+- name: CloudPages / AMPscript
+  reason: >-
+    Server-side templating inside Marketing Cloud's own hosted pages, not a client-side
+    component library.

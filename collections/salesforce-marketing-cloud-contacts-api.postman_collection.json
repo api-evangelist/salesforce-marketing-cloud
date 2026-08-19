@@ -1,0 +1,2389 @@
+{
+  "item": [
+    {
+      "id": "fe6c584c-90dd-4d80-bc9a-d00882b111d3",
+      "name": "Contacts",
+      "description": {
+        "content": "Create, retrieve, update, and delete contacts in Marketing Cloud. Contacts represent individuals who interact with your marketing campaigns across channels.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "532fb9e9-7023-4842-9e35-ecfc9179c13c",
+          "name": "Salesforce Marketing Cloud Create Contacts",
+          "request": {
+            "name": "Salesforce Marketing Cloud Create Contacts",
+            "description": {
+              "content": "Creates one or more contacts in Marketing Cloud. Each contact requires a contactKey as a unique identifier. You can include attribute values for any defined attribute sets such as Email Addresses, MobileConnect Demographics, or custom attribute sets.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contacts",
+                "v1",
+                "contacts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contactKey\": \"<string>\",\n  \"attributeSets\": [\n    {\n      \"name\": \"<string>\",\n      \"items\": [\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {}\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {}\n            }\n          ]\n        },\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {}\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {}\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"items\": [\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {}\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {}\n            }\n          ]\n        },\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {}\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {}\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3444075d-4c23-4c7e-9415-58051e253546",
+              "name": "Contacts created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    "v1",
+                    "contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contactKey\": \"example-contact-001\",\n  \"attributeSets\": [\n    {\n      \"name\": \"Email Addresses\",\n      \"items\": [\n        {\n          \"values\": [\n            {\n              \"name\": \"Email Address\",\n              \"value\": \"user@example.com\"\n            },\n            {\n              \"name\": \"HTML Enabled\",\n              \"value\": true\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"operationStatus\": \"example_value\",\n  \"requestServiceMessageID\": \"500123\",\n  \"responseDateTime\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3edaf38d-07ac-4e2c-9a64-77c7677d2110",
+              "name": "Bad request - invalid contact data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    "v1",
+                    "contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contactKey\": \"example-contact-001\",\n  \"attributeSets\": [\n    {\n      \"name\": \"Email Addresses\",\n      \"items\": [\n        {\n          \"values\": [\n            {\n              \"name\": \"Email Address\",\n              \"value\": \"user@example.com\"\n            },\n            {\n              \"name\": \"HTML Enabled\",\n              \"value\": true\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "16152a33-f50a-4776-ac51-eaaaf389c4b2",
+              "name": "Unauthorized - invalid or expired access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    "v1",
+                    "contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contactKey\": \"example-contact-001\",\n  \"attributeSets\": [\n    {\n      \"name\": \"Email Addresses\",\n      \"items\": [\n        {\n          \"values\": [\n            {\n              \"name\": \"Email Address\",\n              \"value\": \"user@example.com\"\n            },\n            {\n              \"name\": \"HTML Enabled\",\n              \"value\": true\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "312a820e-687e-41c0-aaab-dcaf1f131ebc",
+              "name": "Forbidden - insufficient permissions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    "v1",
+                    "contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contactKey\": \"example-contact-001\",\n  \"attributeSets\": [\n    {\n      \"name\": \"Email Addresses\",\n      \"items\": [\n        {\n          \"values\": [\n            {\n              \"name\": \"Email Address\",\n              \"value\": \"user@example.com\"\n            },\n            {\n              \"name\": \"HTML Enabled\",\n              \"value\": true\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0aeaaf6e-7a17-496b-bd6c-bbd143e1f587",
+              "name": "Too many requests - rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    "v1",
+                    "contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contactKey\": \"example-contact-001\",\n  \"attributeSets\": [\n    {\n      \"name\": \"Email Addresses\",\n      \"items\": [\n        {\n          \"values\": [\n            {\n              \"name\": \"Email Address\",\n              \"value\": \"user@example.com\"\n            },\n            {\n              \"name\": \"HTML Enabled\",\n              \"value\": true\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eb7fa9f4-4783-47c4-a253-61b0225c6262",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    "v1",
+                    "contacts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contactKey\": \"example-contact-001\",\n  \"attributeSets\": [\n    {\n      \"name\": \"Email Addresses\",\n      \"items\": [\n        {\n          \"values\": [\n            {\n              \"name\": \"Email Address\",\n              \"value\": \"user@example.com\"\n            },\n            {\n              \"name\": \"HTML Enabled\",\n              \"value\": true\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "efadc68e-bbc7-457d-8d24-358db659e492",
+          "name": "Salesforce Marketing Cloud Search Contacts",
+          "request": {
+            "name": "Salesforce Marketing Cloud Search Contacts",
+            "description": {
+              "content": "Searches for contacts using filter criteria. Supports filtering by contactKey, email address, or other contact attributes. Returns matching contacts with their associated attribute values.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contacts",
+                "v1",
+                "contacts",
+                "actions",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"conditionSet\": {\n    \"operator\": \"<string>\",\n    \"conditions\": [\n      {\n        \"attribute\": {\n          \"groupName\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"operator\": \"<string>\",\n        \"value\": {\n          \"items\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      },\n      {\n        \"attribute\": {\n          \"groupName\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"operator\": \"<string>\",\n        \"value\": {\n          \"items\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      }\n    ]\n  },\n  \"returnAttributes\": [\n    {\n      \"groupName\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"groupName\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b4244f7b-e445-4bda-b37a-de8aa7a16c98",
+              "name": "Search results returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    "v1",
+                    "contacts",
+                    "actions",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"conditionSet\": {\n    \"operator\": \"AND\",\n    \"conditionSets\": [],\n    \"conditions\": [\n      {\n        \"attribute\": {\n          \"groupName\": \"Email Addresses\",\n          \"name\": \"Email Address\"\n        },\n        \"operator\": \"Equals\",\n        \"value\": {\n          \"items\": [\n            \"user@example.com\"\n          ]\n        }\n      }\n    ]\n  },\n  \"returnAttributes\": [\n    {\n      \"groupName\": \"Email Addresses\",\n      \"name\": \"Email Address\"\n    },\n    {\n      \"groupName\": \"Email Addresses\",\n      \"name\": \"HTML Enabled\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 10,\n  \"page\": 10,\n  \"pageSize\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ba8f280d-97c4-4ecc-bf45-8c998c410976",
+              "name": "Bad request - invalid search criteria",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    "v1",
+                    "contacts",
+                    "actions",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"conditionSet\": {\n    \"operator\": \"AND\",\n    \"conditionSets\": [],\n    \"conditions\": [\n      {\n        \"attribute\": {\n          \"groupName\": \"Email Addresses\",\n          \"name\": \"Email Address\"\n        },\n        \"operator\": \"Equals\",\n        \"value\": {\n          \"items\": [\n            \"user@example.com\"\n          ]\n        }\n      }\n    ]\n  },\n  \"returnAttributes\": [\n    {\n      \"groupName\": \"Email Addresses\",\n      \"name\": \"Email Address\"\n    },\n    {\n      \"groupName\": \"Email Addresses\",\n      \"name\": \"HTML Enabled\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4263a5e6-4b6f-447e-ae75-64f953c9dff4",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    "v1",
+                    "contacts",
+                    "actions",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"conditionSet\": {\n    \"operator\": \"AND\",\n    \"conditionSets\": [],\n    \"conditions\": [\n      {\n        \"attribute\": {\n          \"groupName\": \"Email Addresses\",\n          \"name\": \"Email Address\"\n        },\n        \"operator\": \"Equals\",\n        \"value\": {\n          \"items\": [\n            \"user@example.com\"\n          ]\n        }\n      }\n    ]\n  },\n  \"returnAttributes\": [\n    {\n      \"groupName\": \"Email Addresses\",\n      \"name\": \"Email Address\"\n    },\n    {\n      \"groupName\": \"Email Addresses\",\n      \"name\": \"HTML Enabled\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c70d9c63-11d6-44e3-982e-d3efc91455cb",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    "v1",
+                    "contacts",
+                    "actions",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"conditionSet\": {\n    \"operator\": \"AND\",\n    \"conditionSets\": [],\n    \"conditions\": [\n      {\n        \"attribute\": {\n          \"groupName\": \"Email Addresses\",\n          \"name\": \"Email Address\"\n        },\n        \"operator\": \"Equals\",\n        \"value\": {\n          \"items\": [\n            \"user@example.com\"\n          ]\n        }\n      }\n    ]\n  },\n  \"returnAttributes\": [\n    {\n      \"groupName\": \"Email Addresses\",\n      \"name\": \"Email Address\"\n    },\n    {\n      \"groupName\": \"Email Addresses\",\n      \"name\": \"HTML Enabled\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f127fffb-e41b-46eb-8d43-b06e566690a1",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    "v1",
+                    "contacts",
+                    "actions",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"conditionSet\": {\n    \"operator\": \"AND\",\n    \"conditionSets\": [],\n    \"conditions\": [\n      {\n        \"attribute\": {\n          \"groupName\": \"Email Addresses\",\n          \"name\": \"Email Address\"\n        },\n        \"operator\": \"Equals\",\n        \"value\": {\n          \"items\": [\n            \"user@example.com\"\n          ]\n        }\n      }\n    ]\n  },\n  \"returnAttributes\": [\n    {\n      \"groupName\": \"Email Addresses\",\n      \"name\": \"Email Address\"\n    },\n    {\n      \"groupName\": \"Email Addresses\",\n      \"name\": \"HTML Enabled\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1dd98a5f-464a-42ac-a1e9-00c476f25432",
+          "name": "Salesforce Marketing Cloud Retrieve a Contact by Contact Key",
+          "request": {
+            "name": "Salesforce Marketing Cloud Retrieve a Contact by Contact Key",
+            "description": {
+              "content": "Retrieves a single contact using the unique contactKey identifier. Returns the contact record with all associated attribute sets and values.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contacts",
+                "v1",
+                "contacts",
+                ":contactKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "contactKey",
+                  "description": "(Required) Unique identifier for the contact"
+                },
+                {
+                  "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a133bebb-40fa-417d-a9d1-f7e27983f535",
+              "name": "Contact retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    "v1",
+                    "contacts",
+                    ":contactKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contactKey",
+                      "description": "(Required) Unique identifier for the contact"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"contactKey\": \"example_value\",\n  \"contactID\": 1946,\n  \"contactStatus\": \"Active\",\n  \"createdDate\": \"2026-01-15T10:30:00Z\",\n  \"modifiedDate\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ab60dc7f-63a1-49a4-9176-192fb2bb2635",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    "v1",
+                    "contacts",
+                    ":contactKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contactKey",
+                      "description": "(Required) Unique identifier for the contact"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d0775e53-3633-42be-8644-0bfef52928e8",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    "v1",
+                    "contacts",
+                    ":contactKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contactKey",
+                      "description": "(Required) Unique identifier for the contact"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5e3d6df1-1520-4627-9e22-167ce0ffb12a",
+              "name": "Contact not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    "v1",
+                    "contacts",
+                    ":contactKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contactKey",
+                      "description": "(Required) Unique identifier for the contact"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8e4a5c47-520a-447e-a704-3cd5cb20d3d6",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    "v1",
+                    "contacts",
+                    ":contactKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contactKey",
+                      "description": "(Required) Unique identifier for the contact"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0f8c8408-deb3-4e6e-b968-0a8a47b8d767",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    "v1",
+                    "contacts",
+                    ":contactKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contactKey",
+                      "description": "(Required) Unique identifier for the contact"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8c6354db-88c9-4c54-8c0c-b0eb79e2d59b",
+          "name": "Salesforce Marketing Cloud Update a Contact",
+          "request": {
+            "name": "Salesforce Marketing Cloud Update a Contact",
+            "description": {
+              "content": "Updates an existing contact's attributes. Provide only the attribute sets and values that need to be changed. Unspecified attributes remain unchanged.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contacts",
+                "v1",
+                "contacts",
+                ":contactKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "contactKey",
+                  "description": "(Required) Unique identifier for the contact"
+                },
+                {
+                  "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"attributeSets\": [\n    {\n      \"name\": \"<string>\",\n      \"items\": [\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {}\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {}\n            }\n          ]\n        },\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {}\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {}\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"items\": [\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {}\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {}\n            }\n          ]\n        },\n        {\n          \"values\": [\n            {\n              \"name\": \"<string>\",\n              \"value\": {}\n            },\n            {\n              \"name\": \"<string>\",\n              \"value\": {}\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2be6a43f-0c20-4c47-b751-a2b7bb55086c",
+              "name": "Contact updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    "v1",
+                    "contacts",
+                    ":contactKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contactKey",
+                      "description": "(Required) Unique identifier for the contact"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attributeSets\": []\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"operationStatus\": \"example_value\",\n  \"requestServiceMessageID\": \"500123\",\n  \"responseDateTime\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9979cc1b-3455-4400-b9ab-ae3b1808cb8a",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    "v1",
+                    "contacts",
+                    ":contactKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contactKey",
+                      "description": "(Required) Unique identifier for the contact"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attributeSets\": []\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3e59985f-260e-4acf-b424-a5bd94f90154",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    "v1",
+                    "contacts",
+                    ":contactKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contactKey",
+                      "description": "(Required) Unique identifier for the contact"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attributeSets\": []\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7604f775-9afb-45eb-ba21-756ef723c903",
+              "name": "Contact not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    "v1",
+                    "contacts",
+                    ":contactKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contactKey",
+                      "description": "(Required) Unique identifier for the contact"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attributeSets\": []\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7cc7d5e8-dc4c-4c10-bf22-bb85ab49d1d6",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    "v1",
+                    "contacts",
+                    ":contactKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contactKey",
+                      "description": "(Required) Unique identifier for the contact"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attributeSets\": []\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b37f4f9f-c7ab-4dac-ac9a-60f462dbf394",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    "v1",
+                    "contacts",
+                    ":contactKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contactKey",
+                      "description": "(Required) Unique identifier for the contact"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attributeSets\": []\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cc746173-0c0f-4794-9df8-ba8f1f8d7625",
+          "name": "Salesforce Marketing Cloud Delete a Contact",
+          "request": {
+            "name": "Salesforce Marketing Cloud Delete a Contact",
+            "description": {
+              "content": "Initiates an asynchronous delete operation for a contact identified by contactKey. This operation removes the contact and associated data from Marketing Cloud. The delete process runs asynchronously and may take time to complete.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contacts",
+                "v1",
+                "contacts",
+                ":contactKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "contactKey",
+                  "description": "(Required) Unique identifier for the contact to delete"
+                },
+                {
+                  "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "04cb1022-20b2-4b63-9ab4-70ab02c966d7",
+              "name": "Contact delete operation initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    "v1",
+                    "contacts",
+                    ":contactKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contactKey",
+                      "description": "(Required) Unique identifier for the contact to delete"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"operationStatus\": \"example_value\",\n  \"requestServiceMessageID\": \"500123\",\n  \"responseDateTime\": \"2026-01-15T10:30:00Z\",\n  \"operationInitiated\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e6692d31-cc60-4cac-af74-0492d91e145f",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    "v1",
+                    "contacts",
+                    ":contactKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contactKey",
+                      "description": "(Required) Unique identifier for the contact to delete"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b7872a7a-9d87-422c-858b-7836a74b9683",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    "v1",
+                    "contacts",
+                    ":contactKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contactKey",
+                      "description": "(Required) Unique identifier for the contact to delete"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e4cac797-662e-4315-bae5-f3943423e9cb",
+              "name": "Contact not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    "v1",
+                    "contacts",
+                    ":contactKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contactKey",
+                      "description": "(Required) Unique identifier for the contact to delete"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f83a0819-317c-4e56-a4bb-34b21dea2a02",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    "v1",
+                    "contacts",
+                    ":contactKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contactKey",
+                      "description": "(Required) Unique identifier for the contact to delete"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7445330d-2062-459c-a333-120d9c3405b6",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    "v1",
+                    "contacts",
+                    ":contactKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "contactKey",
+                      "description": "(Required) Unique identifier for the contact to delete"
+                    },
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "173c8006-caf9-41b5-9b6c-5906176a57fc",
+          "name": "Salesforce Marketing Cloud List Attribute Sets",
+          "request": {
+            "name": "Salesforce Marketing Cloud List Attribute Sets",
+            "description": {
+              "content": "Retrieves all attribute sets defined in Marketing Cloud. Attribute sets define the structure of contact data, including system attribute sets like Email Addresses and MobileConnect Demographics, as well as custom attribute sets.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "contacts",
+                "v1",
+                "attributeSets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                  "type": "any",
+                  "value": "{{subdomain}}",
+                  "key": "subdomain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3dd5c262-468d-4dce-9462-c2cef925af49",
+              "name": "Attribute sets retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    "v1",
+                    "attributeSets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0132b55a-e6ae-41b0-9aa3-3d57c3af1764",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    "v1",
+                    "attributeSets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6c64dde6-1b22-4df1-93fa-90afa40a1273",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    "v1",
+                    "attributeSets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "49c1ddb7-7669-452d-a1dc-f18c7f312223",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contacts",
+                    "v1",
+                    "attributeSets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+                      "type": "any",
+                      "value": "{{subdomain}}",
+                      "key": "subdomain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"example_value\",\n  \"errorcode\": 10,\n  \"documentation\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Marketing Cloud tenant-specific subdomain (e.g., mc563885gzs27c5t9-63k636ttgm). Obtain this from Setup > Apps > Installed Packages in Marketing Cloud.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "YOUR_SUBDOMAIN",
+      "key": "subdomain"
+    },
+    {
+      "type": "string",
+      "value": "https://{{subdomain}}.rest.marketingcloudapis.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://YOUR_SUBDOMAIN.auth.marketingcloudapis.com/v2/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5825d6b9-5ef9-4594-bbc4-caf85a086f61",
+    "name": "Salesforce Marketing Cloud REST Assets Contacts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Salesforce Marketing Cloud REST API provides programmatic access to Marketing Cloud features including contacts, journeys, and assets. The API uses JSON request and response bodies and OAuth 2.0 authentication via the Marketing Cloud authentication endpoint. All API requests require a valid access token obtained through the Server-to-Server OAuth flow.\n\nContact Support:\n Name: Salesforce Marketing Cloud Support\n Email: support@salesforce.com",
+      "type": "text/plain"
+    }
+  }
+}

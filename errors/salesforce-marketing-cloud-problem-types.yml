@@ -1,0 +1,164 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/error-handling.html
+  and https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/rate-limiting-errors.html
+derived_from:
+- openapi/salesforce-marketing-cloud-assets-api-openapi.yml
+- openapi/salesforce-marketing-cloud-contacts-api-openapi.yml
+- openapi/salesforce-marketing-cloud-journeys-api-openapi.yml
+format: proprietary-json
+note: >-
+  Marketing Cloud Engagement does NOT use RFC 9457 problem+json. It returns a proprietary
+  JSON envelope carrying a numeric errorcode that is independent of the HTTP status, which is
+  the field an agent must branch on. The code registry below is transcribed from Salesforce's
+  published error reference; only codes and classes Salesforce documents are listed, and where
+  the docs give a class range rather than a per-code title that is recorded as a class.
+envelope:
+  media_type: application/json; charset=utf-8
+  schema: '#/components/schemas/ErrorResponse'
+  fields:
+  - name: message
+    type: string
+    description: Human-readable error message.
+  - name: errorcode
+    type: integer
+    description: >-
+      Numeric Marketing Cloud error code. Distinct from the HTTP status — branch on this,
+      not on the status alone.
+  - name: documentation
+    type: string
+    description: URL to the relevant documentation for this error.
+  - name: additionalErrors
+    type: array
+    description: >-
+      Present in aggregate/batch scenarios; carries the detailed per-item messages. Documented
+      in the error reference, not modelled in the captured OpenAPI.
+  example: examples/salesforce-marketing-cloud-error-response-example.json
+classes:
+- range: 10000-10005
+  http_status: 400
+  class: Validation errors
+  remediation: Correct the request payload or query parameters and retry.
+- range: 20000-20002
+  http_status: 403
+  class: Authorization errors
+  remediation: >-
+    The token is valid but the Installed Package lacks the required scope. Add the scope in
+    Marketing Cloud Setup > Apps > Installed Packages and reissue the token. See
+    scopes/salesforce-marketing-cloud-scopes.yml.
+- range: 40000-40003
+  http_status: 401
+  class: Authentication errors
+  remediation: >-
+    Re-authenticate against https://{subdomain}.auth.marketingcloudapis.com/v2/token. Code 0
+    is also documented in this class.
+- range: 30000-30004
+  http_status: 4xx/5xx
+  class: Runtime errors
+  remediation: Inspect message and additionalErrors; retry only for transient runtime failures.
+problems:
+- status: 400
+  errorcode_class: 10000-10005
+  title: Validation error
+  retryable: false
+  source_operations:
+  - openapi/salesforce-marketing-cloud-assets-api-openapi.yml#createAsset
+  - openapi/salesforce-marketing-cloud-assets-api-openapi.yml#updateAsset
+  - openapi/salesforce-marketing-cloud-assets-api-openapi.yml#queryAssets
+  - openapi/salesforce-marketing-cloud-contacts-api-openapi.yml#createContacts
+  - openapi/salesforce-marketing-cloud-contacts-api-openapi.yml#searchContacts
+  - openapi/salesforce-marketing-cloud-contacts-api-openapi.yml#getContact
+  - openapi/salesforce-marketing-cloud-contacts-api-openapi.yml#updateContact
+  - openapi/salesforce-marketing-cloud-contacts-api-openapi.yml#deleteContact
+  - openapi/salesforce-marketing-cloud-journeys-api-openapi.yml#createJourney
+  - openapi/salesforce-marketing-cloud-journeys-api-openapi.yml#updateJourney
+  - openapi/salesforce-marketing-cloud-journeys-api-openapi.yml#publishJourney
+  - openapi/salesforce-marketing-cloud-journeys-api-openapi.yml#fireEntryEvent
+- status: 401
+  errorcode_class: 40000-40003
+  title: Authentication error
+  retryable: false
+  remediation: Obtain a fresh access token; do not retry with the same credentials on repeat 401s.
+  source_operations: [all captured operations declare 401]
+- status: 403
+  errorcode_class: 20000-20002
+  title: Authorization error
+  retryable: false
+  remediation: Missing Installed Package scope. Adding the scope requires a Marketing Cloud admin.
+  source_operations:
+  - openapi/salesforce-marketing-cloud-contacts-api-openapi.yml#createContacts
+- status: 404
+  title: Resource not found
+  retryable: false
+  source_operations:
+  - openapi/salesforce-marketing-cloud-assets-api-openapi.yml#getAsset
+  - openapi/salesforce-marketing-cloud-assets-api-openapi.yml#updateAsset
+  - openapi/salesforce-marketing-cloud-assets-api-openapi.yml#deleteAsset
+  - openapi/salesforce-marketing-cloud-contacts-api-openapi.yml#getContact
+  - openapi/salesforce-marketing-cloud-contacts-api-openapi.yml#updateContact
+  - openapi/salesforce-marketing-cloud-contacts-api-openapi.yml#deleteContact
+  - openapi/salesforce-marketing-cloud-journeys-api-openapi.yml#getJourney
+  - openapi/salesforce-marketing-cloud-journeys-api-openapi.yml#updateJourney
+  - openapi/salesforce-marketing-cloud-journeys-api-openapi.yml#deleteJourney
+  - openapi/salesforce-marketing-cloud-journeys-api-openapi.yml#publishJourney
+  - openapi/salesforce-marketing-cloud-journeys-api-openapi.yml#stopJourney
+- status: 408
+  title: Request timeout
+  retryable: true
+  source: error-handling reference
+- status: 409
+  title: State or object conflict
+  retryable: false
+  remediation: >-
+    On Journey Builder this is the running-journey guard — a published journey cannot be
+    edited or deleted. Stop or create a new version first.
+  source_operations:
+  - openapi/salesforce-marketing-cloud-journeys-api-openapi.yml#updateJourney
+  - openapi/salesforce-marketing-cloud-journeys-api-openapi.yml#deleteJourney
+  - openapi/salesforce-marketing-cloud-journeys-api-openapi.yml#stopJourney
+- status: 415
+  title: Unsupported media type
+  retryable: false
+  remediation: Send Content-Type application/json.
+- status: 429
+  errorcode: 50100
+  title: Rate limit exceeded
+  retryable: true
+  headers: [Retry-After]
+  remediation: >-
+    Documented response header is "Retry-After: 5". Back off for the advertised interval and
+    retry. See rate-limits/salesforce-marketing-cloud-rate-limits.yml.
+  source_operations: [all captured operations declare 429]
+- status: 429
+  errorcode: 50200
+  title: Your requests are temporarily blocked.
+  retryable: false
+  remediation: >-
+    The account has been throttled rather than a single request rate-limited. Salesforce
+    directs customers to their Account Executive; retrying will not clear it.
+- status: 500
+  title: Internal server error
+  retryable: true
+  source_operations: [all captured operations declare 500]
+- status: 503
+  errorcode: 50300
+  title: Service unavailable
+  retryable: true
+- status: 596
+  title: Service not found
+  retryable: false
+  source: error-handling reference (authentication class)
+soap_faults:
+- code: '17'
+  message: Rate Limited
+  transport: SOAP
+  note: >-
+    The SOAP API signals throttling as a SOAP fault with code 17, not an HTTP 429. Salesforce
+    states throttling "temporarily throttles subsequent SOAP API calls from that account" and
+    that "the throttling rate is variable depending on the severity of the impact".
+  source: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/rate-limiting.html
+references:
+- https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/error-handling.html
+- https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/rate-limiting-errors.html
+- https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/rate-limiting.html

@@ -1,0 +1,385 @@
+generated: '2026-08-13'
+method: derived
+source: mcp/salesforce-marketing-cloud-mcp.yml + openapi/*.yml
+note: 'Binds Salesforce''s published MCE MCP tool list to the OpenAPI operationIds captured in this repo.
+  Both sides are real: the tool names and descriptions are transcribed verbatim from Salesforce''s own
+  tool reference, and every operationId below was grepped out of the specs in openapi/. Confidence is
+  set by NAME AND SEMANTICS ONLY — the live MCP endpoint is tenant-scoped (see mcp/ introspection block),
+  so no tool inputSchema could be read and none is asserted. The dominant finding is asymmetry: the MCP
+  server covers eleven product areas while this repo holds OpenAPI for three, so 116 of 142 tools have
+  no captured REST operation to inherit an input contract from. That is a capture gap on our side for
+  most categories, and a genuine MCP-only surface for the journey-activity constructor tools, which hold
+  state in the server rather than calling an API.'
+surfaces:
+  openapi:
+    files:
+    - openapi/salesforce-marketing-cloud-assets-api-openapi.yml
+    - openapi/salesforce-marketing-cloud-contacts-api-openapi.yml
+    - openapi/salesforce-marketing-cloud-journeys-api-openapi.yml
+    operations: 21
+    gated: false
+    note: Tenant-templated servers[] (https://{subdomain}.rest.marketingcloudapis.com).
+  mcp:
+    endpoint: https://mai-mce-mcp-cdp1.sfdc-yfeipo.svc.sfdcfc.net/t/{tenantID}/c/{clientID}/api/mcp
+    gated: true
+    note: tools/list on the un-tenanted root returns HTTP 405; live schemas need an authenticated tenant.
+  graphql:
+    endpoint: null
+    gated: false
+    note: Salesforce publishes NO GraphQL endpoint for Marketing Cloud Engagement. graphql/salesforce-marketing-cloud-schema.graphql
+      in this repo is an API Evangelist conceptual schema derived from REST, not a provider surface, and
+      is therefore excluded from this crosswalk.
+crosswalk:
+- tool: sfmc_get_content_assets
+  category: Content
+  rest:
+  - listAssets
+  binding: rest
+  confidence: high
+- tool: sfmc_search_content_builder_assets
+  category: Content
+  rest:
+  - queryAssets
+  binding: rest
+  confidence: high
+  note: Advanced query search maps to POST /asset/v1/content/assets/query.
+- tool: sfmc_get_content_builder_asset
+  category: Content
+  rest:
+  - getAsset
+  binding: rest
+  confidence: high
+- tool: sfmc_create_content_builder_asset
+  category: Content
+  rest:
+  - createAsset
+  binding: rest
+  confidence: high
+- tool: sfmc_create_email
+  category: Content
+  rest:
+  - createAsset
+  binding: rest
+  confidence: medium
+  note: Same REST operation; the tool preselects an htmlemail assetType.
+- tool: sfmc_create_email_template
+  category: Content
+  rest:
+  - createAsset
+  binding: rest
+  confidence: medium
+  note: Same REST operation with a template assetType.
+- tool: sfmc_create_sms
+  category: Content
+  rest:
+  - createAsset
+  binding: rest
+  confidence: medium
+  note: Same REST operation with an SMS assetType.
+- tool: sfmc_update_content_builder_asset
+  category: Content
+  rest:
+  - updateAsset
+  binding: rest
+  confidence: high
+- tool: sfmc_get_content_categories
+  category: Content
+  rest:
+  - listCategories
+  binding: rest
+  confidence: high
+- tool: sfmc_delete_contacts
+  category: Contacts
+  rest:
+  - deleteContact
+  binding: rest
+  confidence: high
+  note: REST operation deletes one contactKey; the tool accepts one or more.
+- tool: sfmc_update_contact_attributes
+  category: Contacts
+  rest:
+  - updateContact
+  - createContacts
+  binding: rest
+  confidence: medium
+  note: Upsert semantics fan out to PATCH and POST /contacts/v1/contacts.
+- tool: sfmc_get_attribute_set_definitions
+  category: Contacts
+  rest:
+  - listAttributeSets
+  binding: rest
+  confidence: high
+- tool: sfmc_get_attribute_set_definition
+  category: Contacts
+  rest:
+  - listAttributeSets
+  binding: rest
+  confidence: medium
+  note: Single-definition read; the captured spec exposes only the collection.
+- tool: sfmc_get_attribute_set_by_name
+  category: Contacts
+  rest:
+  - listAttributeSets
+  binding: rest
+  confidence: low
+  note: Name lookup is client-side filtering over the collection in the captured spec.
+- tool: sfmc_get_contact_key_by_email_address
+  category: Contacts
+  rest:
+  - searchContacts
+  binding: rest
+  confidence: medium
+  note: Email lookup is a filtered contact search.
+- tool: sfmc_retrieve_contact_status
+  category: Contacts
+  rest:
+  - getContact
+  binding: rest
+  confidence: medium
+- tool: sfmc_get_journeys
+  category: Journeys
+  rest:
+  - listJourneys
+  binding: rest
+  confidence: high
+- tool: sfmc_get_journey
+  category: Journeys
+  rest:
+  - getJourney
+  binding: rest
+  confidence: high
+- tool: sfmc_create_journey_builder_journey
+  category: Journeys
+  rest:
+  - createJourney
+  binding: rest
+  confidence: high
+- tool: sfmc_create_journey
+  category: Journeys
+  rest:
+  - createJourney
+  binding: rest
+  confidence: medium
+  note: 'Router tool: chooses a journey type then delegates to a creation tool.'
+- tool: sfmc_update_journey
+  category: Journeys
+  rest:
+  - updateJourney
+  binding: rest
+  confidence: high
+- tool: sfmc_delete_journey
+  category: Journeys
+  rest:
+  - deleteJourney
+  binding: rest
+  confidence: high
+- tool: sfmc_publish_journey
+  category: Journeys
+  rest:
+  - publishJourney
+  binding: rest
+  confidence: high
+- tool: sfmc_stop_journey
+  category: Journeys
+  rest:
+  - stopJourney
+  binding: rest
+  confidence: high
+- tool: sfmc_fire_journey_event
+  category: Journeys
+  rest:
+  - fireEntryEvent
+  binding: rest
+  confidence: high
+- tool: sfmc_get_journey_versions
+  category: Journeys
+  rest:
+  - getJourney
+  - listJourneys
+  binding: rest
+  confidence: low
+  note: versionNumber is a query parameter on getJourney; there is no dedicated versions operation in
+    the captured spec.
+mcp_only:
+- category: Automations
+  reason: Automation Studio surface. No Automation Studio OpenAPI is captured in this repo (the /automation/v1
+    and /legacy/v1 routes are documented but unspecified), so these tools have no backing operationId
+    to bind to.
+  count: 35
+  tools:
+  - sfmc_create_automation
+  - sfmc_create_automation_file_transfer
+  - sfmc_create_ftp_location
+  - sfmc_create_sql_query
+  - sfmc_delete_automation_file_transfer
+  - sfmc_delete_ftp_location
+  - sfmc_execute_script_activity
+  - sfmc_get_automation
+  - sfmc_get_automation_categories
+  - sfmc_get_automation_file_transfer
+  - sfmc_get_automation_file_transfers
+  - sfmc_get_automation_filter_definitions
+  - sfmc_get_automation_filters
+  - sfmc_get_automation_ftp_locations
+  - sfmc_get_automation_imports
+  - sfmc_get_automation_instance
+  - sfmc_get_automation_scripts
+  - sfmc_get_automation_trigger_status
+  - sfmc_get_automations
+  - sfmc_get_ftp_location
+  - sfmc_get_sql_queries
+  - sfmc_get_sql_query
+  - sfmc_run_automation
+  - sfmc_run_automation_activities
+  - sfmc_run_automation_activities_by_key
+  - sfmc_run_sql_query
+  - sfmc_start_automation_file_transfer
+  - sfmc_update_automation
+  - sfmc_update_automation_file_transfer
+  - sfmc_update_automation_file_trigger
+  - sfmc_update_automation_file_trigger_by_key
+  - sfmc_update_automation_trigger
+  - sfmc_update_ftp_location
+  - sfmc_update_sql_query
+  - sfmc_validate_sql_query
+- category: Campaigns
+  reason: Campaign surface (/hub/v1). Documented but no OpenAPI captured in this repo.
+  count: 8
+  tools:
+  - sfmc_associate_campaign_asset
+  - sfmc_create_campaign
+  - sfmc_delete_campaign
+  - sfmc_get_campaign
+  - sfmc_get_campaign_assets
+  - sfmc_get_campaigns
+  - sfmc_remove_campaign_asset
+  - sfmc_update_campaign
+- category: Contacts
+  reason: Contacts surface capability with no matching operation in the captured Contacts OpenAPI (SOAP-backed
+    subscriber/list operations).
+  count: 4
+  tools:
+  - sfmc_get_email_subscription_status
+  - sfmc_get_list_subscribers
+  - sfmc_get_push_opt_in_status_by_subscriber_key
+  - sfmc_search_attributes
+- category: Content
+  reason: Content Builder capability with no matching operation in the captured Assets OpenAPI (folder
+    mutation and assetType metadata routes are not in the captured subset).
+  count: 4
+  tools:
+  - sfmc_create_content_folder
+  - sfmc_delete_content_folder
+  - sfmc_get_content_builder_asset_types
+  - sfmc_update_content_folder
+- category: Data Extensions
+  reason: Data Extensions surface. The /data/v1 and SOAP DataExtension operations are documented but no
+    OpenAPI for them is captured in this repo.
+  count: 19
+  tools:
+  - sfmc_bulk_upsert_data_event_rows
+  - sfmc_bulk_upsert_data_extension_rows
+  - sfmc_clear_data_extension_data
+  - sfmc_create_data_extension
+  - sfmc_create_data_extension_field_async
+  - sfmc_delete_data_extension
+  - sfmc_get_bulk_job_results
+  - sfmc_get_bulk_job_status
+  - sfmc_get_data_extension
+  - sfmc_get_data_extension_fields
+  - sfmc_get_data_extension_folders
+  - sfmc_get_data_extension_link
+  - sfmc_get_data_extensions
+  - sfmc_get_data_extensions_by_category
+  - sfmc_query_data_extension_rows
+  - sfmc_retrieve_data_extension_record
+  - sfmc_update_data_extension
+  - sfmc_update_data_extension_field_async
+  - sfmc_upsert_data_extension_record
+- category: Email
+  reason: Transactional Messaging / triggered send surface (/messaging/v1). Documented but no OpenAPI
+    captured in this repo.
+  count: 5
+  tools:
+  - sfmc_create_email_send_definition
+  - sfmc_create_triggered_send_definition
+  - sfmc_get_transactional_send_status
+  - sfmc_get_triggered_send_summary
+  - sfmc_send_transactional_email
+- category: Journeys
+  reason: Journey Builder capability with no matching operation in the captured Journeys OpenAPI (async
+    status, activity-construction and contact-insert routes are not in the captured subset).
+  count: 26
+  tools:
+  - sfmc_api_event_trigger
+  - sfmc_create_event_definition
+  - sfmc_data_extension_trigger
+  - sfmc_decision_split_activity
+  - sfmc_delete_event_definition
+  - sfmc_einstein_engagement_frequency_activity
+  - sfmc_einstein_sto_activity
+  - sfmc_email_activity
+  - sfmc_engagement_decision_activity
+  - sfmc_exit_contact_from_journey
+  - sfmc_exit_contact_from_journey_status
+  - sfmc_get_event_definition
+  - sfmc_get_event_definitions
+  - sfmc_get_journey_link
+  - sfmc_get_journey_publish_status
+  - sfmc_insert_contacts_into_journey_async
+  - sfmc_insert_contacts_into_journey_status
+  - sfmc_pause_journey
+  - sfmc_random_split_activity
+  - sfmc_refresh_transactional_email
+  - sfmc_republish_journey_content
+  - sfmc_republish_triggered_send
+  - sfmc_resume_journey
+  - sfmc_sms_activity
+  - sfmc_update_event_definition
+  - sfmc_wait_activity
+- category: Push
+  reason: MobilePush surface (/push/v1). Documented but no OpenAPI captured in this repo.
+  count: 1
+  tools:
+  - sfmc_send_push_notification
+- category: SMS
+  reason: MobileConnect / transactional SMS surface (/sms/v1). Documented but no OpenAPI captured in this
+    repo.
+  count: 8
+  tools:
+  - sfmc_create_mobileconnect_keyword
+  - sfmc_create_sms_definition
+  - sfmc_create_sms_send_definition
+  - sfmc_get_mobileconnect_codes
+  - sfmc_get_sms_definition
+  - sfmc_get_sms_definitions
+  - sfmc_get_sms_subscription_status
+  - sfmc_send_outbound_sms_message
+- category: Tracking
+  reason: Tracking/engagement data surface. Documented but no OpenAPI captured in this repo.
+  count: 1
+  tools:
+  - sfmc_get_tracking_events
+- category: Utilities
+  reason: Platform metadata helpers (lists, sender profiles, send classifications, time zones, describe).
+    Mostly SOAP-backed; no OpenAPI captured in this repo.
+  count: 5
+  tools:
+  - sfmc_describe_object
+  - sfmc_get_lists
+  - sfmc_get_send_classifications
+  - sfmc_get_sender_profiles
+  - sfmc_get_timezones
+rest_only:
+- operationId: deleteAsset
+  source: openapi/salesforce-marketing-cloud-assets-api-openapi.yml
+  capability: Delete a Content Builder asset
+  note: The Content tool set can delete a FOLDER (sfmc_delete_content_folder) but exposes no tool that
+    deletes an asset. Agents can create and update assets through MCP but cannot remove them.
+coverage:
+  tools_named: 142
+  tools_bound: 26
+  mcp_only: 116
+  rest_operations_total: 21
+  rest_operations_with_tool: 20
+  rest_only: 1

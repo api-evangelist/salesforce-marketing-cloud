@@ -1,0 +1,95 @@
+generated: '2026-08-13'
+method: probed
+source: Live HTTP probes, 2026-08-13
+note: >-
+  Marketing Cloud Engagement's REST/SOAP hosts are tenant-scoped
+  (https://{subdomain}.rest.marketingcloudapis.com) and cannot be probed without a customer
+  subdomain, so the probeable hosts are the corporate site, the developer docs host, and the
+  hosted MCE MCP server. The MCP host is the only one that serves real /.well-known/
+  documents: RFC 8414 authorization-server metadata and RFC 9728 protected-resource
+  metadata, both saved verbatim here. developer.salesforce.com answers 403 to every
+  automated request (bot wall), which is a blocked probe, not a recorded absence.
+hosts:
+- host: https://mai-mce-mcp-cdp1.sfdc-yfeipo.svc.sfdcfc.net
+  role: MCE MCP server (US)
+  documents:
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    content_type: application/json
+    file: salesforce-marketing-cloud-oauth-authorization-server.json
+    spec: RFC 8414
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    content_type: application/json
+    file: salesforce-marketing-cloud-oauth-protected-resource.json
+    spec: RFC 9728
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://mai-mce-mcp-cdp1.sfdc-yzvdd4.svc.sfdcfc.net
+  role: MCE MCP server (EU)
+  documents:
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    note: Same shape as the US host; not saved separately.
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    note: Same shape as the US host; not saved separately.
+- host: https://www.salesforce.com
+  role: corporate website
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 301
+    note: Redirects to a 000 (unresolvable) target; no document served.
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://developer.salesforce.com
+  role: developer documentation portal
+  blocked: true
+  documents:
+  - path: /.well-known/security.txt
+    status: 403
+    note: HTML bot-wall page, not a document. Same 403 on every path below.
+  - path: /.well-known/openid-configuration
+    status: 403
+  - path: /.well-known/oauth-authorization-server
+    status: 403
+  - path: /.well-known/oauth-protected-resource
+    status: 403
+  - path: /.well-known/api-catalog
+    status: 403
+  - path: /.well-known/ai-plugin.json
+    status: 403
+  - path: /.well-known/agent-card.json
+    status: 403
+  - path: /.well-known/agent.json
+    status: 403
+- host: 'https://{subdomain}.rest.marketingcloudapis.com'
+  role: tenant REST API host
+  probed: false
+  note: >-
+    Tenant-scoped. There is no canonical hostname to probe without a customer's Marketing
+    Cloud subdomain, so no /.well-known/ result is recorded for this host either way.
+security_txt: false
+agent_card: false

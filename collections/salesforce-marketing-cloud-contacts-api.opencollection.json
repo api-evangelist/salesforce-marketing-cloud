@@ -1,0 +1,131 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Salesforce Marketing Cloud REST Assets Contacts API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://YOUR_SUBDOMAIN.auth.marketingcloudapis.com/v2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Contacts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Marketing Cloud Create Contacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{subdomain}.rest.marketingcloudapis.com/contacts/v1/contacts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates one or more contacts in Marketing Cloud. Each contact requires a contactKey as a unique identifier. You can include attribute values for any defined attribute sets such as Email Addresses, MobileConnect Demographics, or custom attribute sets."
+        },
+        {
+          "info": {
+            "name": "Salesforce Marketing Cloud Search Contacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{subdomain}.rest.marketingcloudapis.com/contacts/v1/contacts/actions/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Searches for contacts using filter criteria. Supports filtering by contactKey, email address, or other contact attributes. Returns matching contacts with their associated attribute values."
+        },
+        {
+          "info": {
+            "name": "Salesforce Marketing Cloud Retrieve a Contact by Contact Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.rest.marketingcloudapis.com/contacts/v1/contacts/:contactKey",
+            "params": [
+              {
+                "name": "contactKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the contact"
+              }
+            ]
+          },
+          "docs": "Retrieves a single contact using the unique contactKey identifier. Returns the contact record with all associated attribute sets and values."
+        },
+        {
+          "info": {
+            "name": "Salesforce Marketing Cloud Update a Contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{subdomain}.rest.marketingcloudapis.com/contacts/v1/contacts/:contactKey",
+            "params": [
+              {
+                "name": "contactKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the contact"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing contact's attributes. Provide only the attribute sets and values that need to be changed. Unspecified attributes remain unchanged."
+        },
+        {
+          "info": {
+            "name": "Salesforce Marketing Cloud Delete a Contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{subdomain}.rest.marketingcloudapis.com/contacts/v1/contacts/:contactKey",
+            "params": [
+              {
+                "name": "contactKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the contact to delete"
+              }
+            ]
+          },
+          "docs": "Initiates an asynchronous delete operation for a contact identified by contactKey. This operation removes the contact and associated data from Marketing Cloud. The delete process runs asynchronously and may take time to complete."
+        },
+        {
+          "info": {
+            "name": "Salesforce Marketing Cloud List Attribute Sets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{subdomain}.rest.marketingcloudapis.com/contacts/v1/attributeSets"
+          },
+          "docs": "Retrieves all attribute sets defined in Marketing Cloud. Attribute sets define the structure of contact data, including system attribute sets like Email Addresses and MobileConnect Demographics, as well as custom attribute sets."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

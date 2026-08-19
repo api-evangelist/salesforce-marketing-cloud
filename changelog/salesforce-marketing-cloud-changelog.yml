@@ -1,0 +1,54 @@
+generated: '2026-08-13'
+method: searched
+source: https://help.salesforce.com/s/articleView?id=sf.mc_rn_release_notes.htm
+note: >-
+  Marketing Cloud Engagement does not publish a dated, per-endpoint API changelog. Changes
+  ship on the Salesforce three-releases-a-year train and are described in the Marketing Cloud
+  Engagement release notes on Salesforce Help, which is a JavaScript-rendered Lightning page:
+  it returns HTTP 200 to curl but the entry list is not present in the returned HTML, so this
+  artifact records the scheme and only the entries confirmed from other first-party sources
+  (the Salesforce Developers blog and the MCE MCP documentation). Recent-window only; the live
+  release notes remain the source of truth.
+scheme:
+  type: seasonal-release-train
+  releases_per_year: 3
+  names: [Spring, Summer, Winter]
+  current_release: Summer '26
+  canonical_url: https://help.salesforce.com/s/articleView?id=sf.mc_rn_release_notes.htm
+  developer_blog: https://developer.salesforce.com/blogs/feed
+  note: >-
+    Marketing Cloud Engagement REST routes are versioned per product area at v1 and are not
+    on the Salesforce Platform numbered API version train (v67.0 etc). A seasonal release
+    changes behaviour behind the same v1 routes. See
+    lifecycle/salesforce-marketing-cloud-lifecycle.yml.
+entries:
+- release: Summer '26
+  date: '2026-06-02'
+  type: addition
+  breaking: false
+  title: MCP Server for Marketing Cloud Engagement reaches GA
+  highlights:
+  - First-party hosted remote MCP server, 142 tools prefixed sfmc_ across 11 categories.
+  - US and EU regional endpoints, templated per tenant and client ID.
+  - OAuth 2.0 authorization code with PKCE; permissions are the intersection of Installed Package scopes and the user's own permissions.
+  source: >-
+    https://developer.salesforce.com/blogs/2026/06/the-mcp-server-for-marketing-cloud-engagement-is-now-ga
+  artifact: mcp/salesforce-marketing-cloud-mcp.yml
+- release: Summer '26
+  date: '2026-08-15'
+  type: retirement
+  breaking: true
+  title: Marketing Cloud Advertising Studio retirement
+  highlights:
+  - Salesforce announced retirement of Advertising Studio and related products.
+  note: >-
+    Recorded as an announced product retirement affecting the Marketing Cloud surface. Confirm
+    current status against Salesforce Help before acting on it.
+coverage:
+  entry_count: 2
+  window: 2026
+  completeness: partial
+  gap: >-
+    The full seasonal release-note history could not be enumerated because the canonical page
+    renders client-side. Only entries corroborated by a first-party non-JS source are listed;
+    nothing is inferred.

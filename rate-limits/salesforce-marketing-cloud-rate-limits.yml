@@ -4,8 +4,10 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Salesforce Marketing Cloud
 providerId: salesforce-marketing-cloud
 created: '2026-05-04'
-modified: '2026-05-05'
-reconciled: false
+modified: '2026-08-13'
+method: searched
+reconciled: true
+reconciled_date: '2026-08-13'
 tags:
 - CRM
 - Email Marketing
@@ -13,36 +15,118 @@ tags:
 - Marketing Cloud
 - Personalization
 - Rate Limiting
-description: Rate-limits artifact for Salesforce Marketing Cloud. Trimmed to a single umbrella entry pending
-  manual reconciliation. Salesforce publishes per-edition pricing on its product pages, but those pages
-  are not retrievable via automated fetch (HTTP 403). All editions are sold via Salesforce Sales; API
-  access is included with the underlying CRM license rather than priced as a discrete API SKU. Treat this
-  artifact as a contact-sales placeholder until pricing pages can be reconciled manually.
+description: >-
+  Rate-limit posture for Salesforce Marketing Cloud Engagement, read from Salesforce's own
+  rate-limiting documentation on 2026-08-13. This supersedes the 2026-05-04 bulk-sweep
+  placeholder, which had imported the Salesforce PLATFORM per-edition 24-hour quota model —
+  that model applies to core Salesforce org APIs, not to marketingcloudapis.com, and it is
+  removed here as incorrect. The finding for Marketing Cloud Engagement is the opposite and
+  is itself the story: Salesforce publishes the runtime SIGNAL in full but publishes NO
+  NUMBER. There is no documented requests-per-window figure, no per-endpoint ceiling and no
+  quota surface a client can read before it is throttled. Salesforce says only that "the
+  throttling rate is variable depending on the severity of the impact" and directs customers
+  to their Account Executive.
 sources:
-- https://www.salesforce.com/marketing/pricing/
+- https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/rate-limiting.html
+- https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/rate-limiting-errors.html
+- https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/rate-limiting-best-practices.html
+limit_count: 0
+limit_count_note: >-
+  Zero published numeric limits. This is a recorded, verified absence — not an unchecked
+  field. The signalling below IS documented and is what an agent must implement against.
 responseCodes:
   throttled: 429
   quotaExceeded: 429
   serviceUnavailable: 503
+responseHeaders:
+- name: Retry-After
+  documented: true
+  example: 'Retry-After: 5'
+  applies_to: 429
+  source: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/rate-limiting-errors.html
+- name: RateLimit-Limit
+  documented: false
+- name: RateLimit-Remaining
+  documented: false
+- name: RateLimit-Reset
+  documented: false
+- name: X-RateLimit-*
+  documented: false
+  note: >-
+    No RateLimit-* or X-RateLimit-* headers are published for Marketing Cloud Engagement. A
+    client cannot see how much budget it has left; it only learns it is over when it is over.
+errorCodes:
+- code: 50100
+  status: 429
+  message: Rate limit exceeded
+  retryable: true
+  action: Honour Retry-After, then retry with exponential backoff and jitter.
+- code: 50200
+  status: 429
+  message: Your requests are temporarily blocked.
+  retryable: false
+  action: >-
+    Account-level throttle rather than a per-request limit. Retrying will not clear it;
+    Salesforce directs customers to their Account Executive.
+- code: 50300
+  status: 503
+  message: Service unavailable
+  retryable: true
 limits:
-- name: Per-edition 24-hour API request limit
-  scope: org/edition
-  metric: varies
-  limit: varies by Salesforce edition (Developer / Professional / Enterprise / Performance / Unlimited)
-    and licensed user count; see Salesforce App Limits Cheatsheet
-  notes: Salesforce documents per-edition 24-hour API request totals plus add-on packs; the public docs
-    page is gated and returned no scrape-able content.
+- name: REST API request throttling
+  scope: account
+  transport: REST
+  metric: requests
+  window: undocumented
+  limit: null
+  burst: null
+  status_on_exhaustion: 429
+  headers: [Retry-After]
+  notes: >-
+    'If your account is throttled, API requests produce HTTP 429 error messages until the
+    issue is resolved.' No numeric threshold is published.
+- name: SOAP API request throttling
+  scope: account
+  transport: SOAP
+  metric: requests
+  window: undocumented
+  limit: null
+  status_on_exhaustion: SOAP fault
+  fault_code: '17'
+  fault_message: Rate Limited
+  notes: >-
+    'If API calls from an account negatively impact system performance, Marketing Cloud
+    Engagement temporarily throttles subsequent SOAP API calls from that account. The
+    throttling rate is variable depending on the severity of the impact.' SOAP signals
+    throttling as fault code 17, NOT as an HTTP 429 — a client that only branches on HTTP
+    status will miss SOAP throttling entirely.
+- name: MCP server
+  scope: account
+  transport: MCP
+  metric: requests
+  window: undocumented
+  limit: null
+  notes: >-
+    Salesforce states 'Marketing Cloud API limits and guidelines apply' to the MCE MCP server.
+    Agent traffic is subject to the same undocumented account throttle as direct API traffic.
 policies:
-- name: Per-Edition Quota
-  description: Salesforce APIs share a single org-wide 24-hour quota driven by edition and licensed user
-    count, with API Request Limits visible in Setup > System Overview.
-- name: Concurrent API Request Limit
-  description: Salesforce caps concurrent long-running API requests per org; specific numbers are documented
-    in the Salesforce App Limits Cheatsheet.
 - name: Backoff Strategy
-  description: When a 429 is returned, clients should honor Retry-After and apply exponential backoff
-    with jitter.
-notes: Salesforce publishes per-edition pricing on its product pages, but those pages are not retrievable
-  via automated fetch (HTTP 403). All editions are sold via Salesforce Sales; API access is included with
-  the underlying CRM license rather than priced as a discrete API SKU. Treat this artifact as a contact-sales
-  placeholder until pricing pages can be reconciled manually.
+  description: >-
+    Honour Retry-After on 429 and apply exponential backoff with jitter. Because no quota is
+    published, reactive backoff is the ONLY available strategy — a client cannot precompute a
+    safe send rate.
+  source: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/rate-limiting-best-practices.html
+- name: Token reuse
+  description: >-
+    Cache and reuse the OAuth access token until expiry. Requesting a token per call adds
+    avoidable load against the same account throttle.
+- name: Distinguish 50100 from 50200
+  description: >-
+    50100 is a retryable rate limit; 50200 is an account block that retrying will not clear.
+    Treating them the same is the most common client bug against this API.
+notes: >-
+  Where the previous version of this artifact was wrong: it recorded a "per-edition 24-hour
+  API request limit" driven by Salesforce edition and licensed user count, citing the
+  Salesforce App Limits Cheatsheet. That is the core Salesforce Platform quota model. Marketing
+  Cloud Engagement runs on separate infrastructure (marketingcloudapis.com), does not share
+  that quota, and does not publish an equivalent one.

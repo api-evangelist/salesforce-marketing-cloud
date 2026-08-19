@@ -4,43 +4,248 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Salesforce Marketing Cloud
 providerId: salesforce-marketing-cloud
 created: '2026-05-04'
-modified: '2026-05-05'
-reconciled: false
+modified: '2026-08-13'
+method: searched
+reconciled: true
+reconciled_date: '2026-08-13'
 tags:
 - CRM
 - Email Marketing
 - Marketing Automation
 - Marketing Cloud
 - Personalization
-description: Plans/pricing artifact for Salesforce Marketing Cloud. Trimmed to a single Contact Sales
-  entry pending manual reconciliation. Salesforce publishes per-edition pricing on its product pages,
-  but those pages are not retrievable via automated fetch (HTTP 403). All editions are sold via Salesforce
-  Sales; API access is included with the underlying CRM license rather than priced as a discrete API SKU.
-  Treat this artifact as a contact-sales placeholder until pricing pages can be reconciled manually.
+description: >-
+  Published list pricing for the Salesforce Marketing Cloud line, read from
+  https://www.salesforce.com/marketing/pricing/ on 2026-08-13 (HTTP 200, 592 KB). This
+  supersedes the 2026-05-04 bulk-sweep placeholder that recorded "pricing is not publicly
+  retrievable" after a 403 — Salesforce does publish per-edition list prices, in seven
+  currencies, with a currency switcher. Prices are USD list, transcribed verbatim. Marketing
+  Cloud Engagement — the product whose APIs this repo profiles — is now sold as the
+  Engagement+ add-on on top of a Marketing Cloud Next edition, which is why the core-suite
+  tiers and the add-ons are recorded separately below. API access is included with the
+  license; there is no discrete API SKU and no per-call price.
 sources:
 - https://www.salesforce.com/marketing/pricing/
+currencies_published: [USD, EUR, GBP, AUD, JPY, SEK]
+plan_count: 10
 plans:
-- id: salesforce-marketing-cloud-contact-sales
-  name: Contact Sales
-  type: enterprise
-  description: Salesforce Marketing Cloud pricing is not publicly retrievable; access is sold through
-    Salesforce, Inc. sales. See https://www.salesforce.com/marketing/pricing/ for the published pricing
-    page and contact the vendor for a quote.
+- id: salesforce-starter
+  name: Salesforce Starter
+  type: suite
+  description: The simple CRM suite with marketing, sales, service, and commerce.
   entries:
-  - label: Contact Sales
-    name: contact_sales
-    type: flat
-    metric: varies
-    limit: -1
+  - label: Salesforce Starter
+    name: starter
+    type: per-user
+    metric: user
     timeFrame: month
     geo: global
     unit: 1
-    price: contact sales
-    userMultiplied: false
+    price: 25
+    currency: USD
+    userMultiplied: true
+    notes: Starting price. Transaction fees apply. Billed monthly or annually.
   elements:
-  - name: Quote-Based Pricing
-  - name: Vendor Sales Engagement
-notes: Salesforce publishes per-edition pricing on its product pages, but those pages are not retrievable
-  via automated fetch (HTTP 403). All editions are sold via Salesforce Sales; API access is included with
-  the underlying CRM license rather than priced as a discrete API SKU. Treat this artifact as a contact-sales
-  placeholder until pricing pages can be reconciled manually.
+  - name: Lead, Account, Contact, and Opportunity Management
+  - name: Dynamic Email Marketing and Analytics
+  - name: Built-in Sales Flows and Lead Routing
+  - name: Connected Slack Conversations
+  trial: true
+  trial_note: '"Try for free" offered on the pricing page.'
+- id: marketing-cloud-next-growth
+  name: Marketing Cloud Next Growth Edition
+  type: edition
+  description: Grow your business with agentic marketing automation on the world's #1 CRM.
+  entries:
+  - label: Growth Edition
+    name: growth
+    type: flat
+    metric: org
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: 1500
+    currency: USD
+    userMultiplied: false
+    notes: Billed annually.
+  elements:
+  - name: Agentforce Campaign Creation
+  - name: Multi-Channel Journeys
+  - name: Forms and Landing Pages
+- id: marketing-cloud-next-advanced
+  name: Marketing Cloud Next Advanced Edition
+  type: edition
+  description: Grow your business with agentic marketing automation on the world's #1 CRM.
+  entries:
+  - label: Advanced Edition
+    name: advanced
+    type: flat
+    metric: org
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: 3250
+    currency: USD
+    userMultiplied: false
+    notes: Billed annually.
+  elements:
+  - name: Agentforce Campaign Creation
+  - name: Path Experimentation
+  - name: Two-Way Conversations for SMS and WhatsApp
+- id: engagement-plus
+  name: Engagement+
+  type: add-on
+  description: >-
+    Extend your cross-channel customer journeys with advanced agentic capabilities and flow.
+    This is the tier that carries Marketing Cloud Engagement — the product whose REST/SOAP
+    APIs, Journey Builder, Content Builder and Contacts surfaces this repo documents.
+  requires: Marketing Cloud Growth or Advanced
+  entries:
+  - label: Engagement+
+    name: engagement_plus
+    type: flat
+    metric: org
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: 2000
+    currency: USD
+    userMultiplied: false
+    notes: Billed annually. Includes Marketing Cloud Growth or Advanced.
+  elements:
+  - name: Agentforce Campaign Creation
+  - name: Email and Mobile Messaging
+  - name: Journey Orchestration
+- id: account-engagement-plus
+  name: Account Engagement+
+  type: add-on
+  description: Enhance your B2B marketing programs with access to next-gen marketing capabilities.
+  requires: Marketing Cloud Growth or Advanced
+  entries:
+  - label: Account Engagement+
+    name: account_engagement_plus
+    type: flat
+    metric: org
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: 1250
+    currency: USD
+    userMultiplied: false
+    notes: Billed annually. Includes Marketing Cloud Growth or Advanced.
+  elements:
+  - name: Agentforce Campaign Creation
+  - name: Lead Nurturing and Scoring
+  - name: B2B Marketing Analytics
+- id: salesforce-personalization
+  name: Salesforce Personalization
+  type: add-on
+  description: Personalize cross-channel experiences at scale.
+  entries:
+  - label: Salesforce Personalization
+    name: personalization
+    type: flat
+    metric: org
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: 8000
+    currency: USD
+    userMultiplied: false
+    notes: Billed annually.
+  elements:
+  - name: Agentforce Personalization
+  - name: Decisioning
+  - name: Web, Mobile App, and Email Personalization
+  - name: Product and Content Recommendations
+- id: personalization-plus
+  name: Personalization+
+  type: add-on
+  description: >-
+    Personalize every message across channels, and power two-way, adaptive, 1-1 experiences
+    for every customer.
+  requires: Salesforce Personalization
+  entries:
+  - label: Personalization+
+    name: personalization_plus
+    type: flat
+    metric: org
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: 15000
+    currency: USD
+    userMultiplied: false
+    notes: Billed annually. Includes Salesforce Personalization.
+  elements:
+  - name: Agentforce Personalization
+- id: marketing-intelligence
+  name: Marketing Intelligence
+  type: add-on
+  description: Improve performance with agentic marketing analytics.
+  entries:
+  - label: Marketing Intelligence
+    name: marketing_intelligence
+    type: flat
+    metric: org
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: 10000
+    currency: USD
+    userMultiplied: false
+    notes: Billed annually.
+  elements:
+  - name: Agentforce Paid Media Optimization
+  - name: AI Campaign Summaries
+  - name: Data Enrichment & OOTB Visualizations
+- id: intelligence-plus
+  name: Intelligence+
+  type: add-on
+  description: >-
+    Improve your marketing analytics and measurement capabilities with enhanced AI capabilities.
+  requires: Marketing Intelligence
+  entries:
+  - label: Intelligence+
+    name: intelligence_plus
+    type: flat
+    metric: org
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: 11000
+    currency: USD
+    userMultiplied: false
+    notes: Billed annually. Includes Marketing Intelligence.
+  elements:
+  - name: Agentforce Paid Media Optimization
+  - name: AI Campaign Summaries
+  - name: Automated Data Management
+- id: loyalty-management
+  name: Loyalty Management
+  type: add-on
+  description: Launch and manage dynamic, personalized loyalty programs.
+  entries:
+  - label: Loyalty Management
+    name: loyalty_management
+    type: flat
+    metric: org
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: 20000
+    currency: USD
+    userMultiplied: false
+    notes: Billed annually.
+  elements:
+  - name: Agentforce Loyalty Promotion Creation
+  - name: CRM Loyalty
+notes: >-
+  What the pricing page does NOT publish, and what therefore cannot be recorded here: any API
+  call quota, any overage rate, any per-message or per-contact metering, and any mapping from
+  edition to API request limits. Salesforce's rate-limit documentation likewise publishes no
+  numeric ceiling for Marketing Cloud Engagement (see
+  rate-limits/salesforce-marketing-cloud-rate-limits.yml). A buyer can therefore price the
+  licence from the public page but cannot price or plan the API usage from anything public.
+  All prices are USD list, "Starting price" where the page says so, and are subject to
+  Salesforce sales negotiation.

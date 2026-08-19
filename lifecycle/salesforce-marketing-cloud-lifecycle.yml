@@ -1,0 +1,72 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://status.salesforce.com/ (HTTP 200), https://trust.salesforce.com/ (HTTP 200),
+  https://help.salesforce.com/s/articleView?id=sf.mc_rn_release_notes.htm (HTTP 200),
+  https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/api_rest_eol.htm
+versioning:
+  scheme: uri-path
+  current: v1
+  note: >-
+    Marketing Cloud Engagement REST routes carry a per-product-area version segment
+    (/asset/v1, /contacts/v1, /interaction/v1, /data/v1, /messaging/v1, /push/v1, /sms/v1,
+    /automation/v1, /hub/v1, /platform/v1). Every route captured in this repo is at v1 and has
+    been for the life of the product — Marketing Cloud Engagement does NOT share the
+    Salesforce Platform's numbered API version train (v58.0, v67.0, ...). That train applies
+    to the core Salesforce Platform REST/SOAP APIs, not to marketingcloudapis.com. Confusing
+    the two is the most common versioning mistake against this API.
+  auth_versioning:
+    current: v2
+    endpoint: https://{subdomain}.auth.marketingcloudapis.com/v2/token
+    note: >-
+      The v1 auth endpoint (/v1/requestToken) was the legacy ExactTarget token service and has
+      been superseded by v2. New integrations use v2.
+  docs: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/routes.html
+release_cadence:
+  releases_per_year: 3
+  names: [Spring, Summer, Winter]
+  changelog: changelog/salesforce-marketing-cloud-changelog.yml
+  docs: https://help.salesforce.com/s/articleView?id=sf.mc_rn_release_notes.htm
+deprecation:
+  policy_url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/api_rest_eol.htm
+  sunset_header: false
+  deprecation_header: false
+  mechanism: >-
+    Retirement is announced in release notes and Salesforce Help articles with a multi-release
+    notice period, not through RFC 8594 Sunset/Deprecation response headers. When a Salesforce
+    API version is retired, REST returns 410 GONE, SOAP returns 500 UNSUPPORTED_API_VERSION and
+    Bulk returns 400 InvalidVersion.
+  note: >-
+    The end-of-life policy linked above is the Salesforce Platform REST API policy. Salesforce
+    publishes no separate, equivalently formal versioned end-of-life policy for Marketing Cloud
+    Engagement's /asset/v1-style routes, which is a real gap: an integrator cannot read a
+    committed support window for the Marketing Cloud REST APIs the way they can for Platform
+    API versions.
+  product_retirements:
+  - name: Marketing Cloud Advertising Studio
+    retirement_date: '2026-08-15'
+    note: >-
+      Salesforce announced the retirement of Advertising Studio and related products. Recorded
+      because it removes a Marketing Cloud product surface, not an individual API version.
+      Verify the current status against Salesforce Help before acting on it.
+sla:
+  url: https://trust.salesforce.com/
+  uptime_target: null
+  note: >-
+    Salesforce publishes live and historical availability per instance on trust.salesforce.com
+    but does not publish a numeric uptime commitment on a public page; the SLA is contractual
+    and edition-dependent.
+status_page: https://status.salesforce.com/
+status_page_note: >-
+  status.salesforce.com is the public instance status and incident history surface. Marketing
+  Cloud Engagement instances are listed alongside core Salesforce instances; a tenant must
+  know its instance (from its subdomain) to read the right row.
+deprecated_operations: []
+deprecated_operations_note: >-
+  No operation in openapi/ carries deprecated: true. Derived 2026-08-13 from all three specs.
+sdk_lifecycle:
+  note: >-
+    The strongest decay signal for this provider is not in the API, it is in the clients. The
+    entire first-party server-side SDK family (FuelSDK for Node, Python, PHP, Java, Ruby and
+    C#) is archived on GitHub, newest release 2022-01-14. See
+    packages/salesforce-marketing-cloud-packages.yml.

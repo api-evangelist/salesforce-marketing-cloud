@@ -1,0 +1,196 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  Public registry metadata endpoints (registry.npmjs.org, pypi.org, repo.packagist.org,
+  api.nuget.org, search.maven.org, rubygems.org, pub.dev, trunk.cocoapods.org) plus the
+  first-party GitHub organization https://github.com/salesforce-marketingcloud
+docs: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/sdks.html
+note: >-
+  Ownership: every package marked official:true is published from a repository in the
+  salesforce-marketingcloud GitHub organization, which Salesforce, Inc. operates for
+  Marketing Cloud Engagement. Two distinct generations are visible in the data. The
+  server-side "Fuel SDK" family (Node, Python, PHP, Java, Ruby, C#) is ARCHIVED on GitHub
+  and its newest release across every registry is 2022-01-14 (Maven) — most are 2016-2019.
+  The mobile/client family (MobilePush iOS/Android, React Native, Cordova, Flutter,
+  Personalization) is actively released, with 2025-2026 versions. A consumer reading only
+  "Salesforce publishes SDKs" would not see that the REST/SOAP server SDKs this repo's
+  OpenAPI describes have not shipped a release in three to ten years.
+abandonment_signal:
+  server_side_sdks_archived: true
+  newest_server_side_release: '2022-01-14'
+  archived_repositories:
+  - https://github.com/salesforce-marketingcloud/FuelSDK-Node
+  - https://github.com/salesforce-marketingcloud/FuelSDK-Python
+  - https://github.com/salesforce-marketingcloud/FuelSDK-PHP
+  - https://github.com/salesforce-marketingcloud/FuelSDK-Java
+  - https://github.com/salesforce-marketingcloud/FuelSDK-Ruby
+  - https://github.com/salesforce-marketingcloud/FuelSDK-CSharp
+  - https://github.com/salesforce-marketingcloud/blocksdk
+packages:
+- language: javascript
+  registry: npm
+  name: fuelsdk-node
+  url: https://www.npmjs.com/package/fuelsdk-node
+  install: npm install fuelsdk-node
+  official: true
+  version: 2.1.0
+  published: '2016-08-26'
+  repository: https://github.com/salesforce-marketingcloud/FuelSDK-Node
+  status: archived
+  note: >-
+    Node SDK for REST, SOAP and Auth calls against Marketing Cloud. Repository archived;
+    last npm release 2016-08-26.
+- language: python
+  registry: pypi
+  name: Salesforce-FuelSDK
+  url: https://pypi.org/project/Salesforce-FuelSDK/
+  install: pip install Salesforce-FuelSDK
+  official: true
+  version: 1.3.0
+  published: '2019-08-07'
+  repository: https://github.com/salesforce-marketingcloud/FuelSDK-Python
+  status: archived
+- language: php
+  registry: packagist
+  name: salesforce-mc/fuel-sdk-php
+  url: https://packagist.org/packages/salesforce-mc/fuel-sdk-php
+  install: composer require salesforce-mc/fuel-sdk-php
+  official: true
+  version: v1.4.0
+  published: '2019-08-21'
+  repository: https://github.com/salesforce-marketingcloud/FuelSDK-PHP
+  status: archived
+- language: java
+  registry: maven
+  name: com.github.salesforce-marketingcloud:fuelsdk
+  url: https://central.sonatype.com/artifact/com.github.salesforce-marketingcloud/fuelsdk
+  install: 'Maven: com.github.salesforce-marketingcloud:fuelsdk:1.6.0'
+  official: true
+  version: 1.6.0
+  published: '2022-01-14'
+  repository: https://github.com/salesforce-marketingcloud/FuelSDK-Java
+  status: archived
+  note: Newest release across the entire server-side SDK family.
+- language: csharp
+  registry: nuget
+  name: SFMC.FuelSDK
+  url: https://www.nuget.org/packages/SFMC.FuelSDK
+  install: dotnet add package SFMC.FuelSDK
+  official: true
+  version: 1.3.0
+  published: '2019-08-06'
+  repository: https://github.com/salesforce-marketingcloud/FuelSDK-CSharp
+  status: archived
+- language: ruby
+  registry: rubygems
+  name: marketingcloudsdk
+  url: https://rubygems.org/gems/marketingcloudsdk
+  install: gem install marketingcloudsdk
+  official: true
+  version: 1.0.0
+  published: '2016-10-25'
+  repository: https://github.com/ExactTarget/FuelSDK-Ruby
+  status: archived
+  note: >-
+    Published under the pre-acquisition ExactTarget repository; the Salesforce-era mirror
+    salesforce-marketingcloud/FuelSDK-Ruby is archived.
+- language: javascript
+  registry: npm
+  name: blocksdk
+  url: https://www.npmjs.com/package/blocksdk
+  install: npm install blocksdk
+  official: true
+  version: 1.3.0
+  published: '2020-05-06'
+  repository: https://github.com/salesforce-marketingcloud/blocksdk
+  status: archived
+  note: Client-side SDK for third-party Content Builder blocks. See components/ artifact.
+- language: javascript
+  registry: npm
+  name: react-native-marketingcloudsdk
+  url: https://www.npmjs.com/package/react-native-marketingcloudsdk
+  install: npm install react-native-marketingcloudsdk
+  official: true
+  version: 9.0.0
+  published: '2025-05-30'
+  repository: https://github.com/salesforce-marketingcloud/react-native-marketingcloudsdk
+  status: active
+- language: javascript
+  registry: npm
+  name: cordova-plugin-marketingcloudsdk
+  url: https://www.npmjs.com/package/cordova-plugin-marketingcloudsdk
+  install: cordova plugin add cordova-plugin-marketingcloudsdk
+  official: true
+  version: 8.1.1
+  published: '2024-11-13'
+  repository: https://github.com/salesforce-marketingcloud/MC-Cordova-Plugin
+  status: active
+- language: dart
+  registry: pub.dev
+  name: sfmc_marketingcloudsdk
+  url: https://pub.dev/packages/sfmc_marketingcloudsdk
+  install: flutter pub add sfmc_marketingcloudsdk
+  official: true
+  version: 1.0.0
+  published: '2026-06-19'
+  repository: https://github.com/salesforce-marketingcloud/flutter-unified-plugins
+  status: active
+  note: Flutter bridge for MarketingCloudSDK (inbox, tags, analytics).
+- language: dart
+  registry: pub.dev
+  name: sfmc_core
+  url: https://pub.dev/packages/sfmc_core
+  install: flutter pub add sfmc_core
+  official: true
+  version: 1.0.0
+  published: '2026-06-19'
+  repository: https://github.com/salesforce-marketingcloud/flutter-unified-plugins
+  status: active
+- language: swift
+  registry: cocoapods
+  name: MarketingCloudSDK
+  url: https://cocoapods.org/pods/MarketingCloudSDK
+  install: "pod 'MarketingCloudSDK'"
+  official: true
+  version: 9.0.3
+  published: '2025-07-02'
+  repository: https://github.com/salesforce-marketingcloud/MarketingCloudSDK-iOS
+  status: active
+  note: Official MobilePush SDK for iOS.
+- language: kotlin
+  registry: cdn
+  name: com.salesforce.marketingcloud:marketingcloudsdk
+  url: https://developer.salesforce.com/docs/marketing/mobilepush/guide/android.html
+  install: "implementation 'com.salesforce.marketingcloud:marketingcloudsdk:<version>'"
+  official: true
+  version: null
+  published: null
+  repository: https://github.com/salesforce-marketingcloud/MarketingCloudSDK-Android
+  status: active
+  note: >-
+    The Android MobilePush SDK is NOT distributed via Maven Central. Salesforce serves it
+    from its own Maven repository (repository.salesforcemarketingcloud.com), which exposes
+    no unauthenticated metadata endpoint this pipeline could read, so version/published are
+    recorded null rather than guessed. Checked 2026-08-13.
+third_party:
+- language: javascript
+  registry: npm
+  name: mcdev
+  url: https://www.npmjs.com/package/mcdev
+  official: false
+  version: 9.0.3
+  published: '2026-03-24'
+  repository: https://github.com/Accenture/sfmc-devtools
+  note: >-
+    Accenture SFMC DevTools. Widely used community deployment tool for Marketing Cloud
+    Engagement, and materially more current than any first-party server-side SDK. Recorded
+    for context only; NOT a Salesforce package.
+- language: javascript
+  registry: npm
+  name: sfmc-sdk
+  url: https://www.npmjs.com/package/sfmc-sdk
+  official: false
+  version: 3.2.2
+  published: '2026-04-30'
+  repository: https://github.com/DougMidgley/SFMC-SDK
+  note: Community REST/SOAP client used by mcdev. Not first-party.

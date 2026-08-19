@@ -1,0 +1,90 @@
+# Salesforce Marketing Cloud Engagement
+
+> Salesforce Marketing Cloud Engagement is an enterprise digital marketing platform for
+> customer journeys, email, SMS/MMS, mobile push, content management, contact data and
+> marketing automation. Its APIs are tenant-scoped: every REST call goes to
+> https://{subdomain}.rest.marketingcloudapis.com and every SOAP call to
+> https://{subdomain}.soap.marketingcloudapis.com, where {subdomain} is your own Marketing
+> Cloud tenant subdomain from Setup > Apps > Installed Packages. Authentication is OAuth 2.0
+> against https://{subdomain}.auth.marketingcloudapis.com/v2/token. Salesforce also operates
+> a first-party hosted MCP server for Marketing Cloud Engagement, GA since 2026-06-02, with
+> 142 tools.
+
+Provenance: generated 2026-08-13 by the API Evangelist enrichment pipeline from this repo's
+apis.yml and artifacts. Salesforce does not publish an llms.txt on its developer docs host
+(https://developer.salesforce.com/llms.txt returns HTTP 403 to automated requests). A
+corporate llms.txt exists at https://www.salesforce.com/llms.txt (HTTP 200) but indexes
+salesforce.com marketing pages, not the Marketing Cloud API surface, so it is linked below
+rather than reproduced here.
+
+## Getting started
+
+- [Marketing Cloud Engagement developer docs](https://developer.salesforce.com/docs/marketing/marketing-cloud/overview): Product documentation index.
+- [Get started](https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/get-started-index.html): First integration walkthrough.
+- [Authentication](https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/authentication.html): OAuth 2.0 client credentials and web app flows via an Installed Package.
+- [REST API overview](https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/rest-api-overview.html): JSON request/response bodies; REST calls are synchronous.
+- [REST reference (routes)](https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/routes.html): Route prefixes per product area.
+- [SOAP web service guide](https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/web_service_guide.html): Legacy SOAP API for subscribers, sends and data extensions.
+
+## APIs with machine-readable contracts in this repo
+
+- [Assets API OpenAPI](openapi/salesforce-marketing-cloud-assets-api-openapi.yml): Content Builder assets and categories. 7 operations under /asset/v1.
+- [Contacts API OpenAPI](openapi/salesforce-marketing-cloud-contacts-api-openapi.yml): Contacts and attribute sets. 6 operations under /contacts/v1.
+- [Journeys API OpenAPI](openapi/salesforce-marketing-cloud-journeys-api-openapi.yml): Journey Builder interactions and entry events. 8 operations under /interaction/v1.
+
+## Documented APIs without a captured spec
+
+- [Transactional Messaging API](https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/transactional-messaging-api.html): /messaging/v1 — triggered, real-time email and SMS.
+- [Data Extensions API](https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/data-extensions.html): /data/v1 — the tables that hold customer data.
+- [Automation Studio API](https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/automation-studio-api.html): /automation/v1 — imports, SQL queries, file transfers.
+- [Mobile Push API](https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/mobile-push.html): /push/v1.
+- [SMS/MMS API](https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/sms-api.html): /sms/v1 — MobileConnect.
+- [Campaign API](https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/campaign.html): /hub/v1.
+- [Einstein Recommendations API](https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/einstein-recommendations.html): /einstein/v1.
+- [Event Notification Service](https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/ens.html): /platform/v1 — outbound webhook callbacks.
+
+## Agent surfaces
+
+- [MCP Server for Marketing Cloud Engagement](https://developer.salesforce.com/docs/marketing/mce-mcp/guide/mce-mcp.html): First-party hosted remote MCP server, GA 2026-06-02, 142 tools prefixed sfmc_.
+- [MCP setup](https://developer.salesforce.com/docs/marketing/mce-mcp/guide/mce-mcp-setup.html): Regional endpoints, templated per tenant and client ID.
+- [MCP tool reference](https://developer.salesforce.com/docs/marketing/mce-mcp/references): 11 categories — Automations, Campaigns, Contacts, Content, Data Extensions, Email, Journeys, Push, SMS, Tracking, Utilities.
+- [MCP manifest](mcp/salesforce-marketing-cloud-mcp.yml): Endpoint, OAuth metadata, full tool list.
+- [Tool crosswalk](mcp/salesforce-marketing-cloud-tool-crosswalk.yml): Which MCP tools bind to which OpenAPI operationIds.
+- [Agent skills](skills/_index.yml): Packaged operating instructions grounded in real operationIds.
+- No A2A agent card. /.well-known/agent-card.json and /.well-known/agent.json return 404 on salesforce.com and 403 on developer.salesforce.com.
+
+## Runtime semantics
+
+- [Conventions](conventions/salesforce-marketing-cloud-conventions.yml): Auth, pagination, versioning, error envelope, dedup key, rate-limit signalling.
+- [Error catalog](errors/salesforce-marketing-cloud-problem-types.yml): Documented error code registry plus every 4xx/5xx in the specs.
+- [Rate limits](rate-limits/salesforce-marketing-cloud-rate-limits.yml): HTTP 429 with Retry-After; error codes 50100 and 50200.
+- [OAuth scopes](scopes/salesforce-marketing-cloud-scopes.yml): Scopes are granted to an Installed Package, not requested at authorization time.
+- [Authentication](authentication/salesforce-marketing-cloud-authentication.yml): OAuth 2.0 client credentials and authorization code.
+- [Webhooks / Event Notification Service](asyncapi/salesforce-marketing-cloud-webhooks.yml): HMAC-SHA256 signed callbacks, x-sfmc-ens-signature header.
+- [Lifecycle](lifecycle/salesforce-marketing-cloud-lifecycle.yml): Versioning, release cadence, status page, retirement policy.
+- [Data model](data-model/salesforce-marketing-cloud-data-model.yml): Entity graph derived from the specs.
+
+## SDKs and tooling
+
+- [Packages](packages/salesforce-marketing-cloud-packages.yml): First-party client libraries with published versions and dates.
+- [SDK docs](https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/sdks.html)
+- [GitHub organization](https://github.com/salesforce-marketingcloud)
+- Note for agents: the server-side Fuel SDK family (Node, Python, PHP, Java, Ruby, C#) is ARCHIVED — newest release 2022-01-14. The mobile and Personalization SDKs are actively maintained. Prefer calling the REST API directly over adopting an archived SDK.
+
+## Commercial and trust
+
+- [Pricing](https://www.salesforce.com/marketing/pricing/): Published list prices per edition.
+- [Plans](plans/salesforce-marketing-cloud-plans-pricing.yml)
+- [Trust center](https://trust.salesforce.com/)
+- [Compliance certifications](https://compliance.salesforce.com/)
+- [Security](https://security.salesforce.com/)
+- [Responsible disclosure](https://www.salesforce.com/company/disclosure/)
+- [Status](https://status.salesforce.com/)
+- [Terms](https://www.salesforce.com/company/legal/agreements/)
+- [Privacy](https://www.salesforce.com/company/legal/privacy/)
+
+## Optional
+
+- [Salesforce corporate llms.txt](https://www.salesforce.com/llms.txt): Salesforce's own llms.txt for salesforce.com. Marketing content, not API reference.
+- [Trailhead training](https://trailhead.salesforce.com/en/content/learn/trails/get-started-with-marketing-cloud)
+- [Salesforce Developers blog](https://developer.salesforce.com/blogs/feed)

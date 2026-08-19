@@ -1,0 +1,158 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/rest-api-overview.html,
+  .../guide/authentication.html, .../guide/transactional-messaging-api.html,
+  .../guide/rate-limiting-errors.html, .../guide/error-handling.html
+derived_from:
+- openapi/salesforce-marketing-cloud-assets-api-openapi.yml
+- openapi/salesforce-marketing-cloud-contacts-api-openapi.yml
+- openapi/salesforce-marketing-cloud-journeys-api-openapi.yml
+summary: >-
+  Marketing Cloud Engagement is a tenant-scoped REST + SOAP API. Every host is derived from
+  the customer's own subdomain, auth is OAuth 2.0 against a per-tenant auth host, collection
+  endpoints use OData-flavoured $-prefixed query parameters, errors are a proprietary JSON
+  envelope keyed on a numeric errorcode, and rate limiting surfaces as HTTP 429 with
+  Retry-After on REST and as SOAP fault 17 on SOAP.
+
+host:
+  pattern: 'https://{subdomain}.rest.marketingcloudapis.com'
+  soap_pattern: 'https://{subdomain}.soap.marketingcloudapis.com'
+  auth_pattern: 'https://{subdomain}.auth.marketingcloudapis.com'
+  subdomain_source: Marketing Cloud Setup > Apps > Installed Packages
+  note: >-
+    There is no shared/global API host. The tenant subdomain is required and is part of the
+    contract, which is why the servers[] block in openapi/ is templated rather than fixed.
+
+authentication:
+  style: oauth2
+  flows: [client_credentials, authorization_code]
+  token_endpoint: 'https://{subdomain}.auth.marketingcloudapis.com/v2/token'
+  request_header: 'Authorization: Bearer <access_token>'
+  token_lifetime_note: >-
+    Access tokens are short-lived; Salesforce recommends caching and reusing a token until
+    expiry rather than requesting one per call, because token requests count against account
+    API activity.
+  scope_model: >-
+    Scopes are granted to an Installed Package by an administrator in Setup and are fixed for
+    that integration; they are not requested per-authorization. A 403 with errorcode in the
+    20000 class means a missing package scope, and only an admin can fix it.
+  artifact: authentication/salesforce-marketing-cloud-authentication.yml
+  scopes_artifact: scopes/salesforce-marketing-cloud-scopes.yml
+
+idempotency:
+  supported: true
+  mechanism: client-supplied deduplication key
+  key: messageKey
+  location: request body
+  scope: Transactional Messaging API (/messaging/v1) send requests
+  docs: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/transactional-messaging-api.html
+  quotes:
+  - 'To deduplicate at send time, use messageKey. Don''t use a primary key on the triggered send data extension.'
+  - 'Single-send requests, which use the recipient object attribute rather than the recipients array attribute, must provide a unique messageKey value as an ID.'
+  retention: null
+  header: null
+  note: >-
+    IMPORTANT SCOPE LIMIT — this is NOT a general Idempotency-Key header. Marketing Cloud
+    Engagement has no cross-API idempotency header, and none of the 21 operations captured in
+    openapi/ declares an idempotency parameter. What Salesforce does document, and documents
+    explicitly as the deduplication mechanism, is the client-supplied messageKey on
+    transactional sends: a caller that supplies a stable messageKey gets send-time
+    deduplication for that message. Retention/expiry of the key is not published. Treat every
+    other write operation in this API as non-idempotent and guard retries yourself —
+    createContacts, createJourney and fireEntryEvent will all produce duplicates on a naive
+    retry.
+
+pagination:
+  style: page-number
+  request_params:
+  - {name: $page, in: query, description: 1-based page number.}
+  - {name: $pageSize, in: query, description: Items per page.}
+  - {name: $orderBy, in: query, description: Sort expression.}
+  - {name: $filter, in: query, description: Filter expression.}
+  response_fields: [count, page, pageSize, items]
+  applies_to:
+  - openapi/salesforce-marketing-cloud-assets-api-openapi.yml#listAssets
+  - openapi/salesforce-marketing-cloud-assets-api-openapi.yml#listCategories
+  - openapi/salesforce-marketing-cloud-journeys-api-openapi.yml#listJourneys
+  note: >-
+    $-prefixed parameter names are OData-flavoured but the API is not OData. Contacts
+    endpoints do not expose $page/$pageSize in the captured spec — searchContacts is a POST
+    with the paging expressed in the request body. Pagination is therefore NOT uniform across
+    product areas, which is the single most common integration surprise on this API.
+
+filtering_and_query:
+  simple: '$filter query parameter on collection GETs.'
+  advanced: >-
+    POST /asset/v1/content/assets/query (operationId queryAssets) takes a structured
+    AssetQuery body for compound conditions the $filter string cannot express.
+  contacts: >-
+    POST /contacts/v1/contacts/actions/search (operationId searchContacts) is the search
+    surface; there is no GET-based contact list operation.
+
+field_expansion:
+  supported: false
+  note: No sparse-fieldset or expand parameter is documented or present in the captured specs.
+
+metadata:
+  supported: false
+  note: >-
+    No generic metadata/custom-key bag on API resources. Customer-defined data lives in Data
+    Extensions and in contact attribute sets, which are first-class objects rather than a
+    metadata field.
+
+request_tracing:
+  request_id_header: null
+  note: >-
+    No request-id or correlation header is documented for Marketing Cloud Engagement. There is
+    no published way to quote a request identifier back to support, which is a real
+    observability gap for an enterprise API. Asynchronous operations instead return their own
+    job identifiers — publishJourney returns a PublishResponse with a status URL, and the bulk
+    data-extension tools return a job id polled via a status operation.
+
+versioning:
+  style: uri-path per product area
+  current: v1
+  artifact: lifecycle/salesforce-marketing-cloud-lifecycle.yml
+
+error_envelope:
+  media_type: application/json; charset=utf-8
+  shape: '{message, errorcode, documentation, additionalErrors?}'
+  keyed_on: errorcode
+  problem_json: false
+  artifact: errors/salesforce-marketing-cloud-problem-types.yml
+  note: >-
+    Branch on errorcode, not on the HTTP status. Two different 429s (50100 and 50200) have
+    opposite retry semantics, and 401 vs 403 both map to authentication-family codes.
+
+rate_limit_signaling:
+  status: 429
+  headers: [Retry-After]
+  documented_header_example: 'Retry-After: 5'
+  error_codes: [50100, 50200]
+  soap_fault: '17'
+  quotas_published: false
+  artifact: rate-limits/salesforce-marketing-cloud-rate-limits.yml
+  note: >-
+    Salesforce publishes the SIGNAL but not the NUMBER — there is no published requests-per-
+    window figure for Marketing Cloud Engagement. Clients must discover their ceiling
+    empirically and honour Retry-After.
+
+async_operations:
+  pattern: submit-then-poll
+  examples:
+  - {operation: publishJourney, response: 202 with PublishResponse, poll: journey publish status}
+  - {operation: bulk data extension upsert, response: job id, poll: sfmc_get_bulk_job_status / sfmc_get_bulk_job_results}
+  note: >-
+    Several write paths are asynchronous and return 202 rather than the created resource. A
+    202 is not a success — the job can still fail at execution time.
+
+webhooks:
+  artifact: asyncapi/salesforce-marketing-cloud-webhooks.yml
+  signature_header: x-sfmc-ens-signature
+  algorithm: HMAC-SHA256 (base64 encoded)
+
+content_types:
+  request: application/json
+  response: application/json
+  note: 'REST calls are synchronous and use JSON request and response bodies (Salesforce, REST API overview).'

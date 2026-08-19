@@ -1,0 +1,4 @@
+{
+  "authorization_servers" : [ "https://mai-mce-mcp-cdp1.sfdc-yfeipo.svc.sfdcfc.net" ],
+  "resource" : "https://mai-mce-mcp-cdp1.sfdc-yfeipo.svc.sfdcfc.net/api/mcp"
+}

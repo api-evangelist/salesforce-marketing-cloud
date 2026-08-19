@@ -1,0 +1,102 @@
+generated: '2026-08-13'
+method: searched
+source: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/ens.html
+spec_type: none
+asyncapi_published: false
+asyncapi_note: >-
+  Salesforce publishes NO AsyncAPI document for Marketing Cloud Engagement. Probed the docs
+  host, the salesforce-marketingcloud GitHub organization and /asyncapi.yaml on the corporate
+  and MCP hosts on 2026-08-13 — nothing. What Salesforce does publish is a documented outbound
+  webhook product, the Event Notification Service (ENS), captured below as a webhook catalog.
+  This artifact is therefore type Webhooks, not AsyncAPI. No AsyncAPI is fabricated.
+surface:
+  name: Event Notification Service (ENS)
+  kind: outbound-webhook
+  route_prefix: /platform/v1
+  base_url: 'https://{subdomain}.rest.marketingcloudapis.com'
+  docs: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/ens.html
+  getting_started: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/ens-get-started.html
+  reference: https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_event_notification
+  purpose: >-
+    'Use the API for Event Notification Service (ENS) to receive notifications if certain
+    events occur.'
+model:
+  concepts:
+  - name: callback
+    description: >-
+      An HTTPS endpoint you own that receives notifications. Registered and then verified
+      before it can receive events.
+  - name: subscription
+    description: >-
+      'A subscription indicates which event types to receive notifications for and which
+      callback URL to receive them on.'
+  event_type_format: NotificationEventCategory.NotificationEventType
+operations:
+- method: POST
+  path: /platform/v1/ens-callbacks
+  summary: Register a callback URL.
+  success_status: 201
+  request_fields:
+  - {name: callbackName, type: string, required: true, description: The name of the callback.}
+  - {name: url, type: string, required: true, description: 'The URL of the customer callback that receives event notifications in the format https://host[/path].'}
+  - {name: maxBatchSize, type: integer, required: false, description: 'The maximum number of events that this callback can receive in a single call. The default value is 1,000.'}
+  response_fields: [callbackName, callbackId, url, signatureKey, maxBatchSize]
+  critical_note: >-
+    signatureKey is returned ONCE, at creation. Salesforce states "You receive the signature
+    key when you create the callback. You can retrieve a callback's signature key only during
+    callback creation." Losing it means recreating the callback.
+  reference: https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_event_notification/createCallback.html
+- method: POST
+  path: /platform/v1/ens-subscriptions
+  summary: Create a subscription binding event types to a callback.
+  reference: https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_event_notification/createSubscription.html
+- path: /platform/v1/ens-callbacks (verify)
+  summary: Verify the registered callback URL before it receives events.
+  reference: https://developer.salesforce.com/docs/marketing/marketing-cloud/references/mc_rest_event_notification/verifyCallback.html
+event_categories:
+- {name: Transactional Email Events, description: Delivery and engagement notifications for transactional email.}
+- {name: Engagement Email Events, description: Interaction notifications for marketing email campaigns.}
+- {name: Transactional SMS Events, description: Delivery notifications for transactional SMS.}
+- {name: Engagement OTT Events, description: Engagement notifications for over-the-top messaging.}
+- {name: Transactional OTT Events, description: Delivery notifications for transactional over-the-top messaging.}
+- {name: Automation Studio Events, description: Notifications for automation workflow activities.}
+- {name: MobilePush Events, description: Delivery and engagement notifications for mobile push.}
+event_types_verified:
+- TransactionalSendEvents.EmailSent
+- TransactionalSendEvents.EmailNotSent
+event_types_note: >-
+  Only the two strings above were read verbatim from Salesforce's own createSubscription
+  reference. The per-category event-type enumerations live on "Supported Notification Events"
+  sub-pages that returned HTTP 404 on the URLs reachable from the ENS index on 2026-08-13, so
+  the remaining strings are NOT listed here rather than being invented. Consumers should read
+  the categories above and resolve exact strings from the live docs.
+security:
+  signing: true
+  header: x-sfmc-ens-signature
+  algorithm: HMAC-SHA256
+  encoding: base64
+  key_source: signatureKey returned by POST /platform/v1/ens-callbacks (creation only)
+  verification_steps:
+  - Receive the notification payload and the x-sfmc-ens-signature header.
+  - Base64-decode the signature header value.
+  - 'Create HMAC-SHA256 signature using your callback signature key over the notification payload body.'
+  - 'Compare the HMAC-SHA256 signature to the value in x-sfmc-ens-signature. If the values match, Marketing Cloud Engagement sent the notification.'
+  docs: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/ens-notification-signing.html
+delivery:
+  batching: true
+  max_batch_size_default: 1000
+  transport: HTTPS POST to the registered callback URL
+  retries: documented
+  retries_note: >-
+    Salesforce documents "Retries and Callback Suspensions" as part of the ENS guide, but the
+    page at .../guide/ens-retries.html returned HTTP 404 on 2026-08-13, so the retry count,
+    backoff schedule and suspension thresholds are NOT recorded here. Recorded as an
+    unresolved documentation gap rather than guessed.
+related:
+  journey_entry_events:
+    note: >-
+      Distinct from ENS. Journey Builder ALSO accepts INBOUND events —
+      POST /interaction/v1/events (operationId fireEntryEvent) pushes a contact into a journey.
+      That is an inbound trigger, not an outbound webhook, and is captured in
+      openapi/salesforce-marketing-cloud-journeys-api-openapi.yml.
+    operation: openapi/salesforce-marketing-cloud-journeys-api-openapi.yml#fireEntryEvent
