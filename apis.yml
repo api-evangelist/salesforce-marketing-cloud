@@ -44,6 +44,19 @@ tags:
 - Mobile Messaging
 - Personalization
 - SMS
+- Webhook
+tags_raw:
+- Automation
+- Content Management
+- Customer Journey
+- Digital Marketing
+- Email
+- Marketing
+- Marketing Automation
+- MCP
+- Mobile Messaging
+- Personalization
+- SMS
 - Webhooks
 apis:
 - name: SOAP API
@@ -163,6 +176,10 @@ apis:
     url: https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/mobile-sdk.html
   tags:
   - Mobile
+  - Notification
+  - Push
+  tags_raw:
+  - Mobile
   - Notifications
   - Push
 - name: SMS/MMS API
@@ -207,6 +224,10 @@ apis:
     url: >-
       https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/einstein-recommendations.html
   tags:
+  - Artificial Intelligence
+  - Personalization
+  - Recommendations
+  tags_raw:
   - AI
   - Personalization
   - Recommendations
@@ -281,6 +302,11 @@ apis:
     url: >-
       https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/ens-get-started.html
   tags:
+  - Event
+  - Notification
+  - Real-Time
+  - Webhook
+  tags_raw:
   - Events
   - Notifications
   - Real-Time
