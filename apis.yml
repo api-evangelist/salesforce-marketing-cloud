@@ -12,6 +12,19 @@ description: >-
   first-party hosted MCP server for Marketing Cloud Engagement, generally available since
   June 2026, exposing 142 tools across eleven product areas, and an outbound webhook product,
   the Event Notification Service, with HMAC-SHA256 signed callbacks.
+deliveryModel:
+  model: unknown
+  open_source: unknown
+  commercial: true
+  callable_host: true
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  - pricing
+  - repository-unlicensed
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: enterprise
   onboarding: approval
@@ -417,6 +430,13 @@ apis:
   - type: GraphQL
     url: graphql/salesforce-marketing-cloud-graphql.md
 common:
+- type: CapabilityMap
+  url: capabilities/salesforce-marketing-cloud-capability-edges.yml
+  name: Salesforce Marketing Cloud Business Capability Map
+- type: IssueTracker
+  url: https://github.com/salesforce-marketingcloud/SFDC-MC-REST-Style-Guide/issues
+- type: Releases
+  url: https://github.com/salesforce-marketingcloud/SFDC-MC-REST-Style-Guide/releases
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/salesforce-marketing-cloud/overview
 - type: AgenticAccess
