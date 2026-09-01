@@ -38,7 +38,7 @@ accessModel:
   - authentication
   generated: '2026-07-22'
   method: derived
-image: https://www.salesforce.com/content/dam/web/en_us/www/images/nav/logo-salesforce.svg
+image: ''
 url: https://www.salesforce.com/products/marketing-cloud/overview/
 created: '2024-01-15'
 modified: '2026-08-13'
