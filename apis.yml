@@ -430,6 +430,8 @@ apis:
   - type: GraphQL
     url: graphql/salesforce-marketing-cloud-graphql.md
 common:
+- type: Website
+  url: https://www.salesforce.com/
 - type: CapabilityMap
   url: capabilities/salesforce-marketing-cloud-capability-edges.yml
   name: Salesforce Marketing Cloud Business Capability Map
