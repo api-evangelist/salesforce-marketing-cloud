@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Salesforce Marketing Cloud REST Assets Contacts API
+  title: Salesforce Marketing Cloud REST Contacts API
   description: The Salesforce Marketing Cloud REST API provides programmatic access to Marketing Cloud features including contacts, journeys, and assets. The API uses JSON request and response bodies and OAuth 2.0 authentication via the Marketing Cloud authentication endpoint. All API requests require a valid access token obtained through the Server-to-Server OAuth flow.
   version: 1.0.0
   termsOfService: https://www.salesforce.com/company/legal/
@@ -357,6 +357,151 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    AttributeSet:
+      type: object
+      description: A named collection of attributes that define a category of contact data, such as Email Addresses or MobileConnect Demographics.
+      properties:
+        name:
+          type: string
+          description: Name of the attribute set
+          example: Example Title
+        items:
+          type: array
+          description: Collection of attribute value groups
+          items:
+            type: object
+            properties:
+              values:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AttributeValue'
+          example: []
+    AttributeSetsResponse:
+      type: object
+      description: Response containing a collection of attribute sets
+      properties:
+        count:
+          type: integer
+          example: 10
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              attributes:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    dataType:
+                      type: string
+                    isRequired:
+                      type: boolean
+                    isReadOnly:
+                      type: boolean
+          example: []
+    ErrorResponse:
+      type: object
+      description: Standard error response returned by the Marketing Cloud API
+      properties:
+        message:
+          type: string
+          description: Human-readable error message
+          example: example_value
+        errorcode:
+          type: integer
+          description: Numeric error code
+          example: 10
+        documentation:
+          type: string
+          description: URL to relevant documentation for this error
+          example: example_value
+    Contact:
+      type: object
+      description: Represents a contact in Marketing Cloud. A contact is an individual who interacts with marketing campaigns across channels.
+      properties:
+        contactKey:
+          type: string
+          description: Unique identifier for the contact. This value is used across all Marketing Cloud channels and applications.
+          example: example_value
+        contactID:
+          type: integer
+          description: System-generated unique numeric identifier
+          example: '500123'
+        contactStatus:
+          type: string
+          description: Current status of the contact
+          enum:
+          - Active
+          - Inactive
+          - Bounced
+          - Held
+          - Unsubscribed
+          example: Active
+        createdDate:
+          type: string
+          format: date-time
+          description: Date and time the contact was created
+          example: '2026-01-15T10:30:00Z'
+        modifiedDate:
+          type: string
+          format: date-time
+          description: Date and time the contact was last modified
+          example: '2026-01-15T10:30:00Z'
+        attributeSets:
+          type: array
+          description: Collection of attribute sets associated with the contact
+          items:
+            $ref: '#/components/schemas/AttributeSet'
+          example: []
+      required:
+      - contactKey
+    AttributeValue:
+      type: object
+      description: A single attribute name-value pair within an attribute set
+      properties:
+        name:
+          type: string
+          description: Name of the attribute
+          example: Example Title
+        value:
+          description: Value of the attribute
+          example: example_value
+      required:
+      - name
+      - value
+    ContactResponse:
+      type: object
+      description: Response returned after contact creation or update operations
+      properties:
+        operationStatus:
+          type: string
+          description: Overall status of the operation
+          example: example_value
+        requestServiceMessageID:
+          type: string
+          description: Unique identifier for the request
+          example: '500123'
+        responseDateTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        resultMessages:
+          type: array
+          items:
+            type: object
+            properties:
+              resultType:
+                type: string
+              resultCode:
+                type: string
+              resultMessage:
+                type: string
+          example: []
     ContactSearchRequest:
       type: object
       description: Request body for searching contacts with filter criteria
@@ -416,41 +561,6 @@ components:
               name:
                 type: string
           example: []
-    ErrorResponse:
-      type: object
-      description: Standard error response returned by the Marketing Cloud API
-      properties:
-        message:
-          type: string
-          description: Human-readable error message
-          example: example_value
-        errorcode:
-          type: integer
-          description: Numeric error code
-          example: 10
-        documentation:
-          type: string
-          description: URL to relevant documentation for this error
-          example: example_value
-    AttributeSet:
-      type: object
-      description: A named collection of attributes that define a category of contact data, such as Email Addresses or MobileConnect Demographics.
-      properties:
-        name:
-          type: string
-          description: Name of the attribute set
-          example: Example Title
-        items:
-          type: array
-          description: Collection of attribute value groups
-          items:
-            type: object
-            properties:
-              values:
-                type: array
-                items:
-                  $ref: '#/components/schemas/AttributeValue'
-          example: []
     DeleteContactResponse:
       type: object
       description: Response from a contact delete operation
@@ -469,6 +579,18 @@ components:
           type: boolean
           description: Whether the asynchronous delete was successfully initiated
           example: true
+    UpdateContactRequest:
+      type: object
+      description: Request body for updating contact attributes
+      properties:
+        attributeSets:
+          type: array
+          description: Attribute sets and values to update
+          items:
+            $ref: '#/components/schemas/AttributeSet'
+          example: []
+      required:
+      - attributeSets
     ContactSearchResponse:
       type: object
       description: Response returned from a contact search operation
@@ -488,46 +610,6 @@ components:
           items:
             $ref: '#/components/schemas/Contact'
           example: []
-    ContactResponse:
-      type: object
-      description: Response returned after contact creation or update operations
-      properties:
-        operationStatus:
-          type: string
-          description: Overall status of the operation
-          example: example_value
-        requestServiceMessageID:
-          type: string
-          description: Unique identifier for the request
-          example: '500123'
-        responseDateTime:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
-        resultMessages:
-          type: array
-          items:
-            type: object
-            properties:
-              resultType:
-                type: string
-              resultCode:
-                type: string
-              resultMessage:
-                type: string
-          example: []
-    UpdateContactRequest:
-      type: object
-      description: Request body for updating contact attributes
-      properties:
-        attributeSets:
-          type: array
-          description: Attribute sets and values to update
-          items:
-            $ref: '#/components/schemas/AttributeSet'
-          example: []
-      required:
-      - attributeSets
     CreateContactsRequest:
       type: object
       description: Request body for creating one or more contacts
@@ -544,88 +626,6 @@ components:
           example: []
       required:
       - contactKey
-    Contact:
-      type: object
-      description: Represents a contact in Marketing Cloud. A contact is an individual who interacts with marketing campaigns across channels.
-      properties:
-        contactKey:
-          type: string
-          description: Unique identifier for the contact. This value is used across all Marketing Cloud channels and applications.
-          example: example_value
-        contactID:
-          type: integer
-          description: System-generated unique numeric identifier
-          example: '500123'
-        contactStatus:
-          type: string
-          description: Current status of the contact
-          enum:
-          - Active
-          - Inactive
-          - Bounced
-          - Held
-          - Unsubscribed
-          example: Active
-        createdDate:
-          type: string
-          format: date-time
-          description: Date and time the contact was created
-          example: '2026-01-15T10:30:00Z'
-        modifiedDate:
-          type: string
-          format: date-time
-          description: Date and time the contact was last modified
-          example: '2026-01-15T10:30:00Z'
-        attributeSets:
-          type: array
-          description: Collection of attribute sets associated with the contact
-          items:
-            $ref: '#/components/schemas/AttributeSet'
-          example: []
-      required:
-      - contactKey
-    AttributeSetsResponse:
-      type: object
-      description: Response containing a collection of attribute sets
-      properties:
-        count:
-          type: integer
-          example: 10
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              attributes:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    name:
-                      type: string
-                    dataType:
-                      type: string
-                    isRequired:
-                      type: boolean
-                    isReadOnly:
-                      type: boolean
-          example: []
-    AttributeValue:
-      type: object
-      description: A single attribute name-value pair within an attribute set
-      properties:
-        name:
-          type: string
-          description: Name of the attribute
-          example: Example Title
-        value:
-          description: Value of the attribute
-          example: example_value
-      required:
-      - name
-      - value
   securitySchemes:
     OAuth2:
       type: oauth2

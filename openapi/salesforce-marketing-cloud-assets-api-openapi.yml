@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Salesforce Marketing Cloud REST Assets API
   description: The Salesforce Marketing Cloud REST API provides programmatic access to Marketing Cloud features including contacts, journeys, and assets. The API uses JSON request and response bodies and OAuth 2.0 authentication via the Marketing Cloud authentication endpoint. All API requests require a valid access token obtained through the Server-to-Server OAuth flow.
@@ -417,6 +417,114 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      description: Standard error response returned by the Marketing Cloud API
+      properties:
+        message:
+          type: string
+          description: Human-readable error message
+          example: example_value
+        errorcode:
+          type: integer
+          description: Numeric error code
+          example: 10
+        documentation:
+          type: string
+          description: URL to relevant documentation for this error
+          example: example_value
+    AssetCollection:
+      type: object
+      description: Paginated collection of assets
+      properties:
+        count:
+          type: integer
+          description: Total number of assets matching the query
+          example: 10
+        page:
+          type: integer
+          description: Current page number
+          example: 10
+        pageSize:
+          type: integer
+          description: Number of items per page
+          example: 10
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Asset'
+          example: []
+    AssetQuery:
+      type: object
+      description: Advanced query object for searching assets
+      properties:
+        page:
+          type: object
+          properties:
+            page:
+              type: integer
+            pageSize:
+              type: integer
+          example: example_value
+        query:
+          type: object
+          description: Query filter criteria
+          properties:
+            property:
+              type: string
+              description: Property name to filter on
+            simpleOperator:
+              type: string
+              description: Comparison operator
+              enum:
+              - equal
+              - notEqual
+              - greaterThan
+              - greaterThanOrEqual
+              - lessThan
+              - lessThanOrEqual
+              - like
+              - isNull
+              - isNotNull
+              - between
+              - IN
+            value:
+              description: Value to compare against
+            dateValue:
+              type: string
+              format: date-time
+              description: Date value for date-based comparisons
+            leftOperand:
+              type: object
+              description: Left operand for compound queries
+            rightOperand:
+              type: object
+              description: Right operand for compound queries
+            logicalOperator:
+              type: string
+              enum:
+              - AND
+              - OR
+          example: example_value
+        sort:
+          type: array
+          items:
+            type: object
+            properties:
+              property:
+                type: string
+              direction:
+                type: string
+                enum:
+                - ASC
+                - DESC
+          example: []
+        fields:
+          type: array
+          description: Specific fields to include in the response
+          items:
+            type: string
+          example: []
     AssetType:
       type: object
       description: Defines the type of an asset. Each type has a unique ID and name. Common types include htmlemail (208), templatebasedemail (207), htmlblock (197), codesnippetblock (220), and image (28).
@@ -429,6 +537,73 @@ components:
           type: string
           description: Name of the asset type
           example: Example Title
+    AssetDefinition:
+      type: object
+      description: Specification for creating or updating an asset
+      properties:
+        name:
+          type: string
+          description: Display name of the asset
+          example: Example Title
+        description:
+          type: string
+          description: Description of the asset
+          example: A sample description.
+        customerKey:
+          type: string
+          description: Customer-defined unique key
+          example: example_value
+        assetType:
+          $ref: '#/components/schemas/AssetType'
+        category:
+          type: object
+          properties:
+            id:
+              type: integer
+              description: ID of the category (folder) to place the asset in
+          example: example_value
+        content:
+          type: string
+          description: Primary content of the asset
+          example: example_value
+        views:
+          type: object
+          description: Channel-specific content views
+          properties:
+            html:
+              type: object
+              properties:
+                content:
+                  type: string
+            text:
+              type: object
+              properties:
+                content:
+                  type: string
+            subjectLine:
+              type: object
+              properties:
+                content:
+                  type: string
+            preheader:
+              type: object
+              properties:
+                content:
+                  type: string
+          example: example_value
+        data:
+          type: object
+          description: Asset-type-specific data
+          additionalProperties: true
+          example: example_value
+        tags:
+          type: array
+          items:
+            type: string
+          example: []
+      required:
+      - name
+      - assetType
     Asset:
       type: object
       description: Represents a marketing asset in Content Builder. Assets include emails, templates, images, content blocks, and other content types used in marketing campaigns.
@@ -541,160 +716,6 @@ components:
             email:
               type: string
           example: example_value
-    AssetQuery:
-      type: object
-      description: Advanced query object for searching assets
-      properties:
-        page:
-          type: object
-          properties:
-            page:
-              type: integer
-            pageSize:
-              type: integer
-          example: example_value
-        query:
-          type: object
-          description: Query filter criteria
-          properties:
-            property:
-              type: string
-              description: Property name to filter on
-            simpleOperator:
-              type: string
-              description: Comparison operator
-              enum:
-              - equal
-              - notEqual
-              - greaterThan
-              - greaterThanOrEqual
-              - lessThan
-              - lessThanOrEqual
-              - like
-              - isNull
-              - isNotNull
-              - between
-              - IN
-            value:
-              description: Value to compare against
-            dateValue:
-              type: string
-              format: date-time
-              description: Date value for date-based comparisons
-            leftOperand:
-              type: object
-              description: Left operand for compound queries
-            rightOperand:
-              type: object
-              description: Right operand for compound queries
-            logicalOperator:
-              type: string
-              enum:
-              - AND
-              - OR
-          example: example_value
-        sort:
-          type: array
-          items:
-            type: object
-            properties:
-              property:
-                type: string
-              direction:
-                type: string
-                enum:
-                - ASC
-                - DESC
-          example: []
-        fields:
-          type: array
-          description: Specific fields to include in the response
-          items:
-            type: string
-          example: []
-    AssetDefinition:
-      type: object
-      description: Specification for creating or updating an asset
-      properties:
-        name:
-          type: string
-          description: Display name of the asset
-          example: Example Title
-        description:
-          type: string
-          description: Description of the asset
-          example: A sample description.
-        customerKey:
-          type: string
-          description: Customer-defined unique key
-          example: example_value
-        assetType:
-          $ref: '#/components/schemas/AssetType'
-        category:
-          type: object
-          properties:
-            id:
-              type: integer
-              description: ID of the category (folder) to place the asset in
-          example: example_value
-        content:
-          type: string
-          description: Primary content of the asset
-          example: example_value
-        views:
-          type: object
-          description: Channel-specific content views
-          properties:
-            html:
-              type: object
-              properties:
-                content:
-                  type: string
-            text:
-              type: object
-              properties:
-                content:
-                  type: string
-            subjectLine:
-              type: object
-              properties:
-                content:
-                  type: string
-            preheader:
-              type: object
-              properties:
-                content:
-                  type: string
-          example: example_value
-        data:
-          type: object
-          description: Asset-type-specific data
-          additionalProperties: true
-          example: example_value
-        tags:
-          type: array
-          items:
-            type: string
-          example: []
-      required:
-      - name
-      - assetType
-    ErrorResponse:
-      type: object
-      description: Standard error response returned by the Marketing Cloud API
-      properties:
-        message:
-          type: string
-          description: Human-readable error message
-          example: example_value
-        errorcode:
-          type: integer
-          description: Numeric error code
-          example: 10
-        documentation:
-          type: string
-          description: URL to relevant documentation for this error
-          example: example_value
     CategoryCollection:
       type: object
       description: Paginated collection of asset categories
@@ -721,27 +742,6 @@ components:
                 type: integer
               description:
                 type: string
-          example: []
-    AssetCollection:
-      type: object
-      description: Paginated collection of assets
-      properties:
-        count:
-          type: integer
-          description: Total number of assets matching the query
-          example: 10
-        page:
-          type: integer
-          description: Current page number
-          example: 10
-        pageSize:
-          type: integer
-          description: Number of items per page
-          example: 10
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Asset'
           example: []
   securitySchemes:
     OAuth2:
