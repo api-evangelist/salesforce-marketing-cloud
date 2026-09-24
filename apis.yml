@@ -357,8 +357,6 @@ apis:
   - type: ErrorCodes
     url: >-
       https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/rate-limiting-errors.html
-  - type: GraphQL
-    url: graphql/salesforce-marketing-cloud-graphql.md
 - aid: salesforce-marketing-cloud:salesforce-marketing-cloud-contacts-api
   name: Salesforce Marketing Cloud Contacts API
   description: >-
@@ -392,8 +390,6 @@ apis:
   - type: ErrorCodes
     url: >-
       https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/rate-limiting-errors.html
-  - type: GraphQL
-    url: graphql/salesforce-marketing-cloud-graphql.md
 - aid: salesforce-marketing-cloud:salesforce-marketing-cloud-journeys-api
   name: Salesforce Marketing Cloud Journeys API
   description: >-
@@ -427,8 +423,6 @@ apis:
   - type: ErrorCodes
     url: >-
       https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/rate-limiting-errors.html
-  - type: GraphQL
-    url: graphql/salesforce-marketing-cloud-graphql.md
 common:
 - type: Website
   url: https://www.salesforce.com/
