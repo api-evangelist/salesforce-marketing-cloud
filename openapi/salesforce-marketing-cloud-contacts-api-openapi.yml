@@ -357,25 +357,38 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    AttributeSet:
+    AttributeValue:
       type: object
-      description: A named collection of attributes that define a category of contact data, such as Email Addresses or MobileConnect Demographics.
+      description: A single attribute name-value pair within an attribute set
       properties:
         name:
           type: string
-          description: Name of the attribute set
+          description: Name of the attribute
           example: Example Title
-        items:
-          type: array
-          description: Collection of attribute value groups
-          items:
-            type: object
-            properties:
-              values:
-                type: array
-                items:
-                  $ref: '#/components/schemas/AttributeValue'
-          example: []
+        value:
+          description: Value of the attribute
+          example: example_value
+      required:
+      - name
+      - value
+    DeleteContactResponse:
+      type: object
+      description: Response from a contact delete operation
+      properties:
+        operationStatus:
+          type: string
+          example: example_value
+        requestServiceMessageID:
+          type: string
+          example: '500123'
+        responseDateTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        operationInitiated:
+          type: boolean
+          description: Whether the asynchronous delete was successfully initiated
+          example: true
     AttributeSetsResponse:
       type: object
       description: Response containing a collection of attribute sets
@@ -404,22 +417,6 @@ components:
                     isReadOnly:
                       type: boolean
           example: []
-    ErrorResponse:
-      type: object
-      description: Standard error response returned by the Marketing Cloud API
-      properties:
-        message:
-          type: string
-          description: Human-readable error message
-          example: example_value
-        errorcode:
-          type: integer
-          description: Numeric error code
-          example: 10
-        documentation:
-          type: string
-          description: URL to relevant documentation for this error
-          example: example_value
     Contact:
       type: object
       description: Represents a contact in Marketing Cloud. A contact is an individual who interacts with marketing campaigns across channels.
@@ -460,47 +457,40 @@ components:
           example: []
       required:
       - contactKey
-    AttributeValue:
+    CreateContactsRequest:
       type: object
-      description: A single attribute name-value pair within an attribute set
+      description: Request body for creating one or more contacts
       properties:
-        name:
+        contactKey:
           type: string
-          description: Name of the attribute
-          example: Example Title
-        value:
-          description: Value of the attribute
+          description: Unique identifier for the contact
           example: example_value
+        attributeSets:
+          type: array
+          description: Attribute sets and values to assign to the contact
+          items:
+            $ref: '#/components/schemas/AttributeSet'
+          example: []
       required:
-      - name
-      - value
-    ContactResponse:
+      - contactKey
+    ContactSearchResponse:
       type: object
-      description: Response returned after contact creation or update operations
+      description: Response returned from a contact search operation
       properties:
-        operationStatus:
-          type: string
-          description: Overall status of the operation
-          example: example_value
-        requestServiceMessageID:
-          type: string
-          description: Unique identifier for the request
-          example: '500123'
-        responseDateTime:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
-        resultMessages:
+        count:
+          type: integer
+          description: Total number of matching contacts
+          example: 10
+        page:
+          type: integer
+          example: 10
+        pageSize:
+          type: integer
+          example: 10
+        items:
           type: array
           items:
-            type: object
-            properties:
-              resultType:
-                type: string
-              resultCode:
-                type: string
-              resultMessage:
-                type: string
+            $ref: '#/components/schemas/Contact'
           example: []
     ContactSearchRequest:
       type: object
@@ -561,24 +551,6 @@ components:
               name:
                 type: string
           example: []
-    DeleteContactResponse:
-      type: object
-      description: Response from a contact delete operation
-      properties:
-        operationStatus:
-          type: string
-          example: example_value
-        requestServiceMessageID:
-          type: string
-          example: '500123'
-        responseDateTime:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
-        operationInitiated:
-          type: boolean
-          description: Whether the asynchronous delete was successfully initiated
-          example: true
     UpdateContactRequest:
       type: object
       description: Request body for updating contact attributes
@@ -591,41 +563,69 @@ components:
           example: []
       required:
       - attributeSets
-    ContactSearchResponse:
+    AttributeSet:
       type: object
-      description: Response returned from a contact search operation
+      description: A named collection of attributes that define a category of contact data, such as Email Addresses or MobileConnect Demographics.
       properties:
-        count:
-          type: integer
-          description: Total number of matching contacts
-          example: 10
-        page:
-          type: integer
-          example: 10
-        pageSize:
-          type: integer
-          example: 10
+        name:
+          type: string
+          description: Name of the attribute set
+          example: Example Title
         items:
           type: array
+          description: Collection of attribute value groups
           items:
-            $ref: '#/components/schemas/Contact'
+            type: object
+            properties:
+              values:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AttributeValue'
           example: []
-    CreateContactsRequest:
+    ContactResponse:
       type: object
-      description: Request body for creating one or more contacts
+      description: Response returned after contact creation or update operations
       properties:
-        contactKey:
+        operationStatus:
           type: string
-          description: Unique identifier for the contact
+          description: Overall status of the operation
           example: example_value
-        attributeSets:
+        requestServiceMessageID:
+          type: string
+          description: Unique identifier for the request
+          example: '500123'
+        responseDateTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        resultMessages:
           type: array
-          description: Attribute sets and values to assign to the contact
           items:
-            $ref: '#/components/schemas/AttributeSet'
+            type: object
+            properties:
+              resultType:
+                type: string
+              resultCode:
+                type: string
+              resultMessage:
+                type: string
           example: []
-      required:
-      - contactKey
+    ErrorResponse:
+      type: object
+      description: Standard error response returned by the Marketing Cloud API
+      properties:
+        message:
+          type: string
+          description: Human-readable error message
+          example: example_value
+        errorcode:
+          type: integer
+          description: Numeric error code
+          example: 10
+        documentation:
+          type: string
+          description: URL to relevant documentation for this error
+          example: example_value
   securitySchemes:
     OAuth2:
       type: oauth2
