@@ -508,112 +508,27 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    JourneyDefinition:
+    JourneyCollection:
       type: object
-      description: Specification for creating or updating a journey
+      description: Paginated collection of journeys
       properties:
-        key:
-          type: string
-          description: Customer-defined unique key for the journey
-          example: example_value
-        name:
-          type: string
-          description: Display name of the journey
-          example: Example Title
-        description:
-          type: string
-          description: Description of the journey purpose
-          example: A sample description.
-        workflowApiVersion:
-          type: number
-          description: Version of the Journey Builder API (e.g., 1.0)
-          example: 42.5
-        triggers:
+        count:
+          type: integer
+          description: Total number of journeys matching the query
+          example: 10
+        page:
+          type: integer
+          description: Current page number
+          example: 10
+        pageSize:
+          type: integer
+          description: Number of items per page
+          example: 10
+        items:
           type: array
           items:
-            $ref: '#/components/schemas/JourneyTrigger'
+            $ref: '#/components/schemas/Journey'
           example: []
-        activities:
-          type: array
-          items:
-            $ref: '#/components/schemas/JourneyActivity'
-          example: []
-        goals:
-          type: array
-          items:
-            $ref: '#/components/schemas/JourneyGoal'
-          example: []
-        exits:
-          type: array
-          items:
-            $ref: '#/components/schemas/JourneyExit'
-          example: []
-      required:
-      - name
-      - workflowApiVersion
-    JourneyExit:
-      type: object
-      description: Exit criteria that remove contacts from the journey
-      properties:
-        key:
-          type: string
-          example: example_value
-        name:
-          type: string
-          example: Example Title
-        criteria:
-          type: string
-          description: Criteria expression that triggers journey exit
-          example: example_value
-    EntryEvent:
-      type: object
-      description: Event payload used to inject a contact into a journey via the API event trigger.
-      properties:
-        ContactKey:
-          type: string
-          description: Unique identifier for the contact entering the journey
-          example: example_value
-        EventDefinitionKey:
-          type: string
-          description: Key of the event definition matching the journey entry trigger
-          example: example_value
-        Data:
-          type: object
-          description: Additional data to pass to the journey as key-value pairs. These values are available to activities within the journey.
-          additionalProperties: true
-          example: example_value
-      required:
-      - ContactKey
-      - EventDefinitionKey
-    JourneyTrigger:
-      type: object
-      description: Entry trigger configuration for a journey. Defines how contacts enter the journey, such as via API event, scheduled automation, or audience.
-      properties:
-        key:
-          type: string
-          description: Unique key for the trigger within the journey
-          example: example_value
-        name:
-          type: string
-          description: Display name of the trigger
-          example: Example Title
-        type:
-          type: string
-          description: Type of trigger
-          enum:
-          - APIEvent
-          - ScheduledAutomation
-          - Event
-          - ContactAudience
-          example: APIEvent
-        eventDefinitionKey:
-          type: string
-          description: Key of the event definition associated with this trigger, used for API events
-          example: example_value
-        configurationArguments:
-          type: object
-          description: Trigger-specific configuration
-          example: example_value
     EntryEventResponse:
       type: object
       description: Response returned after firing a journey entry event
@@ -627,22 +542,6 @@ components:
           format: uuid
           description: Unique instance identifier for this event firing
           example: '500123'
-    ErrorResponse:
-      type: object
-      description: Standard error response returned by the Marketing Cloud API
-      properties:
-        message:
-          type: string
-          description: Human-readable error message
-          example: example_value
-        errorcode:
-          type: integer
-          description: Numeric error code
-          example: 10
-        documentation:
-          type: string
-          description: URL to relevant documentation for this error
-          example: example_value
     JourneyActivity:
       type: object
       description: An activity within a journey. Activities represent the actions performed on contacts, such as sending emails, waiting, or making decisions.
@@ -690,30 +589,9 @@ components:
       required:
       - key
       - type
-    JourneyCollection:
+    JourneyExit:
       type: object
-      description: Paginated collection of journeys
-      properties:
-        count:
-          type: integer
-          description: Total number of journeys matching the query
-          example: 10
-        page:
-          type: integer
-          description: Current page number
-          example: 10
-        pageSize:
-          type: integer
-          description: Number of items per page
-          example: 10
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Journey'
-          example: []
-    JourneyGoal:
-      type: object
-      description: Goal criteria for measuring journey success
+      description: Exit criteria that remove contacts from the journey
       properties:
         key:
           type: string
@@ -721,23 +599,9 @@ components:
         name:
           type: string
           example: Example Title
-        description:
+        criteria:
           type: string
-          example: A sample description.
-        metCriteria:
-          type: string
-          description: Criteria expression that defines when the goal is met
-          example: example_value
-    PublishResponse:
-      type: object
-      description: Response returned when a journey publish operation is initiated
-      properties:
-        statusId:
-          type: string
-          description: Identifier for tracking the publish operation status
-          example: '500123'
-        message:
-          type: string
+          description: Criteria expression that triggers journey exit
           example: example_value
     Journey:
       type: object
@@ -823,6 +687,142 @@ components:
             metGoal:
               type: integer
               description: Number of contacts that met the journey goal
+          example: example_value
+    JourneyDefinition:
+      type: object
+      description: Specification for creating or updating a journey
+      properties:
+        key:
+          type: string
+          description: Customer-defined unique key for the journey
+          example: example_value
+        name:
+          type: string
+          description: Display name of the journey
+          example: Example Title
+        description:
+          type: string
+          description: Description of the journey purpose
+          example: A sample description.
+        workflowApiVersion:
+          type: number
+          description: Version of the Journey Builder API (e.g., 1.0)
+          example: 42.5
+        triggers:
+          type: array
+          items:
+            $ref: '#/components/schemas/JourneyTrigger'
+          example: []
+        activities:
+          type: array
+          items:
+            $ref: '#/components/schemas/JourneyActivity'
+          example: []
+        goals:
+          type: array
+          items:
+            $ref: '#/components/schemas/JourneyGoal'
+          example: []
+        exits:
+          type: array
+          items:
+            $ref: '#/components/schemas/JourneyExit'
+          example: []
+      required:
+      - name
+      - workflowApiVersion
+    JourneyTrigger:
+      type: object
+      description: Entry trigger configuration for a journey. Defines how contacts enter the journey, such as via API event, scheduled automation, or audience.
+      properties:
+        key:
+          type: string
+          description: Unique key for the trigger within the journey
+          example: example_value
+        name:
+          type: string
+          description: Display name of the trigger
+          example: Example Title
+        type:
+          type: string
+          description: Type of trigger
+          enum:
+          - APIEvent
+          - ScheduledAutomation
+          - Event
+          - ContactAudience
+          example: APIEvent
+        eventDefinitionKey:
+          type: string
+          description: Key of the event definition associated with this trigger, used for API events
+          example: example_value
+        configurationArguments:
+          type: object
+          description: Trigger-specific configuration
+          example: example_value
+    EntryEvent:
+      type: object
+      description: Event payload used to inject a contact into a journey via the API event trigger.
+      properties:
+        ContactKey:
+          type: string
+          description: Unique identifier for the contact entering the journey
+          example: example_value
+        EventDefinitionKey:
+          type: string
+          description: Key of the event definition matching the journey entry trigger
+          example: example_value
+        Data:
+          type: object
+          description: Additional data to pass to the journey as key-value pairs. These values are available to activities within the journey.
+          additionalProperties: true
+          example: example_value
+      required:
+      - ContactKey
+      - EventDefinitionKey
+    PublishResponse:
+      type: object
+      description: Response returned when a journey publish operation is initiated
+      properties:
+        statusId:
+          type: string
+          description: Identifier for tracking the publish operation status
+          example: '500123'
+        message:
+          type: string
+          example: example_value
+    ErrorResponse:
+      type: object
+      description: Standard error response returned by the Marketing Cloud API
+      properties:
+        message:
+          type: string
+          description: Human-readable error message
+          example: example_value
+        errorcode:
+          type: integer
+          description: Numeric error code
+          example: 10
+        documentation:
+          type: string
+          description: URL to relevant documentation for this error
+          example: example_value
+    JourneyGoal:
+      type: object
+      description: Goal criteria for measuring journey success
+      properties:
+        key:
+          type: string
+          example: example_value
+        name:
+          type: string
+          example: Example Title
+        description:
+          type: string
+          example: A sample description.
+        metCriteria:
+          type: string
+          description: Criteria expression that defines when the goal is met
           example: example_value
   securitySchemes:
     OAuth2:

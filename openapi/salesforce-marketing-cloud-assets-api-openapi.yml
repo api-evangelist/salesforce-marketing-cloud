@@ -417,93 +417,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    AssetQuery:
-      type: object
-      description: Advanced query object for searching assets
-      properties:
-        page:
-          type: object
-          properties:
-            page:
-              type: integer
-            pageSize:
-              type: integer
-          example: example_value
-        query:
-          type: object
-          description: Query filter criteria
-          properties:
-            property:
-              type: string
-              description: Property name to filter on
-            simpleOperator:
-              type: string
-              description: Comparison operator
-              enum:
-              - equal
-              - notEqual
-              - greaterThan
-              - greaterThanOrEqual
-              - lessThan
-              - lessThanOrEqual
-              - like
-              - isNull
-              - isNotNull
-              - between
-              - IN
-            value:
-              description: Value to compare against
-            dateValue:
-              type: string
-              format: date-time
-              description: Date value for date-based comparisons
-            leftOperand:
-              type: object
-              description: Left operand for compound queries
-            rightOperand:
-              type: object
-              description: Right operand for compound queries
-            logicalOperator:
-              type: string
-              enum:
-              - AND
-              - OR
-          example: example_value
-        sort:
-          type: array
-          items:
-            type: object
-            properties:
-              property:
-                type: string
-              direction:
-                type: string
-                enum:
-                - ASC
-                - DESC
-          example: []
-        fields:
-          type: array
-          description: Specific fields to include in the response
-          items:
-            type: string
-          example: []
-    ErrorResponse:
-      type: object
-      description: Standard error response returned by the Marketing Cloud API
-      properties:
-        message:
-          type: string
-          description: Human-readable error message
-          example: example_value
-        errorcode:
-          type: integer
-          description: Numeric error code
-          example: 10
-        documentation:
-          type: string
-          description: URL to relevant documentation for this error
-          example: example_value
     Asset:
       type: object
       description: Represents a marketing asset in Content Builder. Assets include emails, templates, images, content blocks, and other content types used in marketing campaigns.
@@ -616,6 +529,153 @@ components:
             email:
               type: string
           example: example_value
+    ErrorResponse:
+      type: object
+      description: Standard error response returned by the Marketing Cloud API
+      properties:
+        message:
+          type: string
+          description: Human-readable error message
+          example: example_value
+        errorcode:
+          type: integer
+          description: Numeric error code
+          example: 10
+        documentation:
+          type: string
+          description: URL to relevant documentation for this error
+          example: example_value
+    AssetQuery:
+      type: object
+      description: Advanced query object for searching assets
+      properties:
+        page:
+          type: object
+          properties:
+            page:
+              type: integer
+            pageSize:
+              type: integer
+          example: example_value
+        query:
+          type: object
+          description: Query filter criteria
+          properties:
+            property:
+              type: string
+              description: Property name to filter on
+            simpleOperator:
+              type: string
+              description: Comparison operator
+              enum:
+              - equal
+              - notEqual
+              - greaterThan
+              - greaterThanOrEqual
+              - lessThan
+              - lessThanOrEqual
+              - like
+              - isNull
+              - isNotNull
+              - between
+              - IN
+            value:
+              description: Value to compare against
+            dateValue:
+              type: string
+              format: date-time
+              description: Date value for date-based comparisons
+            leftOperand:
+              type: object
+              description: Left operand for compound queries
+            rightOperand:
+              type: object
+              description: Right operand for compound queries
+            logicalOperator:
+              type: string
+              enum:
+              - AND
+              - OR
+          example: example_value
+        sort:
+          type: array
+          items:
+            type: object
+            properties:
+              property:
+                type: string
+              direction:
+                type: string
+                enum:
+                - ASC
+                - DESC
+          example: []
+        fields:
+          type: array
+          description: Specific fields to include in the response
+          items:
+            type: string
+          example: []
+    CategoryCollection:
+      type: object
+      description: Paginated collection of asset categories
+      properties:
+        count:
+          type: integer
+          example: 10
+        page:
+          type: integer
+          example: 10
+        pageSize:
+          type: integer
+          example: 10
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
+              parentId:
+                type: integer
+              description:
+                type: string
+          example: []
+    AssetCollection:
+      type: object
+      description: Paginated collection of assets
+      properties:
+        count:
+          type: integer
+          description: Total number of assets matching the query
+          example: 10
+        page:
+          type: integer
+          description: Current page number
+          example: 10
+        pageSize:
+          type: integer
+          description: Number of items per page
+          example: 10
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Asset'
+          example: []
+    AssetType:
+      type: object
+      description: Defines the type of an asset. Each type has a unique ID and name. Common types include htmlemail (208), templatebasedemail (207), htmlblock (197), codesnippetblock (220), and image (28).
+      properties:
+        id:
+          type: integer
+          description: Numeric identifier for the asset type
+          example: abc123
+        name:
+          type: string
+          description: Name of the asset type
+          example: Example Title
     AssetDefinition:
       type: object
       description: Specification for creating or updating an asset
@@ -683,66 +743,6 @@ components:
       required:
       - name
       - assetType
-    AssetCollection:
-      type: object
-      description: Paginated collection of assets
-      properties:
-        count:
-          type: integer
-          description: Total number of assets matching the query
-          example: 10
-        page:
-          type: integer
-          description: Current page number
-          example: 10
-        pageSize:
-          type: integer
-          description: Number of items per page
-          example: 10
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Asset'
-          example: []
-    CategoryCollection:
-      type: object
-      description: Paginated collection of asset categories
-      properties:
-        count:
-          type: integer
-          example: 10
-        page:
-          type: integer
-          example: 10
-        pageSize:
-          type: integer
-          example: 10
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: integer
-              name:
-                type: string
-              parentId:
-                type: integer
-              description:
-                type: string
-          example: []
-    AssetType:
-      type: object
-      description: Defines the type of an asset. Each type has a unique ID and name. Common types include htmlemail (208), templatebasedemail (207), htmlblock (197), codesnippetblock (220), and image (28).
-      properties:
-        id:
-          type: integer
-          description: Numeric identifier for the asset type
-          example: abc123
-        name:
-          type: string
-          description: Name of the asset type
-          example: Example Title
   securitySchemes:
     OAuth2:
       type: oauth2

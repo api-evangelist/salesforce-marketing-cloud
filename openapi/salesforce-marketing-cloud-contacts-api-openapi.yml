@@ -357,66 +357,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    AttributeValue:
-      type: object
-      description: A single attribute name-value pair within an attribute set
-      properties:
-        name:
-          type: string
-          description: Name of the attribute
-          example: Example Title
-        value:
-          description: Value of the attribute
-          example: example_value
-      required:
-      - name
-      - value
-    DeleteContactResponse:
-      type: object
-      description: Response from a contact delete operation
-      properties:
-        operationStatus:
-          type: string
-          example: example_value
-        requestServiceMessageID:
-          type: string
-          example: '500123'
-        responseDateTime:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
-        operationInitiated:
-          type: boolean
-          description: Whether the asynchronous delete was successfully initiated
-          example: true
-    AttributeSetsResponse:
-      type: object
-      description: Response containing a collection of attribute sets
-      properties:
-        count:
-          type: integer
-          example: 10
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              attributes:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    name:
-                      type: string
-                    dataType:
-                      type: string
-                    isRequired:
-                      type: boolean
-                    isReadOnly:
-                      type: boolean
-          example: []
     Contact:
       type: object
       description: Represents a contact in Marketing Cloud. A contact is an individual who interacts with marketing campaigns across channels.
@@ -473,25 +413,6 @@ components:
           example: []
       required:
       - contactKey
-    ContactSearchResponse:
-      type: object
-      description: Response returned from a contact search operation
-      properties:
-        count:
-          type: integer
-          description: Total number of matching contacts
-          example: 10
-        page:
-          type: integer
-          example: 10
-        pageSize:
-          type: integer
-          example: 10
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Contact'
-          example: []
     ContactSearchRequest:
       type: object
       description: Request body for searching contacts with filter criteria
@@ -551,36 +472,33 @@ components:
               name:
                 type: string
           example: []
-    UpdateContactRequest:
+    AttributeSetsResponse:
       type: object
-      description: Request body for updating contact attributes
+      description: Response containing a collection of attribute sets
       properties:
-        attributeSets:
-          type: array
-          description: Attribute sets and values to update
-          items:
-            $ref: '#/components/schemas/AttributeSet'
-          example: []
-      required:
-      - attributeSets
-    AttributeSet:
-      type: object
-      description: A named collection of attributes that define a category of contact data, such as Email Addresses or MobileConnect Demographics.
-      properties:
-        name:
-          type: string
-          description: Name of the attribute set
-          example: Example Title
+        count:
+          type: integer
+          example: 10
         items:
           type: array
-          description: Collection of attribute value groups
           items:
             type: object
             properties:
-              values:
+              name:
+                type: string
+              attributes:
                 type: array
                 items:
-                  $ref: '#/components/schemas/AttributeValue'
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    dataType:
+                      type: string
+                    isRequired:
+                      type: boolean
+                    isReadOnly:
+                      type: boolean
           example: []
     ContactResponse:
       type: object
@@ -610,6 +528,69 @@ components:
               resultMessage:
                 type: string
           example: []
+    UpdateContactRequest:
+      type: object
+      description: Request body for updating contact attributes
+      properties:
+        attributeSets:
+          type: array
+          description: Attribute sets and values to update
+          items:
+            $ref: '#/components/schemas/AttributeSet'
+          example: []
+      required:
+      - attributeSets
+    DeleteContactResponse:
+      type: object
+      description: Response from a contact delete operation
+      properties:
+        operationStatus:
+          type: string
+          example: example_value
+        requestServiceMessageID:
+          type: string
+          example: '500123'
+        responseDateTime:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        operationInitiated:
+          type: boolean
+          description: Whether the asynchronous delete was successfully initiated
+          example: true
+    ContactSearchResponse:
+      type: object
+      description: Response returned from a contact search operation
+      properties:
+        count:
+          type: integer
+          description: Total number of matching contacts
+          example: 10
+        page:
+          type: integer
+          example: 10
+        pageSize:
+          type: integer
+          example: 10
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contact'
+          example: []
+    AttributeValue:
+      type: object
+      description: A single attribute name-value pair within an attribute set
+      properties:
+        name:
+          type: string
+          description: Name of the attribute
+          example: Example Title
+        value:
+          description: Value of the attribute
+          example: example_value
+      required:
+      - name
+      - value
     ErrorResponse:
       type: object
       description: Standard error response returned by the Marketing Cloud API
@@ -626,6 +607,25 @@ components:
           type: string
           description: URL to relevant documentation for this error
           example: example_value
+    AttributeSet:
+      type: object
+      description: A named collection of attributes that define a category of contact data, such as Email Addresses or MobileConnect Demographics.
+      properties:
+        name:
+          type: string
+          description: Name of the attribute set
+          example: Example Title
+        items:
+          type: array
+          description: Collection of attribute value groups
+          items:
+            type: object
+            properties:
+              values:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AttributeValue'
+          example: []
   securitySchemes:
     OAuth2:
       type: oauth2
