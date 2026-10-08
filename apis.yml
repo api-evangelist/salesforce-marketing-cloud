@@ -427,6 +427,8 @@ apis:
     url: >-
       https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/rate-limiting-errors.html
 common:
+- type: FinOps
+  url: finops/salesforce-marketing-cloud-finops.yml
 - type: Website
   url: https://www.salesforce.com/
 - type: CapabilityMap
