@@ -249,3 +249,93 @@ notes: >-
   licence from the public page but cannot price or plan the API usage from anything public.
   All prices are USD list, "Starting price" where the page says so, and are subject to
   Salesforce sales negotiation.
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - subscription
+  units:
+  - object
+  - seat
+  plans:
+  - name: Salesforce Starter
+    access: other
+    model: free
+    model_how: derived
+    units:
+    - seat
+    periods:
+    - month
+  - name: Marketing Cloud Next Growth Edition
+    access: paid
+    model: subscription
+    model_how: derived
+    units:
+    - object
+    periods:
+    - month
+  - name: Marketing Cloud Next Advanced Edition
+    access: paid
+    model: subscription
+    model_how: derived
+    units:
+    - object
+    periods:
+    - month
+  - name: Engagement+
+    access: addon
+    model: subscription
+    model_how: derived
+    units:
+    - object
+    periods:
+    - month
+  - name: Account Engagement+
+    access: addon
+    model: subscription
+    model_how: derived
+    units:
+    - object
+    periods:
+    - month
+  - name: Salesforce Personalization
+    access: addon
+    model: subscription
+    model_how: derived
+    units:
+    - object
+    periods:
+    - month
+  - name: Personalization+
+    access: addon
+    model: subscription
+    model_how: derived
+    units:
+    - object
+    periods:
+    - month
+  - name: Marketing Intelligence
+    access: addon
+    model: subscription
+    model_how: derived
+    units:
+    - object
+    periods:
+    - month
+  - name: Intelligence+
+    access: addon
+    model: subscription
+    model_how: derived
+    units:
+    - object
+    periods:
+    - month
+  - name: Loyalty Management
+    access: addon
+    model: subscription
+    model_how: derived
+    units:
+    - object
+    periods:
+    - month
