@@ -1,0 +1,176 @@
+# DERIVED by derive-integration-map.py (roadmap#949): each integration workflow, step by step,
+# resolved to spec file -> tag -> business capability (Turbo EA, CC BY 4.0) and the operation's
+# phrasing intent. Read from our own files; an unmapped link says why.
+slug: salesforce-marketing-cloud
+workflows:
+- file: salesforce-marketing-cloud-eventbrite-attendee-to-contact.yml
+  title: Eventbrite attendee to Marketing Cloud contact
+  partner: eventbrite
+  template: null
+  repos:
+  - eventbrite
+  - salesforce-marketing-cloud
+  steps:
+  - step: list-attendees
+    repo: eventbrite
+    spec_file: eventbrite-attendees-api-openapi.yml
+    operationId: listEventAttendees
+    tag: Attendees
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: null
+    effect: null
+    unmapped: no capability edge for this spec file
+  - step: create-contact
+    repo: salesforce-marketing-cloud
+    spec_file: salesforce-marketing-cloud-contacts-api-openapi.yml
+    operationId: createContacts
+    tag: Contacts
+    capability_id: BC-420.10
+    capability: Customer Data Management
+    capability_l1: BC-420
+    intent: Create a contact
+    effect: write
+    unmapped: null
+  connects:
+    eventbrite:
+      capabilities: []
+      tags:
+      - Attendees
+    salesforce-marketing-cloud:
+      capabilities:
+      - BC-420.10
+      tags:
+      - Contacts
+  intents:
+  - Create a contact
+- file: salesforce-marketing-cloud-intercom-contact-to-contact.yml
+  title: Intercom contact to Marketing Cloud contact
+  partner: intercom
+  template: null
+  repos:
+  - intercom
+  - salesforce-marketing-cloud
+  steps:
+  - step: get-contact
+    repo: intercom
+    spec_file: intercom-contacts-api-openapi.yml
+    operationId: getContact
+    tag: Contacts
+    capability_id: BC-420.10
+    capability: Customer Data Management
+    capability_l1: BC-420
+    intent: null
+    effect: null
+    unmapped: null
+  - step: create-contact
+    repo: salesforce-marketing-cloud
+    spec_file: salesforce-marketing-cloud-contacts-api-openapi.yml
+    operationId: createContacts
+    tag: Contacts
+    capability_id: BC-420.10
+    capability: Customer Data Management
+    capability_l1: BC-420
+    intent: Create a contact
+    effect: write
+    unmapped: null
+  connects:
+    intercom:
+      capabilities:
+      - BC-420.10
+      tags:
+      - Contacts
+    salesforce-marketing-cloud:
+      capabilities:
+      - BC-420.10
+      tags:
+      - Contacts
+  intents:
+  - Create a contact
+- file: salesforce-marketing-cloud-salesforce-lead-to-contact.yml
+  title: Salesforce lead to Marketing Cloud contact
+  partner: salesforce
+  template: null
+  repos:
+  - salesforce
+  - salesforce-marketing-cloud
+  steps:
+  - step: get-lead
+    repo: salesforce
+    spec_file: salesforce-rows-api-openapi.yml
+    operationId: SObjectRows
+    tag: Rows
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: Retrieve a record of a given object
+    effect: read
+    unmapped: no capability edge for this spec file
+  - step: create-contact
+    repo: salesforce-marketing-cloud
+    spec_file: salesforce-marketing-cloud-contacts-api-openapi.yml
+    operationId: createContacts
+    tag: Contacts
+    capability_id: BC-420.10
+    capability: Customer Data Management
+    capability_l1: BC-420
+    intent: Create a contact
+    effect: write
+    unmapped: null
+  connects:
+    salesforce:
+      capabilities: []
+      tags:
+      - Rows
+    salesforce-marketing-cloud:
+      capabilities:
+      - BC-420.10
+      tags:
+      - Contacts
+  intents:
+  - Retrieve a record of a given object
+  - Create a contact
+- file: salesforce-marketing-cloud-slack-contact-alert.yml
+  title: Marketing Cloud contact alert to Slack
+  partner: slack
+  template: null
+  repos:
+  - salesforce-marketing-cloud
+  - slack
+  steps:
+  - step: get-contact
+    repo: salesforce-marketing-cloud
+    spec_file: salesforce-marketing-cloud-contacts-api-openapi.yml
+    operationId: getContact
+    tag: Contacts
+    capability_id: BC-420.10
+    capability: Customer Data Management
+    capability_l1: BC-420
+    intent: Retrieve a contact by contact key
+    effect: read
+    unmapped: null
+  - step: post-alert
+    repo: slack
+    spec_file: slack-chat-api-openapi.yml
+    operationId: postChatPostmessage
+    tag: Chat
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: Send a message to a channel
+    effect: write
+    unmapped: no capability edge for this spec file
+  connects:
+    salesforce-marketing-cloud:
+      capabilities:
+      - BC-420.10
+      tags:
+      - Contacts
+    slack:
+      capabilities: []
+      tags:
+      - Chat
+  intents:
+  - Retrieve a contact by contact key
+  - Send a message to a channel
