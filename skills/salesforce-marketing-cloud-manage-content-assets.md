@@ -1,12 +1,18 @@
 ---
-name: Manage Content Builder assets
-description: >-
-  Find, create, update and delete Content Builder assets (emails, templates, images, content
-  blocks) through the Marketing Cloud Engagement Assets API.
+name: manage-content-assets
+description: Find, create, update and delete Content Builder assets (emails, templates, images, content blocks) through the Marketing Cloud Engagement Assets API.
 api: openapi/salesforce-marketing-cloud-assets-api-openapi.yml
-operations: [listAssets, queryAssets, getAsset, createAsset, updateAsset, deleteAsset, listCategories]
+operations:
+- listAssets
+- queryAssets
+- getAsset
+- createAsset
+- updateAsset
+- deleteAsset
+- listCategories
 generated: '2026-08-13'
 method: generated
+title: Manage Content Builder assets
 ---
 
 # Manage Content Builder assets

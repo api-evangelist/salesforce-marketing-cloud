@@ -1,12 +1,17 @@
 ---
-name: Connect to the Marketing Cloud Engagement MCP server
-description: >-
-  Connect an MCP client to Salesforce's first-party hosted MCP server for Marketing Cloud
-  Engagement, and understand what its 142 tools can and cannot reach.
+name: connect-mcp-server
+description: Connect an MCP client to Salesforce's first-party hosted MCP server for Marketing Cloud Engagement, and understand what its 142 tools can and cannot reach.
 api: mcp/salesforce-marketing-cloud-mcp.yml
-operations: [sfmc_get_journeys, sfmc_get_data_extensions, sfmc_get_content_assets, sfmc_send_transactional_email, sfmc_stop_journey]
+operations: []
 generated: '2026-08-13'
 method: generated
+title: Connect to the Marketing Cloud Engagement MCP server
+mcp_tools:
+- sfmc_get_journeys
+- sfmc_get_data_extensions
+- sfmc_get_content_assets
+- sfmc_send_transactional_email
+- sfmc_stop_journey
 ---
 
 # Connect to the Marketing Cloud Engagement MCP server

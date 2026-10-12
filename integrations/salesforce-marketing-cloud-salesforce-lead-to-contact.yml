@@ -1,0 +1,68 @@
+arazzo: 1.0.1
+info:
+  title: Salesforce lead to Marketing Cloud contact
+  summary: Salesforce lead to Marketing Cloud contact
+  description: Read a Salesforce Lead record and create the matching Marketing Cloud Engagement contact, the lead-capture flow named in the Workato customer highlight.
+  version: 1.0.0
+sourceDescriptions:
+- name: salesforceRows
+  url: https://raw.githubusercontent.com/api-evangelist/salesforce/refs/heads/main/openapi/salesforce-rows-api-openapi.yml
+  type: openapi
+- name: smcContacts
+  url: https://raw.githubusercontent.com/api-evangelist/salesforce-marketing-cloud/refs/heads/main/openapi/salesforce-marketing-cloud-contacts-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: salesforce-lead-to-contact
+  summary: Salesforce lead to Marketing Cloud contact
+  description: Read a Salesforce Lead record and create the matching Marketing Cloud Engagement contact, the lead-capture flow named in the Workato customer highlight.
+  inputs:
+    type: object
+    properties:
+      leadId:
+        type: string
+  steps:
+  - stepId: get-lead
+    description: Read the Lead sObject record.
+    operationId: $sourceDescriptions.salesforceRows.SObjectRows
+    parameters:
+    - name: SOBJECT_API_NAME
+      in: path
+      value: Lead
+    - name: RECORD_ID
+      in: path
+      value: $inputs.leadId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      email: $response.body#/Email
+      id: $response.body#/Id
+  - stepId: create-contact
+    description: Create the Marketing Cloud contact with its email address attribute set.
+    operationId: $sourceDescriptions.smcContacts.createContacts
+    requestBody:
+      contentType: application/json
+      payload:
+        contactKey: $steps.get-lead.outputs.id
+        attributeSets:
+        - name: Email Addresses
+          items:
+          - values:
+            - name: Email Address
+              value: $steps.get-lead.outputs.email
+            - name: HTML Enabled
+              value: true
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      operationStatus: $response.body#/operationStatus
+x-integration:
+  partner: salesforce
+  edge_evidence: Workato listing customer highlight, https://www.workato.com/integrations/salesforce_marketing_cloud (HTTP 200, 2026-10-12)
+  edge_type: marketplace
+  method: generated
+  generated: '2026-10-12'
+  generator: claude-opus-5-5 local-v5
+  guessed_steps:
+  - step: get-lead
+    cause: partner-contract
+    why: the SObjectRows 200 response carries no schema, so the Email and Id field paths come from the standard Lead object, not the spec

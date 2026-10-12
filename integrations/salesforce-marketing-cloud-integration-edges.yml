@@ -1,0 +1,91 @@
+generated: '2026-10-12'
+method: searched
+source:
+- https://www.workato.com/integrations/salesforce_marketing_cloud
+- https://zapier.com/apps/salesforce-marketing-cloud/integrations
+checked:
+- https://composio.dev/toolkits/salesforce-marketing-cloud
+- https://monid.ai/tools/salesforce-marketing-cloud
+- https://n8n.io/integrations/salesforce-marketing-cloud/
+- https://www.make.com/en/integrations/salesforce-marketing-cloud
+- https://www.workato.com/integrations/salesforce_marketing_cloud
+- https://zapier.com/apps/salesforce-marketing-cloud/integrations
+summary: null
+marketplace_apps:
+- marketplace: workato
+  channel: ipaas-listing
+  app: salesforce_marketing_cloud
+  url: https://www.workato.com/integrations/salesforce_marketing_cloud
+  triggers:
+  - label: New data extension row
+  actions:
+  - label: Custom action
+  - label: Copy data extension
+  - label: Create email from HTML template
+  - label: Create data extension from template
+  - label: Delete data extension
+  - label: Search data extension
+  - label: Search data extension row
+  - label: Upload asset
+  - label: Upsert data extension row
+  - label: Upsert data extension row (batch)
+  searches: []
+- marketplace: zapier
+  channel: ipaas-listing
+  app: salesforce-marketing-cloud
+  url: https://zapier.com/apps/salesforce-marketing-cloud/integrations
+  external_url: https://www.salesforce.com/
+  partner_tier: null
+  triggers: []
+  actions: []
+  searches: []
+edges:
+- partner_name: Intercom
+  partner: intercom
+  type: marketplace
+  marketplace: workato
+  direction: third-party
+  evidence: https://www.workato.com/integrations/salesforce_marketing_cloud
+  partner_url: https://www.workato.com/integrations/salesforce_marketing_cloud
+  use_case: lead capture into Marketing Cloud via a Workato recipe (customer-built)
+- partner_name: Dropbox
+  partner: dropbox
+  type: marketplace
+  marketplace: workato
+  direction: third-party
+  evidence: https://www.workato.com/integrations/salesforce_marketing_cloud
+  partner_url: https://www.workato.com/integrations/salesforce_marketing_cloud
+  use_case: lead capture into Marketing Cloud via a Workato recipe (customer-built)
+- partner_name: Eventbrite
+  partner: eventbrite
+  type: marketplace
+  marketplace: workato
+  direction: third-party
+  evidence: https://www.workato.com/integrations/salesforce_marketing_cloud
+  partner_url: https://www.workato.com/integrations/salesforce_marketing_cloud
+  use_case: lead capture into Marketing Cloud via a Workato recipe (customer-built)
+- partner_name: Salesforce
+  partner: salesforce
+  type: marketplace
+  marketplace: workato
+  direction: third-party
+  evidence: https://www.workato.com/integrations/salesforce_marketing_cloud
+  partner_url: https://www.workato.com/integrations/salesforce_marketing_cloud
+  use_case: lead capture into Marketing Cloud via a Workato recipe (customer-built)
+- partner_name: Slack
+  partner: slack
+  type: marketplace
+  marketplace: workato
+  direction: third-party
+  evidence: https://www.workato.com/integrations/salesforce_marketing_cloud
+  partner_url: https://www.workato.com/integrations/salesforce_marketing_cloud
+  use_case: lead capture into Marketing Cloud via a Workato recipe (customer-built)
+templates: []
+skips:
+- label: Dropbox
+  cause: catalog
+  why: the edge names Dropbox only as a lead source in a customer recipe without saying which Dropbox object carries
+    the lead, so no faithful step can be chosen
+note: Make listing answered 403 (bot wall, not absence); n8n has no Marketing Cloud node (404); Zapier listing exists
+  but its page names no partner apps. Workato edges come from a single customer-built recipe, so they are third-party
+  and weak.

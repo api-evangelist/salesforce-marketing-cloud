@@ -1,12 +1,15 @@
 ---
-name: Create and publish a Marketing Cloud journey
-description: >-
-  Create a Journey Builder journey, publish it asynchronously, and poll for the result,
-  against Salesforce Marketing Cloud Engagement's tenant-scoped REST API.
+name: create-and-publish-journey
+description: Create a Journey Builder journey, publish it asynchronously, and poll for the result, against Salesforce Marketing Cloud Engagement's tenant-scoped REST API.
 api: openapi/salesforce-marketing-cloud-journeys-api-openapi.yml
-operations: [createJourney, getJourney, publishJourney, listJourneys]
+operations:
+- createJourney
+- getJourney
+- publishJourney
+- listJourneys
 generated: '2026-08-13'
 method: generated
+title: Create and publish a Marketing Cloud journey
 ---
 
 # Create and publish a Marketing Cloud journey

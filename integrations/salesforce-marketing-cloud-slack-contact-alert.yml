@@ -1,0 +1,56 @@
+arazzo: 1.0.1
+info:
+  title: Marketing Cloud contact alert to Slack
+  summary: Marketing Cloud contact alert to Slack
+  description: Read a Marketing Cloud Engagement contact and alert the sales team in a Slack channel, as in the Workato customer highlight.
+  version: 1.0.0
+sourceDescriptions:
+- name: smcContacts
+  url: https://raw.githubusercontent.com/api-evangelist/salesforce-marketing-cloud/refs/heads/main/openapi/salesforce-marketing-cloud-contacts-api-openapi.yml
+  type: openapi
+- name: slackChat
+  url: https://raw.githubusercontent.com/api-evangelist/slack/refs/heads/main/openapi/slack-chat-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: slack-contact-alert
+  summary: Marketing Cloud contact alert to Slack
+  description: Read a Marketing Cloud Engagement contact and alert the sales team in a Slack channel, as in the Workato customer highlight.
+  inputs:
+    type: object
+    properties:
+      contactKey:
+        type: string
+      channel:
+        type: string
+  steps:
+  - stepId: get-contact
+    description: Read the Marketing Cloud contact.
+    operationId: $sourceDescriptions.smcContacts.getContact
+    parameters:
+    - name: contactKey
+      in: path
+      value: $inputs.contactKey
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      contactKey: $response.body#/contactKey
+  - stepId: post-alert
+    description: Post the alert to Slack.
+    operationId: $sourceDescriptions.slackChat.postChatPostmessage
+    requestBody:
+      contentType: application/json
+      payload:
+        channel: $inputs.channel
+        text: 'New Marketing Cloud contact: {$steps.get-contact.outputs.contactKey}'
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      ts: $response.body#/ts
+x-integration:
+  partner: slack
+  edge_evidence: Workato listing customer highlight, https://www.workato.com/integrations/salesforce_marketing_cloud (HTTP 200, 2026-10-12)
+  edge_type: marketplace
+  method: generated
+  generated: '2026-10-12'
+  generator: claude-opus-5-5 local-v5
+  guessed_steps: []

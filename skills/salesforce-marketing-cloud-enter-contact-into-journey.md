@@ -1,12 +1,16 @@
 ---
-name: Enter a contact into a running journey
-description: >-
-  Resolve or create a contact in the Marketing Cloud contact model, then fire a Journey
-  Builder entry event to put that contact into a published journey.
+name: enter-contact-into-journey
+description: Resolve or create a contact in the Marketing Cloud contact model, then fire a Journey Builder entry event to put that contact into a published journey.
 api: openapi/salesforce-marketing-cloud-contacts-api-openapi.yml
-operations: [searchContacts, getContact, createContacts, listAttributeSets, fireEntryEvent]
+operations:
+- searchContacts
+- getContact
+- createContacts
+- listAttributeSets
+- fireEntryEvent
 generated: '2026-08-13'
 method: generated
+title: Enter a contact into a running journey
 ---
 
 # Enter a contact into a running journey

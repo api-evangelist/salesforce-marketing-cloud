@@ -1,0 +1,150 @@
+generated: '2026-10-12'
+method: derived
+source: the pre-flight dossier, apis.yml pointers, spec servers, well-known, vendors -- nothing fetched here
+generator: derive-hosts.py
+summary:
+  hosts: 12
+  own: 6
+  other_domain: 3
+  platform: 3
+  roles:
+  - other
+  - portal
+  - source
+  - status
+  - support
+  - website
+hosts:
+- host: compliance.salesforce.com
+  found_by:
+  - pointer
+  types:
+  - Compliance
+  serves: []
+  registrable_domain: salesforce.com
+  role: other
+  relation: own
+- host: developer.salesforce.com
+  found_by:
+  - pointer
+  - apis[]
+  types:
+  - Blog
+  - DeveloperPortal
+  - Documentation
+  - Authentication
+  - APIReference
+  - SDKs
+  - RateLimits
+  - Deprecation
+  - GettingStarted
+  serves:
+  - docs
+  registrable_domain: salesforce.com
+  role: portal
+  relation: own
+- host: github.com
+  found_by:
+  - pointer
+  types:
+  - IssueTracker
+  - Releases
+  - GitHubRepository
+  - GitHubOrganization
+  serves: []
+  registrable_domain: github.com
+  role: source
+  relation: platform
+- host: help.salesforce.com
+  found_by:
+  - pointer
+  types:
+  - Support
+  - ChangeLog
+  serves: []
+  registrable_domain: salesforce.com
+  role: support
+  relation: own
+- host: mai-mce-mcp-cdp1.sfdc-yfeipo.svc.sfdcfc.net
+  found_by:
+  - vendor-detect
+  types: []
+  serves:
+  - community
+  vendor: discourse
+  registrable_domain: sfdcfc.net
+  role: other
+  relation: other-domain
+- host: status.salesforce.com
+  found_by:
+  - pointer
+  types:
+  - StatusPage
+  serves: []
+  registrable_domain: salesforce.com
+  role: status
+  relation: own
+- host: trust.salesforce.com
+  found_by:
+  - pointer
+  types:
+  - TrustCenter
+  serves: []
+  registrable_domain: salesforce.com
+  role: other
+  relation: own
+- host: www.linkedin.com
+  found_by:
+  - pointer
+  types:
+  - LinkedIn
+  serves: []
+  registrable_domain: linkedin.com
+  role: other
+  relation: platform
+- host: www.postman.com
+  found_by:
+  - pointer
+  types:
+  - PostmanWorkspace
+  serves: []
+  registrable_domain: postman.com
+  role: other
+  relation: platform
+- host: www.salesforce.com
+  found_by:
+  - pointer
+  - vendor-detect
+  types:
+  - Newsroom
+  - Leadership
+  - Website
+  - TermsOfService
+  - Pricing
+  - Security
+  - PrivacyPolicy
+  - SignUp
+  serves:
+  - cdn
+  vendor: akamai
+  registrable_domain: salesforce.com
+  role: website
+  relation: own
+- host: your_subdomain.rest.marketingcloudapis.com
+  found_by:
+  - apis[]
+  types: []
+  serves:
+  - api
+  registrable_domain: marketingcloudapis.com
+  role: other
+  relation: other-domain
+- host: your_subdomain.soap.marketingcloudapis.com
+  found_by:
+  - apis[]
+  types: []
+  serves:
+  - api
+  registrable_domain: marketingcloudapis.com
+  role: other
+  relation: other-domain

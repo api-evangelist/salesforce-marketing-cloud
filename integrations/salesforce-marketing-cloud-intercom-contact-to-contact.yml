@@ -1,0 +1,62 @@
+arazzo: 1.0.1
+info:
+  title: Intercom contact to Marketing Cloud contact
+  summary: Intercom contact to Marketing Cloud contact
+  description: Read an Intercom contact and create the matching Marketing Cloud Engagement contact.
+  version: 1.0.0
+sourceDescriptions:
+- name: intercomContacts
+  url: https://raw.githubusercontent.com/api-evangelist/intercom/refs/heads/main/openapi/intercom-contacts-api-openapi.yml
+  type: openapi
+- name: smcContacts
+  url: https://raw.githubusercontent.com/api-evangelist/salesforce-marketing-cloud/refs/heads/main/openapi/salesforce-marketing-cloud-contacts-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: intercom-contact-to-contact
+  summary: Intercom contact to Marketing Cloud contact
+  description: Read an Intercom contact and create the matching Marketing Cloud Engagement contact.
+  inputs:
+    type: object
+    properties:
+      contactId:
+        type: string
+  steps:
+  - stepId: get-contact
+    description: Read the Intercom contact.
+    operationId: $sourceDescriptions.intercomContacts.getContact
+    parameters:
+    - name: contact_id
+      in: path
+      value: $inputs.contactId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      email: $response.body#/email
+      id: $response.body#/id
+  - stepId: create-contact
+    description: Create the Marketing Cloud contact with its email address attribute set.
+    operationId: $sourceDescriptions.smcContacts.createContacts
+    requestBody:
+      contentType: application/json
+      payload:
+        contactKey: $steps.get-contact.outputs.id
+        attributeSets:
+        - name: Email Addresses
+          items:
+          - values:
+            - name: Email Address
+              value: $steps.get-contact.outputs.email
+            - name: HTML Enabled
+              value: true
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      operationStatus: $response.body#/operationStatus
+x-integration:
+  partner: intercom
+  edge_evidence: Workato listing customer highlight, https://www.workato.com/integrations/salesforce_marketing_cloud (HTTP 200, 2026-10-12)
+  edge_type: marketplace
+  method: generated
+  generated: '2026-10-12'
+  generator: claude-opus-5-5 local-v5
+  guessed_steps: []

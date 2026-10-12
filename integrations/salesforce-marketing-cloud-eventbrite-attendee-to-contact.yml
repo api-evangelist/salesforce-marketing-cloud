@@ -1,0 +1,65 @@
+arazzo: 1.0.1
+info:
+  title: Eventbrite attendee to Marketing Cloud contact
+  summary: Eventbrite attendee to Marketing Cloud contact
+  description: List an Eventbrite event's attendees and create a Marketing Cloud Engagement contact for the first one returned.
+  version: 1.0.0
+sourceDescriptions:
+- name: eventbriteAttendees
+  url: https://raw.githubusercontent.com/api-evangelist/eventbrite/refs/heads/main/openapi/eventbrite-attendees-api-openapi.yml
+  type: openapi
+- name: smcContacts
+  url: https://raw.githubusercontent.com/api-evangelist/salesforce-marketing-cloud/refs/heads/main/openapi/salesforce-marketing-cloud-contacts-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: eventbrite-attendee-to-contact
+  summary: Eventbrite attendee to Marketing Cloud contact
+  description: List an Eventbrite event's attendees and create a Marketing Cloud Engagement contact for the first one returned.
+  inputs:
+    type: object
+    properties:
+      eventId:
+        type: string
+  steps:
+  - stepId: list-attendees
+    description: List the event attendees.
+    operationId: $sourceDescriptions.eventbriteAttendees.listEventAttendees
+    parameters:
+    - name: event_id
+      in: path
+      value: $inputs.eventId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      email: $response.body#/attendees/0/profile/email
+      id: $response.body#/attendees/0/id
+  - stepId: create-contact
+    description: Create the Marketing Cloud contact with its email address attribute set.
+    operationId: $sourceDescriptions.smcContacts.createContacts
+    requestBody:
+      contentType: application/json
+      payload:
+        contactKey: $steps.list-attendees.outputs.id
+        attributeSets:
+        - name: Email Addresses
+          items:
+          - values:
+            - name: Email Address
+              value: $steps.list-attendees.outputs.email
+            - name: HTML Enabled
+              value: true
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      operationStatus: $response.body#/operationStatus
+x-integration:
+  partner: eventbrite
+  edge_evidence: Workato listing customer highlight, https://www.workato.com/integrations/salesforce_marketing_cloud (HTTP 200, 2026-10-12)
+  edge_type: marketplace
+  method: generated
+  generated: '2026-10-12'
+  generator: claude-opus-5-5 local-v5
+  guessed_steps:
+  - step: list-attendees
+    cause: partner-contract
+    why: the operation declares no event_id parameter object and its response path to the attendee email is not settled by the spec
