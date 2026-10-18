@@ -5,6 +5,9 @@ source:
 - https://zapier.com/apps/salesforce-marketing-cloud/integrations
 checked:
 - https://composio.dev/toolkits/salesforce-marketing-cloud
+- https://fivetran.com/docs-sitemap.xml
+- https://fivetran.com/docs/connectors/partner-built-program
+- https://github.com/meltano/hub
 - https://hightouch.com/docs/destinations/sfmc
 - https://monid.ai/tools/salesforce-marketing-cloud
 - https://n8n.io/integrations/salesforce-marketing-cloud/
@@ -169,6 +172,65 @@ edges:
     builder: unknown (not in the directory record)
   detected_by: sweep-workflow-automation.py
   first_seen: '2026-10-15'
+- partner_name: Fivetran
+  partner: fivetran
+  partner_match: aggregator
+  type: marketplace
+  marketplace: fivetran-connectors
+  channel: elt-connector
+  relationship: ipaas-bridge
+  direction: third-party
+  evidence: https://fivetran.com/docs/connectors/applications/salesforce-marketing-cloud
+  category: null
+  contract_reference:
+    register: Fivetran connectors (fivetran.com/docs/connectors, docs-sitemap.xml + Partner-Built program)
+    spec_file: null
+    role: elt-connector:fivetran
+    registered_name: Salesforce Marketing Cloud
+    matched_domain: salesforce.com
+    matched_by: domain+name-among-holders
+    detected_by: sweep-data-integration.py
+    detected: '2026-10-18'
+    signal_note: one edge per (provider, platform); connectors, streams, packages and usage are context, never read
+    connector_paths:
+    - connectors/applications/salesforce-marketing-cloud
+    vendor_link: https://www.salesforce.com/products/marketing-cloud/overview/
+    builder: Fivetran
+  detected_by: sweep-data-integration.py
+  first_seen: '2026-10-18'
+- partner_name: Meltano
+  partner: meltano
+  partner_match: aggregator
+  type: marketplace
+  marketplace: meltano-hub
+  channel: elt-connector
+  relationship: ipaas-bridge
+  direction: third-party
+  evidence: https://hub.meltano.com/extractors/tap-exacttarget--estrategiahq
+  category: null
+  contract_reference:
+    register: Meltano Hub (github.com/meltano/hub _data/meltano extractors + loaders)
+    spec_file: null
+    role: elt-connector:meltano-hub
+    registered_name: SalesForce Marketing Cloud
+    matched_domain: salesforce.com
+    matched_by: domain+name-among-holders
+    detected_by: sweep-data-integration.py
+    detected: '2026-10-18'
+    signal_note: one edge per (provider, platform); connectors, streams, packages and usage are context, never read
+    plugins:
+    - tap-exacttarget--estrategiahq
+    - tap-exacttarget--singer-io
+    - tap-exacttarget--uptilab2
+    maintenance_status:
+    - active
+    - unknown
+    quality:
+    - silver
+    - unknown
+    builder: 'community (Meltano Hub variant maintainers: estrategiahq, singer-io, uptilab2)'
+  detected_by: sweep-data-integration.py
+  first_seen: '2026-10-18'
 templates: []
 skips:
 - label: Dropbox
