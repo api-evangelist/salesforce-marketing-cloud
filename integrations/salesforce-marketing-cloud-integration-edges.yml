@@ -4,13 +4,20 @@ source:
 - https://www.workato.com/integrations/salesforce_marketing_cloud
 - https://zapier.com/apps/salesforce-marketing-cloud/integrations
 checked:
+- https://api.nuget.org/v3
 - https://composio.dev/toolkits/salesforce-marketing-cloud
+- https://crates.io/api/v1
 - https://fivetran.com/docs-sitemap.xml
 - https://fivetran.com/docs/connectors/partner-built-program
 - https://github.com/meltano/hub
 - https://hightouch.com/docs/destinations/sfmc
 - https://monid.ai/tools/salesforce-marketing-cloud
 - https://n8n.io/integrations/salesforce-marketing-cloud/
+- https://proxy.golang.org
+- https://pypi.org/pypi
+- https://registry.npmjs.org
+- https://repo1.maven.org/maven2
+- https://rubygems.org/api/v1
 - https://www.make.com/en/integrations/salesforce-marketing-cloud
 - https://www.twilio.com/docs/segment/connections/destinations/catalog/actions-salesforce-marketing-cloud
 - https://www.workato.com/integrations/salesforce_marketing_cloud
@@ -230,6 +237,75 @@ edges:
     - unknown
     builder: 'community (Meltano Hub variant maintainers: estrategiahq, singer-io, uptilab2)'
   detected_by: sweep-data-integration.py
+  first_seen: '2026-10-18'
+- partner_name: Maven Central
+  partner: maven-central
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (Java/JVM)
+  evidence: https://central.sonatype.com/artifact/com.github.salesforce-marketingcloud/fuelsdk
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: Maven Central (public registry JSON)
+    spec_file: null
+    language: Java/JVM
+    packages:
+    - name: com.github.salesforce-marketingcloud:fuelsdk
+      version: 1.6.0
+      released: '2022-01-14'
+      released_field: lastUpdated
+      lapsed: true
+      page: https://central.sonatype.com/artifact/com.github.salesforce-marketingcloud/fuelsdk
+      repo_leg: github-org:salesforce-marketingcloud
+      publisher_leg: org:salesforce-marketingcloud
+      matched_by: github-org
+    current: false
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
+- partner_name: npm registry
+  partner: npm
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (JavaScript/TypeScript)
+  evidence: https://www.npmjs.com/package/cordova-plugin-marketingcloudsdk
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: npm registry (public registry JSON)
+    spec_file: null
+    language: JavaScript/TypeScript
+    packages:
+    - name: cordova-plugin-marketingcloudsdk
+      version: 8.1.1
+      released: '2025-05-30'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/cordova-plugin-marketingcloudsdk
+      repo_leg: github-org:salesforce-marketingcloud
+      publisher_leg: email:salesforce.com
+      matched_by: domain+name-among-holders
+    - name: react-native-marketingcloudsdk
+      version: 9.0.0
+      released: '2025-05-30'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/react-native-marketingcloudsdk
+      repo_leg: github-org:salesforce-marketingcloud
+      publisher_leg: email:salesforce.com
+      matched_by: domain+name-among-holders
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
   first_seen: '2026-10-18'
 templates: []
 skips:
