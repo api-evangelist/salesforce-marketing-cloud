@@ -23,6 +23,12 @@ checked:
 - https://www.workato.com/integrations/salesforce_marketing_cloud
 - https://zapier.com/api/v4/apps/
 - https://zapier.com/apps/salesforce-marketing-cloud/integrations
+- https://api.appexchange.salesforce.com/recommendations/v3/listings?type=apps
+- https://api.appexchange.salesforce.com/recommendations/v3/listings?type=consultants
+- https://appexchange.salesforce.com/
+- https://appexchange.salesforce.com/consulting
+- https://developer.salesforce.com/docs/atlas.en-us.packagingGuide.meta/packagingGuide/security_review_overview.htm
+- https://slack.com/marketplace
 summary: null
 marketplace_apps:
 - marketplace: workato
@@ -307,6 +313,507 @@ edges:
     builder: 'community (Meltano Hub variant maintainers: estrategiahq, singer-io, uptilab2)'
   detected_by: sweep-data-integration.py
   first_seen: '2026-10-18'
+- partner_name: Airship
+  app: Airship RTDS REST (EU)
+  apps:
+  - Airship RTDS REST
+  - Airship RTDS REST (EU)
+  listing_count: 2
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=f0fd4a5f-5bfc-4d0b-a2f2-d7e2896cf690
+  category: marketing
+  partner_url: http://www.airship.com
+  technology:
+  - marketing-cloud/api
+  signal_note: AppExchange listing (publisher website from the listing's own public JSON); listing count and app
+    names are context, never counted
+  detected_by: sweep-salesforce-appexchange.py
+  detected: '2026-10-21'
+  partner_held:
+    candidate: airship
+    why: 'market-fit gate: partner''s own tags carry no CRM / sales / outbound / workflow / business-process term'
+- partner_name: Bynder
+  app: Bynder Digital Asset Management (DAM) for Salesforce Marketing Cloud (SFMC)
+  apps:
+  - Bynder Digital Asset Management (DAM) for Salesforce Marketing Cloud (SFMC)
+  listing_count: 1
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=a0N3A00000G5v6CUAR
+  category: marketing
+  partner_url: https://www.bynder.com/en/
+  technology:
+  - marketing-cloud/api
+  signal_note: AppExchange listing (publisher website from the listing's own public JSON); listing count and app
+    names are context, never counted
+  detected_by: sweep-salesforce-appexchange.py
+  detected: '2026-10-21'
+  partner_held:
+    candidate: bynder
+    why: 'market-fit gate: partner''s own tags carry no CRM / sales / outbound / workflow / business-process term'
+- partner_name: Attentive
+  app: Attentive SMS for Marketing Cloud
+  apps:
+  - Attentive SMS for Marketing Cloud
+  listing_count: 1
+  partner: attentive
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=a0N3A00000FR4zUUAT
+  category: eCommerce
+  partner_url: https://www.attentive.com/
+  technology:
+  - marketing-cloud/api
+  signal_note: AppExchange listing (publisher website from the listing's own public JSON); listing count and app
+    names are context, never counted
+  detected_by: sweep-salesforce-appexchange.py
+  detected: '2026-10-21'
+- partner_name: Cloudinary
+  app: Cloudinary for Salesforce Marketing Cloud
+  apps:
+  - Cloudinary for Salesforce Marketing Cloud
+  listing_count: 1
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=a0N4V00000G6fikUAB
+  category: eCommerce
+  partner_url: https://www.cloudinary.com
+  technology:
+  - marketing-cloud/api
+  signal_note: AppExchange listing (publisher website from the listing's own public JSON); listing count and app
+    names are context, never counted
+  detected_by: sweep-salesforce-appexchange.py
+  detected: '2026-10-21'
+  partner_held:
+    candidate: cloudinary
+    why: 'market-fit gate: partner''s own tags carry no CRM / sales / outbound / workflow / business-process term'
+- partner_name: Sinch
+  app: Mailgun Optimize
+  apps:
+  - Mailgun Optimize
+  - Sinch Omnichannel Connector
+  listing_count: 2
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=a0N4V00000Gw2U8UAJ
+  category: analytics
+  partner_url: https://sinch.com/
+  technology:
+  - marketing-cloud/api
+  signal_note: AppExchange listing (publisher website from the listing's own public JSON); listing count and app
+    names are context, never counted
+  detected_by: sweep-salesforce-appexchange.py
+  detected: '2026-10-21'
+  other_publisher_names:
+  - SINCH
+  partner_held:
+    candidate: sinch
+    why: 'market-fit gate: partner''s own tags carry no CRM / sales / outbound / workflow / business-process term'
+- partner_name: Annex Cloud
+  app: Annex Cloud Loyalty Experience Platform for Enterprises
+  apps:
+  - Annex Cloud Loyalty Experience Platform for Enterprises
+  listing_count: 1
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=a0N3A00000FtUpXUAV
+  category: marketing
+  partner_url: https://www.annexcloud.com/request-demo/
+  technology:
+  - marketing-cloud/api
+  signal_note: AppExchange listing (publisher website from the listing's own public JSON); listing count and app
+    names are context, never counted
+  detected_by: sweep-salesforce-appexchange.py
+  detected: '2026-10-21'
+  partner_held:
+    candidate: annex-cloud
+    why: 'market-fit gate: partner''s own tags carry no CRM / sales / outbound / workflow / business-process term'
+- partner_name: Avochato
+  app: 'Avochato for Marketing: Two-way SMS Text Messaging for Journey Builder'
+  apps:
+  - 'Avochato for Marketing: Two-way SMS Text Messaging for Journey Builder'
+  listing_count: 1
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=a0N3A00000FZ2qkUAD
+  category: marketingAutomation
+  partner_url: https://www.avochato.com
+  technology:
+  - marketing-cloud/api
+  signal_note: AppExchange listing (publisher website from the listing's own public JSON); listing count and app
+    names are context, never counted
+  detected_by: sweep-salesforce-appexchange.py
+  detected: '2026-10-21'
+  publisher_country: US
+  partner_held:
+    candidate: avochato
+    why: 'market-fit gate: partner''s own tags carry no CRM / sales / outbound / workflow / business-process term'
+- partner_name: Community.com
+  app: Community SMS for Marketing Cloud
+  apps:
+  - Community SMS for Marketing Cloud
+  listing_count: 1
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=a0N4V00000J6Ew9UAF
+  category: marketing
+  partner_url: https://community.com
+  technology:
+  - marketing-cloud/api
+  signal_note: AppExchange listing (publisher website from the listing's own public JSON); listing count and app
+    names are context, never counted
+  detected_by: sweep-salesforce-appexchange.py
+  detected: '2026-10-21'
+  partner_held:
+    candidate: community
+    why: 'market-fit gate: partner''s own tags carry no CRM / sales / outbound / workflow / business-process term'
+- partner_name: Movable Ink
+  app: Da Vinci by Movable Ink
+  apps:
+  - Da Vinci by Movable Ink
+  listing_count: 1
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=2c6e2a8a-398a-4474-8d9c-5514e81785bf
+  category: campaignManagement
+  partner_url: https://movableink.com/
+  technology:
+  - marketing-cloud/api
+  signal_note: AppExchange listing (publisher website from the listing's own public JSON); listing count and app
+    names are context, never counted
+  detected_by: sweep-salesforce-appexchange.py
+  detected: '2026-10-21'
+  partner_held:
+    candidate: movable-ink
+    why: 'market-fit gate: partner''s own tags carry no CRM / sales / outbound / workflow / business-process term'
+- partner_name: Smartling
+  app: Smartling for Salesforce Marketing Cloud | AI-powered Translation
+  apps:
+  - Smartling for Salesforce Marketing Cloud | AI-powered Translation
+  listing_count: 1
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=5ecbe6af-9e03-4646-b317-26dd4f2494dd
+  category: marketing
+  partner_url: https://www.smartling.com/
+  technology:
+  - marketing-cloud/api
+  signal_note: AppExchange listing (publisher website from the listing's own public JSON); listing count and app
+    names are context, never counted
+  detected_by: sweep-salesforce-appexchange.py
+  detected: '2026-10-21'
+  partner_held:
+    candidate: smartling
+    why: 'market-fit gate: partner''s own tags carry no CRM / sales / outbound / workflow / business-process term'
+- partner_name: Smartsheet
+  app: Brandfolder Digital Asset Management for Salesforce Marketing Cloud
+  apps:
+  - Brandfolder Digital Asset Management for Salesforce Marketing Cloud
+  listing_count: 1
+  partner: smartsheet
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=a0N4V00000G6frNUAR
+  category: marketing
+  partner_url: http://www.smartsheet.com/smartsheet-salesforce-appexchange?s=28
+  technology:
+  - marketing-cloud/api
+  signal_note: AppExchange listing (publisher website from the listing's own public JSON); listing count and app
+    names are context, never counted
+  detected_by: sweep-salesforce-appexchange.py
+  detected: '2026-10-21'
+- partner_name: CI HUB GmbH
+  app: DAM Connector for Salesforce by CI HUB
+  apps:
+  - DAM Connector for Salesforce by CI HUB
+  listing_count: 1
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=772be3aa-787c-4331-a79b-c010dd77b851
+  category: marketing
+  partner_url: https://ci-hub.com
+  technology:
+  - marketing-cloud/api
+  signal_note: AppExchange listing (publisher website from the listing's own public JSON); listing count and app
+    names are context, never counted
+  detected_by: sweep-salesforce-appexchange.py
+  detected: '2026-10-21'
+  partner_held:
+    candidate: ci-hub
+    why: 'market-fit gate: partner''s own tags carry no CRM / sales / outbound / workflow / business-process term'
+- partner_name: Contentsquare SAS
+  app: Contentsquare for Marketing Cloud
+  apps:
+  - Contentsquare for Marketing Cloud
+  listing_count: 1
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=a0N4V00000Fhc8DUAR
+  category: marketingAutomation
+  partner_url: https://www.contentsquare.com
+  technology:
+  - marketing-cloud/api
+  signal_note: AppExchange listing (publisher website from the listing's own public JSON); listing count and app
+    names are context, never counted
+  detected_by: sweep-salesforce-appexchange.py
+  detected: '2026-10-21'
+  partner_held:
+    candidate: contentsquare
+    why: 'market-fit gate: partner''s own tags carry no CRM / sales / outbound / workflow / business-process term'
+- partner_name: Frontify
+  app: Frontify Digital Asset Management (DAM) for Marketing Cloud (SFMC)
+  apps:
+  - Frontify Digital Asset Management (DAM) for Marketing Cloud (SFMC)
+  listing_count: 1
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=f1cf25b0-1d5c-4e0b-b8ac-3181c20a1b14
+  category: marketing
+  partner_url: https://www.frontify.com/
+  technology:
+  - marketing-cloud/api
+  signal_note: AppExchange listing (publisher website from the listing's own public JSON); listing count and app
+    names are context, never counted
+  detected_by: sweep-salesforce-appexchange.py
+  detected: '2026-10-21'
+  partner_held:
+    candidate: frontify
+    why: 'market-fit gate: partner''s own tags carry no CRM / sales / outbound / workflow / business-process term'
+- partner_name: Jebbit
+  app: Jebbit - First-Party Data Hub for Marketing Cloud
+  apps:
+  - Jebbit - First-Party Data Hub for Marketing Cloud
+  listing_count: 1
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=a0N3A00000FR6LlUAL
+  category: surveys
+  partner_url: https://www.jebbit.com
+  technology:
+  - marketing-cloud/api
+  signal_note: AppExchange listing (publisher website from the listing's own public JSON); listing count and app
+    names are context, never counted
+  detected_by: sweep-salesforce-appexchange.py
+  detected: '2026-10-21'
+  partner_held:
+    candidate: jebbit
+    why: 'market-fit gate: partner''s own tags carry no CRM / sales / outbound / workflow / business-process term'
+- partner_name: Knak
+  app: Knak
+  apps:
+  - Knak
+  listing_count: 1
+  partner: knak
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=ca575bbe-e538-4302-9b39-e1f6304468ba
+  category: marketing
+  partner_url: https://knak.com/
+  technology:
+  - marketing-cloud/api
+  signal_note: AppExchange listing (publisher website from the listing's own public JSON); listing count and app
+    names are context, never counted
+  detected_by: sweep-salesforce-appexchange.py
+  detected: '2026-10-21'
+- partner_name: Marketing Evolution, Inc.
+  app: Mevo - Decision Engine
+  apps:
+  - Mevo - Decision Engine
+  listing_count: 1
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=a0N4V00000HEcvZUAT
+  category: analytics
+  partner_url: https://www.marketingevolution.com/
+  technology:
+  - marketing-cloud/api
+  signal_note: AppExchange listing (publisher website from the listing's own public JSON); listing count and app
+    names are context, never counted
+  detected_by: sweep-salesforce-appexchange.py
+  detected: '2026-10-21'
+  partner_held:
+    candidate: marketing-evolution
+    why: 'market-fit gate: partner''s own tags carry no CRM / sales / outbound / workflow / business-process term'
+- partner_name: Mitto
+  app: Mitto SMS for Salesforce
+  apps:
+  - Mitto SMS for Salesforce
+  listing_count: 1
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=d36998c6-6e41-4368-8f7c-240481635606
+  category: marketing
+  partner_url: https://www.mitto.ch
+  technology:
+  - marketing-cloud/api
+  signal_note: AppExchange listing (publisher website from the listing's own public JSON); listing count and app
+    names are context, never counted
+  detected_by: sweep-salesforce-appexchange.py
+  detected: '2026-10-21'
+  publisher_country: CH
+  partner_held:
+    candidate: mitto-ch
+    why: 'market-fit gate: partner''s own tags carry no CRM / sales / outbound / workflow / business-process term'
+- partner_name: Typeface Inc
+  app: Typeface app for Salesforce
+  apps:
+  - Typeface app for Salesforce
+  listing_count: 1
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=831bda62-a69c-4d52-ae4d-862298fbf80e
+  category: massEmailsAndMessaging
+  partner_url: https://www.typeface.ai
+  technology:
+  - marketing-cloud/api
+  signal_note: AppExchange listing (publisher website from the listing's own public JSON); listing count and app
+    names are context, never counted
+  detected_by: sweep-salesforce-appexchange.py
+  detected: '2026-10-21'
+  partner_held:
+    candidate: typeface
+    why: 'market-fit gate: partner''s own tags carry no CRM / sales / outbound / workflow / business-process term'
+- partner_name: Vibes
+  app: Vibes SMS Integration for Salesforce Marketing Cloud Journey Builder
+  apps:
+  - Vibes SMS Integration for Salesforce Marketing Cloud Journey Builder
+  listing_count: 1
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=a0N4V00000G6gX5UAJ
+  category: marketingAutomation
+  partner_url: https://www.vibes.com
+  technology:
+  - marketing-cloud/api
+  signal_note: AppExchange listing (publisher website from the listing's own public JSON); listing count and app
+    names are context, never counted
+  detected_by: sweep-salesforce-appexchange.py
+  detected: '2026-10-21'
+  partner_held:
+    candidate: vibes-platform
+    why: 'market-fit gate: partner''s own tags carry no CRM / sales / outbound / workflow / business-process term'
+- partner_name: Wunderkind Corporation
+  app: Wunderkind Autonomous Marketing Platform
+  apps:
+  - Wunderkind Autonomous Marketing Platform
+  listing_count: 1
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=a0N3A00000EOCq4UAH
+  category: commerce
+  partner_url: https://www.wunderkind.co/
+  technology:
+  - marketing-cloud/api
+  signal_note: AppExchange listing (publisher website from the listing's own public JSON); listing count and app
+    names are context, never counted
+  detected_by: sweep-salesforce-appexchange.py
+  detected: '2026-10-21'
+  partner_held:
+    candidate: wunderkind
+    why: 'market-fit gate: partner''s own tags carry no CRM / sales / outbound / workflow / business-process term'
 templates: []
 skips:
 - label: Dropbox
