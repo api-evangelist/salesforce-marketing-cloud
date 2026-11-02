@@ -1,0 +1,204 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-28'
+method: searched
+source: https://www.salesforce.com/marketing/pricing/?bc=OTH
+sources:
+- https://www.salesforce.com/marketing/pricing/?bc=OTH
+- https://www.salesforce.com/products/marketing-cloud/pricing/
+provenance:
+  tool: engine/economics/harvest_pricing.py
+  run: 20261028T120612
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: tiered-subscription
+delivery:
+  delivery: managed
+  method: page
+  read: '2026-10-28'
+  managed_tier: Marketing Cloud Next Growth Edition
+published: true
+note: Marketing Cloud pricing page with per-org monthly prices in multiple currencies; Starter is per-user.
+  Success Plans listed as included or contact-sales.
+plan_count: 11
+currency: USD
+plans:
+- name: Salesforce Starter
+  price_text: $ 25 USD/User/Month (Starting price. Transaction fees apply. Billed monthly or annually.)
+  price: 25
+  currency: USD
+  period: month
+  unit: user
+  included_quota: Lead, Account, Contact, and Opportunity Management; Dynamic Email Marketing and Analytics;
+    Built-in Sales Flows and Lead Routing; Connected Slack Conversations
+- name: Marketing Cloud Next Growth Edition
+  price_text: $ 1,500 USD/Org/Month (Billed annually)
+  price: 1500
+  currency: USD
+  period: month
+  unit: org
+  included_quota: Campaign Agent, Agentic Content, Multi-Channel Journeys, Forms and Landing Pages, Consent
+    Management, Campaign Attribution Reporting
+- name: Marketing Cloud Next Advanced Edition
+  price_text: $ 3,250 USD/Org/Month (Billed annually)
+  price: 3250
+  currency: USD
+  period: month
+  unit: org
+  included_quota: 'Everything included in Growth plus: Campaign Agent, Agentic Campaigns, Conversational
+    email, RCS, SMS, and WhatsApp, Custom Automation Events, AI-powered Engagement Scoring'
+- name: Salesforce Personalization
+  price_text: $ 8,000 USD/Org/Month (Billed annually)
+  price: 8000
+  currency: USD
+  period: month
+  unit: org
+  included_quota: Agentforce Personalization Decisioning; Web, Mobile App, and Email Personalization;
+    Product and Content Recommendations
+- name: Marketing Intelligence
+  price_text: $ 10,000 USD/Org/Month (Billed annually)
+  price: 10000
+  currency: USD
+  period: month
+  unit: org
+  included_quota: Agentforce Paid Media Optimization; AI Campaign Summaries; Data Enrichment & OOTB Visualizations
+- name: Loyalty Management
+  price_text: $ 20,000 USD/Org/Month (Billed annually)
+  price: 20000
+  currency: USD
+  period: month
+  unit: org
+  included_quota: Agentforce Loyalty Promotion Creation; CRM Loyalty Analytics; Dynamic Promotions Management
+- name: Account Engagement+
+  price_text: $ 1,250 USD/Org/Month (Billed annually)
+  price: 1250
+  currency: USD
+  period: month
+  unit: org
+  included_quota: Includes Marketing Cloud Growth or Advanced; Agentforce Campaign Creation; Lead Nurturing
+    and Scoring; B2B Marketing Analytics
+- name: Engagement+
+  price_text: $ 2,000 USD/Org/Month (Billed annually)
+  price: 2000
+  currency: USD
+  period: month
+  unit: org
+  included_quota: Includes Marketing Cloud Growth or Advanced; Agentforce Campaign Creation; Email and
+    Mobile Messaging; Journey Orchestration
+- name: Intelligence+
+  price_text: $ 11,000 USD/Org/Month (Billed annually)
+  price: 11000
+  currency: USD
+  period: month
+  unit: org
+  included_quota: Includes Marketing Intelligence; Agentforce Paid Media Optimization; AI Campaign Summaries;
+    Automated Data Management
+- name: Personalization+
+  price_text: $ 15,000 USD/Org/Month (Billed annually)
+  price: 15000
+  currency: USD
+  period: month
+  unit: org
+  included_quota: Includes Salesforce Personalization; Agentforce Personalization Decisioning; Web, Mobile
+    App, and Email Personalization; Product and Content Recommendations
+- name: Signature Success Plan
+  price_text: Contact your account executive
+  period: none
+  included_quota: Designated Customer Success Manager; Salesforce Health Insights; Proactive Monitoring
+    and Key Event Management; Fastest 24/7 support response times
+x-canonical:
+  generated: '2026-11-01'
+  vocabulary: engine/economics/plans-canonical.yml
+  models:
+  - hybrid
+  - seat
+  units:
+  - object
+  - seat
+  plans:
+  - name: Salesforce Starter
+    access: other
+    model: seat
+    model_how: derived
+    units:
+    - seat
+    periods:
+    - month
+  - name: Marketing Cloud Next Growth Edition
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - object
+    periods:
+    - month
+  - name: Marketing Cloud Next Advanced Edition
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - object
+    periods:
+    - month
+  - name: Salesforce Personalization
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - object
+    periods:
+    - month
+  - name: Marketing Intelligence
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - object
+    periods:
+    - month
+  - name: Loyalty Management
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - object
+    periods:
+    - month
+  - name: Account Engagement+
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - object
+    periods:
+    - month
+  - name: Engagement+
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - object
+    periods:
+    - month
+  - name: Intelligence+
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - object
+    periods:
+    - month
+  - name: Personalization+
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - object
+    periods:
+    - month
+  - name: Signature Success Plan
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods:
+    - none
