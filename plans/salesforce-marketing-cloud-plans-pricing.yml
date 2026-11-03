@@ -106,7 +106,7 @@ plans:
   included_quota: Designated Customer Success Manager; Salesforce Health Insights; Proactive Monitoring
     and Key Event Management; Fastest 24/7 support response times
 x-canonical:
-  generated: '2026-11-01'
+  generated: '2026-11-02'
   vocabulary: engine/economics/plans-canonical.yml
   models:
   - hybrid
